@@ -1,0 +1,152 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "Homepage.Homepage",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		},
+		"crossNavigation": {
+			"inbounds": {}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "Homepage.Homepage.view.AppView",
+			"type": "XML",
+			"async": true,
+			"id": "AppView"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "Homepage.Homepage.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "Homepage.Homepage.view",
+				"controlAggregation": "pages",
+				"controlId": "rootContainer",
+				"clearControlAggregation": false
+			},
+			"routes": [{
+				"name": "HomeView",
+				"pattern": "",
+				"target": ["HomeView"]
+			}, {
+				"name": "ListView",
+				"pattern": "ListView",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["ListView"]
+			}, {
+				"name": "AboutMeView",
+				"pattern": "AboutMe",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["AboutMeView"]
+			}, {
+				"name": "WikiView",
+				"pattern": "Wiki",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["WikiView"]
+			}, {
+				"name": "WikiDetailView",
+				"pattern": "Wiki/{Id}",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["WikiDetailView"]
+			}],
+			"targets": {
+				"ListView": {
+					"viewType": "XML",
+					"viewName": "ListView",
+					"viewId": "ViewIdList",
+					"viewLevel": 2
+				},
+				"AppView": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "AppView",
+					"viewId": "ViewIdApp",
+					"viewLevel": 1
+				},
+				"AboutMeView": {
+					"viewType": "XML",
+					"viewName": "AboutMeView",
+					"viewLevel": 2,
+					"viewId": "ViewIdAboutMe"
+				},
+				"WikiView": {
+					"viewType": "XML",
+					"viewName": "WikiView",
+					"viewId": "ViewIdWiki",
+					"viewLevel": 2
+				},
+				"WikiDetailView": {
+					"viewType": "XML",
+					"viewName": "WikiDetailView",
+					"viewId": "ViewIdWikiDetail",
+					"viewLevel": 3
+				},
+				"HomeView": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "HomeView",
+					"viewLevel": 1,
+					"viewId": "ViewIdHome"
+				}
+			}
+		}
+	}
+}

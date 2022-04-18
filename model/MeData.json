@@ -1,0 +1,62 @@
+{
+	"General":{	"FirstName": "Thorsten",
+				"LastName": "Bender",
+				"FullName":"Thorsten Bender",
+				"JobTitle": "Senior SAP Developer",
+				"Email": "thorsten.bender@mail.ch",
+				"Country": "Schweiz",
+				"City": "Bern",
+				"Degree":"Diplom-Kaufmann (Univ.)",
+				"LinkedIn": "https://www.linkedin.com/in/thorsten-bender-652080182",
+				"Xing":"https://www.xing.com/profile/Thorsten_Bender20"
+	},
+	"Certificate":{ "ABAP":{"Label":"SAP Entwickler-Zertifikat",
+							"Title":"SAP Certified Development Associate"},
+					"HANA":{"Label":"SAP HANA-Zertifikat",
+							"Title":"SAP Certified HANA Specialist"},
+					"UI5":{	"Label":"OpenSAP UI5-Zertifikat",
+							"Title":"Evolved Web Apps with SAPUI5",
+							"Url":"https://open.sap.com/verify/xolac-cykib-zadym-megol-rikys"},
+					"RAP":{	"Label":"OpenSAP RAP-Zertifikat",
+							"Title":"Building Apps with the ABAP RESTful Application Programing Model",
+							"Url":"https://open.sap.com/verify/xotan-barin-fasum-zidum-hinyp"
+					}
+	},
+	"Projects":{	"S4HANA":"Einführung S4HANA",
+					"HANADB":"Einführung HANA-Datenbank",
+					"SAP":"Einführung SAP",
+					"Mobile":"Entwicklung von Webapplikationen"
+	},
+	"Module":{	"MM":"MM (Material Management)",
+				"SD":"SD (Sales and Distribution)",
+				"FICO":"FICO (Finance and Controlling)",
+				"GTM":"GTM (Global Trade Management)",
+				"REFX":"RE-FX (Flexibles Immobilienmanagement)"
+	},
+	"Knowledge": 
+		{
+		"ProgrammingLanguages":{ "ABAPOO":"ABAP / ABAP OO",
+								 "JavaScript":"JavaScript",
+								 "Java":"Java"
+		},
+		"Web":{ "RAP":"RAP (ABAP RESTful Application Programming Model)",
+				"UI5":"UI5 / FIORI",
+				"OData":"OData / SAP Gateway",
+				"Floorplan":"FPM (Floorplan Manager)",
+				"Webdynpro":"Webdynpro"
+		},
+		"Formular":{"Adobe":"Adobe Interactive Forms",
+					 "Smartforms":"Smartforms",
+					 "SapScript":"SAP-Script"
+		},
+		"Data":{	"CDS":"CDS-Views (Core Data Services)",
+					"AMDPs":"AMDPs (ABAP Managed Database Procedures)",
+					"HanaViews":"HANA-Views"
+		},
+		"Special":{ "IDoc":"IDocs / ALE-Schnittstelle",
+					"Pricat":"Pricat (Preiskatalog)",
+					"BOPF":"BOPF (Business Object Processing Framework)"
+		} 
+	}
+	
+}

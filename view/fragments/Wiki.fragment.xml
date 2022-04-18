@@ -1,0 +1,78 @@
+<core:FragmentDefinition	xmlns="sap.m" 
+							xmlns:mvc="sap.ui.core.mvc"
+							xmlns:core="sap.ui.core"
+							xmlns:f="sap.ui.layout.form"
+							xmlns:uxap="sap.uxap"
+							xmlns:l="sap.ui.layout"
+							xmlns:html="http://www.w3.org/1999/xhtml">
+
+<!-- CustomListItem -->
+	<List	mode="None"
+			items="{path: 'WikiModel>/Wiki'}" >
+		<CustomListItem >
+						
+<!-- Content Header Information -->		
+			<HBox>
+
+				<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+					<Link	text="{WikiModel>title}" 
+							press="onPressRow"/>
+					<Label text ="{WikiModel>date}">
+					</Label>
+	
+<!-- Content 0 -->
+					<FlexBox>
+						<FormattedText	visible="{ path: 'WikiModel>content/0/text', formatter: '.formatter.visible' }"
+										htmlText="{WikiModel>content/0/text}"/>
+					</FlexBox>
+					<Image	visible="{ path: 'WikiModel>content/0/image/src', formatter: '.formatter.visible' }"
+							src="{WikiModel>content/0/image/src}">
+						<detailBox>
+							<LightBox>
+								<LightBoxItem
+									imageSrc="{WikiModel>content/0/image/src}"
+									title="{WikiModel>content/0/image/description}"/>
+								</LightBox>
+							</detailBox>
+						<layoutData>
+							<FlexItemData growFactor="1" shrinkFactor="0" />
+						</layoutData>
+					</Image>
+					<FormattedText	visible="{ path: 'WikiModel>content/0/image/description', formatter: '.formatter.visible' }"
+									htmlText ="{WikiModel>content/0/image/description}"
+									class="sapUiSmallMarginBottom"/>
+					
+<!-- Content 1 -->
+					<FlexBox>
+						<FormattedText	visible="{ path: 'WikiModel>content/1/text', formatter: '.formatter.visible' }"
+										htmlText="{WikiModel>content/1/text}"/>
+					</FlexBox>
+					<Image  visible="{ path: 'WikiModel>content/1/image/src', formatter: '.formatter.visible' }"
+							src="{WikiModel>content/1/image/src}">
+						<detailBox>
+							<LightBox>
+								<LightBoxItem
+									imageSrc="{WikiModel>content/1/image/src}"
+									title="{WikiModel>content/1/image/description}"/>
+								</LightBox>
+							</detailBox>
+						<layoutData>
+							<FlexItemData growFactor="1" shrinkFactor="0" />
+						</layoutData>
+					</Image>
+					<FormattedText	visible="{ path: 'WikiModel>content/1/image/description', formatter: '.formatter.visible' }"
+									htmlText="{WikiModel>content/1/image/description}"
+									class="sapUiSmallMarginBottom"/>
+					
+				</VBox>
+			</HBox>
+
+<!-- Content 2++ -->			
+			<Link	class="sapUiSmallMargin"
+					text="{i18n>ShowMore}"
+					visible="{ path: 'WikiModel>content/2/', formatter: '.formatter.visible' }"
+					press="onPressRow"></Link>
+		</CustomListItem>
+	</List>
+
+</core:FragmentDefinition>

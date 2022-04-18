@@ -1,0 +1,18 @@
+<mvc:View	controllerName="Homepage.Homepage.controller.AppView"
+			xmlns:mvc="sap.ui.core.mvc"
+			displayBlock="true"
+			xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="AppView">
+					<content>
+						
+						<Button id="btnGoCreateNew" icon="sap-icon://create" text="GoToList" press="onNavToList" tooltip="{i18n>createRet}" type="Emphasized"/>
+						
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

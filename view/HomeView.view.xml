@@ -1,0 +1,21 @@
+<mvc:View	controllerName="Homepage.Homepage.controller.HomeView"
+			xmlns:mvc="sap.ui.core.mvc"
+			xmlns="sap.m"
+			xmlns:core="sap.ui.core"
+			xmlns:tnt="sap.tnt">
+
+	<Page	id="idPageHome" 
+			title="HomeView"
+			showHeader="false">
+		
+		<subHeader>
+			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Header" type="XML"/>
+		</subHeader>
+		
+		<content>
+			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Home" type="XML"/>
+		</content>
+		
+	</Page>
+
+</mvc:View>

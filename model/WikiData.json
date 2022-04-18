@@ -1,0 +1,59 @@
+{
+	"Wiki":
+	[
+		{	"id":"0001",
+			"date":"30.11.2021",
+			"title":"SAP Gateway - Calls Backend",
+			"content":
+				[
+					{	"text": "<ul><li>Get Entity:</li></ul><p style=\"padding-left: 40px;\">/sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/UserDefaultsSet<span style=\"color: #ff0000;\"><strong>(Username='UserABC')</strong></span></p><ul><li>Get EntitySet:</li></ul><p style=\"padding-left: 40px;\">/sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/UserDefaultsSet</p><ul><li>Follow Associations:</li></ul><p style=\"padding-left: 40px;\">/sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/DocumentSet(DocumentId='0000722731')<span style=\"color: #ff0000;\">/<strong>Items</strong></span></p><ul><li>Use Filter:</li></ul><p style=\"padding-left: 40px;\">/sap/opu/odata/sap/Z_IFMI_SRV/PRODUCT_HIERARCHIESSet<span style=\"color: #ff0000;\"><strong>?$filter=Language eq 'EN'</strong></span></p>"
+					}
+				]
+		},
+		{	"id":"0002",
+			"date":"01.12.2021",
+			"title":"Dirty Assign",
+			"content":
+				[
+					{	"text":"<p>FIELD-SYMBOLS: &lt;var&gt; TYPE i.</p><p>ASSIGN ('(Z_TB_TEST10)GV_GLOBAL') TO &lt;var&gt;.</p><p>&lt;var&gt; = 4.</p>"
+					}
+				]
+		},
+		{	"id":"0003",
+			"date":"11.11.2011",
+			"title":"GuiXT",
+			"content":
+				[
+					{	"text":"<p>Erm&ouml;glicht Erweiterung vom SAP-GUI</p>",
+						"image":
+							{
+								"src":"images/Wiki/0003_01.png",
+								"description":"GuiXT aktivieren"
+							}
+					},
+					{	"text":"",
+						"image":
+							{
+								"src":"images/Wiki/0003_02.png",
+								"description":"GuiXT wieder sichtbar machen: CMD.exe"
+							}
+					}
+				]
+			
+		},
+		{	"id":"0004",
+			"date":"11.11.2011",
+			"title":"FavIcon",
+			"content":
+				[
+					{	"text":"<p>Get Entity: /sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/UserDefau ltsSet<strong>(Username='UserABC')</strong></p><p>Get EntitySet: /sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/UserDefaultsSet</p><p>Follow Associati ons: /sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/Docu mentSet(DocumentId='0000722731')/<strong>Items</strong></p><p>Use Filter: /sap/opu/odata/sap/Z_IFMI_SRV/PRODUCT_HIERARCHIESSet<strong>?$filter=Language eq 'EN'</strong></p>",
+						"image":
+							{
+								"src":"images/FavIcon48.png",
+								"description":""
+							}
+					}
+				]
+		}
+		]
+}

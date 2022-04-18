@@ -1,0 +1,138 @@
+<core:FragmentDefinition	xmlns="sap.m" 
+							xmlns:mvc="sap.ui.core.mvc"
+							xmlns:core="sap.ui.core"
+							xmlns:f="sap.ui.layout.form"
+							xmlns:uxap="sap.uxap"
+							xmlns:l="sap.ui.layout"
+							xmlns:html="http://www.w3.org/1999/xhtml">
+	
+	<uxap:ObjectPageLayout	id="ObjectPageLayout" 
+							upperCaseAnchorBar="false" 
+							sections="{ path: 'WikiModel>/Wiki'}">
+		<uxap:headerTitle>
+			<uxap:ObjectPageDynamicHeaderTitle>
+				<uxap:heading>
+					<Title text="Sections"/>
+				</uxap:heading>
+			</uxap:ObjectPageDynamicHeaderTitle>
+		</uxap:headerTitle>
+		<uxap:sections>
+			<uxap:ObjectPageSection title="{WikiModel>/id}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection>
+						<uxap:actions>
+							<Button text="To Detail" press="toDetail"/>
+						</uxap:actions>
+						<uxap:blocks>
+							<f:SimpleForm editable="false">
+								<Label text="Content"/>
+								<Text text="some content goes here..."/>
+								<Text text="{WikiModel>/text}"/>
+							</f:SimpleForm>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+		</uxap:sections>
+	</uxap:ObjectPageLayout>
+
+<!-- HTML Direkt -->	
+  <Panel class="pnlSearchDate" id="pnlContent">
+
+    <html:span class="textcolor">
+
+      <html:b>TITLE</html:b>
+
+    </html:span>
+
+    <html:br />
+
+    <HBox alignItems="Center">
+            <Label class="textcolor" width="300px" text="{i18n>txtName}" />
+            <Input id="Name1" class="inputbordercolor" editable="false" width="300px"/>
+    </HBox>
+
+    <HBox justifyContent="Center">
+      <VBox width="100%">
+        <html:div	class="textcolor"
+        			style="font-size: 0.875rem;font-family: Arial,Helvetica,sans-serif;line-height:25px;color:#6a7694;text-align:justify;">
+        	<html:img src="images/Wiki/FavIcon48.png"/>
+	        <html:p>
+	
+	            I,
+	            <html:input class="inputEntry" 
+	            			id="Name2" 
+	            			editable="false"></html:input>
+	
+	            hereby confirm that I received one session of<html:img src="images/Wiki/FavIcon48.png"/> XXX.
+	        </html:p>
+    	</html:div>
+      </VBox>
+    </HBox>
+    
+  </Panel>
+  
+<!-- FormattedText -->  
+  <VBox class="sapUiMediumMargin">
+  <FormattedText htmlText ="{WikiModel>/Wiki/0/text}"/>
+  </VBox>
+
+<!-- CustomListItem -->
+	<List headerText="Custom Content" mode="SingleSelectMaster" items="{path: 'WikiModel>/Wiki'}" >
+		<CustomListItem >
+								
+			<HBox>
+				<Image src="images/FavIcon48.png" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+				<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+					<Link text="{WikiModel>id}" press="handlePress"/>
+					<Label text="{WikiModel>title}"/>
+					<FlexBox>
+					<FormattedText htmlText ="{WikiModel>text}"/>
+					</FlexBox>
+					<Image src="{WikiModel>image}"/>
+					
+				</VBox>
+			</HBox>
+		</CustomListItem>
+	</List>
+
+<!-- FeedListItem -->
+	<l:VerticalLayout
+		class="sapUiContentPadding"
+		width="100%">
+		<l:content>
+			<List
+				headerText="Feed Entries"
+				items="{WikiModel>/Wiki}" >
+				
+				<headerToolbar>
+					<Toolbar>
+						<Title id="IdObjectTableHeader" text="{AbapListModel>/AbapListDataTitle}"/>
+						<ToolbarSpacer />
+						<SearchField
+							id="IdObjectTableSearchField"
+							tooltip="{i18n>worklistSearchTooltip}"
+							search=".onObjectTableSearch"
+							width="auto">
+						</SearchField>
+					</Toolbar>
+				</headerToolbar>
+				
+				<FeedListItem
+					sender="{WikiModel>id}"
+					senderActive="false"
+					senderPress="onPress"
+					iconPress="onPress"
+					iconDensityAware="false"
+					info="Test123"
+					timestamp="{WikiModel>date}"
+					text="{WikiModel>text}"
+					convertLinksToAnchorTags="All"
+					actions="{path: 'Actions', templateShareable: false}">
+					<FeedListItemAction text="{WikiModel>text}" key="{id}" press="onActionPressed" />
+				</FeedListItem>
+			</List>
+		</l:content>
+	</l:VerticalLayout>
+
+</core:FragmentDefinition>

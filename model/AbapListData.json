@@ -1,0 +1,413 @@
+{
+  "ObjectData": 
+[
+ {
+   "type": "Tabelle",
+   "category": "Userdaten",
+   "value": "AGR_USERS",
+   "description": "Assignment of roles to users"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Userdaten",
+   "value": "AGR_USERT",
+   "description": "Assignment of roles to users"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Userdaten",
+   "value": "AGR_PROF",
+   "description": "Profile name for role"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Userdaten",
+   "value": "AGR_AGRS",
+   "description": "Roles in composite roles"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Userdaten",
+   "value": "AGR_1251",
+   "description": "Rollen - Berechtigungsobjekt"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Changelog",
+   "value": "CDHDR",
+   "description": "Change Log: Header"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Changelog",
+   "value": "CDPOS",
+   "description": "Change Log: Position"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBAK",
+   "description": "Verkaufsbeleg: Kopfdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBAP",
+   "description": "Verkaufsbeleg: Positionsdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBEP",
+   "description": "Verkaufsbeleg: Einteilungsdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBKD",
+   "description": "Verkaufsbeleg: Kaufmännische Daten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBLB",
+   "description": "Verkaufsbeleg: Lieferabrufdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBPA",
+   "description": "Vertriebsbeleg: Partner"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBBE",
+   "description": "Vertriebsbedarfseinzelsätze"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "LIKP",
+   "description": "Lieferung: Kopfdaten (Vertriebsbeleg)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "LIPS",
+   "description": "Lieferung: Positionsdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "VEKP",
+   "description": "Handling Unit Kopftabelle"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "VEPO",
+   "description": "Handling Unit Position (Inhalt)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "VTTK",
+   "description": "Transportkopf"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "VTTP",
+   "description": "Transportposition"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "VTFA",
+   "description": "Transportbelegfluss"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "LIPSUP",
+   "description": "Lieferung Positionsdaten und Status (=View LIPS + VBUP)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Kondition",
+   "value": "KONP",
+   "description": "Konditionen"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MARM",
+   "description": "Mengeneinheiten zum Material"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MSTA",
+   "description": "Materialstammstatus"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Kondition",
+   "value": "A900",
+   "description": "Kondition"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Allgemein",
+   "value": "DD03L",
+   "description": "Datenelemente zu Tabellen und Strukturen"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Allgemein",
+   "value": "ADRC",
+   "description": "Adressdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Stückliste",
+   "value": "MAST",
+   "description": "Stückliste"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Stückliste",
+   "value": "STKO",
+   "description": "Stücklistenkopf"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Stückliste",
+   "value": "STPO",
+   "description": "Stücklistenpositionen"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Stückliste",
+   "value": "STAS",
+   "description": "Stücklistenpositionen"
+ },
+ {
+   "type": "Tabelle",
+   "category": "GTM",
+   "value": "WBGT",
+   "description": "Trading Kontrakte mit Belegart + Nummer + Pos"
+ },
+ {
+   "type": "Tabelle",
+   "category": "GTM",
+   "value": "WBHI",
+   "description": "Trading-Kontrakt: Positionsdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "GTM",
+   "value": "WBHK",
+   "description": "Trading Contract: Header Data"
+ },
+ {
+   "type": "Tabelle",
+   "category": "GTM",
+   "value": "WBHD",
+   "description": "Trading Contract: Commercial Data"
+ },
+ {
+   "type": "Tabelle",
+   "category": "GTM",
+   "value": "WBHE",
+   "description": "Trading Contract: Schedule Lines"
+ },
+ {
+   "type": "Tabelle",
+   "category": "GTM",
+   "value": "WBASSOC",
+   "description": "Global Trade: Association Table"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA01-03",
+   "description": "Kundenauftrag anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA41-43",
+   "description": "Kontrakt anlegen / ändern /anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VF01-03",
+   "description": "Rechnung erstellen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL10A",
+   "description": "Kundenaufträge Schnellanzeige"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VK11-13",
+   "description": "Konditionen (Verkauf) anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL01-03(N)",
+   "description": "Auslieferung anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL06O",
+   "description": "Ausliefermonitor!!!"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA21 -23",
+   "description": "Angebot anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VF05",
+   "description": "Liste Rechnungen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VB01",
+   "description": "Listung/Ausschluss anlegen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "MCSI",
+   "description": "Aufruf Vertriebsstatistiken"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL75",
+   "description": "Belgien: Entfernt Z9-Sperre  + sendet INB an WMS"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VLSP",
+   "description": "Nachträglicher Auslieferungssplit"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL74",
+   "description": "Output from handling units"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL71",
+   "description": "Nachrichten anstoßen (ähnlich VL75)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL09",
+   "description": "Warenbewegung zurückdrehen / stornieren"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VD51-53",
+   "description": "Kunden-Material-Info Sätze anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL22N",
+   "description": "Display Changes of Delivery"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA45N",
+   "description": "List of Contracts New"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA45",
+   "description": "List of Contracts"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA05",
+   "description": "List of Sales Orders"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA06",
+   "description": "Sales Order Monitor"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VD53",
+   "description": "Customer Material Info Records"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VBO3",
+   "description": "Bonusabsprache anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "V/08",
+   "description": "Pricing Procedures"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Windows",
+   "value": "Windows + D",
+   "description": "Desktop anzeigen"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Windows",
+   "value": "Windows + Pfeil unten",
+   "description": "Fenster minimieren"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Windows",
+   "value": "Windows + E",
+   "description": "Explorer öffnen"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Windows",
+   "value": "Windows + Shift + S",
+   "description": "Screenshot"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Browser",
+   "value": "STRG + L",
+   "description": "mit Cursor in Adressleiste springen"
+ }
+]
+}

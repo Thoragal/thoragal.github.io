@@ -1,0 +1,108 @@
+<core:FragmentDefinition	xmlns="sap.m" 
+							xmlns:mvc="sap.ui.core.mvc"
+							xmlns:core="sap.ui.core"
+							displayBlock="true"
+							height="100%">
+
+	<IconTabBar	id="iconTabBar"
+				select=".onQuickFilter"
+				expandable="false">
+		<items>
+			<IconTabFilter
+				id="idFilterAll"
+				key="countAll"
+				showAll="true"
+				text="{i18n>TableFilterAll}"/>
+			<IconTabSeparator/>
+			<IconTabFilter
+				id="idFilterTable"
+				key="countTable"
+				icon="sap-icon://table-view"
+				text="{i18n>TableFilterTable}"/>
+			<IconTabFilter
+				id="idFilterTransaction"
+				key="countTransaction"
+				icon="sap-icon://paper-plane"
+				text="{i18n>TableFilterTransaction}"/>
+			<IconTabFilter
+				id="idFilterClass"
+				key="countClass"
+				icon="sap-icon://bullet-text"
+				text="{i18n>TableFilterClass}"/>
+			<IconTabFilter
+				id="idFilterFuba"
+				key="countFuba"
+				icon="sap-icon://status-positive"
+				text="{i18n>TableFilterFuba}"/>
+			<IconTabFilter
+				id="idFilterProgram"
+				key="countProgram"
+				icon="sap-icon://command-line-interfaces"
+				text="{i18n>TableFilterProgram}"/>
+			<IconTabFilter
+				id="idFilterShortcut"
+				key="countShortcut"
+				icon="sap-icon://shortcut"
+				text="{i18n>TableFilterShortcut}"/>	
+		</items>
+
+	<content>
+		<Table	id="IdObjectTableData"
+				width="auto"
+				items="{AbapListModel>/ObjectData}"
+				updateFinished=".onUpdateFinished">
+				<headerToolbar>
+					<Toolbar>
+						<Title id="IdObjectTableHeader" text="{AbapListModel>/AbapListDataTitle}"/>
+						<ToolbarSpacer />
+						<SearchField
+							id="IdObjectTableSearchField"
+							search=".onObjectTableSearch"
+							width="auto">
+						</SearchField>
+					</Toolbar>
+				</headerToolbar>
+
+				<columns>
+					<Column id="IdColumnNameType">
+						<Text
+							id="nameColumnTitle"
+							text="{i18n>TableColumnNameType}"/>
+					</Column>
+					<Column
+						id="IdNameColumnNameCategorie"
+						demandPopin="false">
+						<Text text="{i18n>TableColumnNameCategory}"/>
+					</Column>
+					<Column
+						id="IdColumnNameValue"
+						demandPopin="false">
+						<Text text="{i18n>TableColumnNameValue}"/>
+					</Column>
+					<Column
+						id="IdColumnNameDescription"
+						demandPopin="false">
+						<Text text="{i18n>TableColumnNameDescription}"/>
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem
+						type="Active"
+						press=".onPress">
+						<cells>
+							<ObjectIdentifier
+								title="{AbapListModel>type}"/>
+							<Text text = "{AbapListModel>category}"/>	
+							<Text text = "{AbapListModel>value}"/>
+							<Text text = "{AbapListModel>description}"/>
+							
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			
+	</content>
+	</IconTabBar>
+			
+</core:FragmentDefinition>

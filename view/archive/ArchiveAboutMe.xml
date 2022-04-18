@@ -1,0 +1,14 @@
+	<VBox class="sapUiSmallMargin">
+		<f:SimpleForm	id="SimpleFormDisplay354"
+						layout="ResponsiveGridLayout"
+						title="Address">
+			<f:content>
+				<Label text="{i18n>AboutMeLastNameLabel}" />
+				<Text id="nameText" text="{i18n>AboutMeLastName}" />
+				<Label text="{i18n>AboutMeFirstNameLabel}" />
+				<Text text="{i18n>AboutMeFirstName}" />
+				<Label text="{i18n>AboutMeCountryLabel}" />
+				<Text id="countryText" text="{i18n>AboutMeCountry}" />
+			</f:content>
+		</f:SimpleForm>
+	</VBox>

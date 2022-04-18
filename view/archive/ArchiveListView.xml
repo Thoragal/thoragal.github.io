@@ -1,0 +1,17 @@
+<mvc:View	xmlns:core="sap.ui.core"
+			xmlns:mvc="sap.ui.core.mvc"
+			xmlns="sap.m"
+			controllerName="Homepage.Homepage.controller.ListView"
+			xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="ListView">
+				<content>
+					
+					<Button id="btnGoCreateNew" icon="sap-icon://create" text="GoToStart" press="onNavToStart" tooltip="{i18n>createRet}" type="Emphasized"/>
+					
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

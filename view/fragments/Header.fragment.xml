@@ -1,0 +1,17 @@
+<core:FragmentDefinition	xmlns="sap.m" 
+							xmlns:core="sap.ui.core"
+							xmlns:tnt="sap.tnt">
+
+	<tnt:ToolHeader>
+		<Button id="idButtonNavBack" icon="sap-icon://nav-back" press="onNavBack" type="Transparent"/>
+		<ToolbarSpacer/>
+<!-- Button Home -->
+		<Button id="idButtonNavToHome" icon="sap-icon://home" text="{i18n>HeaderButtonNameHome}" press="onNavToHome" visible="{= !${device>/system/phone} }" />
+		<Button id="idButtonNavToHomePhone" icon="sap-icon://home" press="onNavToHome" visible="{device>/system/phone}" />
+		
+		<Button id="idButtonNavToWiki" icon="sap-icon://course-book" text="{i18n>HeaderButtonNameWiki}" press="onNavToWiki" />
+		<Button id="idButtonNavToList" icon="sap-icon://form" text="{i18n>HeaderButtonNameList}" press="onNavToList" />
+		<Button id="idButtonNavToAboutMe" icon="sap-icon://person-placeholder" text="{i18n>HeaderButtonNameAbout}" press="onNavToAboutMe" />
+	</tnt:ToolHeader>
+
+</core:FragmentDefinition>

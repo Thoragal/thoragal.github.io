@@ -1,0 +1,12 @@
+<core:FragmentDefinition	xmlns="sap.m" 
+							xmlns:core="sap.ui.core">
+
+	<OverflowToolbar>
+		<ToolbarSpacer/>
+		<ToolbarSpacer/>
+		<Button id="btnNavUp" icon="sap-icon://navigation-up-arrow" text="{i18n>textBtnNavUp}" press="onNavToWiki"/>
+		<Button id="btnNavLeft" icon="sap-icon://navigation-left-arrow" text="{i18n>textBtnNavLeft}" press="onNavToWikiDetailPrevious"/>
+		<Button id="btnNavRight" icon="sap-icon://navigation-right-arrow" text="{i18n>textBtnNavRight}" press="onNavToWikiDetailNext"/>
+	</OverflowToolbar>
+
+</core:FragmentDefinition>

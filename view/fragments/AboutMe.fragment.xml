@@ -1,0 +1,225 @@
+<core:FragmentDefinition	xmlns="sap.m" 
+							xmlns:mvc="sap.ui.core.mvc"
+							xmlns:core="sap.ui.core"
+							xmlns:f="sap.ui.layout.form"
+							xmlns:uxap="sap.uxap"
+							xmlns:layout="sap.ui.layout">
+
+	<uxap:ObjectPageLayout	id="ObjectPageLayout" 
+							showTitleInHeaderContent="true" 
+							upperCaseAnchorBar="false">
+
+<!--Header eingeklappt-->
+		<uxap:headerTitle>
+			<uxap:ObjectPageHeader	id="idHeaderTitle"
+									objectTitle="{MeModel>/General/FullName}"
+									objectImageShape="Square"
+									objectSubtitle="{MeModel>/General/Degree}"
+									isObjectTitleAlwaysVisible="false"
+									isObjectSubtitleAlwaysVisible="false"
+									isActionAreaAlwaysVisible="true"
+									showPlaceholder="true"
+									objectImageURI="images/AboutMe/Bewerbungsfoto.jpg">
+			</uxap:ObjectPageHeader>
+		</uxap:headerTitle>
+		
+<!--Header ausgeklappt-->
+		<uxap:headerContent>
+		</uxap:headerContent>
+		<uxap:sections>
+
+<!--Section General-->
+			<uxap:ObjectPageSection titleUppercase="false" 
+									title="{i18n>SectionGeneral}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection titleUppercase="false">
+						<uxap:blocks>
+							<f:SimpleForm	editable="false"
+											layout="ResponsiveGridLayout">
+								
+								<Label text="{i18n>AboutMeLastNameLabel}" />
+								<Text text="{MeModel>/General/LastName}"/>
+								
+								<Label text="{i18n>AboutMeFirstNameLabel}" />
+								<Text text="{MeModel>/General/FirstName}"/>
+								
+								<Label text="{i18n>AboutMeCityLabel}" />
+								<Text text="{MeModel>/General/City}"/>
+								
+								<Label text="{i18n>AboutMeCountryLabel}" />
+								<Text text="{MeModel>/General/Country}"/>
+								
+								<Label text="{i18n>AboutMeDegreeLabel}" />
+								<Text text="{MeModel>/General/Degree}"/>	
+								
+								<Label text="{i18n>AboutMeJobTitleLabel}" />
+								<Text text="{MeModel>/General/JobTitle}"/>
+								
+								<Label text="{i18n>AboutMeEmailLabel}" />
+								<Link	text="{MeModel>/General/Email}"
+										target="_blank"
+										press="onEmailPressed"/>
+								
+								<Label text="{i18n>AboutMeLinkedInLabel}" />
+								<Image	width="20px"
+										height="20px"
+										src="images/AboutMe/IconLinkedIn.png"
+										press="onLinkedInPressed"/>						
+								
+								<Label text="{i18n>AboutMeXingLabel}" />
+								<Image	width="20px"
+										height="20px"
+										src="images/AboutMe/IconXing.png"
+										press="onXingPressed"/>
+								
+							</f:SimpleForm>
+
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			
+<!--Section Certificates-->
+			<uxap:ObjectPageSection titleUppercase="false" 
+									title="{i18n>SectionCertificates}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection titleUppercase="false">
+						<uxap:blocks>			
+
+							<f:SimpleForm	editable="false"
+											layout="ResponsiveGridLayout">
+								
+								<Label text="{MeModel>/Certificate/ABAP/Label}"/>
+									<Text text="{MeModel>/Certificate/ABAP/Title}"/>
+								<Label text="{MeModel>/Certificate/HANA/Label}"/>
+									<Text text="{MeModel>/Certificate/HANA/Title}"/>
+								<Label text="{MeModel>/Certificate/UI5/Label}"/>
+									<Text text="{MeModel>/Certificate/UI5/Title}"/>
+									<Link	text="{i18n>AboutMeProof}"
+											target="_blank"
+											href="{MeModel>/Certificate/UI5/Url}" />
+								<Label text="{MeModel>/Certificate/RAP/Label}"/>
+									<Text text="{MeModel>/Certificate/RAP/Title}"/>
+									<Link	text="{i18n>AboutMeProof}"
+											target="_blank"
+											href="{MeModel>/Certificate/RAP/Url}" />
+							</f:SimpleForm>
+									
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			
+<!--Section Projects-->
+			<uxap:ObjectPageSection titleUppercase="false" 
+									title="{i18n>SectionProjects}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection titleUppercase="false">
+						<uxap:blocks>
+							<f:SimpleForm layout="ResponsiveGridLayout">
+								<Label text="{i18n>AboutMeProjects}"/>
+								<VBox>
+									<Text text="{MeModel>/Projects/S4HANA}"/>
+									<Text text="{MeModel>/Projects/HANADB}"/>
+									<Text text="{MeModel>/Projects/SAP}"/>
+									<Text text="{MeModel>/Projects/Mobile}"/>
+								</VBox>
+							</f:SimpleForm>					
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			
+<!--Section Module-->
+			<uxap:ObjectPageSection titleUppercase="false" 
+									title="{i18n>SectionModule}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection titleUppercase="false">
+						<uxap:blocks>
+							<f:SimpleForm layout="ResponsiveGridLayout">
+								<Label text="{i18n>AboutMePrimary}"/>
+								<VBox>
+									<Text text="{MeModel>/Module/MM}"/>
+									<Text text="{MeModel>/Module/SD}"/>	
+								</VBox>
+								
+								<Label text="{i18n>AboutMeSecondary}"/>
+								<VBox>
+									<Text text="{MeModel>/Module/FICO}"/>
+									<Text text="{MeModel>/Module/GTM}"/>
+									<Text text="{MeModel>/Module/REFX}"/>	
+								</VBox>
+							</f:SimpleForm>					
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			
+<!--Section Knowledge-->			
+			<uxap:ObjectPageSection titleUppercase="false" 
+									title="{i18n>SectionKnowledge}">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection titleUppercase="false">
+						<VBox>
+							
+	<!--Form ProgrammingLanguages-->
+							<f:SimpleForm layout="ResponsiveGridLayout">
+								<Label text="{i18n>SectionProgrammingLanguages}"/>
+								<VBox>
+									<Text text="{MeModel>/Knowledge/ProgrammingLanguages/ABAPOO}"/>
+									<Text text="{MeModel>/Knowledge/ProgrammingLanguages/JavaScript}"/>
+									<Text text="{MeModel>/Knowledge/ProgrammingLanguages/Java}"/>
+								</VBox>
+							</f:SimpleForm>							
+							
+	<!--Form Webdevelopment-->
+							<f:SimpleForm layout="ResponsiveGridLayout">
+								<Label text="{i18n>SectionWebdevelopment}"/>
+								<VBox>
+									<Text text="{MeModel>/Knowledge/Web/RAP}"/>
+									<Text text="{MeModel>/Knowledge/Web/UI5}"/>	
+									<Text text="{MeModel>/Knowledge/Web/OData}"/>		
+									<Text text="{MeModel>/Knowledge/Web/Floorplan}"/>
+									<Text text="{MeModel>/Knowledge/Web/Webdynpro}"/>
+								</VBox>
+							</f:SimpleForm>
+												
+	<!--Form Data-->		
+							<f:SimpleForm layout="ResponsiveGridLayout">
+								<Label text="{i18n>SectionData}"/>
+								<VBox>
+									<Text text="{MeModel>/Knowledge/Data/CDS}"/>
+									<Text text="{MeModel>/Knowledge/Data/AMDPs}"/>	
+									<Text text="{MeModel>/Knowledge/Data/HanaViews}"/>
+								</VBox>
+							</f:SimpleForm>
+							
+	<!--Form Formular-->		
+							<f:SimpleForm layout="ResponsiveGridLayout">
+								<Label text="{i18n>SectionFormular}"/>
+								<VBox>
+									<Text text="{MeModel>/Knowledge/Formular/Adobe}"/>
+									<Text text="{MeModel>/Knowledge/Formular/Smartforms}"/>	
+									<Text text="{MeModel>/Knowledge/Formular/SapScript}"/>
+								</VBox>
+							</f:SimpleForm>		
+							
+	<!--Form Special-->		
+							<f:SimpleForm layout="ResponsiveGridLayout">
+								<Label text="{i18n>SectionSpecial}"/>
+								<VBox>
+									<Text text="{MeModel>/Knowledge/Special/IDoc}"/>
+									<Text text="{MeModel>/Knowledge/Special/Pricat}"/>	
+									<Text text="{MeModel>/Knowledge/Special/BOPF}"/>	
+								</VBox>
+							</f:SimpleForm>
+
+						</VBox>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>	
+		</uxap:sections>
+	</uxap:ObjectPageLayout>
+
+	
+</core:FragmentDefinition>
