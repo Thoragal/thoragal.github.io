@@ -26,6 +26,9 @@ sap.ui.define([
 			var oModel = new JSONModel(sPath);
 			oModel.AbapListDataTitle = this.getResourceBundle().getText("AbapListDataTitle");
 			
+			// Remove limitation of 100 rows
+			oModel.setSizeLimit(10000);
+			
 			// set the model to the view
 			this.getView().setModel(oModel, "AbapListModel");
 				

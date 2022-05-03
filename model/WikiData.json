@@ -1,7 +1,16 @@
 {
 	"Wiki":
 	[
-		{	"id":"0001",
+		{	"id":"0004",
+			"date":"02.05.2022",
+			"title":"Name von BADI bzw. User-Exit finden",
+			"content":
+				[
+					{	"text":"<ul><li>Transaktion SE24<ul><li>Objekttyp: CL_EXITHANDLER</li><li>Methode: GET_INSTANCE</li></ul></li><li>Breakpoint bei Zeile 28</li><li>Variable Exit-Name = Badi-Name</li></ul>"
+					}
+				]
+		},
+		{	"id":"0003",
 			"date":"30.11.2021",
 			"title":"SAP Gateway - Calls Backend",
 			"content":
@@ -19,7 +28,7 @@
 					}
 				]
 		},
-		{	"id":"0003",
+		{	"id":"0001",
 			"date":"11.11.2011",
 			"title":"GuiXT",
 			"content":
@@ -40,20 +49,6 @@
 					}
 				]
 			
-		},
-		{	"id":"0004",
-			"date":"11.11.2011",
-			"title":"FavIcon",
-			"content":
-				[
-					{	"text":"<p>Get Entity: /sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/UserDefau ltsSet<strong>(Username='UserABC')</strong></p><p>Get EntitySet: /sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/UserDefaultsSet</p><p>Follow Associati ons: /sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/Docu mentSet(DocumentId='0000722731')/<strong>Items</strong></p><p>Use Filter: /sap/opu/odata/sap/Z_IFMI_SRV/PRODUCT_HIERARCHIESSet<strong>?$filter=Language eq 'EN'</strong></p>",
-						"image":
-							{
-								"src":"images/FavIcon48.png",
-								"description":""
-							}
-					}
-				]
 		}
 		]
 }
