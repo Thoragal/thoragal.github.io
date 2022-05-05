@@ -56,7 +56,13 @@
 						<Title id="IdObjectTableHeader" text="{AbapListModel>/AbapListDataTitle}"/>
 						<ToolbarSpacer />
 						<SearchField
+							id="IdObjectTableFilter"
+							placeholder="{i18n>TableFilterCategory}"
+							search="onObjectTableFilter"
+							width="auto"/>
+						<SearchField
 							id="IdObjectTableSearchField"
+							placeholder="{i18n>TableFilterDescription}"
 							search=".onObjectTableSearch"
 							width="auto">
 						</SearchField>

@@ -100,6 +100,25 @@ sap.ui.define([
 			}
 		},
 		
+		onObjectTableFilter : function(oEvent) {
+			if (oEvent.getParameters().refreshButtonPressed) {
+				// Search field's 'refresh' button has been pressed.
+				// This is visible if you select any master list item.
+				// In this case no new search is triggered, we only
+				// refresh the list binding.
+				this.onRefresh();
+			} else {
+				var aTableSearchState = [];
+				var sQuery = oEvent.getParameter("query");
+
+				if (sQuery && sQuery.length > 0) {
+					aTableSearchState = [new Filter("category", FilterOperator.Contains, sQuery)];
+				}
+				this._applySearch(aTableSearchState);
+			}
+		},
+		
+		
 		/**
 		 * Internal helper method to apply both filter and search state together on the list binding
 		 * @param {sap.ui.model.Filter[]} aTableSearchState An array of filters for the search

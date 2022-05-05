@@ -1295,7 +1295,7 @@
     "type": "Transaktion",
     "category": "IDOC",
     "value": "WLF_IDOC",
-    "description": "Idoc Verarbeitung"
+    "description": "Idoc Verarbeitung; Log zu Idoc finden"
   },
   {
     "type": "Transaktion",
@@ -1946,6 +1946,18 @@
     "description": "Badi Implementation"
   },
   {
+    "type": "Transaktion",
+    "category": "Pricat",
+    "value": "BDBG",
+    "description": "ALE-Schnittstelle für BAPI"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Pricat",
+    "value": "SWO1",
+    "description": "Business Object Builder"
+  },
+  {
     "type": "Klasse",
     "category": "Stammdaten",
     "value": "LFA1_READ_SINGLE",
@@ -1968,6 +1980,30 @@
     "category": "Exit",
     "value": "CL_EXITHANDLER",
     "description": "Exit handler -> get_instance Zeile 28"
+  },
+  {
+    "type": "Klasse",
+    "category": "ALV",
+    "value": "CL_SALV_GUI_TABLE_IDA",
+    "description": "Neue ALV Klasse: Factory"
+  },
+  {
+    "type": "Klasse",
+    "category": "ALV",
+    "value": "CL_SALV_RANGE_TAB_COLLECTOR",
+    "description": "Neue ALV Klasse: Range Collector"
+  },
+  {
+    "type": "Klasse",
+    "category": "Progress",
+    "value": "CL_PROGRESS_INDICATOR",
+    "description": "Progress Indicator"
+  },
+  {
+    "type": "Klasse",
+    "category": "AMDP",
+    "value": "IF_AMDP_MARKER_HDB",
+    "description": "AMDP-Interface"
   },
   {
     "type": "Fuba",
@@ -2010,6 +2046,36 @@
     "category": "Texte",
     "value": "READ_MULTIPLE_TEXTS",
     "description": "Read multiple texts"
+  },
+  {
+    "type": "Fuba",
+    "category": "Idoc",
+    "value": "IDOC_CREATE_ON_DATABASE",
+    "description": "Idoc anlegen"
+  },
+  {
+    "type": "Fuba",
+    "category": "Idoc",
+    "value": "IDOC_READ_COMPLETELY",
+    "description": "Idoc lesen"
+  },
+  {
+    "type": "Fuba",
+    "category": "SLG1",
+    "value": "BAL_DB_SAVE",
+    "description": "SLG1 Save Log"
+  },
+  {
+    "type": "Fuba",
+    "category": "SLG1",
+    "value": "BAL_LOG_CREATE",
+    "description": "SLG1 Create Log"
+  },
+  {
+    "type": "Fuba",
+    "category": "SLG1",
+    "value": "BAL_LOG_MSG_ADD",
+    "description": "SLG1 Add Message"
   },
   {
     "type": "Programm",
@@ -2124,6 +2190,42 @@
     "category": "SAP-GUI",
     "value": "STRG + SHIFT + 7",
     "description": "Fokus auf Transaktionsfeld"
+  },
+  {
+    "type": "Shortcut",
+    "category": "SAP-GUI",
+    "value": "STRG + S",
+    "description": "Save"
+  },
+  {
+    "type": "Shortcut",
+    "category": "SAP-GUI",
+    "value": "STRG + F1",
+    "description": "Anzeigen / Ändern"
+  },
+  {
+    "type": "Shortcut",
+    "category": "SAP-GUI",
+    "value": "STRG + F2",
+    "description": "Syntax Check"
+  },
+  {
+    "type": "Shortcut",
+    "category": "SAP-GUI",
+    "value": "Umschalt + F1",
+    "description": "Pretty Printer"
+  },
+  {
+    "type": "Shortcut",
+    "category": "SAP-GUI",
+    "value": "F3",
+    "description": "Zurück"
+  },
+  {
+    "type": "Shortcut",
+    "category": "SAP-GUI",
+    "value": "Umschalt F6 / F7",
+    "description": "Vorheriges / Nächstes Objekt"
   }
 ]
 }

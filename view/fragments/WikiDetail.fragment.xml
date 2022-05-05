@@ -4,6 +4,7 @@
 							xmlns:f="sap.ui.layout.form"
 							xmlns:uxap="sap.uxap"
 							xmlns:l="sap.ui.layout"
+							xmlns:tnt="sap.tnt"
 							xmlns:html="http://www.w3.org/1999/xhtml">
 	
 		<ObjectHeader	id="idObjectHeader"
@@ -14,6 +15,10 @@
 			<ObjectAttribute	title="{i18n>WikiId}" 
 								text="{WikiModel>id}" />
 		</ObjectHeader>
+
+			<FlexBox>
+				<tnt:InfoLabel id="il1" text="{WikiModel>/Wiki/0/label/0/text}" renderMode="Narrow" colorScheme="1"/>
+			</FlexBox>	
 
 <!-- CustomListItem -->
 	<List	id="idListWikiDetail"
