@@ -3,7 +3,7 @@
 	[
 		{	"id":"0005",
 			"date":"05.05.2022",
-			"title":"Deutsche Tastatur",
+			"title":"Deutsches Tastaturlayout",
 			"label": [	{ "text":"123" },
 						{ "text":"12334" } ],
 			"content":
@@ -12,7 +12,7 @@
 						"image":
 							{
 								"src":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/KB_Germany.svg/450px-KB_Germany.svg.png",
-								"description":"Deutsche Tastatur"
+								"description":"Deutsches Tastaturlayout"
 							}					}
 				]
 		},

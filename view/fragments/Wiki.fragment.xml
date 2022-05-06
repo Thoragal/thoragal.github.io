@@ -15,10 +15,9 @@
 			<HBox>
 
 				<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+					
 					<Link	text="{WikiModel>title}" 
 							press="onPressRow"/>
-					<Label text ="{WikiModel>date}">
-					</Label>
 	
 <!-- Content 0 -->
 					<FlexBox>
