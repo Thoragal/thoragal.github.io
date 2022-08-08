@@ -1209,6 +1209,12 @@
   },
   {
     "type": "Transaktion",
+    "category": "Allgemein",
+    "value": "SREPO",
+    "description": "Versionsvergleich"
+  },
+  {
+    "type": "Transaktion",
     "category": "Konditionen",
     "value": "NACE",
     "description": "Konditionen pflegen"
@@ -1641,9 +1647,21 @@
   },
   {
     "type": "Transaktion",
+    "category": "Sonstiges",
+    "value": "SARA",
+    "description": "Archivierung Administration"
+  },
+  {
+    "type": "Transaktion",
     "category": "UI5 + Floorplan",
     "value": "/UI2/FLP",
     "description": "Fiori Launchpad"
+  },
+  {
+    "type": "Transaktion",
+    "category": "UI5 + Floorplan",
+    "value": "/UI2/FLPD_CUST",
+    "description": "Fiori Launchpad Designer (client-specific)"
   },
   {
     "type": "Transaktion",
@@ -1656,6 +1674,168 @@
     "category": "UI5 + Floorplan",
     "value": "POWL_COCKPIT",
     "description": "Powl Cockpit"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/CACHE",
+    "description": "Register service for UI2 cache use"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/CACHE_DEL",
+    "description": "Delete cache entries"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/CHIP",
+    "description": "Chip Registration"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/CUST",
+    "description": "Customizing of UI Technologies"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/FLC",
+    "description": "Fiori Launchpad Checks"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/FLIA",
+    "description": "Fiori Launchpad Intent Analyis"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/FLP",
+    "description": "SAP Fiori Launchpad"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/FLP_CONTCHECK",
+    "description": "Fiori Launchpad – Content Checks"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/FLP_INTENTCHECK",
+    "description": "Fiori Launchpad – Intent Checks"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/FLPD_CONF",
+    "description": "Fiori Launchpad Designer (cross-client)"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/FLPD_CUST",
+    "description": "Fiori Launchpad Designer (client-specific)"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/GW_ACTIVATE",
+    "description": "Gateway – Activation"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/GW_APPS_LOG",
+    "description": "Gateway – Application Log"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/GW_ERR_LOG",
+    "description": "Gateway – Error Log"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/GW_MAINT_SRV",
+    "description": "Gateway – Service Maintenance"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/GW_SYS_ALIAS",
+    "description": "Gateway – Manage SAP System Alias"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/NAV",
+    "description": "Register navigation objects"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/NAVPROV",
+    "description": "Define navigation provider"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/NWBC",
+    "description": "Start UI2 NWBC"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/NWBC_CFG_CUST",
+    "description": "NWBC Configuration (Customer)"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/NWBC_CFG_P_CUST",
+    "description": "NWBC Config: Define Parameter (Cust)"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/NWBC_CFG_P_SAP",
+    "description": "NWBC Config: Define Parameter (SAP)"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/NWBC_CFG_SAP",
+    "description": "NWBC Configuration (SAP)"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/PERS_DEL",
+    "description": "Cleanup Personalisatation Service"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/POWL",
+    "description": "Register POWL for OData consumption"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/SEMOBJ",
+    "description": "Define Semantic Object – Customer"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Fiori",
+    "value": "/UI2/SEMOBJ_SAP",
+    "description": "Define Semantic Object – SAP"
   },
   {
     "type": "Transaktion",
@@ -1958,16 +2138,22 @@
     "description": "Business Object Builder"
   },
   {
+    "type": "Transaktion",
+    "category": "Shortcut",
+    "value": "/I",
+    "description": "Close Session"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Shortcut",
+    "value": "/NEX",
+    "description": "Close All Sessions (Feierabend)"
+  },
+  {
     "type": "Klasse",
     "category": "Stammdaten",
     "value": "LFA1_READ_SINGLE",
     "description": "Lieferant selektieren"
-  },
-  {
-    "type": "Klasse",
-    "category": "Entwicklung",
-    "value": "CL_SALV_RANGE_TAB_COLLECTOR",
-    "description": "Class for collecting range tables for multiple fields"
   },
   {
     "type": "Klasse",
@@ -2078,6 +2264,36 @@
     "description": "SLG1 Add Message"
   },
   {
+    "type": "Fuba",
+    "category": "Konditionen",
+    "value": "RV_CONDITION_RESET",
+    "description": "Notwendig vor RV_CONDITION_COPY"
+  },
+  {
+    "type": "Fuba",
+    "category": "Konditionen",
+    "value": "RV_CONDITION_COPY",
+    "description": "Konditionen bearbeiten (RV_CONDITION_RESET, RV_CONDITION_SAVE, BAPI_TRANSACTION_COMMIT)"
+  },
+  {
+    "type": "Fuba",
+    "category": "Konditionen",
+    "value": "RV_CONDITION_SAVE",
+    "description": "Konditionen speichern (RV_CONDITION_COPY); Danach BAPI_TRANSACTION_COMMIT"
+  },
+  {
+    "type": "Fuba",
+    "category": "Allgemein",
+    "value": "BAPI_TRANSACTION_COMMIT",
+    "description": "BAPI COMMIT"
+  },
+  {
+    "type": "Fuba",
+    "category": "Entwicklung",
+    "value": "SYSTEM_CALLSTACK",
+    "description": "Ermittlung Callstack"
+  },
+  {
     "type": "Programm",
     "category": "Transporte",
     "value": "RV80HGEN",
@@ -2106,6 +2322,12 @@
     "category": "Idoc",
     "value": "RBDAPP01",
     "description": "IDOC-Verarbeitung erneut anstoßen"
+  },
+  {
+    "type": "Programm",
+    "category": "Fiori",
+    "value": "/UI5/APP_INDEX_CALCULATE",
+    "description": "Clean up the cache after applying changes that affect SAP Fiori apps"
   },
   {
     "type": "Shortcut",
@@ -2145,6 +2367,12 @@
   },
   {
     "type": "Shortcut",
+    "category": "Windows",
+    "value": "FN + F1",
+    "description": "Bildschirmanzeige anpassen"
+  },
+  {
+    "type": "Shortcut",
     "category": "Browser",
     "value": "STRG + L",
     "description": "mit Cursor in Adressleiste springen"
@@ -2160,6 +2388,12 @@
     "category": "Browser",
     "value": "STRG + W",
     "description": "Close current Tab"
+  },
+  {
+    "type": "Shortcut",
+    "category": "Browser",
+    "value": "ALT + STRG + Umschalt + S",
+    "description": "UI5 Diagnostics"
   },
   {
     "type": "Shortcut",
@@ -2212,6 +2446,12 @@
   {
     "type": "Shortcut",
     "category": "SAP-GUI",
+    "value": "STRG + F3",
+    "description": "Activate"
+  },
+  {
+    "type": "Shortcut",
+    "category": "SAP-GUI",
     "value": "Umschalt + F1",
     "description": "Pretty Printer"
   },
@@ -2224,8 +2464,32 @@
   {
     "type": "Shortcut",
     "category": "SAP-GUI",
-    "value": "Umschalt F6 / F7",
+    "value": "Umschalt + F6 / F7",
     "description": "Vorheriges / Nächstes Objekt"
+  },
+  {
+    "type": "Shortcut",
+    "category": "SAP-GUI",
+    "value": "F9 / Umschalt + F9",
+    "description": "Mark everything / nothing (Menu Save Changes)"
+  },
+  {
+    "type": "Shortcut",
+    "category": "SAP-GUI",
+    "value": "STRG + Umschalt + F3",
+    "description": "Verwendungsnachweis"
+  },
+  {
+    "type": "Shortcut",
+    "category": "SAP-GUI",
+    "value": "STRG + Umschalt + F5",
+    "description": "Display Objectlist"
+  },
+  {
+    "type": "Shortcut",
+    "category": "SAP-GUI",
+    "value": "STRG + G",
+    "description": "Find Next"
   }
 ]
 }

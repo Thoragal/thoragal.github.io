@@ -1,0 +1,11 @@
+<core:FragmentDefinition	xmlns="sap.m" 
+							xmlns:core="sap.ui.core"
+							xmlns:tnt="sap.tnt">
+
+	<OverflowToolbar class=".titleBgColor">
+		<ToolbarSpacer/>
+		<Title text="{i18n>FooterText}"></Title>
+		<ToolbarSpacer/>
+	</OverflowToolbar>
+
+</core:FragmentDefinition>

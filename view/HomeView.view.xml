@@ -16,6 +16,10 @@
 			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Home" type="XML"/>
 		</content>
 		
+		<footer>
+			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Footer" type="XML"/>	
+		</footer>
+		
 	</Page>
 
 </mvc:View>

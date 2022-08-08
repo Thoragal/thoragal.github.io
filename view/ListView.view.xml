@@ -13,5 +13,6 @@
 		<content>
 			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.List" type="XML"/>
 		</content>
+		
 	</Page>
 </mvc:View>

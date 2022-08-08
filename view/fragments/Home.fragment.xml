@@ -7,7 +7,8 @@
 	<HBox alignItems="Center" justifyContent="Center" >
 		<Image	src="images/Home/StartPicture.jpg" 
 				width="100%" 
-				height="auto"/>
+				height="auto">
+		</Image>
 	</HBox>
 
 <!-- Tile Wiki -->
@@ -47,6 +48,19 @@
 				<TileContent>
 					<NewsContent
 						subheader="{i18n>StartTileSubheaderAboutMe}" />
+				</TileContent>
+			</GenericTile>
+		</SlideTile>
+		
+<!-- Contact AboutMe -->
+		<SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+					visible="false">
+			<GenericTile
+				frameType="TwoByOne" 
+				press="onNavToAboutMe">
+				<TileContent>
+					<NewsContent
+						subheader="{i18n>StartTileSubheaderContactMe}" />
 				</TileContent>
 			</GenericTile>
 		</SlideTile>

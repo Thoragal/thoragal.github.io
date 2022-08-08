@@ -1,6 +1,132 @@
 {
 	"Wiki":
-	[
+	[	
+		{
+			"id":"0017",
+			"date":"03.08.2022",
+			"title":"Sorting in SAP Gateway",
+			"content":
+				[
+					{
+						"text": "<p><span style=\"color: #0000ff;\">DATA</span>:</p><p style=\"padding-left: 40px;\">lt_sort <span style=\"color: #0000ff;\">TYPE</span> abap_sortorder_tab,</p><p style=\"padding-left: 40px;\">ls_sort <span style=\"color: #0000ff;\">TYPE</span> abap_sortorder.</p><p><span style=\"color: #0000ff;\">DATA</span>(lt_order)&nbsp;=&nbsp;io_tech_request_context-&gt;get_orderby(&nbsp;).</p><p><span style=\"color: #0000ff;\">LOOP&nbsp;AT</span>&nbsp;lt_order&nbsp;<span style=\"color: #0000ff;\">INTO&nbsp;DATA</span>(ls_order).</p><p style=\"padding-left: 40px;\">ls_sort-name = ls_order-property.</p><p style=\"padding-left: 40px;\">ls_sort-descending = <span style=\"color: #0000ff;\">SWITCH</span> #( ls_order-order <span style=\"color: #0000ff;\">WHEN</span>&nbsp;'<span style=\"color: #008000;\">desc</span>'&nbsp;<span style=\"color: #0000ff;\">THEN</span> abap_true <span style=\"color: #0000ff;\">ELSE</span> abap_false ).&nbsp; &nbsp;</p><p style=\"padding-left: 40px;\"><span style=\"color: #0000ff;\">APPEND</span>&nbsp;ls_sort&nbsp;<span style=\"color: #0000ff;\">TO</span>&nbsp;lt_sort.</p><p><span style=\"color: #0000ff;\">ENDLOOP</span>.</p>"
+					}
+				]
+		},
+		{
+			"id":"0016",
+			"date":"03.08.2022",
+			"title":"Tabelleneinträge anpassen",
+			"content":
+				[
+					{
+						"text": "<ul><li>SE16N -&gt;Tabellenname setzen -&gt;/h -&gt;ENTER-&gt;GD-EDIT = &sbquo;X&rsquo; + GD-SAPEDIT = &sbquo;X&lsquo; -&gt;F8</li><li>SE16&nbsp; &nbsp;-&gt;Tabelleneintrag ausw&auml;hlen (Details) -&gt;/h -&gt;ENTER -&gt;CODE = &sbquo;EDIT&lsquo; -&gt;F8</li></ul>"
+					}
+				]
+		},
+		{
+			"id":"0015",
+			"date":"28.07.2022",
+			"title":"SMOD (Exit, Enhancements)",
+			"content":
+				[
+					{
+						"text": "<p>Find Objects:</p><ul><li>Go to SE93 &ndash; Enter Transaction -&gt; Get Package Name</li><li>Go to SMOD -&gt;F4-Help -&gt; Enter Package Name</li></ul>"
+					}
+				]
+		},
+		{
+			"id":"0014",
+			"date":"28.07.2022",
+			"title":"Binding UI5",
+			"content":
+				[
+					{
+						"text": "<p>Binding types:</p><ul><li>Aggregation Binding: Lists</li><li>Element Binding: Entities</li><li>Property Binding: Properties of an entity</li></ul><p>&nbsp;</p><ul><li>Data Binding<p>{ } -&gt; Data Binding</p><p>Example: {movies&gt;/initdate}</p><ul><li>movies -&gt; name of data model</li><li>/ -&gt; points to root of the data collection (= oberster Knoten) (Ben&ouml;tigt bei erster Instanz)</li></ul></li></ul>"
+					}
+				]
+		},
+		{
+			"id":"0013",
+			"date":"28.07.2022",
+			"title":"Example Promise UI5",
+			"content":
+				[
+					{
+						"text": "<p><span style=\"color: #0000ff;\">onChangeCheckSales: async function (oEvent) {</span></p><p style=\"padding-left: 40px;\">var sSales = oEvent.getParameter(\"value\");<br /><span style=\"color: #0000ff;\">var bValid = await this._checkSales(sSales)</span>;</p><p style=\"padding-left: 40px;\">if (bValid) {</p><p style=\"padding-left: 80px;\">this.getView().byId(\"idInptNewKorrSales\").setValueState(sap.ui.core.ValueState.None);}</p><p style=\"padding-left: 40px;\">else {</p><p style=\"padding-left: 80px;\">this.getView().byId(\"idInptNewKorrSales\").setValueState(sap.ui.core.ValueState.Error);</p><p style=\"padding-left: 40px;\">}</p><p><span style=\"color: #0000ff;\">},</span></p><p>&nbsp;</p><p><span style=\"color: #0000ff;\">_checkSales: function (sSales) {</span></p><p style=\"padding-left: 40px;\"><span style=\"color: #0000ff;\">return new Promise(function (resolve) {</span></p><p style=\"padding-left: 80px;\">var oDataModel = this.getView().getModel();<br />var sPath = oDataModel.createKey(\"/F4VerkaeuferSet\", {</p><p style=\"padding-left: 120px;\">Personalnummer: sSales</p><p style=\"padding-left: 80px;\">});</p><p style=\"padding-left: 80px;\">oDataModel.read(sPath, {</p><p style=\"padding-left: 120px;\">success: function (oData, oResponse) {</p><p style=\"padding-left: 160px;\">Log.trace(\"Read Sales \" + sSales);<br />this.getView().getModel(this.sModelName).setProperty(\"/NewRet/SalesName\", oData.Nachname + \" \" + oData.Vorname);<br /><span style=\"color: #0000ff;\">resolve(true)</span></p><p style=\"padding-left: 120px;\">}.bind(this),</p><p style=\"padding-left: 120px;\">error: function (oError) {</p><p style=\"padding-left: 160px;\">//handled by ErrorHandler.js<br />this.getView().getModel(this.sModelName).setProperty(\"/NewRet/SalesName\", \"\");<br /><span style=\"color: #0000ff;\">resolve(false)</span></p><p style=\"padding-left: 120px;\">}.bind(this)</p><p style=\"padding-left: 80px;\">});</p><p style=\"padding-left: 40px;\">}<span style=\"color: #008000;\">.bind(this));</span></p><p><span style=\"color: #0000ff;\">},</span></p><p>&nbsp;</p><p>Remarks:</p><p><span style=\"color: #0000ff;\"><span style=\"color: #008000;\">.bind(this): Passes \"this\" to promise function</span></span></p>"
+					}
+				]
+		},
+		{
+			"id":"0012",
+			"date":"26.07.2022",
+			"title":"Links",
+			"content":
+				[
+					{
+						"text": "<p>HTML-Editor: <a href=\"https://html-online.com/editor/\">https://html-online.com/editor/</a></p>"
+					}
+				]
+		},
+		{
+			"id":"0011",
+			"date":"25.07.2022",
+			"title":"Escape String",
+			"content":
+				[
+					{
+						"text": "<p>JSON:</p><p>&nbsp;\" -&gt; \\\"&nbsp;</p><p>\\\" -&gt; \\\\\\\"</p>"
+					}
+				]
+		},
+		{
+			"id":"0010",
+			"date":"09.05.2022",
+			"title":"ABAP Quick Reference",
+			"content":
+				[
+					{
+						"text": "<p>ABAP 7.40: <a href=\"https://blogs.sap.com/2015/10/25/abap-740-quick-reference/\">https://blogs.sap.com/2015/10/25/abap-740-quick-reference/</a></p><p>ABAP 7.50: <a href=\"https://blogs.sap.com/2015/11/27/abap-language-news-for-release-750/\">https://blogs.sap.com/2015/11/27/abap-language-news-for-release-750/</a></p>"
+					}
+				]
+		},
+		{
+			"id":"0009",
+			"date":"19.05.2022",
+			"title": "UI5 Navigation to FIORI Launchpad",
+			"content":
+				[
+					{
+						"text": "<p>var oCrossAppNavigator = sap.ushell.Container.getService(\"CrossApplicationNavigation\");</p><p>// Navigate back to FLP home</p><p>oCrossAppNavigator.toExternal({</p><p>target: {</p><p>shellHash: \"#\"</p><p>}</p><p>});</p>"
+					}
+					]
+		},
+		{	"id":"0008",
+			"date":"09.05.2022",
+			"title":"CHARM",
+			"content":
+				[
+					{	"text":"<p>Auftrag per ToC transportieren:</p><ul><li>SE10 - Aufgabe freigeben</li><li>CHARM: Reiter Transortfreigabe (Modus Bearbeiten)</li><li>Schaltfl&auml;che 'Transport von Kopien'</li><li>Ggfls. neue Aufgabe anlegen</li><li>Sichern</li></ul>"
+					}
+				]
+		},
+		{	"id":"0007",
+			"date":"09.05.2022",
+			"title":"Call Function Module in new task",
+			"content":
+				[
+					{	"text":"<p><span style=\"color: #0000ff;\">CALL FUNCTION</span> <span style=\"color: #008000;\">'FM_MODULE_1'</span></p><p><span style=\"color: #0000ff;\">STARTING NEW TASK</span> <span style=\"color: #008000;\">'NEW_TASK'</span> <span style=\"color: #0000ff;\">CALLING</span> method_1 <span style=\"color: #0000ff;\">ON END OF TASK</span></p><p><span style=\"color: #0000ff;\">EXPORTING</span> ...</p><p>&nbsp;</p><p>Notes: Importing not directly possible in FM_MODULE_1, but possible inside method_1</p><p>e.g. &nbsp;&nbsp;&nbsp;&nbsp;<span style=\"color: #0000ff;\">RECEIVE</span> RESULTS <span style=\"color: #0000ff;\">FROM FUNCTION</span> <span style=\"color: #008000;\">'FM_MODULE_1'</span> <span style=\"color: #0000ff;\">IMPORTING</span> vbeln = gv_vbeln.</p><p>Notes: Use wait lv_finished = abap_true (Set lv_finished inside method_1)</p>"
+					}
+				]
+		},
+		{	"id":"0006",
+			"date":"09.05.2022",
+			"title":"Reset Buffer of Application Server",
+			"content":
+				[
+					{	"text":"<p><strong>/$SYNC - Resets all buffers of the application server</strong></p><p>/$CUA - Resets the CUA buffer of the application server</p><p>/$TAB - Resets the TABLE buffers of the application server</p><p>/$NAM - Resets the nametab buffer of the application server</p><p>/$DYN - Resets the screen buffer of the application server</p><p>/$ESM - Resets the Exp./ Imp. Shared Memory Buffer of the application server</p><p>/$PXA - Resets the Program (PXA) Buffer of the application server</p><p>/$OBJ - Resets the Shared Buffer of the application server</p>"
+					}
+				]
+		},
 		{	"id":"0005",
 			"date":"05.05.2022",
 			"title":"Deutsches Tastaturlayout",
@@ -8,12 +134,12 @@
 						{ "text":"12334" } ],
 			"content":
 				[
-					{	"text":"<p><img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/KB_Germany.svg/450px-KB_Germany.svg.png\" alt=\"Deutsche Tastatur\" width=\"609\" height=\"203\" /></p>",
-						"image":
+					{	"image":
 							{
 								"src":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/KB_Germany.svg/450px-KB_Germany.svg.png",
 								"description":"Deutsches Tastaturlayout"
-							}					}
+							}
+					}
 				]
 		},
 		{	"id":"0004",
@@ -65,5 +191,5 @@
 				]
 			
 		}
-		]
+	]
 }
