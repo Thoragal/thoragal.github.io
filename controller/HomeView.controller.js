@@ -1,14 +1,10 @@
 sap.ui.define([
 	"./BaseController",
-	"../model/formatter",
 	"sap/ui/model/json/JSONModel"
 ], function (BaseController, formatter, JSONModel) {
 	"use strict";
 
 	return BaseController.extend("Homepage.Homepage.controller.HomeView", {
-		
-		// set formatter
-    	formatter: formatter,
 		
 		onInit: function () {
 
@@ -16,7 +12,6 @@ sap.ui.define([
 			//this.getView().setModel(oImgModel, "img");
 			
 			this.getView().byId("idButtonNavToHome").setType("Emphasized");
-
 		}
 	});
 });

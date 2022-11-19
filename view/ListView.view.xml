@@ -4,7 +4,8 @@
 			xmlns:core="sap.ui.core">
 	
 	<Page	id="idPageList" 
-			showHeader="false">
+			showHeader="false"
+			title="Objektliste">
 		
 		<subHeader>
 			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Header" type="XML"/>

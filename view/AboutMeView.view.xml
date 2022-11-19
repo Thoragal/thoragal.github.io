@@ -6,7 +6,8 @@
 	
 	<Page	id="idPageAboutMe" 
 			showHeader="false"
-			enableScrolling="false">
+			enableScrolling="false"
+			title="AboutMe">
 		
 		<subHeader>
 			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Header" type="XML"/>

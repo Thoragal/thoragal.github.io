@@ -7,8 +7,8 @@
 	<HBox alignItems="Center" justifyContent="Center" >
 		<Image	src="images/Home/StartPicture.jpg" 
 				width="100%" 
-				height="auto">
-		</Image>
+				height="auto"
+				alt="Image"/>
 	</HBox>
 
 <!-- Tile Wiki -->
@@ -52,17 +52,18 @@
 			</GenericTile>
 		</SlideTile>
 		
-<!-- Contact AboutMe -->
+<!-- Tile ContactMe -->
 		<SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop"
 					visible="false">
 			<GenericTile
+				backgroundImage="images/Home/ContactMe.jpg"
 				frameType="TwoByOne" 
-				press="onNavToAboutMe">
+				press="onNavToContactMe">
 				<TileContent>
 					<NewsContent
 						subheader="{i18n>StartTileSubheaderContactMe}" />
 				</TileContent>
 			</GenericTile>
 		</SlideTile>
-
+		
 </core:FragmentDefinition>

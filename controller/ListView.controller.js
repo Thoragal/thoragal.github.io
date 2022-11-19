@@ -14,6 +14,8 @@ sap.ui.define([
 		 * @memberOf Homepage.Homepage.view.ListView
 		 */
 		onInit: function() {
+			this.getView().byId("idPageList").setBusy(true);
+			
 			this.getView().byId("idButtonNavToList").setType("Emphasized");	
 			
 			var oTable = this.byId("IdObjectTableData");
@@ -44,6 +46,8 @@ sap.ui.define([
 				};
 				
 			this._setFilterCountValues();
+			
+			this.getView().byId("idPageList").setBusy(false);
 		},
 
 		/**
@@ -137,25 +141,26 @@ sap.ui.define([
 			
 			var oBinding = this._oTable.getBinding("items");
 			
-			oBinding.filter(this._mFilters["countTable"]);
+			//oBinding.filter(this._mFilters["countTable"]);
+			oBinding.filter(this._mFilters.countTable);
 			this.getView().byId("idFilterTable").setCount(oBinding.iLength);	
 			
-			oBinding.filter(this._mFilters["countTransaction"]);
+			oBinding.filter(this._mFilters.countTransaction);
 			this.getView().byId("idFilterTransaction").setCount(oBinding.iLength);	
 			
-			oBinding.filter(this._mFilters["countClass"]);
+			oBinding.filter(this._mFilters.countClass);
 			this.getView().byId("idFilterClass").setCount(oBinding.iLength);	
 			
-			oBinding.filter(this._mFilters["countFuba"]);
+			oBinding.filter(this._mFilters.countFuba);
 			this.getView().byId("idFilterFuba").setCount(oBinding.iLength);	
 			
-			oBinding.filter(this._mFilters["countProgram"]);
+			oBinding.filter(this._mFilters.countProgram);
 			this.getView().byId("idFilterProgram").setCount(oBinding.iLength);	
 			
-			oBinding.filter(this._mFilters["countShortcut"]);
+			oBinding.filter(this._mFilters.countShortcut);
 			this.getView().byId("idFilterShortcut").setCount(oBinding.iLength);	
 			
-			oBinding.filter(this._mFilters["countAll"]);
+			oBinding.filter(this._mFilters.countAll);
 			this.getView().byId("idFilterAll").setCount(oBinding.iLength);	
 		},
 		
@@ -163,31 +168,31 @@ sap.ui.define([
 			var oBinding = this._oTable.getBinding("items");
 			var oAbapListModel = this.getModel("AbapListModel");
  
-			oBinding.filter(this._mFilters["countTable"]);
+			oBinding.filter(this._mFilters.countTable);
 			oAbapListModel.countTable = oBinding.iLength;
 			oAbapListModel.setProperty("/countTable", oAbapListModel.countTable);
 			
-			oBinding.filter(this._mFilters["countTransaction"]);
+			oBinding.filter(this._mFilters.countTransaction);
 			oAbapListModel.countTransaction = oBinding.iLength;
 			oAbapListModel.setProperty("/countTransaction", oAbapListModel.countTransaction);
 			
-			oBinding.filter(this._mFilters["countClass"]);
+			oBinding.filter(this._mFilters.countClass);
 			oAbapListModel.countClass = oBinding.iLength;
 			oAbapListModel.setProperty("/countClass", oAbapListModel.countClass);
 			
-			oBinding.filter(this._mFilters["countFuba"]);
+			oBinding.filter(this._mFilters.countFuba);
 			oAbapListModel.countFuba = oBinding.iLength;
 			oAbapListModel.setProperty("/countFuba", oAbapListModel.countFuba);
 		
-			oBinding.filter(this._mFilters["countProgram"]);
+			oBinding.filter(this._mFilters.countProgram);
 			oAbapListModel.countProgram = oBinding.iLength;
 			oAbapListModel.setProperty("/countProgram", oAbapListModel.countProgram);
 			
-			oBinding.filter(this._mFilters["countShortcut"]);
+			oBinding.filter(this._mFilters.countShortcut);
 			oAbapListModel.countShortcut = oBinding.iLength;
 			oAbapListModel.setProperty("/countShortcut", oAbapListModel.countShortcut);
 		
-			oBinding.filter(this._mFilters["countAll"]);
+			oBinding.filter(this._mFilters.countAll);
 			oAbapListModel.countAll = oBinding.iLength;
 			oAbapListModel.setProperty("/countAll", oAbapListModel.countAll);
 		}

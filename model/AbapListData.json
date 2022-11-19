@@ -704,6 +704,30 @@
     "description": "Preiskatalog Eingang: Generische Feldablage"
   },
   {
+    "type": "Pflegeview",
+    "category": "Pricat",
+    "value": "WRF_PRI_AUTOM_V",
+    "description": "Pflegeview für Tabelle wrf_pricat_autom"
+  },
+  {
+    "type": "Pflegeview",
+    "category": "Pricat",
+    "value": "WRF_PRICAT_001_V",
+    "description": "Zuordnung Ekgrp, default EKORG und Historie zum Lieferant"
+  },
+  {
+    "type": "Tabelle",
+    "category": "Pricat",
+    "value": "WRF_PRI_COND_EK",
+    "description": "Pricat Eingang: Anlage Einkaufskonditionen (Pflegeview: VWRF_PRI_COND_EK)"
+  },
+  {
+    "type": "Pflegeview",
+    "category": "Pricat",
+    "value": "VWRF_PRI_COND_EK",
+    "description": "Pricat Eingang: Anlage Einkaufskonditionen"
+  },
+  {
     "type": "Transaktion",
     "category": "SD",
     "value": "VA01-03",
@@ -1301,7 +1325,7 @@
     "type": "Transaktion",
     "category": "IDOC",
     "value": "WLF_IDOC",
-    "description": "Idoc Verarbeitung; Log zu Idoc finden"
+    "description": "Idoc Verarbeitung; Log zu Idoc finden !!!"
   },
   {
     "type": "Transaktion",
@@ -1467,6 +1491,12 @@
   },
   {
     "type": "Transaktion",
+    "category": "IDOC",
+    "value": "WE11",
+    "description": "Idocs löschen"
+  },
+  {
+    "type": "Transaktion",
     "category": "Warenbewegung",
     "value": "VL09",
     "description": "Warenbewegung zurückdrehen"
@@ -1619,7 +1649,7 @@
     "type": "Transaktion",
     "category": "Sonstiges",
     "value": "SE03",
-    "description": "Delete locked Transport Objects"
+    "description": "Delete locked Transport Objects, Change origin system, Transport Organizer Tools"
   },
   {
     "type": "Transaktion",
@@ -1881,6 +1911,12 @@
   },
   {
     "type": "Transaktion",
+    "category": "Gateway + Web",
+    "value": "/IWFND/V4_ADMIN",
+    "description": "SAP-Gateway-Service-Administration"
+  },
+  {
+    "type": "Transaktion",
     "category": "Job",
     "value": "SM36",
     "description": "Job Creation"
@@ -2073,6 +2109,18 @@
   },
   {
     "type": "Transaktion",
+    "category": "SAP Basis",
+    "value": "STAUTHTRACE",
+    "description": "Berechtigungstrace"
+  },
+  {
+    "type": "Transaktion",
+    "category": "SAP Basis",
+    "value": "SU53",
+    "description": "Auswertung fehlgeschlagener Berechtigungsprüfungen"
+  },
+  {
+    "type": "Transaktion",
     "category": "Formulare",
     "value": "SE71",
     "description": "Sapscript"
@@ -2139,6 +2187,18 @@
   },
   {
     "type": "Transaktion",
+    "category": "Pricat",
+    "value": "W_PRICAT_DELPOS",
+    "description": "PRICAT Positionen löschen"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Pricat",
+    "value": "W_PRICAT_TERMINATION",
+    "description": "Terminierte Datenanlage"
+  },
+  {
+    "type": "Transaktion",
     "category": "Shortcut",
     "value": "/I",
     "description": "Close Session"
@@ -2148,6 +2208,12 @@
     "category": "Shortcut",
     "value": "/NEX",
     "description": "Close All Sessions (Feierabend)"
+  },
+  {
+    "type": "Transaktion",
+    "category": "Exits",
+    "value": "LTMOM",
+    "description": "Migration S4 ( https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/29193bf0ebdd4583930b2176cb993268/a4d4119a2cc9448a98e5d17e6dd0eac4.html )"
   },
   {
     "type": "Klasse",
@@ -2247,6 +2313,12 @@
   },
   {
     "type": "Fuba",
+    "category": "Idoc",
+    "value": "ALE_SYNC_BAPI_GET_RECEIVER",
+    "description": "Ermittlung Empfänger aus Verteilungsmodell"
+  },
+  {
+    "type": "Fuba",
     "category": "SLG1",
     "value": "BAL_DB_SAVE",
     "description": "SLG1 Save Log"
@@ -2294,6 +2366,36 @@
     "description": "Ermittlung Callstack"
   },
   {
+    "type": "Fuba",
+    "category": "MM",
+    "value": "BAPI_MATERIAL_MAINTAINDATA_RT",
+    "description": "BAPI Maintain material data"
+  },
+  {
+    "type": "Fuba",
+    "category": "MM",
+    "value": "ME_MAINTAIN_INFORECORD",
+    "description": "BAPI Maintain inforecord"
+  },
+  {
+    "type": "Fuba",
+    "category": "Messages",
+    "value": "MESSAGES_INITIALIZE",
+    "description": "Display multiple messages in box (Step 1/3)"
+  },
+  {
+    "type": "Fuba",
+    "category": "Messages",
+    "value": "MESSAGE_STORE",
+    "description": "Display multiple messages in box (Step 2/3)"
+  },
+  {
+    "type": "Fuba",
+    "category": "Messages",
+    "value": "MESSAGES_SHOW",
+    "description": "Display multiple messages in box (Step 3/3)"
+  },
+  {
     "type": "Programm",
     "category": "Transporte",
     "value": "RV80HGEN",
@@ -2325,9 +2427,27 @@
   },
   {
     "type": "Programm",
+    "category": "Idoc",
+    "value": "RSETESTD",
+    "description": "Idocs löschen"
+  },
+  {
+    "type": "Programm",
     "category": "Fiori",
     "value": "/UI5/APP_INDEX_CALCULATE",
     "description": "Clean up the cache after applying changes that affect SAP Fiori apps"
+  },
+  {
+    "type": "Programm",
+    "category": "Pricat",
+    "value": "RWRF_PRICAT_INBOUND_DELPOS",
+    "description": "Preiskatalog Eingang: Löschreport für Positionen"
+  },
+  {
+    "type": "Programm",
+    "category": "Pricat",
+    "value": "RWRF_PRICAT_TERMINATION",
+    "description": "Anlegen von terminierten Stammdaten aus Eingangspreiskatalogen"
   },
   {
     "type": "Shortcut",
@@ -2394,6 +2514,12 @@
     "category": "Browser",
     "value": "ALT + STRG + Umschalt + S",
     "description": "UI5 Diagnostics"
+  },
+  {
+    "type": "Shortcut",
+    "category": "Browser",
+    "value": "ALT + STRG + Umschalt + P",
+    "description": "UI5 Dialog für technische Daten"
   },
   {
     "type": "Shortcut",
@@ -2490,6 +2616,24 @@
     "category": "SAP-GUI",
     "value": "STRG + G",
     "description": "Find Next"
+  },
+  {
+    "type": "Shortcut",
+    "category": "Word",
+    "value": "STRG + H",
+    "description": "Zeichen ersetzen"
+  },
+  {
+    "type": "Shortcut",
+    "category": "Eclipse",
+    "value": "STRG + SHIFT + L",
+    "description": "Alle Shortcuts anzeigen"
+  },
+  {
+    "type": "Shortcut",
+    "category": "Eclipse",
+    "value": "SHIFT + F1",
+    "description": "Pretty Printer"
   }
 ]
 }

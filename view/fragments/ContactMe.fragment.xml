@@ -1,0 +1,47 @@
+<core:FragmentDefinition	xmlns="sap.m" 
+							xmlns:core="sap.ui.core" 
+							xmlns:l="sap.ui.layout" 
+							xmlns:f="sap.ui.layout.form">
+	<Dialog id="idDialogContactMe" 
+			title="{i18n>idDialogContactMeTitle}">
+		<content>
+			<f:SimpleForm	id="idSimpleFormContactMe" 
+							editable="true"
+							width="100%"> 
+<!--First name-->
+				<Label	id="idLabelContactMeFirstName"
+						text="{i18n>lblContactMeFirstName}"
+						labelFor="idInputContactMeFirstName"/>
+				<Input	id="idInputContactMeFirstName"
+						placeholder="{i18n>PlaceholderInputContactMeFirstName}"
+	 					value="{localDataModelContactMe>/NameFirst}" />
+<!--Last name-->
+				<Label	id="idLabelContactMeLastName"
+						text="{i18n>lblContactMeLastName}"
+						labelFor="idInputContactMeLastName"/>
+				<Input	id="idInputContactMeLastName"
+						placeholder="{i18n>PlaceholderInputContactMeLastName}" 
+						value="{localDataModelContactMe>/NameLast}" />
+<!--Email-->
+				<Label	id="idLabelContactMeEmail"
+						text="{i18n>lblContactMeEmail}"
+						labelFor="idInputContactMeEmail"/>
+				<Input	id="idInputContactMeEmail"
+						placeholder="{i18n>PlaceholderInputContactMeEmail}" 
+						value="{localDataModelContactMe>/Email}" />
+			</f:SimpleForm>
+<!--MessageText-->
+            <TextArea	id="idTextAreaContactMeText"
+            			width="100%" 
+            			placeholder="{i18n>PlaceholderInputContactMeTextArea}" 
+            			value="{localDataModelContactMe>/Text}"
+            			rows="15" />
+		</content>
+<!--Buttons-->
+		<Toolbar>
+			<Button id="idBtnContactMeCancel" press="onPressContactMeDialogCancel" text="{i18n>txtBtnContactMeCancel}"/>			
+			<ToolbarSpacer/>
+			<Button id="idBtnContactMeOk" press="onPressContactMeDialogOk" text="{i18n>txtBtnContactMeOk}"/>
+		</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>

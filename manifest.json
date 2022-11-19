@@ -59,6 +59,11 @@
 				"settings": {
 					"bundleName": "Homepage.Homepage.i18n.i18n"
 				}
+			},
+			"localDataModelContactMe": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
 			}
 		},
 		"resources": {
@@ -104,6 +109,12 @@
 				"titleTarget": "",
 				"greedy": false,
 				"target": ["WikiDetailView"]
+			}, {
+				"name": "WikiOverviewView",
+				"pattern": "WikiOverview",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["WikiOverviewView"]
 			}],
 			"targets": {
 				"ListView": {
@@ -145,6 +156,14 @@
 					"viewName": "HomeView",
 					"viewLevel": 1,
 					"viewId": "ViewIdHome"
+				},
+				"WikiOverviewView": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "WikiOverviewView",
+					"viewId": "ViewIdWikiOverview",
+					"viewLevel": 2
 				}
 			}
 		}

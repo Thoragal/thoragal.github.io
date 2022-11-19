@@ -2,7 +2,7 @@
 							xmlns:core="sap.ui.core"
 							xmlns:tnt="sap.tnt">
 
-	<OverflowToolbar class=".titleBgColor">
+	<OverflowToolbar>
 		<ToolbarSpacer/>
 		<Title text="{i18n>FooterText}"></Title>
 		<ToolbarSpacer/>

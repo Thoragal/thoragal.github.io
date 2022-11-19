@@ -1,0 +1,47 @@
+<core:FragmentDefinition	xmlns="sap.m" 
+							xmlns:mvc="sap.ui.core.mvc"
+							xmlns:core="sap.ui.core"
+							xmlns:f="sap.ui.layout.form"
+							xmlns:uxap="sap.uxap"
+							xmlns:l="sap.ui.layout"
+							xmlns:html="http://www.w3.org/1999/xhtml">
+
+		<Table	id="IdObjectTableData"
+				width="auto"
+				items="{WikiModel>/Wiki}">
+
+				<columns>
+					<Column id="IdColumnNameType1"
+							width="5em">
+						<Text
+							id="nameColumnTitle4"
+							text="{i18n>WikiOverviewTableId}"/>
+					</Column>
+					<Column
+						id="IdColumnNameValue3"
+						demandPopin="false"
+						width="8em">
+						<Text text="{i18n>WikiOverviewTableDate}"/>
+					</Column>
+					<Column id="IdColumnNameType2">
+						<Text
+							id="nameColumnTitle"
+							text="{i18n>WikiOverviewTableTitle}"/>
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem
+						type="Active"
+						press="onPressRow">
+						<cells>
+							<ObjectIdentifier
+								title="{WikiModel>id}"/>
+								<Text text = "{WikiModel>date}"/>	
+								<Text text = "{WikiModel>title}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			
+</core:FragmentDefinition>

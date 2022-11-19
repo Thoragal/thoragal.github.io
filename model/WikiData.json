@@ -2,9 +2,49 @@
 	"Wiki":
 	[	
 		{
+			"id":"0020",
+			"date":"09.11.2022",
+			"title":"SQL Joins",
+			"tags":	[ { "tag":"ABAP" } ],
+			"content":
+				[
+					{	"image":
+						{
+							"src":"images/Wiki/0020_01.jpg",
+							"description":"SQL Joins"
+						}
+					}
+				]
+		},
+		{
+			"id":"0019",
+			"date":"27.10.2022",
+			"title":"STATICS",
+			"tags":[ { "tag":"ABAP" } ],
+			"content":
+				[
+					{
+						"text": "<p>Variables which are defined as \"STATICS\" will be stored for the next call of the method. The method must a static method.</p><p>&nbsp;</p><p>Example for counting the number of calls:</p><p>METHOD static_method.</p><p style=\"padding-left: 40px;\"><span class=\"L0S52\" style=\"color: #0000ff;\">STATICS</span><span class=\"L0S55\">:&nbsp;</span>s_test <span class=\"L0S52\"><span style=\"color: #0000ff;\">TYPE</span>&nbsp;</span><span class=\"L0S52\">i.</span></p><p style=\"padding-left: 40px;\">s_test = s_test + 1.</p><p>ENDMETHOD.&nbsp;</p>"
+					}
+				]
+		},
+		{
+			"id":"0018",
+			"date":"11.08.2022",
+			"title":"Debug deployed UI5-Application",
+			"tags":[ { "tag":"UI5" } ],
+			"content":
+				[
+					{
+						"text": "<ul><li>Start deployed application</li><li>Shortcut: STRG + SHIFT + ALT + P</li><li>Mark checkbox: Use debug sources -&gt; Reload application</li><li>Shortcut F12 (Debug console)</li><li>Follow path in tab Sources -&gt; sap -&gt; bc -&gt; ui5_ui5 -&gt; sap -&gt; z*</li></ul>"
+					}
+				]
+		},
+		{
 			"id":"0017",
 			"date":"03.08.2022",
 			"title":"Sorting in SAP Gateway",
+			"tags":[ { "tag":"ABAP" } ],	
 			"content":
 				[
 					{
@@ -16,6 +56,7 @@
 			"id":"0016",
 			"date":"03.08.2022",
 			"title":"Tabelleneinträge anpassen",
+			"tags":[ { "tag":"ABAP" } ],	
 			"content":
 				[
 					{
@@ -27,6 +68,7 @@
 			"id":"0015",
 			"date":"28.07.2022",
 			"title":"SMOD (Exit, Enhancements)",
+			"tags":[ { "tag":"Exit" } ],	
 			"content":
 				[
 					{
@@ -38,6 +80,7 @@
 			"id":"0014",
 			"date":"28.07.2022",
 			"title":"Binding UI5",
+			"tags":[ { "tag":"UI5" } ],	
 			"content":
 				[
 					{
@@ -49,6 +92,7 @@
 			"id":"0013",
 			"date":"28.07.2022",
 			"title":"Example Promise UI5",
+			"tags":[ { "tag":"UI5" } ],	
 			"content":
 				[
 					{
@@ -60,6 +104,7 @@
 			"id":"0012",
 			"date":"26.07.2022",
 			"title":"Links",
+			"tags":[ { "tag":"HTML" } ],	
 			"content":
 				[
 					{
@@ -71,6 +116,7 @@
 			"id":"0011",
 			"date":"25.07.2022",
 			"title":"Escape String",
+			"tags":[ { "tag":"JSON" } ],	
 			"content":
 				[
 					{
@@ -82,6 +128,7 @@
 			"id":"0010",
 			"date":"09.05.2022",
 			"title":"ABAP Quick Reference",
+			"tags":[ { "tag":"ABAP" } ],	
 			"content":
 				[
 					{
@@ -93,6 +140,7 @@
 			"id":"0009",
 			"date":"19.05.2022",
 			"title": "UI5 Navigation to FIORI Launchpad",
+			"tags":[ { "tag":"UI5" } ],	
 			"content":
 				[
 					{
@@ -112,6 +160,7 @@
 		{	"id":"0007",
 			"date":"09.05.2022",
 			"title":"Call Function Module in new task",
+			"tags":[ { "tag":"ABAP" } ],	
 			"content":
 				[
 					{	"text":"<p><span style=\"color: #0000ff;\">CALL FUNCTION</span> <span style=\"color: #008000;\">'FM_MODULE_1'</span></p><p><span style=\"color: #0000ff;\">STARTING NEW TASK</span> <span style=\"color: #008000;\">'NEW_TASK'</span> <span style=\"color: #0000ff;\">CALLING</span> method_1 <span style=\"color: #0000ff;\">ON END OF TASK</span></p><p><span style=\"color: #0000ff;\">EXPORTING</span> ...</p><p>&nbsp;</p><p>Notes: Importing not directly possible in FM_MODULE_1, but possible inside method_1</p><p>e.g. &nbsp;&nbsp;&nbsp;&nbsp;<span style=\"color: #0000ff;\">RECEIVE</span> RESULTS <span style=\"color: #0000ff;\">FROM FUNCTION</span> <span style=\"color: #008000;\">'FM_MODULE_1'</span> <span style=\"color: #0000ff;\">IMPORTING</span> vbeln = gv_vbeln.</p><p>Notes: Use wait lv_finished = abap_true (Set lv_finished inside method_1)</p>"
@@ -121,6 +170,7 @@
 		{	"id":"0006",
 			"date":"09.05.2022",
 			"title":"Reset Buffer of Application Server",
+			"tags":[ { "tag":"ABAP" } ],
 			"content":
 				[
 					{	"text":"<p><strong>/$SYNC - Resets all buffers of the application server</strong></p><p>/$CUA - Resets the CUA buffer of the application server</p><p>/$TAB - Resets the TABLE buffers of the application server</p><p>/$NAM - Resets the nametab buffer of the application server</p><p>/$DYN - Resets the screen buffer of the application server</p><p>/$ESM - Resets the Exp./ Imp. Shared Memory Buffer of the application server</p><p>/$PXA - Resets the Program (PXA) Buffer of the application server</p><p>/$OBJ - Resets the Shared Buffer of the application server</p>"
@@ -130,8 +180,6 @@
 		{	"id":"0005",
 			"date":"05.05.2022",
 			"title":"Deutsches Tastaturlayout",
-			"label": [	{ "text":"123" },
-						{ "text":"12334" } ],
 			"content":
 				[
 					{	"image":
@@ -145,6 +193,7 @@
 		{	"id":"0004",
 			"date":"02.05.2022",
 			"title":"Name von BADI bzw. User-Exit finden",
+			"tags":[ { "tag":"Exit" } ],
 			"content":
 				[
 					{	"text":"<ul><li>Transaktion SE24<ul><li>Objekttyp: CL_EXITHANDLER</li><li>Methode: GET_INSTANCE</li></ul></li><li>Breakpoint bei Zeile 28</li><li>Variable Exit-Name = Badi-Name</li></ul>"
@@ -154,6 +203,7 @@
 		{	"id":"0003",
 			"date":"30.11.2021",
 			"title":"SAP Gateway - Calls Backend",
+			"tags":[ { "tag":"ABAP" } ],
 			"content":
 				[
 					{	"text": "<ul><li>Get Entity:</li></ul><p style=\"padding-left: 40px;\">/sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/UserDefaultsSet<span style=\"color: #ff0000;\"><strong>(Username='UserABC')</strong></span></p><ul><li>Get EntitySet:</li></ul><p style=\"padding-left: 40px;\">/sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/UserDefaultsSet</p><ul><li>Follow Associations:</li></ul><p style=\"padding-left: 40px;\">/sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/DocumentSet(DocumentId='0000722731')<span style=\"color: #ff0000;\">/<strong>Items</strong></span></p><ul><li>Use Filter:</li></ul><p style=\"padding-left: 40px;\">/sap/opu/odata/sap/Z_IFMI_SRV/PRODUCT_HIERARCHIESSet<span style=\"color: #ff0000;\"><strong>?$filter=Language eq 'EN'</strong></span></p>"

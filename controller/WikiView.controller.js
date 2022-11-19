@@ -17,11 +17,15 @@ sap.ui.define([
 		 * @memberOf Homepage.Homepage.view.WikiView
 		 */
 		onInit: function () {
+//			this.getView().byId("idPageWiki").setBusy(true);
+			
 			this.getView().byId("idButtonNavToWiki").setType("Emphasized");	
 			
 			var sPath = jQuery.sap.getModulePath("Homepage.Homepage", "/model/WikiData.json"); 
 			var oModel = new JSONModel(sPath);
 			this.getView().setModel(oModel, "WikiModel");
+			
+//			this.getView().byId("idPageWiki").setBusy(false);
 		},
 
 		onPressRow: function (oEvent) {

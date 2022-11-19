@@ -64,13 +64,15 @@
 								<Image	width="20px"
 										height="20px"
 										src="images/AboutMe/IconLinkedIn.png"
-										press="onLinkedInPressed"/>						
-								
+										press="onLinkedInPressed"
+										tooltip="{MeModel>/General/LinkedInTooltip}"/>
+
 								<Label text="{i18n>AboutMeXingLabel}" />
 								<Image	width="20px"
 										height="20px"
 										src="images/AboutMe/IconXing.png"
-										press="onXingPressed"/>
+										press="onXingPressed"
+										tooltip ="{MeModel>/General/XingTooltip}"/>
 								
 							</f:SimpleForm>
 

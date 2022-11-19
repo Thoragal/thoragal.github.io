@@ -10,10 +10,13 @@
 		<ObjectHeader	id="idObjectHeader"
 						binding="{WikiModel>/Wiki/0/}"
 						title="{WikiModel>title}">
-			<ObjectAttribute	title="{i18n>WikiCreationDate}" 
-								text="{WikiModel>date}"/>
 			<ObjectAttribute	title="{i18n>WikiId}" 
 								text="{WikiModel>id}" />
+			<ObjectAttribute	title="{i18n>WikiTags}" 
+								text="{WikiModel>tags/0/tag} {WikiModel>tags/1/tag} {WikiModel>tags/2/tag} {WikiModel>tags/3/tag} {WikiModel>tags/4/tag} {WikiModel>tags/5/tag}" 
+								visible="{ path: 'WikiModel>tags/0/tag', formatter: '.formatter.visible' }"/>
+			<ObjectAttribute	title="{i18n>WikiCreationDate}" 
+								text="{WikiModel>date}"/>
 		</ObjectHeader>
 
 <!-- CustomListItem -->
