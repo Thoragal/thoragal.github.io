@@ -32,7 +32,7 @@
 			<IconTabFilter
 				id="idFilterFuba"
 				key="countFuba"
-				icon="sap-icon://status-positive"
+				icon="sap-icon://border"
 				text="{i18n>TableFilterFuba}"/>
 			<IconTabFilter
 				id="idFilterProgram"
