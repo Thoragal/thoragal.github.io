@@ -1,2639 +1,2789 @@
 {
   "ObjectData": 
 [
-  {
-    "type": "Tabelle",
-    "category": "Userdaten",
-    "value": "AGR_USERS",
-    "description": "Assignment of roles to users"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Userdaten",
-    "value": "AGR_USERT",
-    "description": "Assignment of roles to users"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Userdaten",
-    "value": "AGR_PROF",
-    "description": "Profile name for role"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Userdaten",
-    "value": "AGR_AGRS",
-    "description": "Roles in composite roles"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Userdaten",
-    "value": "AGR_1251",
-    "description": "Rollen - Berechtigungsobjekt"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Changelog",
-    "value": "CDHDR",
-    "description": "Change Log: Header"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Changelog",
-    "value": "CDPOS",
-    "description": "Change Log: Position"
-  },
-  {
-    "type": "Tabelle",
-    "category": "SD",
-    "value": "VBAK",
-    "description": "Verkaufsbeleg: Kopfdaten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "SD",
-    "value": "VBAP",
-    "description": "Verkaufsbeleg: Positionsdaten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "SD",
-    "value": "VBEP",
-    "description": "Verkaufsbeleg: Einteilungsdaten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "SD",
-    "value": "VBKD",
-    "description": "Verkaufsbeleg: Kaufmännische Daten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "SD",
-    "value": "VBLB",
-    "description": "Verkaufsbeleg: Lieferabrufdaten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "SD",
-    "value": "VBPA",
-    "description": "Vertriebsbeleg: Partner"
-  },
-  {
-    "type": "Tabelle",
-    "category": "SD",
-    "value": "VBBE",
-    "description": "Vertriebsbedarfseinzelsätze"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Lieferung",
-    "value": "LIKP",
-    "description": "Lieferung: Kopfdaten (Vertriebsbeleg)"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Lieferung",
-    "value": "LIPS",
-    "description": "Lieferung: Positionsdaten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Lieferung",
-    "value": "VEKP",
-    "description": "Handling Unit Kopftabelle"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Lieferung",
-    "value": "VEPO",
-    "description": "Handling Unit Position (Inhalt)"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Lieferung",
-    "value": "VTTK",
-    "description": "Transportkopf"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Lieferung",
-    "value": "VTTP",
-    "description": "Transportposition"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Lieferung",
-    "value": "VTFA",
-    "description": "Transportbelegfluss"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Lieferung",
-    "value": "LIPSUP",
-    "description": "Lieferung Positionsdaten und Status (=View LIPS + VBUP)"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Kondition",
-    "value": "KONP",
-    "description": "Konditionen"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM",
-    "value": "MARM",
-    "description": "Mengeneinheiten zum Material"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM",
-    "value": "MSTA",
-    "description": "Materialstammstatus"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Kondition",
-    "value": "A900",
-    "description": "Kondition"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Allgemein",
-    "value": "DD03L",
-    "description": "Datenelemente zu Tabellen und Strukturen"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Allgemein",
-    "value": "ADRC",
-    "description": "Adressdaten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Stückliste",
-    "value": "MAST",
-    "description": "Stückliste"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Stückliste",
-    "value": "STKO",
-    "description": "Stücklistenkopf"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Stückliste",
-    "value": "STPO",
-    "description": "Stücklistenpositionen"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Stückliste",
-    "value": "STAS",
-    "description": "Stücklistenpositionen"
-  },
-  {
-    "type": "Tabelle",
-    "category": "GTM",
-    "value": "WBGT",
-    "description": "Trading Kontrakte mit Belegart + Nummer + Pos"
-  },
-  {
-    "type": "Tabelle",
-    "category": "GTM",
-    "value": "WBHI",
-    "description": "Trading-Kontrakt: Positionsdaten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "GTM",
-    "value": "WBHK",
-    "description": "Trading Contract: Header Data"
-  },
-  {
-    "type": "Tabelle",
-    "category": "GTM",
-    "value": "WBHD",
-    "description": "Trading Contract: Commercial Data"
-  },
-  {
-    "type": "Tabelle",
-    "category": "GTM",
-    "value": "WBHE",
-    "description": "Trading Contract: Schedule Lines"
-  },
-  {
-    "type": "Tabelle",
-    "category": "GTM",
-    "value": "WBASSOC",
-    "description": "Global Trade: Association Table"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Faktura",
-    "value": "VBRK",
-    "description": "Faktura: Kopfdaten (Rechnung)"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Faktura",
-    "value": "VBRP",
-    "description": "Faktura: Positionsdaten (Rechnung)"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Faktura",
-    "value": "VKDFS",
-    "description": "Vertriebsindex: Fakturaauslöser"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Faktura",
-    "value": "VBSK",
-    "description": "Vertriebsbeleg Sammelgang Kopf"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Faktura",
-    "value": "VBSS",
-    "description": "Vertriebsbelege eines Sammelgangs"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Allgemein / Vertriebsübersicht",
-    "value": "VBFA",
-    "description": "Vertriebsbelegfluss"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Allgemein / Vertriebsübersicht",
-    "value": "VBUK",
-    "description": "Kopfstatus und Verwaltungsdaten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Allgemein / Vertriebsübersicht",
-    "value": "VBUP",
-    "description": "Positionsstatus"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Allgemein / Vertriebsübersicht",
-    "value": "NAST",
-    "description": "Nachrichtenstatus"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Allgemein / Vertriebsübersicht",
-    "value": "KNMT",
-    "description": "Customer Material InfoRecord"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Kundenstamm",
-    "value": "KNA1",
-    "description": "Kundenstamm"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Kundenstamm",
-    "value": "KNB1",
-    "description": "Kundenstam (Company Code)"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Kundenstamm",
-    "value": "KNVV",
-    "description": "Customer Master Data Sales Data"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Kundenstamm",
-    "value": "KNVP",
-    "description": "Customer Partner"
-  },
-  {
-    "type": "Tabelle",
-    "category": "PP",
-    "value": "AFKO",
-    "description": "Auftragskopfdaten PPS-Aufträge"
-  },
-  {
-    "type": "Tabelle",
-    "category": "PP",
-    "value": "AUFK",
-    "description": "Auftragsstammdaten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "WM",
-    "value": "VTTK",
-    "description": "Shipment (Transport) Header"
-  },
-  {
-    "type": "Tabelle",
-    "category": "WM",
-    "value": "VTTP",
-    "description": "Shipment (Transport) Position"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM",
-    "value": "MAKT",
-    "description": "Materialkurztexte"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM",
-    "value": "MARA",
-    "description": "Allgemeine Materialdaten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM",
-    "value": "MVKE",
-    "description": "Verkaufsdaten zum Material (Key: Matnr Vkorg)"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM",
-    "value": "MARC",
-    "description": "Werksdaten zum Material"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM",
-    "value": "MBEW",
-    "description": "Materialbewertung"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM",
-    "value": "MBEWH",
-    "description": "Materialbewertung - Historie"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM",
-    "value": "MVER",
-    "description": "Materialverbraeuche"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM",
-    "value": "MEAN",
-    "description": "International Article Numbers (EANs) for Material"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM",
-    "value": "A017",
-    "description": "Material Info Record (Plant-Specific)"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM",
-    "value": "MARD",
-    "description": "Materialbestand"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM",
-    "value": "MLEA",
-    "description": "Lieferantenspezifische EAN"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Organisation",
-    "value": "T001L",
-    "description": "Lagerorte"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Organisation",
-    "value": "T001",
-    "description": "Company Codes"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Organisation",
-    "value": "T001K",
-    "description": "Bewertungskreis"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Organisation",
-    "value": "T001W",
-    "description": "Werks"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Organisation",
-    "value": "TVKO",
-    "description": "Link BUKRS - VKORG"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Organisation",
-    "value": "TVKWZ",
-    "description": "Links VKORG - PLANT"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Organisation",
-    "value": "T024E",
-    "description": "Einkaufsorganisationen"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Organisation",
-    "value": "TVKWZ",
-    "description": "Org.Unit: Allowed Plants per Sales Organization"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Lieferant Einkauf",
-    "value": "LFA1",
-    "description": "Lieferantenstamm (allgemeiner Teil)"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Lieferant Einkauf",
-    "value": "LFM1",
-    "description": "Lieferantenstamm Einkaufsorganisationsdaten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Einkaufsbeleg",
-    "value": "EKKO",
-    "description": "Einkaufsbelegkopf"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Einkaufsbeleg",
-    "value": "EKPO",
-    "description": "Einkaufsbelegposition"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Einkaufsbeleg",
-    "value": "EKET",
-    "description": "Lieferplaneinteilungen"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Einkaufsbeleg",
-    "value": "EKES",
-    "description": "Bestellbestätigungen"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Einkaufsbeleg",
-    "value": "EKBE",
-    "description": "Historie zum Einkaufsbeleg"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Einkaufsbeleg",
-    "value": "EKKN",
-    "description": "Kontierung im Einkaufsbeleg"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Einkaufsbeleg",
-    "value": "EKPA",
-    "description": "Partner Rollen zu einer Bestellung"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Einkaufsinfosatz",
-    "value": "EINA",
-    "description": "Einkaufsinfosatz - allgemeine Daten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Einkaufsinfosatz",
-    "value": "EINE",
-    "description": "Einkaufsinfosatz - Einkaufsorganisationsdaten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Einkaufsinfosatz",
-    "value": "A017",
-    "description": "Materialinfosatz (werksspezifisch)"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Einkaufsinfosatz",
-    "value": "KONP",
-    "description": "Konditionen (Position)"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Einkaufsinfosatz",
-    "value": "KONM",
-    "description": "Konditionen (Mengenstaffel 1-dimensional)"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Einkaufsinfosatz",
-    "value": "EORD",
-    "description": "Purchasing Source List"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Bestand",
-    "value": "MARD",
-    "description": "Lagerortdaten zum Material"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Bestand",
-    "value": "MARDH",
-    "description": "Materialstamm-Lagerortsegment - Historie"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Bestand",
-    "value": "MKOL",
-    "description": "Sonderbestände vom Lieferanten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Bestand",
-    "value": "MSLB",
-    "description": "Sonderbestände beim Lieferanten"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Bestand",
-    "value": "MSKU",
-    "description": "Sonderbestände beim Kunden"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Materialbeleg",
-    "value": "MKPF",
-    "description": "Belegkopf Materialbeleg"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Materialbeleg",
-    "value": "MSEG",
-    "description": "Belegsegment Material"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Inventur",
-    "value": "ISEG",
-    "description": "Positionen des Inventurbeleges"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Inventur",
-    "value": "LINV",
-    "description": "Inventurdaten pro Quant"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Inventur",
-    "value": "LQUA",
-    "description": "Lagerquants"
-  },
-  {
-    "type": "Tabelle",
-    "category": "MM - Sonstige",
-    "value": "RESB",
-    "description": "MM: Reservierung/Sekundärbedarf"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Transporte",
-    "value": "E070",
-    "description": "Übersicht Transporteinträge"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Jobs from SM37",
-    "value": "TBTCO",
-    "description": "Job header table"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Jobs from SM37",
-    "value": "TBTCP",
-    "description": "Job step table"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Document Types",
-    "value": "TVFK",
-    "description": "Billing: Document Types"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Document Types",
-    "value": "TVAK",
-    "description": "Sales Document Types"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Document Types",
-    "value": "TVAP",
-    "description": "Sales Document: Item Categories"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Views",
-    "value": "V_T184",
-    "description": "Item Category Assignment"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Konditionen + Pricing",
-    "value": "KONV",
-    "description": "Konditionen"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Konditionen + Pricing",
-    "value": "KONP",
-    "description": "Konditionen Positionsebene"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Konditionen + Pricing",
-    "value": "T685",
-    "description": "Condition Types"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Konditionen + Pricing",
-    "value": "T685T",
-    "description": "Condition Types Texts"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Konditionen + Pricing",
-    "value": "T683",
-    "description": "Pricing Procedures"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Konditionen + Pricing",
-    "value": "T683T",
-    "description": "Pricing Procedures + Subtotals Text"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Customizing",
-    "value": "T169Y",
-    "description": "Default Setting of Aggregation for Screen Variant"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Pricat",
-    "value": "WRF_PRICAT_PRE_C",
-    "description": "Pricat Customizing: Übernahmefelder"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Pricat",
-    "value": "WRF_PRICAT_010",
-    "description": "Preiskatalog Eingang: Generische Feldablage"
-  },
-  {
-    "type": "Pflegeview",
-    "category": "Pricat",
-    "value": "WRF_PRI_AUTOM_V",
-    "description": "Pflegeview für Tabelle wrf_pricat_autom"
-  },
-  {
-    "type": "Pflegeview",
-    "category": "Pricat",
-    "value": "WRF_PRICAT_001_V",
-    "description": "Zuordnung Ekgrp, default EKORG und Historie zum Lieferant"
-  },
-  {
-    "type": "Tabelle",
-    "category": "Pricat",
-    "value": "WRF_PRI_COND_EK",
-    "description": "Pricat Eingang: Anlage Einkaufskonditionen (Pflegeview: VWRF_PRI_COND_EK)"
-  },
-  {
-    "type": "Pflegeview",
-    "category": "Pricat",
-    "value": "VWRF_PRI_COND_EK",
-    "description": "Pricat Eingang: Anlage Einkaufskonditionen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VA01-03",
-    "description": "Kundenauftrag anlegen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VA41-43",
-    "description": "Kontrakt anlegen / ändern /anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VF01-03",
-    "description": "Rechnung erstellen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VL10A",
-    "description": "Kundenaufträge Schnellanzeige"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VK11-13",
-    "description": "Konditionen (Verkauf) anlegen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VL01-03(N)",
-    "description": "Auslieferung anlegen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VL06O",
-    "description": "Ausliefermonitor!!!"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VA21 -23",
-    "description": "Angebot anlegen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VF05",
-    "description": "Liste Rechnungen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VB01",
-    "description": "Listung/Ausschluss anlegen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "MCSI",
-    "description": "Aufruf Vertriebsstatistiken"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VL75",
-    "description": "Belgien: Entfernt Z9-Sperre  + sendet INB an WMS"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VLSP",
-    "description": "Nachträglicher Auslieferungssplit"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VL74",
-    "description": "Output from handling units"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VL71",
-    "description": "Nachrichten anstoßen (ähnlich VL75)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VL09",
-    "description": "Warenbewegung zurückdrehen / stornieren"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VD51-53",
-    "description": "Kunden-Material-Info Sätze anlegen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VL22N",
-    "description": "Display Changes of Delivery"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VA45N",
-    "description": "List of Contracts New"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VA45",
-    "description": "List of Contracts"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VA05",
-    "description": "List of Sales Orders"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VA06",
-    "description": "Sales Order Monitor"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VD53",
-    "description": "Customer Material Info Records"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "VBO3",
-    "description": "Bonusabsprache anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SD",
-    "value": "V/08",
-    "description": "Pricing Procedures"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MD04",
-    "description": "Aktuelle Bestandsliste"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MMBE",
-    "description": "Bestandsübersicht (BuKrs Werk Lager Charge)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MM03",
-    "description": "Material anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "ME21N-23N",
-    "description": "Bestellung anlegen / ändern / anzeigen (ZMAK PB00)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "ME11-13",
-    "description": "Einkaufsinfosatz anlegen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "ME1M",
-    "description": "mehrere Einkaufsinfosätze anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "XK01-03",
-    "description": "Lieferant anlgen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "ZPOMON",
-    "description": "Purchase order monitor"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "VL31-33N",
-    "description": "Anlieferungen anlegen / ändern / anzeigen (Bsp. 180023625 Kopfdaten -> SDG-Daten)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "VL06I",
-    "description": "Inbound Delivery Monitor"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "CK11-13(N)",
-    "description": "ArtikelKalkulation anlegen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MEK1-3",
-    "description": "Konditionen (Einkauf) anlegen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MB51",
-    "description": "Materialbewegungen bzw. Materialbelege anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MI10",
-    "description": "Inventur buchen (Bestandsinventur)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MB5OA",
-    "description": "Anzeige bewerteter WE-Sperrbestand"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "ME59N",
-    "description": "Bestellerzeugung aus Bestellanforderung (BANF)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "ME2N",
-    "description": "Purchase documents by Document Number"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "ME80FN",
-    "description": "General List of Pos"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "CT04",
-    "description": "Characteristics - Article Classification"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "CL02",
-    "description": "Class - Article Classification"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MB5L",
-    "description": "Bestandwertsliste"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MB5B",
-    "description": "Bestandsbewegungen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MRN0 +1 +3 +9",
-    "description": "Bestandsbewertung"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "ME01",
-    "description": "Maintain Source List (Quellenbezug für BANF pflegen)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MB03",
-    "description": "Material Dokument anzeigen (nach MIGO-Buchung erzeugt)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MIGO",
-    "description": "Creating Material documents"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "VK01",
-    "description": "Kalkulationsschema anzeigen VK01 A+M"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MD04",
-    "description": "Bedarfs- / Bestandsliste"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MD06",
-    "description": "Dispoliste = Snapshot von MRP-Lauf bzw. MD04"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "ME51-53(N)",
-    "description": "Bestellanforderung anlegen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "ME0M",
-    "description": "alle Orderbücher zum Material"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "ME1L",
-    "description": "liest alle Infosätze zu Lieferant"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "ME2N",
-    "description": "alle Bestellungen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "ME3L",
-    "description": "alle Kontrakte / Purchasing Documents zu Lieferant"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MIR4",
-    "description": "Rechnung anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MR8M",
-    "description": "Rechnung stornieren (MM) - Alternative"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MR08",
-    "description": "Rechnung stornieren (MM)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MR90",
-    "description": "Repeat Output MIRO"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "CT04",
-    "description": "Charakteristik für Materialklassifizierung anlegen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "CL02",
-    "description": "Charakteristik zu Materialklasse hinzufügen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "FK05",
-    "description": "Block/Unblock Vendor"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM",
-    "value": "MMBE",
-    "description": "Bestand Übersicht"
-  },
-  {
-    "type": "Transaktion",
-    "category": "BANF",
-    "value": "ME51N",
-    "description": "Create BANF = Purchase Requisition"
-  },
-  {
-    "type": "Transaktion",
-    "category": "BANF",
-    "value": "ME59N",
-    "description": "Automatic Creation of Purchase Orders with BANFs"
-  },
-  {
-    "type": "Transaktion",
-    "category": "GTM",
-    "value": "WB21-23",
-    "description": "Trading Kontrakt anlegen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "GTM",
-    "value": "WB25",
-    "description": "Contract List"
-  },
-  {
-    "type": "Transaktion",
-    "category": "GTM",
-    "value": "WTEW",
-    "description": "Folgebelege anlegen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Allgemein",
-    "value": "SE91",
-    "description": "Nachrichtenpflege"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Allgemein",
-    "value": "SM30",
-    "description": "Tabellenpflege"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Allgemein",
-    "value": "SE38",
-    "description": "Report ausführen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Allgemein",
-    "value": "SE37",
-    "description": "FUBA ausführen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Allgemein",
-    "value": "SE71",
-    "description": "SapScript"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Allgemein",
-    "value": "SMARTFORMS",
-    "description": "Smartforms"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Allgemein",
-    "value": "SFP",
-    "description": "Form Builder"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Allgemein",
-    "value": "SM12",
-    "description": "Sperreinträge löschen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Allgemein",
-    "value": "SE18",
-    "description": "BADI Builder, Enhancements"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Allgemein",
-    "value": "SE19",
-    "description": "BADI Builder, Enhancements"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Allgemein",
-    "value": "SE20",
-    "description": "Enhancements"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Allgemein",
-    "value": "SU21",
-    "description": "Berechtigungsobjekte"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Allgemein",
-    "value": "SREPO",
-    "description": "Versionsvergleich"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Konditionen",
-    "value": "NACE",
-    "description": "Konditionen pflegen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Konditionen",
-    "value": "VK11 - 13",
-    "description": "Kondition erstellen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "CO",
-    "value": "VF01 - 03",
-    "description": "Rechnung (Faktura) anlegen /ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "CO",
-    "value": "VF04",
-    "description": "Rechnung erstellen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "CO",
-    "value": "FBL5",
-    "description": "Debitoren Einzelpostenliste"
-  },
-  {
-    "type": "Transaktion",
-    "category": "CO",
-    "value": "VF11",
-    "description": "Rechnung stornieren (SD)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Kunden + Lieferanten",
-    "value": "XK01 - 03",
-    "description": "Lieferanten anlegen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Kunden + Lieferanten",
-    "value": "XD01 - 03",
-    "description": "Kunden anlegen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "PP",
-    "value": "CO01 - 03",
-    "description": "Produktionsauftrag anlegen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "PP",
-    "value": "CO14",
-    "description": "Anzeige PP-Confirmation"
-  },
-  {
-    "type": "Transaktion",
-    "category": "PP",
-    "value": "CO15",
-    "description": "Rückmeldung - Produktionsauftrag"
-  },
-  {
-    "type": "Transaktion",
-    "category": "PP",
-    "value": "COGI",
-    "description": "Fehlerhafte Warenbewegungen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "PP",
-    "value": "COOIS",
-    "description": "Produktionsaufträge anzeigen (Übersicht)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "FI",
-    "value": "F110",
-    "description": "Maschineller Zahlungsverkehr Status"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WLF_IDOC",
-    "description": "Idoc Verarbeitung; Log zu Idoc finden !!!"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "BD20",
-    "description": "Eingangsverarbeitung überarbeitete Idocs"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "BD54",
-    "description": "Logisches System (LS)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WE30",
-    "description": "IDOC-Typen (Bsp.: MATMAS04)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WE05",
-    "description": "IDOC Liste"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WE20",
-    "description": "Eingangsverarbeitung IDOC ansehen!!!!!"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "BD10",
-    "description": "Standard-IDOC Artikelstamm"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "BD12",
-    "description": "Standard-IDOC Kundenstamm"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "BD14",
-    "description": "Standard-IDOC Lieferantenstamm"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "ME18",
-    "description": "Standard-IDOC Inforecord"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WE82",
-    "description": "Zuordnung Nachrichten IDOC-Typ"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "SM59",
-    "description": "RFC-Destination pflegen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WE31",
-    "description": "Segmentdefinitionen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "BD53",
-    "description": "Reduzierungen zu IDOCS pflegen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "BD21",
-    "description": "IDOCS aus Änderungszeigern erzeugen (wichtig für JOBS) (->BD60)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "SALE",
-    "description": "CUSTOMIZING Überblick"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "BD50",
-    "description": "Änderungszeiger aktivieren"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "BD52",
-    "description": "Felder für das Schreiben von Änderungszeigern auswählen (Tabelle BDCP2)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "BD64",
-    "description": "Verteilungssystem (Für Logisches System muss ein VS gepflegt werden (Filter))"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WE81",
-    "description": "Nachrichtentyp anlegen, dann WE82"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WE82",
-    "description": "Nachrichtentyp - IDOC-Typ zuordnen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WE19",
-    "description": "IDOCS erzeugen (Eingangs- und  Ausgangs-IDOCS)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "BD87",
-    "description": "IDOCS selektiern und verschicken (wenn nicht sofort verschickt)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WE42",
-    "description": "Inbound process code"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WE57",
-    "description": "Assignment of FM to Log. Message and Idoc Type"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "BD60",
-    "description": "Additional Data Message Type (Define Message e.g. for BD12)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WE02",
-    "description": "IDOC anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WE09",
-    "description": "IDOCS durchsuchen (Inhalt)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "IDOC",
-    "value": "WE11",
-    "description": "Idocs löschen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Warenbewegung",
-    "value": "VL09",
-    "description": "Warenbewegung zurückdrehen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Warenbewegung",
-    "value": "MIGO",
-    "description": "Creating Material documents"
-  },
-  {
-    "type": "Transaktion",
-    "category": "FICO",
-    "value": "FTXP",
-    "description": "Maintain Tax Code"
-  },
-  {
-    "type": "Transaktion",
-    "category": "FICO",
-    "value": "KE24",
-    "description": "Einzelbelege anzeigen (Currency 10, Record F)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "FICO",
-    "value": "MCSI",
-    "description": "Umsatz-Auswertungen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "RSRT",
-    "description": "Query Monitor"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "LSMW",
-    "description": "Legacy System Migration Workbench"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "MB5B / MB51",
-    "description": "Materialbestände + Materialbewegungen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "SM04",
-    "description": "Benutzersitzungen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "SM50",
-    "description": "Workprozesse"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "OAM",
-    "description": "Falls Bestellung nicht druckbar ist"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "MASS",
-    "description": "Massenpflege von z.B. Kundendaten"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "RBT_ENH_VB7",
-    "description": "Bonusabrechnung"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "ST03",
-    "description": "Anzeige Transaktionsaufrufe (->Total ->Zeitarum auswählen; Transaktion Profil ->Standard)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "BSSP_BOR_OBJECT",
-    "description": "Business-Objekt anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "SWO1",
-    "description": "Business-Objekt erstellen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "LXDCK",
-    "description": "SAP Standard Crossdock"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "WTEW",
-    "description": "Buchung von Warenausgängen \"Trading Execution Workbench"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "MB23",
-    "description": "Reservierung anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "SM13",
-    "description": "Verbuchung (Aufrufen, wenn Verbuchung fehl schlägt); Anzeige Verbuchungsabbrüche"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "SM58",
-    "description": "Ausgehende IDOCS laufen hier auf, wenn Fremdsystem abgeklemmt ist"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "VHAR",
-    "description": "Packmittelarten definieren"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "SO10",
-    "description": "Texte anlegen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "VV23",
-    "description": "Einträge zu Konditionen anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "MB5S",
-    "description": "Übersicht für MIRO -Belgien"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "SE03",
-    "description": "Delete locked Transport Objects, Change origin system, Transport Organizer Tools"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "SFW5",
-    "description": "Switch Framework - (De)activate Business Functions"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "SE63",
-    "description": "Translation Editor"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "OLMRLIST",
-    "description": "Define and display Screen Variants"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "SQVI",
-    "description": "Quick-Viewer"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Sonstiges",
-    "value": "SARA",
-    "description": "Archivierung Administration"
-  },
-  {
-    "type": "Transaktion",
-    "category": "UI5 + Floorplan",
-    "value": "/UI2/FLP",
-    "description": "Fiori Launchpad"
-  },
-  {
-    "type": "Transaktion",
-    "category": "UI5 + Floorplan",
-    "value": "/UI2/FLPD_CUST",
-    "description": "Fiori Launchpad Designer (client-specific)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "UI5 + Floorplan",
-    "value": "FPM_WB",
-    "description": "Floorplanmanager Workbench"
-  },
-  {
-    "type": "Transaktion",
-    "category": "UI5 + Floorplan",
-    "value": "POWL_COCKPIT",
-    "description": "Powl Cockpit"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/CACHE",
-    "description": "Register service for UI2 cache use"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/CACHE_DEL",
-    "description": "Delete cache entries"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/CHIP",
-    "description": "Chip Registration"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/CUST",
-    "description": "Customizing of UI Technologies"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/FLC",
-    "description": "Fiori Launchpad Checks"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/FLIA",
-    "description": "Fiori Launchpad Intent Analyis"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/FLP",
-    "description": "SAP Fiori Launchpad"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/FLP_CONTCHECK",
-    "description": "Fiori Launchpad – Content Checks"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/FLP_INTENTCHECK",
-    "description": "Fiori Launchpad – Intent Checks"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/FLPD_CONF",
-    "description": "Fiori Launchpad Designer (cross-client)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/FLPD_CUST",
-    "description": "Fiori Launchpad Designer (client-specific)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/GW_ACTIVATE",
-    "description": "Gateway – Activation"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/GW_APPS_LOG",
-    "description": "Gateway – Application Log"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/GW_ERR_LOG",
-    "description": "Gateway – Error Log"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/GW_MAINT_SRV",
-    "description": "Gateway – Service Maintenance"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/GW_SYS_ALIAS",
-    "description": "Gateway – Manage SAP System Alias"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/NAV",
-    "description": "Register navigation objects"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/NAVPROV",
-    "description": "Define navigation provider"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/NWBC",
-    "description": "Start UI2 NWBC"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/NWBC_CFG_CUST",
-    "description": "NWBC Configuration (Customer)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/NWBC_CFG_P_CUST",
-    "description": "NWBC Config: Define Parameter (Cust)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/NWBC_CFG_P_SAP",
-    "description": "NWBC Config: Define Parameter (SAP)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/NWBC_CFG_SAP",
-    "description": "NWBC Configuration (SAP)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/PERS_DEL",
-    "description": "Cleanup Personalisatation Service"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/POWL",
-    "description": "Register POWL for OData consumption"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/SEMOBJ",
-    "description": "Define Semantic Object – Customer"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Fiori",
-    "value": "/UI2/SEMOBJ_SAP",
-    "description": "Define Semantic Object – SAP"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Transport",
-    "value": "VT02N",
-    "description": "Change Transport"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Gateway + Web",
-    "value": "/IWFND/MAINT_SERVICE",
-    "description": "Activate and Maintain Service"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Gateway + Web",
-    "value": "/IWFND/GW_CLIENT",
-    "description": "SAP Gateway Client"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Gateway + Web",
-    "value": "/IWFND/ERROR_LOG",
-    "description": "Gateway Error Log: Frontend"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Gateway + Web",
-    "value": "/IWBEP/ERROR_LOG",
-    "description": "Gateway Error Log: Backend"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Gateway + Web",
-    "value": "SEGW",
-    "description": "SAP Gateway Service Builder"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Gateway + Web",
-    "value": "SICF",
-    "description": "Webdynpo- und FPM-Anwendungen aktivieren (Fehlermeldung 403; bei Z-Programm: Servicename = Z*; anhand der Webadresse orientieren)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Gateway + Web",
-    "value": "/IWFND/V4_ADMIN",
-    "description": "SAP-Gateway-Service-Administration"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Job",
-    "value": "SM36",
-    "description": "Job Creation"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Job",
-    "value": "SM37",
-    "description": "Job Selection"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Job",
-    "value": "RSM37",
-    "description": "Display Jobs with Program Parameter"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Log",
-    "value": "SLG0",
-    "description": "Crate/Change Objects for Application Log"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Log",
-    "value": "SLG1",
-    "description": "Analyze Application Log"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Development",
-    "value": "SE24",
-    "description": "Class Builder"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Development",
-    "value": "SE38",
-    "description": "ABAP Editor"
-  },
-  {
-    "type": "Transaktion",
-    "category": "MM Pricing",
-    "value": "CK24",
-    "description": "Price Update: Mark Standard Price"
-  },
-  {
-    "type": "Transaktion",
-    "category": "WM",
-    "value": "LS03",
-    "description": "Lagerplatz anzeigen - Display Storage Bin"
-  },
-  {
-    "type": "Transaktion",
-    "category": "WM",
-    "value": "OMT4",
-    "description": "Messages als Warnung oder Fehlermeldung deklarieren"
-  },
-  {
-    "type": "Transaktion",
-    "category": "BW",
-    "value": "RS2HANA_ADMIN",
-    "description": "Nachgenerierung HANA-Views"
-  },
-  {
-    "type": "Transaktion",
-    "category": "BW",
-    "value": "ODQMON",
-    "description": "Monitor Delta Queues"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Transporte",
-    "value": "SCC1N",
-    "description": "Customizing Aufträge"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Stücklisten",
-    "value": "CS00",
-    "description": "Stückliste alle Transaktionen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Stücklisten",
-    "value": "CS01 - 03",
-    "description": "Stückliste anlegen / ändern / anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Stücklisten",
-    "value": "CS11 - 13",
-    "description": "Stücklisten anzeigen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Stücklisten",
-    "value": "CS05",
-    "description": "Stückliste ändern"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Inventur",
-    "value": "MI01, MI04, MI07",
-    "description": "Inventur auf Lagerort (0001)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Inventur",
-    "value": "MIW1, MI04, MI07",
-    "description": "Inventur auf Konsignation"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Nachrichten",
-    "value": "VOFM",
-    "description": "Nachrichtenbedingung anlegen für NACE"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Nachrichten",
-    "value": "NACE",
-    "description": "Nachrichten pflegen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Entwicklertools",
-    "value": "ST05",
-    "description": "Performance Trace (SQL-Trace)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Entwicklertools",
-    "value": "ST12",
-    "description": "Performance Trace (Single transaction analysis)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Entwicklertools",
-    "value": "SHDB",
-    "description": "Batch-Input Aufzeichnung -BDC- Aufzeichnung Clicks in Transaktion"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Entwicklertools",
-    "value": "SE14",
-    "description": "Adjust table"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Entwicklertools",
-    "value": "CODE_SCANNER",
-    "description": "Scan code for strings"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Druck + Mail",
-    "value": "SOST",
-    "description": "Anzeige E-Mails"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Druck + Mail",
-    "value": "SP01",
-    "description": "Druckaufträge anzeigen und anstoßen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Druck + Mail",
-    "value": "SP02",
-    "description": "Druckaufträge anstoßen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SAP Basis",
-    "value": "SU21",
-    "description": "Pflege Berechtigungsobjekte"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SAP Basis",
-    "value": "PFCG",
-    "description": "Rollenpflege"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SAP Basis",
-    "value": "SM51",
-    "description": "Change Instance of SAP-Platform"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SAP Basis",
-    "value": "STAUTHTRACE",
-    "description": "Berechtigungstrace"
-  },
-  {
-    "type": "Transaktion",
-    "category": "SAP Basis",
-    "value": "SU53",
-    "description": "Auswertung fehlgeschlagener Berechtigungsprüfungen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Formulare",
-    "value": "SE71",
-    "description": "Sapscript"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Formulare",
-    "value": "SMARTFORMS",
-    "description": "Smartforms"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Formulare",
-    "value": "SFP",
-    "description": "Adobe Interactive Forms"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Periodenverschiebung",
-    "value": "MMPV",
-    "description": "Periodenverschiebung MM (aktuelles Datum eingeben)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Periodenverschiebung",
-    "value": "OB52",
-    "description": "Perioden verschieben CO - Posting Periods"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Exits",
-    "value": "CMOD",
-    "description": "Navigation zu EXITs"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Exits",
-    "value": "SMOD",
-    "description": "All enhancements"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Exits",
-    "value": "SE18",
-    "description": "Badi Definition"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Exits",
-    "value": "SE19",
-    "description": "Badi Implementation"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Pricat",
-    "value": "BDBG",
-    "description": "ALE-Schnittstelle für BAPI"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Pricat",
-    "value": "SWO1",
-    "description": "Business Object Builder"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Pricat",
-    "value": "W_PRICAT_DELPOS",
-    "description": "PRICAT Positionen löschen"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Pricat",
-    "value": "W_PRICAT_TERMINATION",
-    "description": "Terminierte Datenanlage"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Shortcut",
-    "value": "/I",
-    "description": "Close Session"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Shortcut",
-    "value": "/NEX",
-    "description": "Close All Sessions (Feierabend)"
-  },
-  {
-    "type": "Transaktion",
-    "category": "Exits",
-    "value": "LTMOM",
-    "description": "Migration S4 ( https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/29193bf0ebdd4583930b2176cb993268/a4d4119a2cc9448a98e5d17e6dd0eac4.html )"
-  },
-  {
-    "type": "Klasse",
-    "category": "Stammdaten",
-    "value": "LFA1_READ_SINGLE",
-    "description": "Lieferant selektieren"
-  },
-  {
-    "type": "Klasse",
-    "category": "Entwicklung",
-    "value": "CL_DD_DDL_ANNOTATION_SERVICE",
-    "description": "Klasse zum Auslesen von Annotationen"
-  },
-  {
-    "type": "Klasse",
-    "category": "Exit",
-    "value": "CL_EXITHANDLER",
-    "description": "Exit handler -> get_instance Zeile 28"
-  },
-  {
-    "type": "Klasse",
-    "category": "ALV",
-    "value": "CL_SALV_GUI_TABLE_IDA",
-    "description": "Neue ALV Klasse: Factory"
-  },
-  {
-    "type": "Klasse",
-    "category": "ALV",
-    "value": "CL_SALV_RANGE_TAB_COLLECTOR",
-    "description": "Neue ALV Klasse: Range Collector"
-  },
-  {
-    "type": "Klasse",
-    "category": "Progress",
-    "value": "CL_PROGRESS_INDICATOR",
-    "description": "Progress Indicator"
-  },
-  {
-    "type": "Klasse",
-    "category": "AMDP",
-    "value": "IF_AMDP_MARKER_HDB",
-    "description": "AMDP-Interface"
-  },
-  {
-    "type": "Fuba",
-    "category": "Allgemein",
-    "value": "SAPGUI_PROGRESS_INDICATOR",
-    "description": "Ladebalken für Nutzer"
-  },
-  {
-    "type": "Fuba",
-    "category": "Allgemein",
-    "value": "BAPI_MESSAGE_GETDETAIL",
-    "description": "Langtext zu einer Fehlermeldung lesen"
-  },
-  {
-    "type": "Fuba",
-    "category": "Allgemein",
-    "value": "ENQUEUE_READ",
-    "description": "Sperreinträge lesen"
-  },
-  {
-    "type": "Fuba",
-    "category": "Logistik",
-    "value": "BAPI_PO_GETDETAIL",
-    "description": "Details zur Bestellung anzeigen (Falls Wareneingang vorhanden, ist die Rückgabetabelle PO_ITEM_HISTORY_TOTALS mit der entsprechenden WE-Menge gefüllt)"
-  },
-  {
-    "type": "Fuba",
-    "category": "Logistik",
-    "value": "BAPI_GOODSMVT_CREATE",
-    "description": "Warenbewegungen mit MB_CREATE_GOODS_MOVEMENT buchen"
-  },
-  {
-    "type": "Fuba",
-    "category": "Texte",
-    "value": "READ_TEXT",
-    "description": "Read single text"
-  },
-  {
-    "type": "Fuba",
-    "category": "Texte",
-    "value": "READ_MULTIPLE_TEXTS",
-    "description": "Read multiple texts"
-  },
-  {
-    "type": "Fuba",
-    "category": "Idoc",
-    "value": "IDOC_CREATE_ON_DATABASE",
-    "description": "Idoc anlegen"
-  },
-  {
-    "type": "Fuba",
-    "category": "Idoc",
-    "value": "IDOC_READ_COMPLETELY",
-    "description": "Idoc lesen"
-  },
-  {
-    "type": "Fuba",
-    "category": "Idoc",
-    "value": "ALE_SYNC_BAPI_GET_RECEIVER",
-    "description": "Ermittlung Empfänger aus Verteilungsmodell"
-  },
-  {
-    "type": "Fuba",
-    "category": "SLG1",
-    "value": "BAL_DB_SAVE",
-    "description": "SLG1 Save Log"
-  },
-  {
-    "type": "Fuba",
-    "category": "SLG1",
-    "value": "BAL_LOG_CREATE",
-    "description": "SLG1 Create Log"
-  },
-  {
-    "type": "Fuba",
-    "category": "SLG1",
-    "value": "BAL_LOG_MSG_ADD",
-    "description": "SLG1 Add Message"
-  },
-  {
-    "type": "Fuba",
-    "category": "Konditionen",
-    "value": "RV_CONDITION_RESET",
-    "description": "Notwendig vor RV_CONDITION_COPY"
-  },
-  {
-    "type": "Fuba",
-    "category": "Konditionen",
-    "value": "RV_CONDITION_COPY",
-    "description": "Konditionen bearbeiten (RV_CONDITION_RESET, RV_CONDITION_SAVE, BAPI_TRANSACTION_COMMIT)"
-  },
-  {
-    "type": "Fuba",
-    "category": "Konditionen",
-    "value": "RV_CONDITION_SAVE",
-    "description": "Konditionen speichern (RV_CONDITION_COPY); Danach BAPI_TRANSACTION_COMMIT"
-  },
-  {
-    "type": "Fuba",
-    "category": "Allgemein",
-    "value": "BAPI_TRANSACTION_COMMIT",
-    "description": "BAPI COMMIT"
-  },
-  {
-    "type": "Fuba",
-    "category": "Entwicklung",
-    "value": "SYSTEM_CALLSTACK",
-    "description": "Ermittlung Callstack"
-  },
-  {
-    "type": "Fuba",
-    "category": "MM",
-    "value": "BAPI_MATERIAL_MAINTAINDATA_RT",
-    "description": "BAPI Maintain material data"
-  },
-  {
-    "type": "Fuba",
-    "category": "MM",
-    "value": "ME_MAINTAIN_INFORECORD",
-    "description": "BAPI Maintain inforecord"
-  },
-  {
-    "type": "Fuba",
-    "category": "Messages",
-    "value": "MESSAGES_INITIALIZE",
-    "description": "Display multiple messages in box (Step 1/3)"
-  },
-  {
-    "type": "Fuba",
-    "category": "Messages",
-    "value": "MESSAGE_STORE",
-    "description": "Display multiple messages in box (Step 2/3)"
-  },
-  {
-    "type": "Fuba",
-    "category": "Messages",
-    "value": "MESSAGES_SHOW",
-    "description": "Display multiple messages in box (Step 3/3)"
-  },
-  {
-    "type": "Programm",
-    "category": "Transporte",
-    "value": "RV80HGEN",
-    "description": "Nachrichtenbedingungen nach Transport aktivieren"
-  },
-  {
-    "type": "Programm",
-    "category": "Transporte",
-    "value": "RSTXTRAN",
-    "description": "SO10-Texte transportieren"
-  },
-  {
-    "type": "Programm",
-    "category": "Transporte",
-    "value": "RDDIT076",
-    "description": "Report zum nachträglichem Ändern von Transporteinträgen"
-  },
-  {
-    "type": "Programm",
-    "category": "Idoc",
-    "value": "RC1_IDOC_SET_STATUS",
-    "description": "IDOC-Status manuell umsetzen"
-  },
-  {
-    "type": "Programm",
-    "category": "Idoc",
-    "value": "RBDAPP01",
-    "description": "IDOC-Verarbeitung erneut anstoßen"
-  },
-  {
-    "type": "Programm",
-    "category": "Idoc",
-    "value": "RSETESTD",
-    "description": "Idocs löschen"
-  },
-  {
-    "type": "Programm",
-    "category": "Fiori",
-    "value": "/UI5/APP_INDEX_CALCULATE",
-    "description": "Clean up the cache after applying changes that affect SAP Fiori apps"
-  },
-  {
-    "type": "Programm",
-    "category": "Pricat",
-    "value": "RWRF_PRICAT_INBOUND_DELPOS",
-    "description": "Preiskatalog Eingang: Löschreport für Positionen"
-  },
-  {
-    "type": "Programm",
-    "category": "Pricat",
-    "value": "RWRF_PRICAT_TERMINATION",
-    "description": "Anlegen von terminierten Stammdaten aus Eingangspreiskatalogen"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Windows",
-    "value": "Windows + D",
-    "description": "Desktop anzeigen"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Windows",
-    "value": "Windows + Pfeil unten",
-    "description": "Fenster minimieren"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Windows",
-    "value": "Windows + E",
-    "description": "Explorer öffnen"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Windows",
-    "value": "Windows + Shift + S",
-    "description": "Screenshot"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Windows",
-    "value": "Alt + TAB + Pfeil rechtes/links",
-    "description": "Zwischen Tabs schalten"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Windows",
-    "value": "Windows + V",
-    "description": "Verlauf der Zwischenablage"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Windows",
-    "value": "FN + F1",
-    "description": "Bildschirmanzeige anpassen"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Browser",
-    "value": "STRG + L",
-    "description": "mit Cursor in Adressleiste springen"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Browser",
-    "value": "STRG + T",
-    "description": "Open new Tab"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Browser",
-    "value": "STRG + W",
-    "description": "Close current Tab"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Browser",
-    "value": "ALT + STRG + Umschalt + S",
-    "description": "UI5 Diagnostics"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Browser",
-    "value": "ALT + STRG + Umschalt + P",
-    "description": "UI5 Dialog für technische Daten"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Chrome",
-    "value": "ALT + F5",
-    "description": "Clear Cache + Reload Page"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "ALT + Maus - Bereich auswählen",
-    "description": "Geschriebener Text erscheint in jeder Zeile des Bereichs"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "STRG + Pfeil rechts",
-    "description": "Schnelle Navigation"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "STRG + N oder STRG + \"+",
-    "description": "Open new Tab"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "STRG + SHIFT + 7",
-    "description": "Fokus auf Transaktionsfeld"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "STRG + S",
-    "description": "Save"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "STRG + F1",
-    "description": "Anzeigen / Ändern"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "STRG + F2",
-    "description": "Syntax Check"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "STRG + F3",
-    "description": "Activate"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "Umschalt + F1",
-    "description": "Pretty Printer"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "F3",
-    "description": "Zurück"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "Umschalt + F6 / F7",
-    "description": "Vorheriges / Nächstes Objekt"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "F9 / Umschalt + F9",
-    "description": "Mark everything / nothing (Menu Save Changes)"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "STRG + Umschalt + F3",
-    "description": "Verwendungsnachweis"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "STRG + Umschalt + F5",
-    "description": "Display Objectlist"
-  },
-  {
-    "type": "Shortcut",
-    "category": "SAP-GUI",
-    "value": "STRG + G",
-    "description": "Find Next"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Word",
-    "value": "STRG + H",
-    "description": "Zeichen ersetzen"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Eclipse",
-    "value": "STRG + SHIFT + L",
-    "description": "Alle Shortcuts anzeigen"
-  },
-  {
-    "type": "Shortcut",
-    "category": "Eclipse",
-    "value": "SHIFT + F1",
-    "description": "Pretty Printer"
-  }
+ {
+   "type": "Tabelle",
+   "category": "Userdaten",
+   "value": "AGR_USERS",
+   "description": "Assignment of roles to users"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Userdaten",
+   "value": "AGR_USERT",
+   "description": "Assignment of roles to users"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Userdaten",
+   "value": "AGR_PROF",
+   "description": "Profile name for role"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Userdaten",
+   "value": "AGR_AGRS",
+   "description": "Roles in composite roles"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Userdaten",
+   "value": "AGR_1251",
+   "description": "Rollen - Berechtigungsobjekt"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Changelog",
+   "value": "CDHDR",
+   "description": "Change Log: Header"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Changelog",
+   "value": "CDPOS",
+   "description": "Change Log: Position"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBAK",
+   "description": "Verkaufsbeleg: Kopfdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBAP",
+   "description": "Verkaufsbeleg: Positionsdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBEP",
+   "description": "Verkaufsbeleg: Einteilungsdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBKD",
+   "description": "Verkaufsbeleg: Kaufmännische Daten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBLB",
+   "description": "Verkaufsbeleg: Lieferabrufdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBPA",
+   "description": "Vertriebsbeleg: Partner"
+ },
+ {
+   "type": "Tabelle",
+   "category": "SD",
+   "value": "VBBE",
+   "description": "Vertriebsbedarfseinzelsätze"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "LIKP",
+   "description": "Lieferung: Kopfdaten (Vertriebsbeleg)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "LIPS",
+   "description": "Lieferung: Positionsdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "VEKP",
+   "description": "Handling Unit Kopftabelle"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "VEPO",
+   "description": "Handling Unit Position (Inhalt)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "VTTK",
+   "description": "Transportkopf"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "VTTP",
+   "description": "Transportposition"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "VTFA",
+   "description": "Transportbelegfluss"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferung",
+   "value": "LIPSUP",
+   "description": "Lieferung Positionsdaten und Status (=View LIPS + VBUP)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Kondition",
+   "value": "KONP",
+   "description": "Konditionen"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MARM",
+   "description": "Mengeneinheiten zum Material"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MSTA",
+   "description": "Materialstammstatus"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Kondition",
+   "value": "A900",
+   "description": "Kondition"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Allgemein",
+   "value": "DD03L",
+   "description": "Datenelemente zu Tabellen und Strukturen"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Allgemein",
+   "value": "ADRC",
+   "description": "Adressdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Stückliste",
+   "value": "MAST",
+   "description": "Stückliste"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Stückliste",
+   "value": "STKO",
+   "description": "Stücklistenkopf"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Stückliste",
+   "value": "STPO",
+   "description": "Stücklistenpositionen"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Stückliste",
+   "value": "STAS",
+   "description": "Stücklistenpositionen"
+ },
+ {
+   "type": "Tabelle",
+   "category": "GTM",
+   "value": "WBGT",
+   "description": "Trading Kontrakte mit Belegart + Nummer + Pos"
+ },
+ {
+   "type": "Tabelle",
+   "category": "GTM",
+   "value": "WBHI",
+   "description": "Trading-Kontrakt: Positionsdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "GTM",
+   "value": "WBHK",
+   "description": "Trading Contract: Header Data"
+ },
+ {
+   "type": "Tabelle",
+   "category": "GTM",
+   "value": "WBHD",
+   "description": "Trading Contract: Commercial Data"
+ },
+ {
+   "type": "Tabelle",
+   "category": "GTM",
+   "value": "WBHE",
+   "description": "Trading Contract: Schedule Lines"
+ },
+ {
+   "type": "Tabelle",
+   "category": "GTM",
+   "value": "WBASSOC",
+   "description": "Global Trade: Association Table"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Faktura",
+   "value": "VBRK",
+   "description": "Faktura: Kopfdaten (Rechnung)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Faktura",
+   "value": "VBRP",
+   "description": "Faktura: Positionsdaten (Rechnung)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Faktura",
+   "value": "VKDFS",
+   "description": "Vertriebsindex: Fakturaauslöser"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Faktura",
+   "value": "VBSK",
+   "description": "Vertriebsbeleg Sammelgang Kopf"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Faktura",
+   "value": "VBSS",
+   "description": "Vertriebsbelege eines Sammelgangs"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Allgemein / Vertriebsübersicht",
+   "value": "VBFA",
+   "description": "Vertriebsbelegfluss"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Allgemein / Vertriebsübersicht",
+   "value": "VBUK",
+   "description": "Kopfstatus und Verwaltungsdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Allgemein / Vertriebsübersicht",
+   "value": "VBUP",
+   "description": "Positionsstatus"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Allgemein / Vertriebsübersicht",
+   "value": "NAST",
+   "description": "Nachrichtenstatus"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Allgemein / Vertriebsübersicht",
+   "value": "KNMT",
+   "description": "Customer Material InfoRecord"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Kundenstamm",
+   "value": "KNA1",
+   "description": "Kundenstamm"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Kundenstamm",
+   "value": "KNB1",
+   "description": "Kundenstam (Company Code)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Kundenstamm",
+   "value": "KNVV",
+   "description": "Customer Master Data Sales Data"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Kundenstamm",
+   "value": "KNVP",
+   "description": "Customer Partner"
+ },
+ {
+   "type": "Tabelle",
+   "category": "PP",
+   "value": "AFKO",
+   "description": "Auftragskopfdaten PPS-Aufträge"
+ },
+ {
+   "type": "Tabelle",
+   "category": "PP",
+   "value": "AUFK",
+   "description": "Auftragsstammdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "WM",
+   "value": "VTTK",
+   "description": "Shipment (Transport) Header"
+ },
+ {
+   "type": "Tabelle",
+   "category": "WM",
+   "value": "VTTP",
+   "description": "Shipment (Transport) Position"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MAKT",
+   "description": "Materialkurztexte"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MARA",
+   "description": "Allgemeine Materialdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MVKE",
+   "description": "Verkaufsdaten zum Material (Key: Matnr Vkorg)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MARC",
+   "description": "Werksdaten zum Material"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MBEW",
+   "description": "Materialbewertung"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MBEWH",
+   "description": "Materialbewertung - Historie"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MVER",
+   "description": "Materialverbraeuche"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MEAN",
+   "description": "International Article Numbers (EANs) for Material"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "A017",
+   "description": "Material Info Record (Plant-Specific)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MARD",
+   "description": "Materialbestand"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM",
+   "value": "MLEA",
+   "description": "Lieferantenspezifische EAN"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Organisation",
+   "value": "T001L",
+   "description": "Lagerorte"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Organisation",
+   "value": "T001",
+   "description": "Company Codes"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Organisation",
+   "value": "T001K",
+   "description": "Bewertungskreis"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Organisation",
+   "value": "T001W",
+   "description": "Werks"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Organisation",
+   "value": "TVKO",
+   "description": "Link BUKRS - VKORG"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Organisation",
+   "value": "TVKWZ",
+   "description": "Links VKORG - PLANT"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Organisation",
+   "value": "T024E",
+   "description": "Einkaufsorganisationen"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Organisation",
+   "value": "TVKWZ",
+   "description": "Org.Unit: Allowed Plants per Sales Organization"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferant Einkauf",
+   "value": "LFA1",
+   "description": "Lieferantenstamm (allgemeiner Teil)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Lieferant Einkauf",
+   "value": "LFM1",
+   "description": "Lieferantenstamm Einkaufsorganisationsdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Einkaufsbeleg",
+   "value": "EKKO",
+   "description": "Einkaufsbelegkopf"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Einkaufsbeleg",
+   "value": "EKPO",
+   "description": "Einkaufsbelegposition"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Einkaufsbeleg",
+   "value": "EKET",
+   "description": "Lieferplaneinteilungen"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Einkaufsbeleg",
+   "value": "EKES",
+   "description": "Bestellbestätigungen"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Einkaufsbeleg",
+   "value": "EKBE",
+   "description": "Historie zum Einkaufsbeleg"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Einkaufsbeleg",
+   "value": "EKKN",
+   "description": "Kontierung im Einkaufsbeleg"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Einkaufsbeleg",
+   "value": "EKPA",
+   "description": "Partner Rollen zu einer Bestellung"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Einkaufsinfosatz",
+   "value": "EINA",
+   "description": "Einkaufsinfosatz - allgemeine Daten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Einkaufsinfosatz",
+   "value": "EINE",
+   "description": "Einkaufsinfosatz - Einkaufsorganisationsdaten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Einkaufsinfosatz",
+   "value": "A017",
+   "description": "Materialinfosatz (werksspezifisch)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Einkaufsinfosatz",
+   "value": "KONP",
+   "description": "Konditionen (Position)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Einkaufsinfosatz",
+   "value": "KONM",
+   "description": "Konditionen (Mengenstaffel 1-dimensional)"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Einkaufsinfosatz",
+   "value": "EORD",
+   "description": "Purchasing Source List"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Bestand",
+   "value": "MARD",
+   "description": "Lagerortdaten zum Material"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Bestand",
+   "value": "MARDH",
+   "description": "Materialstamm-Lagerortsegment - Historie"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Bestand",
+   "value": "MKOL",
+   "description": "Sonderbestände vom Lieferanten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Bestand",
+   "value": "MSLB",
+   "description": "Sonderbestände beim Lieferanten"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Bestand",
+   "value": "MSKU",
+   "description": "Sonderbestände beim Kunden"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Materialbeleg",
+   "value": "MKPF",
+   "description": "Belegkopf Materialbeleg"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Materialbeleg",
+   "value": "MSEG",
+   "description": "Belegsegment Material"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Inventur",
+   "value": "ISEG",
+   "description": "Positionen des Inventurbeleges"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Inventur",
+   "value": "LINV",
+   "description": "Inventurdaten pro Quant"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Inventur",
+   "value": "LQUA",
+   "description": "Lagerquants"
+ },
+ {
+   "type": "Tabelle",
+   "category": "MM - Sonstige",
+   "value": "RESB",
+   "description": "MM: Reservierung/Sekundärbedarf"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Transporte",
+   "value": "E070",
+   "description": "Übersicht Transporteinträge"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Jobs from SM37",
+   "value": "TBTCO",
+   "description": "Job header table"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Jobs from SM37",
+   "value": "TBTCP",
+   "description": "Job step table"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Document Types",
+   "value": "TVFK",
+   "description": "Billing: Document Types"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Document Types",
+   "value": "TVAK",
+   "description": "Sales Document Types"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Document Types",
+   "value": "TVAP",
+   "description": "Sales Document: Item Categories"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Views",
+   "value": "V_T184",
+   "description": "Item Category Assignment"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Konditionen + Pricing",
+   "value": "KONV",
+   "description": "Konditionen"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Konditionen + Pricing",
+   "value": "KONP",
+   "description": "Konditionen Positionsebene"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Konditionen + Pricing",
+   "value": "T685",
+   "description": "Condition Types"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Konditionen + Pricing",
+   "value": "T685T",
+   "description": "Condition Types Texts"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Konditionen + Pricing",
+   "value": "T683",
+   "description": "Pricing Procedures"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Konditionen + Pricing",
+   "value": "T683T",
+   "description": "Pricing Procedures + Subtotals Text"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Customizing",
+   "value": "T169Y",
+   "description": "Default Setting of Aggregation for Screen Variant"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Pricat",
+   "value": "WRF_PRICAT_PRE_C",
+   "description": "Pricat Customizing: Übernahmefelder"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Pricat",
+   "value": "WRF_PRICAT_010",
+   "description": "Preiskatalog Eingang: Generische Feldablage"
+ },
+ {
+   "type": "Pflegeview",
+   "category": "Pricat",
+   "value": "WRF_PRI_AUTOM_V",
+   "description": "Pflegeview für Tabelle wrf_pricat_autom"
+ },
+ {
+   "type": "Pflegeview",
+   "category": "Pricat",
+   "value": "WRF_PRICAT_001_V",
+   "description": "Zuordnung Ekgrp, default EKORG und Historie zum Lieferant"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Pricat",
+   "value": "WRF_PRI_COND_EK",
+   "description": "Pricat Eingang: Anlage Einkaufskonditionen (Pflegeview: VWRF_PRI_COND_EK)"
+ },
+ {
+   "type": "Pflegeview",
+   "category": "Pricat",
+   "value": "VWRF_PRI_COND_EK",
+   "description": "Pricat Eingang: Anlage Einkaufskonditionen"
+ },
+ {
+   "type": "Tabelle",
+   "category": "Pricat",
+   "value": "WRF_PRICAT_TRIG",
+   "description": "Preiskatalog Eingang: Triggertabelle für terminierte Daten"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA01-03",
+   "description": "Kundenauftrag anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA41-43",
+   "description": "Kontrakt anlegen / ändern /anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VF01-03",
+   "description": "Rechnung erstellen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL10A",
+   "description": "Kundenaufträge Schnellanzeige"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VK11-13",
+   "description": "Konditionen (Verkauf) anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL01-03(N)",
+   "description": "Auslieferung anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL06O",
+   "description": "Ausliefermonitor!!!"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA21 -23",
+   "description": "Angebot anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VF05",
+   "description": "Liste Rechnungen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VB01",
+   "description": "Listung/Ausschluss anlegen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "MCSI",
+   "description": "Aufruf Vertriebsstatistiken"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL75",
+   "description": "Belgien: Entfernt Z9-Sperre  + sendet INB an WMS"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VLSP",
+   "description": "Nachträglicher Auslieferungssplit"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL74",
+   "description": "Output from handling units"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL71",
+   "description": "Nachrichten anstoßen (ähnlich VL75)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL09",
+   "description": "Warenbewegung zurückdrehen / stornieren"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VD51-53",
+   "description": "Kunden-Material-Info Sätze anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VL22N",
+   "description": "Display Changes of Delivery"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA45N",
+   "description": "List of Contracts New"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA45",
+   "description": "List of Contracts"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA05",
+   "description": "List of Sales Orders"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VA06",
+   "description": "Sales Order Monitor"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VD53",
+   "description": "Customer Material Info Records"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "VBO3",
+   "description": "Bonusabsprache anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SD",
+   "value": "V/08",
+   "description": "Pricing Procedures"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MD04",
+   "description": "Aktuelle Bestandsliste"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MMBE",
+   "description": "Bestandsübersicht (BuKrs Werk Lager Charge)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MM03",
+   "description": "Material anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "ME21N-23N",
+   "description": "Bestellung anlegen / ändern / anzeigen (ZMAK PB00)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "ME11-13",
+   "description": "Einkaufsinfosatz anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "ME1M",
+   "description": "mehrere Einkaufsinfosätze anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "XK01-03",
+   "description": "Lieferant anlgen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "ZPOMON",
+   "description": "Purchase order monitor"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "VL31-33N",
+   "description": "Anlieferungen anlegen / ändern / anzeigen (Bsp. 180023625 Kopfdaten -> SDG-Daten)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "VL06I",
+   "description": "Inbound Delivery Monitor"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "CK11-13(N)",
+   "description": "ArtikelKalkulation anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MEK1-3",
+   "description": "Konditionen (Einkauf) anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MB51",
+   "description": "Materialbewegungen bzw. Materialbelege anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MI10",
+   "description": "Inventur buchen (Bestandsinventur)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MB5OA",
+   "description": "Anzeige bewerteter WE-Sperrbestand"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "ME59N",
+   "description": "Bestellerzeugung aus Bestellanforderung (BANF)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "ME2N",
+   "description": "Purchase documents by Document Number"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "ME80FN",
+   "description": "General List of Pos"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "CT04",
+   "description": "Characteristics - Article Classification"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "CL02",
+   "description": "Class - Article Classification "
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MB5L",
+   "description": "Bestandwertsliste"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MB5B",
+   "description": "Bestandsbewegungen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MRN0 +1 +3 +9 ",
+   "description": "Bestandsbewertung"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "ME01",
+   "description": "Maintain Source List (Quellenbezug für BANF pflegen)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MB03",
+   "description": "Material Dokument anzeigen (nach MIGO-Buchung erzeugt)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MIGO",
+   "description": "Creating Material documents"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "VK01",
+   "description": "Kalkulationsschema anzeigen VK01 A+M"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MD04",
+   "description": "Bedarfs- / Bestandsliste"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MD06",
+   "description": "Dispoliste = Snapshot von MRP-Lauf bzw. MD04"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "ME51-53(N)",
+   "description": "Bestellanforderung anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "ME0M",
+   "description": "alle Orderbücher zum Material"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "ME1L",
+   "description": "liest alle Infosätze zu Lieferant"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "ME2N",
+   "description": "alle Bestellungen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "ME3L",
+   "description": "alle Kontrakte / Purchasing Documents zu Lieferant"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MIR4",
+   "description": "Rechnung anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MR8M",
+   "description": "Rechnung stornieren (MM) - Alternative"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MR08",
+   "description": "Rechnung stornieren (MM)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MR90",
+   "description": "Repeat Output MIRO"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "CT04",
+   "description": "Charakteristik für Materialklassifizierung anlegen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "CL02",
+   "description": "Charakteristik zu Materialklasse hinzufügen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "FK05",
+   "description": "Block/Unblock Vendor"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM",
+   "value": "MMBE",
+   "description": "Bestand Übersicht"
+ },
+ {
+   "type": "Transaktion",
+   "category": "BANF",
+   "value": "ME51N",
+   "description": "Create BANF = Purchase Requisition"
+ },
+ {
+   "type": "Transaktion",
+   "category": "BANF",
+   "value": "ME59N",
+   "description": "Automatic Creation of Purchase Orders with BANFs"
+ },
+ {
+   "type": "Transaktion",
+   "category": "GTM",
+   "value": "WB21-23",
+   "description": "Trading Kontrakt anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "GTM",
+   "value": "WB25",
+   "description": "Contract List"
+ },
+ {
+   "type": "Transaktion",
+   "category": "GTM",
+   "value": "WTEW",
+   "description": "Folgebelege anlegen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Allgemein",
+   "value": "SE91",
+   "description": "Nachrichtenpflege"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Allgemein",
+   "value": "SM30",
+   "description": "Tabellenpflege"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Allgemein",
+   "value": "SE38",
+   "description": "Report ausführen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Allgemein",
+   "value": "SE37",
+   "description": "FUBA ausführen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Allgemein",
+   "value": "SE71",
+   "description": "SapScript"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Allgemein",
+   "value": "SMARTFORMS",
+   "description": "Smartforms"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Allgemein",
+   "value": "SFP",
+   "description": "Form Builder"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Allgemein",
+   "value": "SM12",
+   "description": "Sperreinträge löschen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Allgemein",
+   "value": "SE18",
+   "description": "BADI Builder, Enhancements"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Allgemein",
+   "value": "SE19",
+   "description": "BADI Builder, Enhancements"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Allgemein",
+   "value": "SE20",
+   "description": "Enhancements"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Allgemein",
+   "value": "SU21",
+   "description": "Berechtigungsobjekte"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Allgemein",
+   "value": "SREPO",
+   "description": "Versionsvergleich"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Konditionen",
+   "value": "NACE",
+   "description": "Konditionen pflegen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Konditionen",
+   "value": "VK11 - 13",
+   "description": "Kondition erstellen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "CO",
+   "value": "VF01 - 03",
+   "description": "Rechnung (Faktura) anlegen /ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "CO",
+   "value": "VF04",
+   "description": "Rechnung erstellen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "CO",
+   "value": "FBL5",
+   "description": "Debitoren Einzelpostenliste"
+ },
+ {
+   "type": "Transaktion",
+   "category": "CO",
+   "value": "VF11",
+   "description": "Rechnung stornieren (SD)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Kunden + Lieferanten",
+   "value": "XK01 - 03",
+   "description": "Lieferanten anlegen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Kunden + Lieferanten",
+   "value": "XD01 - 03",
+   "description": "Kunden anlegen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "PP",
+   "value": "CO01 - 03",
+   "description": "Produktionsauftrag anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "PP",
+   "value": "CO14",
+   "description": "Anzeige PP-Confirmation"
+ },
+ {
+   "type": "Transaktion",
+   "category": "PP",
+   "value": "CO15",
+   "description": "Rückmeldung - Produktionsauftrag"
+ },
+ {
+   "type": "Transaktion",
+   "category": "PP",
+   "value": "COGI",
+   "description": "Fehlerhafte Warenbewegungen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "PP",
+   "value": "COOIS",
+   "description": "Produktionsaufträge anzeigen (Übersicht)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "FI",
+   "value": "F110",
+   "description": "Maschineller Zahlungsverkehr Status"
+ },
+ {
+   "type": "Transaktion",
+   "category": "FI",
+   "value": "F-29",
+   "description": "Debitorenzahlung buchen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "FI",
+   "value": "FB01",
+   "description": "Beleg buchen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "FI",
+   "value": "GGB0",
+   "description": "Validierung FI ändern"
+ },
+ {
+   "type": "Transaktion",
+   "category": "FI",
+   "value": "MIR7",
+   "description": "Eingangsrechnung vorerfassen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WLF_IDOC",
+   "description": "Idoc Verarbeitung; Log zu Idoc finden !!!"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "BD20",
+   "description": "Eingangsverarbeitung überarbeitete Idocs"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "BD54",
+   "description": "Logisches System (LS)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WE30",
+   "description": "IDOC-Typen (Bsp.: MATMAS04)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WE05",
+   "description": "IDOC Liste"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WE20",
+   "description": "Eingangsverarbeitung IDOC ansehen!!!!!"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "BD10",
+   "description": "Standard-IDOC Artikelstamm"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "BD12",
+   "description": "Standard-IDOC Kundenstamm"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "BD14",
+   "description": "Standard-IDOC Lieferantenstamm"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "ME18",
+   "description": "Standard-IDOC Inforecord"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WE82",
+   "description": "Zuordnung Nachrichten IDOC-Typ"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "SM59",
+   "description": "RFC-Destination pflegen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WE31",
+   "description": "Segmentdefinitionen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "BD53",
+   "description": "Reduzierungen zu IDOCS pflegen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "BD21",
+   "description": "IDOCS aus Änderungszeigern erzeugen (wichtig für JOBS) (->BD60)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "SALE",
+   "description": "CUSTOMIZING Überblick"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "BD50",
+   "description": "Änderungszeiger aktivieren"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "BD52",
+   "description": "Felder für das Schreiben von Änderungszeigern auswählen (Tabelle BDCP2)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "BD64",
+   "description": "Verteilungssystem (Für Logisches System muss ein VS gepflegt werden (Filter))"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WE81",
+   "description": "Nachrichtentyp anlegen, dann WE82"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WE82",
+   "description": "Nachrichtentyp - IDOC-Typ zuordnen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WE19",
+   "description": "IDOCS erzeugen (Eingangs- und  Ausgangs-IDOCS)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "BD87",
+   "description": "IDOCS selektiern und verschicken (wenn nicht sofort verschickt)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WE42",
+   "description": "Inbound process code"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WE57",
+   "description": "Assignment of FM to Log. Message and Idoc Type"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "BD60",
+   "description": "Additional Data Message Type (Define Message e.g. for BD12)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WE02",
+   "description": "IDOC anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WE09",
+   "description": "IDOCS durchsuchen (Inhalt)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "IDOC",
+   "value": "WE11",
+   "description": "Idocs löschen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Warenbewegung",
+   "value": "VL09",
+   "description": "Warenbewegung zurückdrehen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Warenbewegung",
+   "value": "MIGO",
+   "description": "Creating Material documents"
+ },
+ {
+   "type": "Transaktion",
+   "category": "FICO",
+   "value": "FTXP",
+   "description": "Maintain Tax Code"
+ },
+ {
+   "type": "Transaktion",
+   "category": "FICO",
+   "value": "KE24",
+   "description": "Einzelbelege anzeigen (Currency 10, Record F)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "FICO",
+   "value": "MCSI",
+   "description": "Umsatz-Auswertungen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "RSRT",
+   "description": "Query Monitor"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "LSMW",
+   "description": "Legacy System Migration Workbench"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "MB5B / MB51",
+   "description": "Materialbestände + Materialbewegungen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "SM04",
+   "description": "Benutzersitzungen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "SM50",
+   "description": "Workprozesse"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "OAM",
+   "description": "Falls Bestellung nicht druckbar ist"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "MASS",
+   "description": "Massenpflege von z.B. Kundendaten"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "RBT_ENH_VB7",
+   "description": "Bonusabrechnung"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "ST03",
+   "description": "Anzeige Transaktionsaufrufe (->Total ->Zeitarum auswählen; Transaktion Profil ->Standard)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "BSSP_BOR_OBJECT",
+   "description": "Business-Objekt anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "SWO1",
+   "description": "Business-Objekt erstellen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "LXDCK",
+   "description": "SAP Standard Crossdock"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "WTEW",
+   "description": "Buchung von Warenausgängen \"Trading Execution Workbench\""
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "MB23",
+   "description": "Reservierung anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "SM13",
+   "description": "Verbuchung (Aufrufen, wenn Verbuchung fehl schlägt); Anzeige Verbuchungsabbrüche"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "SM58",
+   "description": "Ausgehende IDOCS laufen hier auf, wenn Fremdsystem abgeklemmt ist"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "VHAR",
+   "description": "Packmittelarten definieren"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "SO10",
+   "description": "Texte anlegen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "VV23",
+   "description": "Einträge zu Konditionen anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "MB5S",
+   "description": "Übersicht für MIRO -Belgien"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "SE03",
+   "description": "Delete locked Transport Objects, Change origin system, Transport Organizer Tools"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "SFW5",
+   "description": "Switch Framework - (De)activate Business Functions"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "SE63",
+   "description": "Translation Editor"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "OLMRLIST",
+   "description": "Define and display Screen Variants"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "SQVI",
+   "description": "Quick-Viewer"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "SARA",
+   "description": "Archivierung Administration"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "STRUST",
+   "description": "Zertifikate; Trust-Manager"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Sonstiges",
+   "value": "SE63",
+   "description": "Übersetzungen (Transport SLXT)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "UI5 + Floorplan",
+   "value": "/UI2/FLP",
+   "description": "Fiori Launchpad"
+ },
+ {
+   "type": "Transaktion",
+   "category": "UI5 + Floorplan",
+   "value": "/UI2/FLPD_CUST",
+   "description": "Fiori Launchpad Designer (client-specific)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "UI5 + Floorplan",
+   "value": "FPM_WB",
+   "description": "Floorplanmanager Workbench"
+ },
+ {
+   "type": "Transaktion",
+   "category": "UI5 + Floorplan",
+   "value": "POWL_COCKPIT",
+   "description": "Powl Cockpit"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/CACHE",
+   "description": "Register service for UI2 cache use"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/CACHE_DEL",
+   "description": "Delete cache entries"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/CHIP",
+   "description": "Chip Registration"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/CUST",
+   "description": "Customizing of UI Technologies"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/FLC",
+   "description": "Fiori Launchpad Checks"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/FLIA",
+   "description": "Fiori Launchpad Intent Analyis"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/FLP",
+   "description": "SAP Fiori Launchpad"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/FLP_CONTCHECK",
+   "description": "Fiori Launchpad – Content Checks"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/FLP_INTENTCHECK",
+   "description": "Fiori Launchpad – Intent Checks"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/FLPD_CONF",
+   "description": "Fiori Launchpad Designer (cross-client)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/FLPD_CUST",
+   "description": "Fiori Launchpad Designer (client-specific)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/GW_ACTIVATE",
+   "description": "Gateway – Activation"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/GW_APPS_LOG",
+   "description": "Gateway – Application Log"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/GW_ERR_LOG",
+   "description": "Gateway – Error Log"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/GW_MAINT_SRV",
+   "description": "Gateway – Service Maintenance"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/GW_SYS_ALIAS",
+   "description": "Gateway – Manage SAP System Alias"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/NAV",
+   "description": "Register navigation objects"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/NAVPROV",
+   "description": "Define navigation provider"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/NWBC",
+   "description": "Start UI2 NWBC"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/NWBC_CFG_CUST",
+   "description": "NWBC Configuration (Customer)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/NWBC_CFG_P_CUST",
+   "description": "NWBC Config: Define Parameter (Cust)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/NWBC_CFG_P_SAP",
+   "description": "NWBC Config: Define Parameter (SAP)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/NWBC_CFG_SAP",
+   "description": "NWBC Configuration (SAP)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/PERS_DEL",
+   "description": "Cleanup Personalisatation Service"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/POWL",
+   "description": "Register POWL for OData consumption"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/SEMOBJ",
+   "description": "Define Semantic Object – Customer"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/SEMOBJ_SAP",
+   "description": "Define Semantic Object – SAP"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/SEMOBJ",
+   "description": "Anlage Semantisches Objekt"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/IWFND/V4_ADMIN",
+   "description": "SAP Gateway Administration V4"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "/UI2/FLPAM",
+   "description": "Fiori Launchpad Designer (client-specific) NEW"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Fiori",
+   "value": "SMICM",
+   "description": "Server Cache löschen (Springen - HTTP Plugin - Server Cache - invalidieren)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Gateway + Web",
+   "value": "/IWFND/MAINT_SERVICE",
+   "description": "Activate and Maintain Service"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Gateway + Web",
+   "value": "/IWFND/GW_CLIENT",
+   "description": "SAP Gateway Client"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Gateway + Web",
+   "value": "/IWFND/ERROR_LOG",
+   "description": "Gateway Error Log: Frontend"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Gateway + Web",
+   "value": "/IWBEP/ERROR_LOG",
+   "description": "Gateway Error Log: Backend"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Gateway + Web",
+   "value": "SEGW",
+   "description": "SAP Gateway Service Builder"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Gateway + Web",
+   "value": "SICF",
+   "description": "Webdynpo- und FPM-Anwendungen aktivieren (Fehlermeldung 403; bei Z-Programm: Servicename = Z*; anhand der Webadresse orientieren)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Gateway + Web",
+   "value": "/IWFND/V4_ADMIN",
+   "description": "SAP-Gateway-Service-Administration"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Job",
+   "value": "SM36",
+   "description": "Job Creation"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Job",
+   "value": "SM37",
+   "description": "Job Selection"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Job",
+   "value": "RSM37",
+   "description": "Display Jobs with Program Parameter"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Log",
+   "value": "SLG0",
+   "description": "Crate/Change Objects for Application Log"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Log",
+   "value": "SLG1",
+   "description": "Analyze Application Log"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Development",
+   "value": "SE24",
+   "description": "Class Builder"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Development",
+   "value": "SE38",
+   "description": "ABAP Editor"
+ },
+ {
+   "type": "Transaktion",
+   "category": "MM Pricing",
+   "value": "CK24",
+   "description": "Price Update: Mark Standard Price"
+ },
+ {
+   "type": "Transaktion",
+   "category": "WM",
+   "value": "LS03",
+   "description": "Lagerplatz anzeigen - Display Storage Bin"
+ },
+ {
+   "type": "Transaktion",
+   "category": "WM",
+   "value": "OMT4",
+   "description": "Messages als Warnung oder Fehlermeldung deklarieren"
+ },
+ {
+   "type": "Transaktion",
+   "category": "BW",
+   "value": "RS2HANA_ADMIN",
+   "description": "Nachgenerierung HANA-Views"
+ },
+ {
+   "type": "Transaktion",
+   "category": "BW",
+   "value": "ODQMON",
+   "description": "Monitor Delta Queues"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Transport",
+   "value": "SCC1",
+   "description": "Customizing Aufträge - Mandantenkopie - ToC - (Anmeldung im Zielsysten)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Transport",
+   "value": "SCC1N",
+   "description": "Transport in anderen Mandanten"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Transport",
+   "value": "VT02N",
+   "description": "Change Transport"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Transport",
+   "value": "SLXT",
+   "description": "Transport Übersetzungen (Übersetzung SE63)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Stücklisten",
+   "value": "CS00",
+   "description": "Stückliste alle Transaktionen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Stücklisten",
+   "value": "CS01 - 03",
+   "description": "Stückliste anlegen / ändern / anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Stücklisten",
+   "value": "CS11 - 13",
+   "description": "Stücklisten anzeigen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Stücklisten",
+   "value": "CS05",
+   "description": "Stückliste ändern"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Inventur",
+   "value": "MI01, MI04, MI07",
+   "description": "Inventur auf Lagerort (0001)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Inventur",
+   "value": "MIW1, MI04, MI07",
+   "description": "Inventur auf Konsignation"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Nachrichten",
+   "value": "VOFM",
+   "description": "Nachrichtenbedingung anlegen für NACE"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Nachrichten",
+   "value": "NACE",
+   "description": "Nachrichten pflegen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Entwicklertools",
+   "value": "ST05",
+   "description": "Performance Trace (SQL-Trace)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Entwicklertools",
+   "value": "ST12",
+   "description": "Performance Trace (Single transaction analysis)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Entwicklertools",
+   "value": "SHDB",
+   "description": "Batch-Input Aufzeichnung -BDC- Aufzeichnung Clicks in Transaktion"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Entwicklertools",
+   "value": "SE14",
+   "description": "Adjust table; Tabelle umsetzen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Entwicklertools",
+   "value": "CODE_SCANNER",
+   "description": "Scan code for strings"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Druck + Mail",
+   "value": "SOST",
+   "description": "Anzeige E-Mails"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Druck + Mail",
+   "value": "SP01",
+   "description": "Druckaufträge anzeigen und anstoßen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Druck + Mail",
+   "value": "SP02",
+   "description": "Druckaufträge anstoßen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SAP Basis",
+   "value": "SU21",
+   "description": "Pflege Berechtigungsobjekte"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SAP Basis",
+   "value": "PFCG",
+   "description": "Rollenpflege"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SAP Basis",
+   "value": "SM51",
+   "description": "Change Instance of SAP-Platform; Workprozesse"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SAP Basis",
+   "value": "SM66",
+   "description": "Workprozesse"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SAP Basis",
+   "value": "STAUTHTRACE",
+   "description": "Berechtigungstrace"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SAP Basis",
+   "value": "SU53",
+   "description": "Auswertung fehlgeschlagener Berechtigungsprüfungen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "SAP Basis",
+   "value": "SUIM",
+   "description": "Benutzerinformationssystem; Berechtigungen zu Rollen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Formulare",
+   "value": "SE71",
+   "description": "Sapscript"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Formulare",
+   "value": "SMARTFORMS",
+   "description": "Smartforms"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Formulare",
+   "value": "SFP",
+   "description": "Adobe Interactive Forms"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Periodenverschiebung",
+   "value": "MMPV",
+   "description": "Periodenverschiebung MM (aktuelles Datum eingeben)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Periodenverschiebung",
+   "value": "OB52",
+   "description": "Perioden verschieben CO - Posting Periods"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Exits",
+   "value": "CMOD",
+   "description": "Navigation zu EXITs"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Exits",
+   "value": "SMOD",
+   "description": "All enhancements"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Exits",
+   "value": "SE18",
+   "description": "Badi Definition"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Exits",
+   "value": "SE19",
+   "description": "Badi Implementation"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Pricat",
+   "value": "BDBG",
+   "description": "ALE-Schnittstelle für BAPI"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Pricat",
+   "value": "SWO1",
+   "description": "Business Object Builder"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Pricat",
+   "value": "W_PRICAT_DELPOS",
+   "description": "PRICAT Positionen löschen"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Pricat",
+   "value": "W_PRICAT_TERMINATION",
+   "description": "Terminierte Datenanlage"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Shortcut",
+   "value": "/I",
+   "description": "Close Session"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Shortcut",
+   "value": "/NEX",
+   "description": "Close All Sessions (Feierabend)"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Exits",
+   "value": "LTMOM",
+   "description": "Migration S4 ( https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/29193bf0ebdd4583930b2176cb993268/a4d4119a2cc9448a98e5d17e6dd0eac4.html )"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Security",
+   "value": "RSAU_CONFIG",
+   "description": "Security Audit Log - Konfiguration"
+ },
+ {
+   "type": "Transaktion",
+   "category": "Security",
+   "value": "RSAU_READ_LOG",
+   "description": "Security Audit Log  - Auswertung"
+ },
+ {
+   "type": "Klasse",
+   "category": "Stammdaten",
+   "value": "LFA1_READ_SINGLE",
+   "description": "Lieferant selektieren"
+ },
+ {
+   "type": "Klasse",
+   "category": "Entwicklung",
+   "value": "CL_DD_DDL_ANNOTATION_SERVICE",
+   "description": "Klasse zum Auslesen von Annotationen"
+ },
+ {
+   "type": "Klasse",
+   "category": "Exit",
+   "value": "CL_EXITHANDLER ",
+   "description": "Exit handler -> get_instance Zeile 28"
+ },
+ {
+   "type": "Klasse",
+   "category": "ALV",
+   "value": "CL_SALV_GUI_TABLE_IDA",
+   "description": "Neue ALV Klasse: Factory"
+ },
+ {
+   "type": "Klasse",
+   "category": "ALV",
+   "value": "CL_SALV_RANGE_TAB_COLLECTOR",
+   "description": "Neue ALV Klasse: Range Collector"
+ },
+ {
+   "type": "Klasse",
+   "category": "Progress",
+   "value": "CL_PROGRESS_INDICATOR",
+   "description": "Progress Indicator"
+ },
+ {
+   "type": "Klasse",
+   "category": "AMDP",
+   "value": "IF_AMDP_MARKER_HDB",
+   "description": "AMDP-Interface"
+ },
+ {
+   "type": "Klasse",
+   "category": "Entwicklung",
+   "value": "CL_ABAP_TSTMP",
+   "description": "Calculation with timestamp"
+ },
+ {
+   "type": "Klasse",
+   "category": "Entwicklung",
+   "value": "CL_ABAP_CONTEXT_INFO",
+   "description": "Info bzgl. Datum, User, Sprache"
+ },
+ {
+   "type": "Klasse",
+   "category": "RAP",
+   "value": "IF_SADL_EXIT_FILTER_TRANSFORM",
+   "description": "Manipulate Filter"
+ },
+ {
+   "type": "Klasse",
+   "category": "RAP",
+   "value": "IF_SADL_EXIT_CALC_ELEMENT_READ",
+   "description": "Code Exit for Calculated Fields"
+ },
+ {
+   "type": "Fuba",
+   "category": "Allgemein",
+   "value": "SAPGUI_PROGRESS_INDICATOR",
+   "description": "Ladebalken für Nutzer"
+ },
+ {
+   "type": "Fuba",
+   "category": "Allgemein",
+   "value": "BAPI_MESSAGE_GETDETAIL",
+   "description": "Langtext zu einer Fehlermeldung lesen"
+ },
+ {
+   "type": "Fuba",
+   "category": "Allgemein",
+   "value": "ENQUEUE_READ",
+   "description": "Sperreinträge lesen"
+ },
+ {
+   "type": "Fuba",
+   "category": "Logistik",
+   "value": "BAPI_PO_GETDETAIL",
+   "description": "Details zur Bestellung anzeigen (Falls Wareneingang vorhanden, ist die Rückgabetabelle PO_ITEM_HISTORY_TOTALS mit der entsprechenden WE-Menge gefüllt)"
+ },
+ {
+   "type": "Fuba",
+   "category": "Logistik",
+   "value": "BAPI_GOODSMVT_CREATE",
+   "description": "Warenbewegungen mit MB_CREATE_GOODS_MOVEMENT buchen"
+ },
+ {
+   "type": "Fuba",
+   "category": "Texte",
+   "value": "READ_TEXT",
+   "description": "Read single text"
+ },
+ {
+   "type": "Fuba",
+   "category": "Texte",
+   "value": "READ_MULTIPLE_TEXTS",
+   "description": "Read multiple texts"
+ },
+ {
+   "type": "Fuba",
+   "category": "Idoc",
+   "value": "IDOC_CREATE_ON_DATABASE",
+   "description": "Idoc anlegen"
+ },
+ {
+   "type": "Fuba",
+   "category": "Idoc",
+   "value": "IDOC_READ_COMPLETELY",
+   "description": "Idoc lesen"
+ },
+ {
+   "type": "Fuba",
+   "category": "Idoc",
+   "value": "ALE_SYNC_BAPI_GET_RECEIVER",
+   "description": "Ermittlung Empfänger aus Verteilungsmodell"
+ },
+ {
+   "type": "Fuba",
+   "category": "SLG1",
+   "value": "BAL_DB_SAVE",
+   "description": "SLG1 Save Log"
+ },
+ {
+   "type": "Fuba",
+   "category": "SLG1",
+   "value": "BAL_LOG_CREATE",
+   "description": "SLG1 Create Log"
+ },
+ {
+   "type": "Fuba",
+   "category": "SLG1",
+   "value": "BAL_LOG_MSG_ADD",
+   "description": "SLG1 Add Message"
+ },
+ {
+   "type": "Fuba",
+   "category": "Konditionen",
+   "value": "RV_CONDITION_RESET",
+   "description": "Notwendig vor RV_CONDITION_COPY"
+ },
+ {
+   "type": "Fuba",
+   "category": "Konditionen",
+   "value": "RV_CONDITION_COPY",
+   "description": "Konditionen bearbeiten (RV_CONDITION_RESET, RV_CONDITION_SAVE, BAPI_TRANSACTION_COMMIT)"
+ },
+ {
+   "type": "Fuba",
+   "category": "Konditionen",
+   "value": "RV_CONDITION_SAVE",
+   "description": "Konditionen speichern (RV_CONDITION_COPY); Danach BAPI_TRANSACTION_COMMIT"
+ },
+ {
+   "type": "Fuba",
+   "category": "Allgemein",
+   "value": "BAPI_TRANSACTION_COMMIT",
+   "description": "BAPI COMMIT"
+ },
+ {
+   "type": "Fuba",
+   "category": "Entwicklung",
+   "value": "SYSTEM_CALLSTACK",
+   "description": "Ermittlung Callstack"
+ },
+ {
+   "type": "Fuba",
+   "category": "MM",
+   "value": "BAPI_MATERIAL_MAINTAINDATA_RT",
+   "description": "BAPI Maintain material data"
+ },
+ {
+   "type": "Fuba",
+   "category": "MM",
+   "value": "ME_MAINTAIN_INFORECORD",
+   "description": "BAPI Maintain inforecord"
+ },
+ {
+   "type": "Fuba",
+   "category": "MM",
+   "value": "ME_POST_INFORECORD",
+   "description": "Inforecord verbuchen"
+ },
+ {
+   "type": "Fuba",
+   "category": "Messages",
+   "value": "MESSAGES_INITIALIZE",
+   "description": "Display multiple messages in box (Step 1/3)"
+ },
+ {
+   "type": "Fuba",
+   "category": "Messages",
+   "value": "MESSAGE_STORE",
+   "description": "Display multiple messages in box (Step 2/3)"
+ },
+ {
+   "type": "Fuba",
+   "category": "Messages",
+   "value": "MESSAGES_SHOW",
+   "description": "Display multiple messages in box (Step 3/3)"
+ },
+ {
+   "type": "Fuba",
+   "category": "System",
+   "value": "OWN_LOGICAL_SYSTEM_GET",
+   "description": "Returns system info (e.g. ENRCLNT841)"
+ },
+ {
+   "type": "Fuba",
+   "category": "Job",
+   "value": "JOB_OPEN",
+   "description": "Eröffnen einer dialoglosen Job-Einplanung (inkl. COMMIT WORK!)"
+ },
+ {
+   "type": "Fuba",
+   "category": "Job",
+   "value": "JOB_CLOSE",
+   "description": "Hintergrundauftrag abschliessen mit COMMIT WORK"
+ },
+ {
+   "type": "Programm",
+   "category": "Transporte",
+   "value": "RV80HGEN",
+   "description": "Nachrichtenbedingungen nach Transport aktivieren"
+ },
+ {
+   "type": "Programm",
+   "category": "Transporte",
+   "value": "RSTXTRAN",
+   "description": "SO10-Texte transportieren"
+ },
+ {
+   "type": "Programm",
+   "category": "Transporte",
+   "value": "RDDIT076",
+   "description": "Report zum nachträglichem Ändern von Transporteinträgen"
+ },
+ {
+   "type": "Programm",
+   "category": "Idoc",
+   "value": "RC1_IDOC_SET_STATUS",
+   "description": "IDOC-Status manuell umsetzen"
+ },
+ {
+   "type": "Programm",
+   "category": "Idoc",
+   "value": "RBDAPP01",
+   "description": "IDOC-Verarbeitung erneut anstoßen"
+ },
+ {
+   "type": "Programm",
+   "category": "Idoc",
+   "value": "RSETESTD",
+   "description": "Idocs löschen"
+ },
+ {
+   "type": "Programm",
+   "category": "Fiori",
+   "value": "/UI5/APP_INDEX_CALCULATE",
+   "description": "Clean up the cache after applying changes that affect SAP Fiori apps"
+ },
+ {
+   "type": "Programm",
+   "category": "Pricat",
+   "value": "RWRF_PRICAT_INBOUND_DELPOS",
+   "description": "Preiskatalog Eingang: Löschreport für Positionen"
+ },
+ {
+   "type": "Programm",
+   "category": "Pricat",
+   "value": "RWRF_PRICAT_TERMINATION",
+   "description": "Anlegen von terminierten Stammdaten aus Eingangspreiskatalogen"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Windows",
+   "value": "Windows + D",
+   "description": "Desktop anzeigen"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Windows",
+   "value": "Windows + Pfeil unten",
+   "description": "Fenster minimieren"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Windows",
+   "value": "Windows + E",
+   "description": "Explorer öffnen"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Windows",
+   "value": "Windows + Shift + S",
+   "description": "Screenshot"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Windows",
+   "value": "Alt + TAB + Pfeil rechtes/links",
+   "description": "Zwischen Tabs schalten"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Windows",
+   "value": "Windows + V",
+   "description": "Verlauf der Zwischenablage"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Windows",
+   "value": "FN + F1",
+   "description": "Bildschirmanzeige anpassen"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Browser",
+   "value": "STRG + L",
+   "description": "mit Cursor in Adressleiste springen"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Browser",
+   "value": "STRG + T",
+   "description": "Open new Tab"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Browser",
+   "value": "STRG + W",
+   "description": "Close current Tab"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Browser",
+   "value": "ALT + STRG + Umschalt + S",
+   "description": "UI5 Diagnostics"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Browser",
+   "value": "ALT + STRG + Umschalt + P",
+   "description": "UI5 Dialog für technische Daten"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Chrome",
+   "value": "ALT + F5",
+   "description": "Clear Cache + Reload Page"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "ALT + Maus - Bereich auswählen ",
+   "description": "Geschriebener Text erscheint in jeder Zeile des Bereichs"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "STRG + Pfeil rechts",
+   "description": "Schnelle Navigation"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "STRG + N oder STRG + \"+\"",
+   "description": "Open new Tab"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "STRG + SHIFT + 7",
+   "description": "Fokus auf Transaktionsfeld"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "STRG + S",
+   "description": "Save"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "STRG + F1",
+   "description": "Anzeigen / Ändern"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "STRG + F2",
+   "description": "Syntax Check"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "STRG + F3",
+   "description": "Activate"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "Umschalt + F1",
+   "description": "Pretty Printer"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "F3",
+   "description": "Zurück"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "Umschalt + F6 / F7",
+   "description": "Vorheriges / Nächstes Objekt"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "F9 / Umschalt + F9",
+   "description": "Mark everything / nothing (Menu Save Changes)"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "STRG + Umschalt + F3",
+   "description": "Verwendungsnachweis"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "STRG + Umschalt + F5",
+   "description": "Display Objectlist"
+ },
+ {
+   "type": "Shortcut",
+   "category": "SAP-GUI",
+   "value": "STRG + G",
+   "description": "Find Next"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Word",
+   "value": "STRG + H",
+   "description": "Zeichen ersetzen"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Eclipse",
+   "value": "STRG + SHIFT + L",
+   "description": "Alle Shortcuts anzeigen"
+ },
+ {
+   "type": "Shortcut",
+   "category": "Eclipse",
+   "value": "SHIFT + F1",
+   "description": "Pretty Printer"
+ }
 ]
 }
