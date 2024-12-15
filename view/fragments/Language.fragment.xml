@@ -1,0 +1,23 @@
+<core:FragmentDefinition	xmlns="sap.m" 
+							xmlns:core="sap.ui.core" 
+							xmlns:l="sap.ui.layout" 
+							xmlns:f="sap.ui.layout.form">
+	<Dialog id="idLanguage" 
+			title="{i18n>LanguageTitle}">
+		<content>
+	<VBox class="sapUiSmallMargin">
+		<Label labelFor="rbg1" text="{i18n>LanguageDefine}" />
+		<RadioButtonGroup id="rbg1">
+			<RadioButton id="RB1-1" text="{i18n>German}" />
+			<RadioButton id="RB1-2" text="{i18n>English}" />
+		</RadioButtonGroup>
+	</VBox>
+		</content>
+<!--Buttons-->
+		<Toolbar>
+			<Button id="idBtnLanguageCancel" press="onPressLanguageDialogCancel" text="{i18n>LanguageCancel}"/>			
+			<ToolbarSpacer/>
+			<Button id="idBtnLanguageApply" press="onPressLanguageDialogApply" text="{i18n>LanguageApply}"/>
+		</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>

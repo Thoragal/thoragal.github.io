@@ -179,8 +179,10 @@
 								<Label text="{i18n>SectionWebdevelopment}"/>
 								<VBox>
 									<Text text="{MeModel>/Knowledge/Web/RAP}"/>
-									<Text text="{MeModel>/Knowledge/Web/UI5}"/>	
-									<Text text="{MeModel>/Knowledge/Web/OData}"/>		
+									<Text text="{MeModel>/Knowledge/Web/UI5}"/>
+									<Text text="{MeModel>/Knowledge/Web/BAS}"/>
+									<Text text="{MeModel>/Knowledge/Web/WebIDE}"/>
+									<Text text="{MeModel>/Knowledge/Web/OData}"/>
 									<Text text="{MeModel>/Knowledge/Web/Floorplan}"/>
 									<Text text="{MeModel>/Knowledge/Web/Webdynpro}"/>
 								</VBox>

@@ -53,7 +53,8 @@
 		</SlideTile>
 		
 <!-- Tile ContactMe -->
-		<SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+		<SlideTile	id="idTileContactMe"
+					class="sapUiTinyMarginBegin sapUiTinyMarginTop"
 					visible="false">
 			<GenericTile
 				backgroundImage="images/Home/ContactMe.jpg"

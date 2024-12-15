@@ -43,6 +43,8 @@
 		},
 		"Web":{ "RAP":"RAP (ABAP RESTful Application Programming Model)",
 				"UI5":"UI5 / FIORI",
+				"BAS": "SAP Business Application Studio",
+				"WebIDE": "WebIDE",
 				"OData":"OData / SAP Gateway",
 				"Floorplan":"FPM (Floorplan Manager)",
 				"Webdynpro":"Webdynpro"

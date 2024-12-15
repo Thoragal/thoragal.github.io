@@ -2,6 +2,42 @@
 	"Wiki":
 	[	
 		{
+			"id":"0023",
+			"date":"15.12.2024",
+			"title":"npm-Befehle",
+			"tags":	[ { "tag":"Frontend" } ],
+			"content":
+				[
+					{
+						"text": "<ul><li>npm update</li><li>npm upgrade</li><li>npm install [package name]</li><li>npm uninstall [package name]</li><li>npm list -g (Globale Auflistung installierter npm-Pakete)</li><li>npm list (Lokale Auflistung installierter npm-Pakete)</li></ul>"
+					}
+				]
+		},
+		{
+			"id":"0022",
+			"date":"14.12.2024",
+			"title":"Initialisierung GIT Repository",
+			"tags":	[ { "tag":"UI5" } ],
+			"content":
+				[
+					{
+						"text": "<p>git config --global user.name \"Thorsten Bender\"</p><p>git config --global user.email \"thorsten.bender@mail.ch\"</p><p>Repository-Verzeichnis von <a href=\"http://www.github.com\">www.github.com</a> ermitteln</p><p>git clone <a href=\"https://github.com/Thoragal/thoragal.github.io.git\">https://github.com/Thoragal/thoragal.github.io.git</a></p>"
+					}
+				]
+		},
+		{
+			"id":"0021",
+			"date":"14.12.2024",
+			"title":"Tools Frontendentwicklung",
+			"tags":	[ { "tag":"Frontend" } ],
+			"content":
+				[
+					{
+						"text": "<ul><li>Send Requests to backend<ul><li>Insomnia</li><li>Postman</li></ul></li><li>GitHub Desktop<ul><li>Alternative: Sourcetree</li></ul></li><li>Visual Studio Code<ul><li>Extensions<ul><li>GitLens (Supercharge Git in VS Code)</li><li>Prettier (Code formatter)</li><li>Project Manager</li></ul></li></ul></li><li>Git Bash</li><li>Node.js</li><li>npmjs.com</li></ul>"
+					}
+				]
+		},
+		{
 			"id":"0020",
 			"date":"09.11.2022",
 			"title":"SQL Joins",

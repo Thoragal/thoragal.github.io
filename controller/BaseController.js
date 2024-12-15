@@ -77,17 +77,105 @@ sap.ui.define([
 		},
 		
 		onPressContactMeDialogOk: function (oEvent){
-			
 			if (!this._checkValidityContactMeData(oEvent)){
 				return;
 			}
 		
 			/*Send Message*/
-			//TODO: Implement Backend and Send Data
-			
+			var sUrlEmailServer = "https://nodejs-production-1b56.up.railway.app/email";
+			var sContactMeData = this.getView().getModel("localDataModelContactMe").getData();
 
-			this._displayMessageContactMeSend(true);
+			$.ajax({ 
+			    type: "POST",
+			    url: sUrlEmailServer,
+			    //dataType: "json",
+			    data: JSON.stringify(sContactMeData),
+			    async: true,
+			    contentType: 'application/json',
+			    success: function(data, textStatus, xhr){        
+			        this._displayMessageContactMeSend(true);
+			        this._clearContactMeData();
+			    }.bind(this),
+			    error: function (e,xhr,textStatus,err,data) {
+					this._displayMessageContactMeSend(false);
+			    }.bind(this)
+			}); 
+		},
+		
+		onNavToLanguage: function (oEvent) {
+			var oComponent = this.getOwnerComponent();
+			//Dialog öffnen
+			if (!oComponent.LanguageDialog) {
+				oComponent.refDateDialog = sap.ui.core.Fragment.load({
+					id: oComponent.createId("idFragLanguageDialog"),
+					name: "Homepage.Homepage.view.fragments.Language",
+					controller: this
+				}).then(function (oDialog) {
+					oComponent.LanguageDialog = oDialog;
+					// connect dialog to the root view of this component
+					this.getView().addDependent(oDialog);
+					// forward compact/cozy style into dialog
+					//syncStyleClass(this.getView().getController().getOwnerComponent().getContentDensityClass(), this.getView(), oDialog);
+					oDialog.open();
+				}.bind(this));
+			} else {
+				oComponent.LanguageDialog.open();
+			}
+		},
+
+		onPressLanguageDialogCancel: function (oEvent){
+			var oComponent = this.getOwnerComponent();
+			oComponent.LanguageDialog.close();
+		},
+		
+		onPressLanguageDialogApply: function (oEvent){
+			var oComponent = this.getOwnerComponent();
+			var oDialog = oComponent.LanguageDialog;
 			
+		    if (oDialog) {
+		        var oRadioButtonGroup = sap.ui.core.Fragment.byId(oComponent.createId("idFragLanguageDialog"), "rbg1");
+		
+		        if (oRadioButtonGroup) {
+		            var iSelectedIndex = oRadioButtonGroup.getSelectedIndex();
+				};
+		    };
+		    var sLanguage;    
+		    switch (iSelectedIndex) { case 0: sLanguage="de"; break;
+									  case 1: sLanguage="en"; break;
+									  default: sLanguage="de";
+									};
+
+			/*Change language*/
+			sap.ui.getCore().getConfiguration().setLanguage(sLanguage);
+			
+			/*Close window*/
+			this.onPressLanguageDialogCancel(oEvent);
+		},
+		
+		_clearContactMeData: function(){
+			var sContactMeData = this.getView().getModel("localDataModelContactMe").getData();
+			sContactMeData.NameFirst = "";
+			sContactMeData.NameLast = "";
+			sContactMeData.Email = "";
+			sContactMeData.Text = "";
+			this.getView().getModel("localDataModelContactMe").setData(sContactMeData);
+		},
+		
+		_checkEmailServerAlive: function(){
+			return new Promise(function(resolve){
+				$.ajax({ 
+				    type: "GET",
+				    url: "https://nodejs-production-1b56.up.railway.app/",
+				    async: true,
+				    contentType: 'application/json',
+				    success: function(data, textStatus, xhr){        
+				        resolve(true);
+				    }.bind(this),
+				    error: function (e,xhr,textStatus,err,data) {
+						resolve(false);
+				    }.bind(this)
+				});
+			}.bind(this));
 		},
 		
 		_displayMessageContactMeSend: function(fSuccess){
