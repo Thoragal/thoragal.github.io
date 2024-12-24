@@ -31,6 +31,7 @@ sap.ui.define([
 			oRouter.getRoute("WikiDetailView").attachPatternMatched(this._onObjectMatched, this);
 			
 			this.getView().byId("idPageWikiDetail").setBusy(false);
+			this._setVisibilityContactMeHeaderButton();
 		},
 		
 		onNavToWikiDetailNext: function(oEvent){

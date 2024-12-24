@@ -25,6 +25,7 @@
 		<Button id="idButtonNavToList" icon="sap-icon://form" text="{ path:'i18n>HeaderButtonNameList', formatter:'.formatter.device' }" press="onNavToList" />
 		
 		<Button id="idButtonNavToAboutMe" icon="sap-icon://person-placeholder" text="{ path: 'i18n>HeaderButtonNameAbout', formatter:'.formatter.device' }" press="onNavToAboutMe" />
+		<Button id="idContactMeButton" icon="sap-icon://email" press="onNavToContactMe" visible="false" />
 		<Button id="idi18nButton" icon="sap-icon://action-settings" press="onNavToLanguage" />
 	</tnt:ToolHeader>
 

@@ -14,6 +14,7 @@ sap.ui.define([
 	// shortcut for sap.m.URLHelper
 	//var URLHelper = mobileLibrary.URLHelper;
 	var gvWikiView;
+	var gfEmailServeralive;
 
 	return Controller.extend("Homepage.Homepage.controller.BaseController", {
 		
@@ -54,13 +55,14 @@ sap.ui.define([
 //			sap.ui.core().setModel(onewModel);
 			
 			//Dialog öffnen
-			if (!this.ContactMeDialog) {
-				this.refDateDialog = sap.ui.core.Fragment.load({
-					id: "idFragContactMeDialog",
+			var oComponent = this.getOwnerComponent();
+			if (!oComponent.ContactMeDialog) {
+				oComponent.ContactMeDialog = sap.ui.core.Fragment.load({
+					id: oComponent.createId("idFragContactMeDialog"),
 					name: "Homepage.Homepage.view.fragments.ContactMe",
 					controller: this
 				}).then(function (oDialog) {
-					this.ContactMeDialog = oDialog;
+					oComponent.ContactMeDialog = oDialog;
 					// connect dialog to the root view of this component
 					this.getView().addDependent(oDialog);
 					// forward compact/cozy style into dialog
@@ -68,12 +70,13 @@ sap.ui.define([
 					oDialog.open();
 				}.bind(this));
 			} else {
-				this.ContactMeDialog.open();
+				oComponent.ContactMeDialog.open();
 			}
 		},
 		
 		onPressContactMeDialogCancel: function (oEvent){
-			this.ContactMeDialog.close();
+			var oComponent = this.getOwnerComponent();
+			oComponent.ContactMeDialog.close();
 		},
 		
 		onPressContactMeDialogOk: function (oEvent){
@@ -178,14 +181,27 @@ sap.ui.define([
 			}.bind(this));
 		},
 		
+		_getEmailServerAlive: async function(){
+			if (gfEmailServeralive === undefined){
+				gfEmailServeralive = await this._checkEmailServerAlive();
+			};
+			return gfEmailServeralive;
+		},
+		
+		_setVisibilityContactMeHeaderButton: async function () {
+			var lvEmailServerAlive = await this._getEmailServerAlive();
+			this.getView().byId("idContactMeButton").setVisible(this.lvEmailServerAlive);
+		},
+		
 		_displayMessageContactMeSend: function(fSuccess){
 			if (fSuccess === true){
 			/*Success Message*/
 				MessageBox.success(this.getResourceBundle().getText("txtMessageSendSuccess"), {
-							onClose: function (oAction) {
-							this.ContactMeDialog.close();
-						}.bind(this)
-					});
+					onClose: function (oAction) {
+						var oComponent = this.getOwnerComponent();
+						oComponent.ContactMeDialog.close();
+					}.bind(this)
+				});
 			}
 			else {
 			/*Error Message*/
@@ -199,46 +215,47 @@ sap.ui.define([
 		_checkValidityContactMeData: function (oEvent){
 			var sContactMeData = this.getView().getModel("localDataModelContactMe").getData();
 			var bValid = true;
-			
+			var oComponent = this.getOwnerComponent();
+
 			/*Check if mandatory Data is supplied*/
 			//FirstName
 			if (sContactMeData.NameFirst === undefined || sContactMeData.NameFirst === "") {
 				bValid = false;
-				Fragment.byId("idFragContactMeDialog", "idInputContactMeFirstName").setValueState(sap.ui.core.ValueState.Error);
-				Fragment.byId("idFragContactMeDialog", "idInputContactMeFirstName").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeFirstName").setValueState(sap.ui.core.ValueState.Error);
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeFirstName").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
 			} else {
-				Fragment.byId("idFragContactMeDialog", "idInputContactMeFirstName").setValueState(sap.ui.core.ValueState.None);
-				Fragment.byId("idFragContactMeDialog", "idInputContactMeFirstName").setValueStateText("");
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeFirstName").setValueState(sap.ui.core.ValueState.None);
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeFirstName").setValueStateText("");
 			}
 			
 			//LastName
 			if (sContactMeData.NameLast === undefined || sContactMeData.NameLast === "") {
 				bValid = false;
-				Fragment.byId("idFragContactMeDialog", "idInputContactMeLastName").setValueState(sap.ui.core.ValueState.Error);
-				Fragment.byId("idFragContactMeDialog", "idInputContactMeLastName").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeLastName").setValueState(sap.ui.core.ValueState.Error);
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeLastName").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
 			} else {
-				Fragment.byId("idFragContactMeDialog", "idInputContactMeLastName").setValueState(sap.ui.core.ValueState.None);
-				Fragment.byId("idFragContactMeDialog", "idInputContactMeLastName").setValueStateText("");
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeLastName").setValueState(sap.ui.core.ValueState.None);
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeLastName").setValueStateText("");
 			}
 			
 			//Email
 			if (sContactMeData.Email === undefined || sContactMeData.Email === "") {
 				bValid = false;
-				Fragment.byId("idFragContactMeDialog", "idInputContactMeEmail").setValueState(sap.ui.core.ValueState.Error);
-				Fragment.byId("idFragContactMeDialog", "idInputContactMeEmail").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeEmail").setValueState(sap.ui.core.ValueState.Error);
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeEmail").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
 			} else {
-				Fragment.byId("idFragContactMeDialog", "idInputContactMeEmail").setValueState(sap.ui.core.ValueState.None);
-				Fragment.byId("idFragContactMeDialog", "idInputContactMeEmail").setValueStateText("");
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeEmail").setValueState(sap.ui.core.ValueState.None);
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeEmail").setValueStateText("");
 			}
 			
 			//Text
 			if (sContactMeData.Text === undefined || sContactMeData.Text === "") {
 				bValid = false;
-				Fragment.byId("idFragContactMeDialog", "idTextAreaContactMeText").setValueState(sap.ui.core.ValueState.Error);
-				Fragment.byId("idFragContactMeDialog", "idTextAreaContactMeText").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idTextAreaContactMeText").setValueState(sap.ui.core.ValueState.Error);
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idTextAreaContactMeText").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
 			} else {
-				Fragment.byId("idFragContactMeDialog", "idTextAreaContactMeText").setValueState(sap.ui.core.ValueState.None);
-				Fragment.byId("idFragContactMeDialog", "idTextAreaContactMeText").setValueStateText("");
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idTextAreaContactMeText").setValueState(sap.ui.core.ValueState.None);
+				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idTextAreaContactMeText").setValueStateText("");
 			}
 			
 			return bValid;

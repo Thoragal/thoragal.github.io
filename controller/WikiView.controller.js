@@ -26,6 +26,7 @@ sap.ui.define([
 			this.getView().setModel(oModel, "WikiModel");
 			
 //			this.getView().byId("idPageWiki").setBusy(false);
+			this._setVisibilityContactMeHeaderButton();
 		},
 
 		onPressRow: function (oEvent) {

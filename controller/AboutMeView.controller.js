@@ -24,6 +24,20 @@ sap.ui.define([
 			this.getView().setModel(oModel, "MeModel");
 			
 			this.getView().byId("idPageAboutMe").setBusy(false);
+			this._setVisibilityContactMeHeaderButton();
+			this._setVisibilityAboutMeContactMe();
+		},
+		
+		_setVisibilityAboutMeContactMe: async function () {
+			var fEmailServeralive = await this._getEmailServerAlive(); 
+			this.getView().byId("idAboutMeContactMeLabel").setVisible(fEmailServeralive);
+			this.getView().byId("idAboutMeContactMeButton").setVisible(fEmailServeralive);
+		},
+		
+		onGitHubPressed: function() {
+			var GitHubUrl = this.getModel("MeModel").getData().General.GitHub;
+			var URLHelper = mobileLibrary.URLHelper;
+			URLHelper.redirect( GitHubUrl, true);
 		},
 		
 		onXingPressed: function() {

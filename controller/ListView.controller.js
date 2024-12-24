@@ -48,6 +48,7 @@ sap.ui.define([
 			this._setFilterCountValues();
 			
 			this.getView().byId("idPageList").setBusy(false);
+			this._setVisibilityContactMeHeaderButton();
 		},
 
 		/**

@@ -14,10 +14,11 @@ sap.ui.define([
 			this.getView().byId("idButtonNavToHome").setType("Emphasized");
 			
 			this._setVisibilityTileContactMe();
+			this._setVisibilityContactMeHeaderButton();
 		},
 		
 		_setVisibilityTileContactMe: async function () {
-			var fEmailServeralive = await this._checkEmailServerAlive();   
+			var fEmailServeralive = await this._getEmailServerAlive(); 
 			this.getView().byId("idTileContactMe").setVisible(fEmailServeralive);
 		}
 	});

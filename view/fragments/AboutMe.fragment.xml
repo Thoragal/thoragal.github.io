@@ -59,6 +59,23 @@
 								<Link	text="{MeModel>/General/Email}"
 										target="_blank"
 										press="onEmailPressed"/>
+										
+								<Label	id="idAboutMeContactMeLabel"
+										visible="false" />
+								<VBox>	
+									<Button	id="idAboutMeContactMeButton"
+											text="{i18n>AboutMeContactMeButtonText}"
+											press="onNavToContactMe"
+											visible="false">
+									</Button>
+								</VBox>
+								
+								<Label text="{i18n>AboutMeGitHubLabel}" />
+								<Image	width="20px"
+										height="20px"
+										src="images/AboutMe/IconGitHub.png"
+										press="onGitHubPressed"
+										tooltip="{MeModel>/General/GitHubTooltip}"/>
 								
 								<Label text="{i18n>AboutMeLinkedInLabel}" />
 								<Image	width="20px"
@@ -99,12 +116,14 @@
 									<Text text="{MeModel>/Certificate/UI5/Title}"/>
 									<Link	text="{i18n>AboutMeProof}"
 											target="_blank"
-											href="{MeModel>/Certificate/UI5/Url}" />
+											href="{MeModel>/Certificate/UI5/Url}" 
+											visible="false"/>
 								<Label text="{MeModel>/Certificate/RAP/Label}"/>
 									<Text text="{MeModel>/Certificate/RAP/Title}"/>
 									<Link	text="{i18n>AboutMeProof}"
 											target="_blank"
-											href="{MeModel>/Certificate/RAP/Url}" />
+											href="{MeModel>/Certificate/RAP/Url}"
+											visible="false"/>
 							</f:SimpleForm>
 									
 						</uxap:blocks>
