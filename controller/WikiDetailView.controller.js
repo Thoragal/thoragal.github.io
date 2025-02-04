@@ -1,16 +1,12 @@
 sap.ui.define([
 	"./BaseController",
-	"../model/formatter",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageToast"
 
-], function (BaseController, formatter, JSONModel, MessageToast) {
+], function (BaseController, JSONModel, MessageToast) {
 	"use strict";
 
 	return BaseController.extend("Homepage.Homepage.controller.WikiDetailView", {
-
-		// set formatter
-    	formatter: formatter,
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.

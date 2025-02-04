@@ -50,7 +50,9 @@
 		<Table	id="IdObjectTableData"
 				width="auto"
 				items="{AbapListModel>/ObjectData}"
-				updateFinished=".onUpdateFinished">
+				updateFinished=".onUpdateFinished"
+				selectionMode="SingleSelect"
+    			itemPress=".onItemPress">
 				<headerToolbar>
 					<Toolbar>
 						<Title id="IdObjectTableHeader" text="{AbapListModel>/AbapListDataTitle}"/>
@@ -90,19 +92,24 @@
 						demandPopin="false">
 						<Text text="{i18n>TableColumnNameDescription}"/>
 					</Column>
+					<Column
+						id="IdColumnNameCopy"
+						demandPopin="false"
+						width="6em">
+						<Text text="{i18n>TableColumnNameCopy}"/>
+					</Column>
 				</columns>
 
 				<items>
 					<ColumnListItem
-						type="Active"
-						press=".onPress">
+						type="Active">
 						<cells>
 							<ObjectIdentifier
 								title="{AbapListModel>type}"/>
-							<Text text = "{AbapListModel>category}"/>	
+							<Text text = "{AbapListModel>category}"/>
 							<Text text = "{AbapListModel>value}"/>
 							<Text text = "{AbapListModel>description}"/>
-							
+							<Button icon="sap-icon://copy" press="onCopy"/>
 						</cells>
 					</ColumnListItem>
 				</items>

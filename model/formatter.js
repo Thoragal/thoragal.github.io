@@ -12,7 +12,10 @@ sap.ui.define([
 				result = "";
 			}
 			return result;
-			
+		},
+		serverAlive: async function(value){
+			var fEmailServeralive = await this._getEmailServerAlive();
+			return fEmailServeralive;
 		}
 	};
 });

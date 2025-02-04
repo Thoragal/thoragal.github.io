@@ -14,7 +14,7 @@ sap.ui.define([
 			this.getView().byId("idButtonNavToHome").setType("Emphasized");
 			
 			this._setVisibilityTileContactMe();
-			this._setVisibilityContactMeHeaderButton();
+			//this._setVisibilityContactMeHeaderButton();
 		},
 		
 		_setVisibilityTileContactMe: async function () {

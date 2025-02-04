@@ -123,6 +123,47 @@ sap.ui.define([
 			}
 		},
 		
+		onItemPress: function (oEvent) {
+			// Display message
+			/**
+    		var oSelectedItem = oEvent.getParameter("listItem");
+    		var oContext = oSelectedItem.getBindingContext("AbapListModel");
+    		var oObject = oContext.getObject();
+    		var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+    		var sTableSelected = oResourceBundle.getText("TableSelected");
+    		
+    		sap.m.MessageToast.show( sTableSelected + ": " + oObject.value);
+    		*/
+    		
+    		// Remove old navigation marker
+    		var oTable = this.byId("IdObjectTableData");
+			oTable.getItems().forEach(function(oItem) {
+				oItem.setNavigated(false);
+			});
+    		
+    		// Set new navigation marker
+    		var oSelectedItem = oEvent.getParameter("listItem");
+    		oSelectedItem.setNavigated(true);
+		},
+		
+		onCopy: function(oEvent) {
+			var oSource = oEvent.getSource();
+			var oParent = oSource.getParent();
+			var oContext = oParent.getBindingContext("AbapListModel");
+			var oObject = oContext.getObject();
+			
+    		var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+    		var sTableCopied = oResourceBundle.getText("TableCopied");
+    
+			navigator.clipboard.writeText(oObject.value)
+				.then(() => {
+                    sap.m.MessageToast.show( sTableCopied + ": " + oObject.value);
+                })
+                .catch(err => {
+                	var sTableCopiedError = oResourceBundle.getText("TableCopiedError");
+                    console.error( sTableCopiedError, err);
+                });
+		},
 		
 		/**
 		 * Internal helper method to apply both filter and search state together on the list binding
