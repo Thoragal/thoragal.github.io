@@ -1,6 +1,18 @@
 {
 	"Wiki":
-	[	
+	[
+		{
+			"id":"0024",
+			"date":"14.03.2025",
+			"title":"EML",
+			"tags":	[ { "tag":"EML" } ],
+			"content":
+				[
+					{
+						"text": "<div style=\"background-color: #ffffff; padding: 0px 0px 0px 2px;\"><div style=\"color: #000000; background-color: #ffffff; font-family: 'Consolas'; font-size: 10pt; white-space: pre;\"><p style=\"margin: 0;\">&nbsp;</p><p style=\"margin: 0;\"><span style=\"color: #0000ff;\">MODIFY ENTITIES OF </span><span style=\"color: #000000;\">i_customerreturntp</span></p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> ENTITY </span><span style=\"color: #000000;\">customerreturnitem</span></p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> UPDATE</span></p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> FIELDS ( </span><span style=\"color: #000000;\">productionplant</span><span style=\"color: #0000ff;\"> )</span></p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> WITH VALUE #( ( </span><span style=\"color: #000000;\">productionplant</span><span style=\"color: #0000ff;\"> = </span><span style=\"color: #008000;\">'V001'</span></p><p style=\"margin: 0px; padding-left: 160px;\"><span style=\"color: #000000;\">%key</span><span style=\"color: #0000ff;\">-</span><span style=\"color: #000000;\">customerreturn</span><span style=\"color: #0000ff;\"> = </span><span style=\"color: #000000;\">ls_re_final_key</span><span style=\"color: #0000ff;\">-</span><span style=\"color: #000000;\">customerreturn</span></p><p style=\"margin: 0px; padding-left: 160px;\"><span style=\"color: #000000;\">%key</span><span style=\"color: #0000ff;\">-</span><span style=\"color: #000000;\">customerreturnitem</span><span style=\"color: #0000ff;\"> = </span><span style=\"color: #008000;\">'0010'</span><span style=\"color: #0000ff;\"> ) ).</span></p><p style=\"margin: 0px; padding-left: 160px;\">&nbsp;</p><p style=\"margin: 0;\"><span style=\"color: #0000ff;\"> COMMIT ENTITIES BEGIN</span></p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> RESPONSE OF </span><span style=\"color: #000000;\">i_customerreturntp</span></p><p style=\"margin: 0px; padding-left: 80px;\"><span style=\"color: #0000ff;\"> FAILED </span><span style=\"color: #000000;\">ls_failed_late</span></p><p style=\"margin: 0px; padding-left: 80px;\"><span style=\"color: #0000ff;\"> REPORTED </span><span style=\"color: #000000;\">ls_reported_late</span><span style=\"color: #0000ff;\">.</span></p><p style=\"margin: 0;\">&nbsp;</p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> IF </span><span style=\"color: #000000;\">sy</span><span style=\"color: #0000ff;\">-</span><span style=\"color: #000000;\">subrc</span><span style=\"color: #0000ff;\"> = </span><span style=\"color: #3399ff;\">0</span><span style=\"color: #0000ff;\">.</span></p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> ENDIF.</span></p><p style=\"margin: 0;\"><span style=\"color: #0000ff;\"> COMMIT ENTITIES END.</span></p></div></div>"
+					}
+				]
+		},
 		{
 			"id":"0023",
 			"date":"15.12.2024",
