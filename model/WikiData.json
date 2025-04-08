@@ -2,6 +2,18 @@
 	"Wiki":
 	[
 		{
+			"id":"0025",
+			"date":"08.04.2025",
+			"title":"Übersetzung nicht verfügbar",
+			"tags":	[ { "tag":"SAP" } ],
+			"content":
+				[
+					{
+						"text": "<p>- Transaktion <span style=\"color: #0000ff;\">/IWFND/V4_ADMIN</span> -&gt; Button \"Metadaten\" -&gt; Cache bereinigen</p><p>- Transaktion <span style=\"color: #0000ff;\">SMICM</span> -&gt; Springen -&gt; HTTP Plugin -&gt; Server Cache -&gt; Global invalidieren + Lokal invalidieren</p><p>&nbsp;</p><p>- Report <span style=\"color: #0000ff;\">/UI5/APP_INDEX_CALCULATE</span> -&gt; Vollst&auml;ndige Berechnung</p><p>- Report <span style=\"color: #0000ff;\">/UI2/DELETE_CACHE</span></p><p>- Report <span style=\"color: #0000ff;\">/UI2/INVALIDATE_CLIENT_CACHES</span></p>"
+					}
+				]
+		},
+		{
 			"id":"0024",
 			"date":"14.03.2025",
 			"title":"EML",
