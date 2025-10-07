@@ -145,6 +145,7 @@ sap.ui.define([
 		    var sLanguage;    
 		    switch (iSelectedIndex) { case 0: sLanguage="de"; break;
 									  case 1: sLanguage="en"; break;
+									  case 2: sLanguage="es"; break;
 									  default: sLanguage="de";
 									};
 
