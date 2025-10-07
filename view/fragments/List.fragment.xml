@@ -51,7 +51,6 @@
 				width="auto"
 				items="{AbapListModel>/ObjectData}"
 				updateFinished=".onUpdateFinished"
-				selectionMode="SingleSelect"
     			itemPress=".onItemPress">
 				<headerToolbar>
 					<Toolbar>

@@ -189,7 +189,7 @@ sap.ui.define([
 		 * @private
 		 */
 		_applySearch: function(aTableSearchState) {
-			var oTable = this.byId("IdObjectTableData");
+			var oTable = this.byId("IdObjectTableDataList");
 			//	oViewModel = this.getModel("AbapListModel");
 			oTable.getBinding("items").filter(aTableSearchState, "Application");
 		},
