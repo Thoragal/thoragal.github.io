@@ -64,7 +64,7 @@
 						<SearchField
 							id="IdObjectTableValue"
 							placeholder="{i18n>TableFilterValue}"
-							search=".onObjectTableValue"
+							search="onObjectTableFilterValue"
 							width="auto"/>
 						<SearchField
 							id="IdObjectTableSearchField"
