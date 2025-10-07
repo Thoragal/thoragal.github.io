@@ -18,7 +18,7 @@ sap.ui.define([
 			
 			this.getView().byId("idButtonNavToList").setType("Emphasized");	
 			
-			var oTable = this.byId("IdObjectTableData");
+			var oTable = this.byId("IdObjectTableDataList");
 			
 			this._oTable = oTable;
 			// get the path to the JSON file
@@ -154,7 +154,7 @@ sap.ui.define([
     		*/
     		
     		// Remove old navigation marker
-    		var oTable = this.byId("IdObjectTableData");
+    		var oTable = this.byId("IdObjectTableDataList");
 			oTable.getItems().forEach(function(oItem) {
 				oItem.setNavigated(false);
 			});
