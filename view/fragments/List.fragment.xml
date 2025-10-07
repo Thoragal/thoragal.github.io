@@ -47,11 +47,10 @@
 		</items>
 
 	<content>
-		<Table	id="IdObjectTableData"
+		<Table	id="IdObjectTableDataList"
 				width="auto"
 				items="{AbapListModel>/ObjectData}"
 				updateFinished=".onUpdateFinished"
-				selectionMode="SingleSelect"
     			itemPress=".onItemPress">
 				<headerToolbar>
 					<Toolbar>
@@ -79,7 +78,7 @@
 				<columns>
 					<Column id="IdColumnNameType">
 						<Text
-							id="nameColumnTitle"
+							id="IdNameColumnTitle"
 							text="{i18n>TableColumnNameType}"/>
 					</Column>
 					<Column

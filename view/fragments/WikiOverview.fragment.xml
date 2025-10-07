@@ -6,7 +6,7 @@
 							xmlns:l="sap.ui.layout"
 							xmlns:html="http://www.w3.org/1999/xhtml">
 
-		<Table	id="IdObjectTableData"
+		<Table	id="IdObjectTableDataWiki"
 				width="auto"
 				items="{WikiModel>/Wiki}">
 
