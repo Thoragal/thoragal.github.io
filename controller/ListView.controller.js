@@ -123,6 +123,24 @@ sap.ui.define([
 			}
 		},
 		
+		onObjectTableFilterValue : function(oEvent) {
+			if (oEvent.getParameters().refreshButtonPressed) {
+				// Search field's 'refresh' button has been pressed.
+				// This is visible if you select any master list item.
+				// In this case no new search is triggered, we only
+				// refresh the list binding.
+				this.onRefresh();
+			} else {
+				var aTableSearchState = [];
+				var sQuery = oEvent.getParameter("query");
+
+				if (sQuery && sQuery.length > 0) {
+					aTableSearchState = [new Filter("value", FilterOperator.Contains, sQuery)];
+				}
+				this._applySearch(aTableSearchState);
+			}
+		},
+
 		onItemPress: function (oEvent) {
 			// Display message
 			/**

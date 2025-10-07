@@ -10,6 +10,7 @@
 		<RadioButtonGroup id="rbg1">
 			<RadioButton id="RB1-1" text="{i18n>German}" />
 			<RadioButton id="RB1-2" text="{i18n>English}" />
+			<RadioButton id="RB1-3" text="{i18n>Spanish}" />
 		</RadioButtonGroup>
 	</VBox>
 		</content>
