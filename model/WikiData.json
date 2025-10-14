@@ -2,6 +2,22 @@
 	"Wiki":
 	[
 		{
+			"id":"0026",
+			"date":"15.04.2025",
+			"title":"Annotation - Set Action Input field to Read only",
+			"tags":	[ { "tag":"SAP" } ],
+			"content":
+				[
+					{
+						"image":
+						{
+							"src":"images/Wiki/0026_01.jpg",
+							"description":"Set Input field of an action to Read only"
+						}
+					}
+				]
+		},
+		{
 			"id":"0025",
 			"date":"08.04.2025",
 			"title":"Übersetzung nicht verfügbar",
