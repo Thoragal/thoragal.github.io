@@ -1,0 +1,321 @@
+{
+	"Wiki":
+	[
+		{
+			"id":"0026",
+			"date":"15.04.2025",
+			"title":"Annotation - Set Action Input field to Read only",
+			"tags":	[ { "tag":"SAP" } ],
+			"content":
+				[
+					{
+						"image":
+						{
+							"src":"images/Wiki/0026_01.jpg",
+							"description":"Set Input field of an action to Read only"
+						}
+					}
+				]
+		},
+		{
+			"id":"0025",
+			"date":"08.04.2025",
+			"title":"Übersetzung nicht verfügbar",
+			"tags":	[ { "tag":"SAP" } ],
+			"content":
+				[
+					{
+						"text": "<p>- Transaktion <span style=\"color: #0000ff;\">/IWFND/V4_ADMIN</span> -&gt; Button \"Metadaten\" -&gt; Cache bereinigen</p><p>- Transaktion <span style=\"color: #0000ff;\">SMICM</span> -&gt; Springen -&gt; HTTP Plugin -&gt; Server Cache -&gt; Global invalidieren + Lokal invalidieren</p><p>&nbsp;</p><p>- Report <span style=\"color: #0000ff;\">/UI5/APP_INDEX_CALCULATE</span> -&gt; Vollst&auml;ndige Berechnung</p><p>- Report <span style=\"color: #0000ff;\">/UI2/DELETE_CACHE</span></p><p>- Report <span style=\"color: #0000ff;\">/UI2/INVALIDATE_CLIENT_CACHES</span></p>"
+					}
+				]
+		},
+		{
+			"id":"0024",
+			"date":"14.03.2025",
+			"title":"EML",
+			"tags":	[ { "tag":"EML" } ],
+			"content":
+				[
+					{
+						"text": "<div style=\"background-color: #ffffff; padding: 0px 0px 0px 2px;\"><div style=\"color: #000000; background-color: #ffffff; font-family: 'Consolas'; font-size: 10pt; white-space: pre;\"><p style=\"margin: 0;\">&nbsp;</p><p style=\"margin: 0;\"><span style=\"color: #0000ff;\">MODIFY ENTITIES OF </span><span style=\"color: #000000;\">i_customerreturntp</span></p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> ENTITY </span><span style=\"color: #000000;\">customerreturnitem</span></p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> UPDATE</span></p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> FIELDS ( </span><span style=\"color: #000000;\">productionplant</span><span style=\"color: #0000ff;\"> )</span></p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> WITH VALUE #( ( </span><span style=\"color: #000000;\">productionplant</span><span style=\"color: #0000ff;\"> = </span><span style=\"color: #008000;\">'V001'</span></p><p style=\"margin: 0px; padding-left: 160px;\"><span style=\"color: #000000;\">%key</span><span style=\"color: #0000ff;\">-</span><span style=\"color: #000000;\">customerreturn</span><span style=\"color: #0000ff;\"> = </span><span style=\"color: #000000;\">ls_re_final_key</span><span style=\"color: #0000ff;\">-</span><span style=\"color: #000000;\">customerreturn</span></p><p style=\"margin: 0px; padding-left: 160px;\"><span style=\"color: #000000;\">%key</span><span style=\"color: #0000ff;\">-</span><span style=\"color: #000000;\">customerreturnitem</span><span style=\"color: #0000ff;\"> = </span><span style=\"color: #008000;\">'0010'</span><span style=\"color: #0000ff;\"> ) ).</span></p><p style=\"margin: 0px; padding-left: 160px;\">&nbsp;</p><p style=\"margin: 0;\"><span style=\"color: #0000ff;\"> COMMIT ENTITIES BEGIN</span></p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> RESPONSE OF </span><span style=\"color: #000000;\">i_customerreturntp</span></p><p style=\"margin: 0px; padding-left: 80px;\"><span style=\"color: #0000ff;\"> FAILED </span><span style=\"color: #000000;\">ls_failed_late</span></p><p style=\"margin: 0px; padding-left: 80px;\"><span style=\"color: #0000ff;\"> REPORTED </span><span style=\"color: #000000;\">ls_reported_late</span><span style=\"color: #0000ff;\">.</span></p><p style=\"margin: 0;\">&nbsp;</p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> IF </span><span style=\"color: #000000;\">sy</span><span style=\"color: #0000ff;\">-</span><span style=\"color: #000000;\">subrc</span><span style=\"color: #0000ff;\"> = </span><span style=\"color: #3399ff;\">0</span><span style=\"color: #0000ff;\">.</span></p><p style=\"margin: 0px; padding-left: 40px;\"><span style=\"color: #0000ff;\"> ENDIF.</span></p><p style=\"margin: 0;\"><span style=\"color: #0000ff;\"> COMMIT ENTITIES END.</span></p></div></div>"
+					}
+				]
+		},
+		{
+			"id":"0023",
+			"date":"15.12.2024",
+			"title":"npm-Befehle",
+			"tags":	[ { "tag":"Frontend" } ],
+			"content":
+				[
+					{
+						"text": "<ul><li>npm update</li><li>npm upgrade</li><li>npm install [package name]</li><li>npm uninstall [package name]</li><li>npm list -g (Globale Auflistung installierter npm-Pakete)</li><li>npm list (Lokale Auflistung installierter npm-Pakete)</li></ul>"
+					}
+				]
+		},
+		{
+			"id":"0022",
+			"date":"14.12.2024",
+			"title":"Initialisierung GIT Repository",
+			"tags":	[ { "tag":"UI5" } ],
+			"content":
+				[
+					{
+						"text": "<p>git config --global user.name \"Thorsten Bender\"</p><p>git config --global user.email \"thorsten.bender@mail.ch\"</p><p>Repository-Verzeichnis von <a href=\"http://www.github.com\">www.github.com</a> ermitteln</p><p>git clone <a href=\"https://github.com/Thoragal/thoragal.github.io.git\">https://github.com/Thoragal/thoragal.github.io.git</a></p>"
+					}
+				]
+		},
+		{
+			"id":"0021",
+			"date":"14.12.2024",
+			"title":"Tools Frontendentwicklung",
+			"tags":	[ { "tag":"Frontend" } ],
+			"content":
+				[
+					{
+						"text": "<ul><li>Send Requests to backend<ul><li>Insomnia</li><li>Postman</li></ul></li><li>GitHub Desktop<ul><li>Alternative: Sourcetree</li></ul></li><li>Visual Studio Code<ul><li>Extensions<ul><li>GitLens (Supercharge Git in VS Code)</li><li>Prettier (Code formatter)</li><li>Project Manager</li></ul></li></ul></li><li>Git Bash</li><li>Node.js</li><li>npmjs.com</li></ul>"
+					}
+				]
+		},
+		{
+			"id":"0020",
+			"date":"09.11.2022",
+			"title":"SQL Joins",
+			"tags":	[ { "tag":"ABAP" } ],
+			"content":
+				[
+					{	"image":
+						{
+							"src":"images/Wiki/0020_01.jpg",
+							"description":"SQL Joins"
+						}
+					}
+				]
+		},
+		{
+			"id":"0019",
+			"date":"27.10.2022",
+			"title":"STATICS",
+			"tags":[ { "tag":"ABAP" } ],
+			"content":
+				[
+					{
+						"text": "<p>Variables which are defined as \"STATICS\" will be stored for the next call of the method. The method must a static method.</p><p>&nbsp;</p><p>Example for counting the number of calls:</p><p>METHOD static_method.</p><p style=\"padding-left: 40px;\"><span class=\"L0S52\" style=\"color: #0000ff;\">STATICS</span><span class=\"L0S55\">:&nbsp;</span>s_test <span class=\"L0S52\"><span style=\"color: #0000ff;\">TYPE</span>&nbsp;</span><span class=\"L0S52\">i.</span></p><p style=\"padding-left: 40px;\">s_test = s_test + 1.</p><p>ENDMETHOD.&nbsp;</p>"
+					}
+				]
+		},
+		{
+			"id":"0018",
+			"date":"11.08.2022",
+			"title":"Debug deployed UI5-Application",
+			"tags":[ { "tag":"UI5" } ],
+			"content":
+				[
+					{
+						"text": "<ul><li>Start deployed application</li><li>Shortcut: STRG + SHIFT + ALT + P</li><li>Mark checkbox: Use debug sources -&gt; Reload application</li><li>Shortcut F12 (Debug console)</li><li>Follow path in tab Sources -&gt; sap -&gt; bc -&gt; ui5_ui5 -&gt; sap -&gt; z*</li></ul>"
+					}
+				]
+		},
+		{
+			"id":"0017",
+			"date":"03.08.2022",
+			"title":"Sorting in SAP Gateway",
+			"tags":[ { "tag":"ABAP" } ],	
+			"content":
+				[
+					{
+						"text": "<p><span style=\"color: #0000ff;\">DATA</span>:</p><p style=\"padding-left: 40px;\">lt_sort <span style=\"color: #0000ff;\">TYPE</span> abap_sortorder_tab,</p><p style=\"padding-left: 40px;\">ls_sort <span style=\"color: #0000ff;\">TYPE</span> abap_sortorder.</p><p><span style=\"color: #0000ff;\">DATA</span>(lt_order)&nbsp;=&nbsp;io_tech_request_context-&gt;get_orderby(&nbsp;).</p><p><span style=\"color: #0000ff;\">LOOP&nbsp;AT</span>&nbsp;lt_order&nbsp;<span style=\"color: #0000ff;\">INTO&nbsp;DATA</span>(ls_order).</p><p style=\"padding-left: 40px;\">ls_sort-name = ls_order-property.</p><p style=\"padding-left: 40px;\">ls_sort-descending = <span style=\"color: #0000ff;\">SWITCH</span> #( ls_order-order <span style=\"color: #0000ff;\">WHEN</span>&nbsp;'<span style=\"color: #008000;\">desc</span>'&nbsp;<span style=\"color: #0000ff;\">THEN</span> abap_true <span style=\"color: #0000ff;\">ELSE</span> abap_false ).&nbsp; &nbsp;</p><p style=\"padding-left: 40px;\"><span style=\"color: #0000ff;\">APPEND</span>&nbsp;ls_sort&nbsp;<span style=\"color: #0000ff;\">TO</span>&nbsp;lt_sort.</p><p><span style=\"color: #0000ff;\">ENDLOOP</span>.</p>"
+					}
+				]
+		},
+		{
+			"id":"0016",
+			"date":"03.08.2022",
+			"title":"Tabelleneinträge anpassen",
+			"tags":[ { "tag":"ABAP" } ],	
+			"content":
+				[
+					{
+						"text": "<ul><li>SE16N -&gt;Tabellenname setzen -&gt;/h -&gt;ENTER-&gt;GD-EDIT = &sbquo;X&rsquo; + GD-SAPEDIT = &sbquo;X&lsquo; -&gt;F8</li><li>SE16&nbsp; &nbsp;-&gt;Tabelleneintrag ausw&auml;hlen (Details) -&gt;/h -&gt;ENTER -&gt;CODE = &sbquo;EDIT&lsquo; -&gt;F8</li></ul>"
+					}
+				]
+		},
+		{
+			"id":"0015",
+			"date":"28.07.2022",
+			"title":"SMOD (Exit, Enhancements)",
+			"tags":[ { "tag":"Exit" } ],	
+			"content":
+				[
+					{
+						"text": "<p>Find Objects:</p><ul><li>Go to SE93 &ndash; Enter Transaction -&gt; Get Package Name</li><li>Go to SMOD -&gt;F4-Help -&gt; Enter Package Name</li></ul>"
+					}
+				]
+		},
+		{
+			"id":"0014",
+			"date":"28.07.2022",
+			"title":"Binding UI5",
+			"tags":[ { "tag":"UI5" } ],	
+			"content":
+				[
+					{
+						"text": "<p>Binding types:</p><ul><li>Aggregation Binding: Lists</li><li>Element Binding: Entities</li><li>Property Binding: Properties of an entity</li></ul><p>&nbsp;</p><ul><li>Data Binding<p>{ } -&gt; Data Binding</p><p>Example: {movies&gt;/initdate}</p><ul><li>movies -&gt; name of data model</li><li>/ -&gt; points to root of the data collection (= oberster Knoten) (Ben&ouml;tigt bei erster Instanz)</li></ul></li></ul>"
+					}
+				]
+		},
+		{
+			"id":"0013",
+			"date":"28.07.2022",
+			"title":"Example Promise UI5",
+			"tags":[ { "tag":"UI5" } ],	
+			"content":
+				[
+					{
+						"text": "<p><span style=\"color: #0000ff;\">onChangeCheckSales: async function (oEvent) {</span></p><p style=\"padding-left: 40px;\">var sSales = oEvent.getParameter(\"value\");<br /><span style=\"color: #0000ff;\">var bValid = await this._checkSales(sSales)</span>;</p><p style=\"padding-left: 40px;\">if (bValid) {</p><p style=\"padding-left: 80px;\">this.getView().byId(\"idInptNewKorrSales\").setValueState(sap.ui.core.ValueState.None);}</p><p style=\"padding-left: 40px;\">else {</p><p style=\"padding-left: 80px;\">this.getView().byId(\"idInptNewKorrSales\").setValueState(sap.ui.core.ValueState.Error);</p><p style=\"padding-left: 40px;\">}</p><p><span style=\"color: #0000ff;\">},</span></p><p>&nbsp;</p><p><span style=\"color: #0000ff;\">_checkSales: function (sSales) {</span></p><p style=\"padding-left: 40px;\"><span style=\"color: #0000ff;\">return new Promise(function (resolve) {</span></p><p style=\"padding-left: 80px;\">var oDataModel = this.getView().getModel();<br />var sPath = oDataModel.createKey(\"/F4VerkaeuferSet\", {</p><p style=\"padding-left: 120px;\">Personalnummer: sSales</p><p style=\"padding-left: 80px;\">});</p><p style=\"padding-left: 80px;\">oDataModel.read(sPath, {</p><p style=\"padding-left: 120px;\">success: function (oData, oResponse) {</p><p style=\"padding-left: 160px;\">Log.trace(\"Read Sales \" + sSales);<br />this.getView().getModel(this.sModelName).setProperty(\"/NewRet/SalesName\", oData.Nachname + \" \" + oData.Vorname);<br /><span style=\"color: #0000ff;\">resolve(true)</span></p><p style=\"padding-left: 120px;\">}.bind(this),</p><p style=\"padding-left: 120px;\">error: function (oError) {</p><p style=\"padding-left: 160px;\">//handled by ErrorHandler.js<br />this.getView().getModel(this.sModelName).setProperty(\"/NewRet/SalesName\", \"\");<br /><span style=\"color: #0000ff;\">resolve(false)</span></p><p style=\"padding-left: 120px;\">}.bind(this)</p><p style=\"padding-left: 80px;\">});</p><p style=\"padding-left: 40px;\">}<span style=\"color: #008000;\">.bind(this));</span></p><p><span style=\"color: #0000ff;\">},</span></p><p>&nbsp;</p><p>Remarks:</p><p><span style=\"color: #0000ff;\"><span style=\"color: #008000;\">.bind(this): Passes \"this\" to promise function</span></span></p>"
+					}
+				]
+		},
+		{
+			"id":"0012",
+			"date":"26.07.2022",
+			"title":"Links",
+			"tags":[ { "tag":"HTML" } ],	
+			"content":
+				[
+					{
+						"text": "<p>HTML-Editor: <a href=\"https://html-online.com/editor/\">https://html-online.com/editor/</a></p>"
+					}
+				]
+		},
+		{
+			"id":"0011",
+			"date":"25.07.2022",
+			"title":"Escape String",
+			"tags":[ { "tag":"JSON" } ],	
+			"content":
+				[
+					{
+						"text": "<p>JSON:</p><p>&nbsp;\" -&gt; \\\"&nbsp;</p><p>\\\" -&gt; \\\\\\\"</p>"
+					}
+				]
+		},
+		{
+			"id":"0010",
+			"date":"09.05.2022",
+			"title":"ABAP Quick Reference",
+			"tags":[ { "tag":"ABAP" } ],	
+			"content":
+				[
+					{
+						"text": "<p>ABAP 7.40: <a href=\"https://blogs.sap.com/2015/10/25/abap-740-quick-reference/\">https://blogs.sap.com/2015/10/25/abap-740-quick-reference/</a></p><p>ABAP 7.50: <a href=\"https://blogs.sap.com/2015/11/27/abap-language-news-for-release-750/\">https://blogs.sap.com/2015/11/27/abap-language-news-for-release-750/</a></p>"
+					}
+				]
+		},
+		{
+			"id":"0009",
+			"date":"19.05.2022",
+			"title": "UI5 Navigation to FIORI Launchpad",
+			"tags":[ { "tag":"UI5" } ],	
+			"content":
+				[
+					{
+						"text": "<p>var oCrossAppNavigator = sap.ushell.Container.getService(\"CrossApplicationNavigation\");</p><p>// Navigate back to FLP home</p><p>oCrossAppNavigator.toExternal({</p><p>target: {</p><p>shellHash: \"#\"</p><p>}</p><p>});</p>"
+					}
+					]
+		},
+		{	"id":"0008",
+			"date":"09.05.2022",
+			"title":"CHARM",
+			"content":
+				[
+					{	"text":"<p>Auftrag per ToC transportieren:</p><ul><li>SE10 - Aufgabe freigeben</li><li>CHARM: Reiter Transortfreigabe (Modus Bearbeiten)</li><li>Schaltfl&auml;che 'Transport von Kopien'</li><li>Ggfls. neue Aufgabe anlegen</li><li>Sichern</li></ul>"
+					}
+				]
+		},
+		{	"id":"0007",
+			"date":"09.05.2022",
+			"title":"Call Function Module in new task",
+			"tags":[ { "tag":"ABAP" } ],	
+			"content":
+				[
+					{	"text":"<p><span style=\"color: #0000ff;\">CALL FUNCTION</span> <span style=\"color: #008000;\">'FM_MODULE_1'</span></p><p><span style=\"color: #0000ff;\">STARTING NEW TASK</span> <span style=\"color: #008000;\">'NEW_TASK'</span> <span style=\"color: #0000ff;\">CALLING</span> method_1 <span style=\"color: #0000ff;\">ON END OF TASK</span></p><p><span style=\"color: #0000ff;\">EXPORTING</span> ...</p><p>&nbsp;</p><p>Notes: Importing not directly possible in FM_MODULE_1, but possible inside method_1</p><p>e.g. &nbsp;&nbsp;&nbsp;&nbsp;<span style=\"color: #0000ff;\">RECEIVE</span> RESULTS <span style=\"color: #0000ff;\">FROM FUNCTION</span> <span style=\"color: #008000;\">'FM_MODULE_1'</span> <span style=\"color: #0000ff;\">IMPORTING</span> vbeln = gv_vbeln.</p><p>Notes: Use wait lv_finished = abap_true (Set lv_finished inside method_1)</p>"
+					}
+				]
+		},
+		{	"id":"0006",
+			"date":"09.05.2022",
+			"title":"Reset Buffer of Application Server",
+			"tags":[ { "tag":"ABAP" } ],
+			"content":
+				[
+					{	"text":"<p><strong>/$SYNC - Resets all buffers of the application server</strong></p><p>/$CUA - Resets the CUA buffer of the application server</p><p>/$TAB - Resets the TABLE buffers of the application server</p><p>/$NAM - Resets the nametab buffer of the application server</p><p>/$DYN - Resets the screen buffer of the application server</p><p>/$ESM - Resets the Exp./ Imp. Shared Memory Buffer of the application server</p><p>/$PXA - Resets the Program (PXA) Buffer of the application server</p><p>/$OBJ - Resets the Shared Buffer of the application server</p>"
+					}
+				]
+		},
+		{	"id":"0005",
+			"date":"05.05.2022",
+			"title":"Deutsches Tastaturlayout",
+			"content":
+				[
+					{	"image":
+							{
+								"src":"images/Wiki/0005_01.svg",
+								"description":"Deutsches Tastaturlayout<br/>Bild: <a href=\"https://commons.wikimedia.org/wiki/User:SeL_media\" target=\"_blank\">SeL media</a> u.a., Lizenz: <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\" target=\"_blank\">CC BY-SA 3.0</a>"
+							}
+					}
+				]
+		},
+		{	"id":"0004",
+			"date":"02.05.2022",
+			"title":"Name von BADI bzw. User-Exit finden",
+			"tags":[ { "tag":"Exit" } ],
+			"content":
+				[
+					{	"text":"<ul><li>Transaktion SE24<ul><li>Objekttyp: CL_EXITHANDLER</li><li>Methode: GET_INSTANCE</li></ul></li><li>Breakpoint bei Zeile 28</li><li>Variable Exit-Name = Badi-Name</li></ul>"
+					}
+				]
+		},
+		{	"id":"0003",
+			"date":"30.11.2021",
+			"title":"SAP Gateway - Calls Backend",
+			"tags":[ { "tag":"ABAP" } ],
+			"content":
+				[
+					{	"text": "<ul><li>Get Entity:</li></ul><p style=\"padding-left: 40px;\">/sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/UserDefaultsSet<span style=\"color: #ff0000;\"><strong>(Username='UserABC')</strong></span></p><ul><li>Get EntitySet:</li></ul><p style=\"padding-left: 40px;\">/sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/UserDefaultsSet</p><ul><li>Follow Associations:</li></ul><p style=\"padding-left: 40px;\">/sap/opu/odata/SAP/Z_SDSR_SHOWROOM_SRV/DocumentSet(DocumentId='0000722731')<span style=\"color: #ff0000;\">/<strong>Items</strong></span></p><ul><li>Use Filter:</li></ul><p style=\"padding-left: 40px;\">/sap/opu/odata/sap/Z_IFMI_SRV/PRODUCT_HIERARCHIESSet<span style=\"color: #ff0000;\"><strong>?$filter=Language eq 'EN'</strong></span></p>"
+					}
+				]
+		},
+		{	"id":"0002",
+			"date":"01.12.2021",
+			"title":"Dirty Assign",
+			"content":
+				[
+					{	"text":"<p>FIELD-SYMBOLS: &lt;var&gt; TYPE i.</p><p>ASSIGN ('(Z_TB_TEST10)GV_GLOBAL') TO &lt;var&gt;.</p><p>&lt;var&gt; = 4.</p>"
+					}
+				]
+		},
+		{	"id":"0001",
+			"date":"01.01.2021",
+			"title":"GuiXT",
+			"content":
+				[
+					{	"text":"<p>Erm&ouml;glicht Erweiterung vom SAP-GUI</p>",
+						"image":
+							{
+								"src":"images/Wiki/0003_01.png",
+								"description":"GuiXT aktivieren"
+							}
+					},
+					{	"text":"",
+						"image":
+							{
+								"src":"images/Wiki/0003_02.png",
+								"description":"GuiXT wieder sichtbar machen: CMD.exe"
+							}
+					}
+				]
+			
+		}
+	]
+}

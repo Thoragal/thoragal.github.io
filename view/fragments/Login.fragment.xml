@@ -1,0 +1,21 @@
+<core:FragmentDefinition	xmlns="sap.m"
+							xmlns:core="sap.ui.core"
+							xmlns:f="sap.ui.layout.form">
+	<Dialog id="idDialogLogin" title="{i18n>LoginDialogTitle}">
+		<content>
+			<f:SimpleForm id="idSimpleFormLogin" editable="true" width="100%">
+				<Label id="idLabelLoginUsername" text="{i18n>LoginUsernameLabel}" labelFor="idInputLoginUsername"/>
+				<Input id="idInputLoginUsername" value="{localDataModelLogin>/username}" maxLength="100"/>
+
+				<Label id="idLabelLoginPassword" text="{i18n>LoginPasswordLabel}" labelFor="idInputLoginPassword"/>
+				<Input id="idInputLoginPassword" type="Password" value="{localDataModelLogin>/password}" maxLength="200" submit=".onPressLoginSubmit"/>
+			</f:SimpleForm>
+			<Text id="idTextLoginError" text="{i18n>LoginError}" visible="false" class="sapUiSmallMarginTop"/>
+		</content>
+		<Toolbar>
+			<Button id="idBtnLoginCancel" press=".onPressLoginDialogCancel" text="{i18n>txtBtnContactMeCancel}"/>
+			<ToolbarSpacer/>
+			<Button id="idBtnLoginSubmit" press=".onPressLoginSubmit" text="{i18n>LoginSubmit}" type="Emphasized"/>
+		</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>

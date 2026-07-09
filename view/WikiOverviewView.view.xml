@@ -1,0 +1,21 @@
+<mvc:View	controllerName="Homepage.Homepage.controller.WikiView"
+			xmlns:core="sap.ui.core" 
+			xmlns:mvc="sap.ui.core.mvc" 
+			xmlns="sap.m" 
+			xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<Page	id="idPageWikiOverview"
+			title="Title"
+			showHeader="false">
+		
+		<subHeader>
+			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Header" type="XML"/>
+		</subHeader>
+		
+		<content>
+			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.WikiOverview" type="XML"/>
+		</content>
+
+	</Page>
+
+</mvc:View>

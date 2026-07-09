@@ -1,0 +1,26 @@
+<mvc:View	controllerName="Homepage.Homepage.controller.AppView"
+			xmlns:mvc="sap.ui.core.mvc"
+			xmlns:f="sap.f"
+			xmlns="sap.m"
+			xmlns:core="sap.ui.core"
+			displayBlock="true"
+			height="100%">	
+			
+	<Shell	id="idAppShell"
+			backgroundImage="images/Home/StartPicture.jpg"
+			backgroundOpacity="0.165">
+		<App autoFocus="false">
+		    <Page	enableScrolling="false" 
+		    		title ="TitleApp"
+		    		showHeader="false">
+
+		    <!--	<core:Fragment fragmentName="Homepage.Homepage.view.Header" type="XML"/> -->
+		    	
+		    	<NavContainer	id="rootContainer" 
+		    					autoFocus="false">
+		    		<!-- will be added by the Router -->
+		    	</NavContainer>
+		    </Page>
+		</App>
+	</Shell>
+</mvc:View>

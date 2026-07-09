@@ -1,0 +1,143 @@
+<core:FragmentDefinition	xmlns="sap.m" 
+							xmlns:mvc="sap.ui.core.mvc"
+							xmlns:core="sap.ui.core"
+							displayBlock="true"
+							height="100%">
+
+	<IconTabBar	id="iconTabBar"
+				select=".onQuickFilter"
+				expandable="false">
+		<items>
+			<IconTabFilter
+				id="idFilterAll"
+				key="countAll"
+				showAll="true"
+				text="{i18n>TableFilterAll}"/>
+			<IconTabSeparator/>
+			<IconTabFilter
+				id="idFilterTable"
+				key="countTable"
+				icon="sap-icon://table-view"
+				text="{i18n>TableFilterTable}"/>
+			<IconTabFilter
+				id="idFilterTransaction"
+				key="countTransaction"
+				icon="sap-icon://paper-plane"
+				text="{i18n>TableFilterTransaction}"/>
+			<IconTabFilter
+				id="idFilterClass"
+				key="countClass"
+				icon="sap-icon://bullet-text"
+				text="{i18n>TableFilterClass}"/>
+			<IconTabFilter
+				id="idFilterFuba"
+				key="countFuba"
+				icon="sap-icon://border"
+				text="{i18n>TableFilterFuba}"/>
+			<IconTabFilter
+				id="idFilterProgram"
+				key="countProgram"
+				icon="sap-icon://command-line-interfaces"
+				text="{i18n>TableFilterProgram}"/>
+			<IconTabFilter
+				id="idFilterShortcut"
+				key="countShortcut"
+				icon="sap-icon://shortcut"
+				text="{i18n>TableFilterShortcut}"/>	
+		</items>
+
+	<content>
+		<Table	id="IdObjectTableDataList"
+				width="auto"
+				items="{AbapListModel>/ObjectData}"
+				updateFinished=".onUpdateFinished"
+    			itemPress=".onItemPress">
+				<headerToolbar>
+					<Toolbar>
+						<Title id="IdObjectTableHeader" text="{AbapListModel>/AbapListDataTitle}"/>
+						<ToolbarSpacer />
+						<SearchField
+							id="IdObjectTableFilter"
+							placeholder="{i18n>TableFilterCategory}"
+							search="onObjectTableFilter"
+							width="auto"/>
+						<SearchField
+							id="IdObjectTableValue"
+							placeholder="{i18n>TableFilterValue}"
+							search="onObjectTableFilterValue"
+							width="auto"/>
+						<SearchField
+							id="IdObjectTableSearchField"
+							placeholder="{i18n>TableFilterDescription}"
+							search=".onObjectTableSearch"
+							width="auto">
+						</SearchField>
+						<Button
+							id="idBtnAdminAdd"
+							icon="sap-icon://add"
+							text="{i18n>AdminBtnAdd}"
+							press=".onPressAdminAdd"
+							type="Emphasized"
+							visible="{adminModeModel>/isAdmin}"/>
+					</Toolbar>
+				</headerToolbar>
+
+				<columns>
+					<Column id="IdColumnNameType">
+						<Text
+							id="IdNameColumnTitle"
+							text="{i18n>TableColumnNameType}"/>
+					</Column>
+					<Column
+						id="IdNameColumnNameCategorie"
+						demandPopin="false">
+						<Text text="{i18n>TableColumnNameCategory}"/>
+					</Column>
+					<Column
+						id="IdColumnNameValue"
+						demandPopin="false">
+						<Text text="{i18n>TableColumnNameValue}"/>
+					</Column>
+					<Column
+						id="IdColumnNameDescription"
+						demandPopin="false">
+						<Text text="{i18n>TableColumnNameDescription}"/>
+					</Column>
+					<Column
+						id="IdColumnNameCopy"
+						demandPopin="false"
+						width="6em">
+						<Text text="{i18n>TableColumnNameCopy}"/>
+					</Column>
+					<Column
+						id="IdColumnAdminActions"
+						demandPopin="false"
+						width="8em"
+						visible="{adminModeModel>/isAdmin}">
+						<Text text="{i18n>AdminTableColumnActions}"/>
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem
+						type="Active">
+						<cells>
+							<ObjectIdentifier
+								title="{AbapListModel>type}"/>
+							<Text text = "{AbapListModel>category}"/>
+							<Text text = "{AbapListModel>value}"/>
+							<Text text = "{AbapListModel>description}"/>
+							<Button icon="sap-icon://copy" press="onCopy"/>
+							<HBox>
+								<Button icon="sap-icon://edit" press=".onPressAdminEdit" type="Transparent"/>
+								<Button icon="sap-icon://delete" press=".onPressAdminDelete" type="Transparent"/>
+							</HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			
+	</content>
+	</IconTabBar>
+			
+</core:FragmentDefinition>

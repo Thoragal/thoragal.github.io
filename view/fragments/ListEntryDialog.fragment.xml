@@ -1,0 +1,36 @@
+<core:FragmentDefinition	xmlns="sap.m"
+							xmlns:core="sap.ui.core"
+							xmlns:f="sap.ui.layout.form">
+	<Dialog id="idDialogListEntry" title="{i18n>ListEntryDialogTitle}">
+		<content>
+			<f:SimpleForm id="idSimpleFormListEntry" editable="true" width="100%">
+				<Label id="idLabelListEntryType" text="{i18n>ListEntryTypeLabel}" labelFor="idSelectListEntryType"/>
+				<Select id="idSelectListEntryType" items="{AdminLookupModel>/Types}" selectedKey="{localDataModelListEntry>/type_id}">
+					<core:Item key="{AdminLookupModel>id}" text="{AdminLookupModel>label}"/>
+				</Select>
+
+				<Label id="idLabelListEntryCategory" text="{i18n>ListEntryCategoryLabel}" labelFor="idSelectListEntryCategory"/>
+				<Select id="idSelectListEntryCategory" items="{AdminLookupModel>/Categories}" selectedKey="{localDataModelListEntry>/category_id}">
+					<core:Item key="{AdminLookupModel>id}" text="{AdminLookupModel>label}"/>
+				</Select>
+
+				<Label id="idLabelListEntryValue" text="{i18n>ListEntryValueLabel}" labelFor="idInputListEntryValue"/>
+				<Input id="idInputListEntryValue" value="{localDataModelListEntry>/value}" maxLength="200"/>
+
+				<Label id="idLabelListEntryDescriptionDe" text="{i18n>ListEntryDescriptionDeLabel}" labelFor="idTextAreaListEntryDescriptionDe"/>
+				<TextArea id="idTextAreaListEntryDescriptionDe" value="{localDataModelListEntry>/description_de}" maxLength="2000" rows="3" width="100%"/>
+
+				<Label id="idLabelListEntryDescriptionEn" text="{i18n>ListEntryDescriptionEnLabel}" labelFor="idTextAreaListEntryDescriptionEn"/>
+				<TextArea id="idTextAreaListEntryDescriptionEn" value="{localDataModelListEntry>/description_en}" maxLength="2000" rows="3" width="100%"/>
+
+				<Label id="idLabelListEntryDescriptionEs" text="{i18n>ListEntryDescriptionEsLabel}" labelFor="idTextAreaListEntryDescriptionEs"/>
+				<TextArea id="idTextAreaListEntryDescriptionEs" value="{localDataModelListEntry>/description_es}" maxLength="2000" rows="3" width="100%"/>
+			</f:SimpleForm>
+		</content>
+		<Toolbar>
+			<Button id="idBtnListEntryCancel" press=".onPressListEntryCancel" text="{i18n>txtBtnContactMeCancel}"/>
+			<ToolbarSpacer/>
+			<Button id="idBtnListEntrySave" press=".onPressListEntrySave" text="{i18n>ListEntrySave}" type="Emphasized"/>
+		</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>
