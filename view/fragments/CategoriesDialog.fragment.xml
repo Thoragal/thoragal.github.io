@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m"
+                          xmlns:core="sap.ui.core">
+	<Dialog id="idDialogCategories" title="{i18n>CategoriesDialogTitle}" contentWidth="30rem" contentHeight="25rem">
+		<content>
+			<Table id="idTableCategories" items="{CategoryManagerModel>/Categories}" noDataText="{i18n>CategoriesNoData}">
+				<headerToolbar>
+					<Toolbar>
+						<Title id="idTitleCategoriesTable" text="{i18n>CategoriesDialogTitle}"/>
+						<ToolbarSpacer/>
+						<Button id="idBtnCategoryAdd" icon="sap-icon://add" text="{i18n>CategoryBtnAdd}" press=".onPressCategoryAdd" type="Emphasized"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="idColumnCategoryLabel">
+						<Text text="{i18n>CategoryColumnLabel}"/>
+					</Column>
+					<Column id="idColumnCategoryActions" width="6em" hAlign="End">
+						<Text text="{i18n>AdminTableColumnActions}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{CategoryManagerModel>label_de}"/>
+							<HBox>
+								<Button icon="sap-icon://edit" press=".onPressCategoryEdit" type="Transparent"/>
+								<Button icon="sap-icon://delete" press=".onPressCategoryDelete" type="Transparent"/>
+							</HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="idBtnCategoriesClose" press=".onPressCategoriesClose" text="{i18n>txtBtnContactMeCancel}"/>
+			</Toolbar>
+		</footer>
+	</Dialog>
+</core:FragmentDefinition>

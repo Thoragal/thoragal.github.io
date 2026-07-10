@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m"
+                          xmlns:core="sap.ui.core"
+                          xmlns:f="sap.ui.layout.form">
+	<Dialog id="idDialogTypeEntry" title="{i18n>TypeEntryDialogTitle}">
+		<content>
+			<f:SimpleForm id="idSimpleFormTypeEntry" editable="true" width="100%">
+				<Label id="idLabelTypeEntryDe" text="{i18n>TypeEntryLabelDeLabel}" labelFor="idInputTypeEntryDe"/>
+				<Input id="idInputTypeEntryDe" value="{localDataModelTypeEntry>/label_de}" maxLength="200"/>
+
+				<Label id="idLabelTypeEntryEn" text="{i18n>TypeEntryLabelEnLabel}" labelFor="idInputTypeEntryEn"/>
+				<Input id="idInputTypeEntryEn" value="{localDataModelTypeEntry>/label_en}" maxLength="200"/>
+
+				<Label id="idLabelTypeEntryEs" text="{i18n>TypeEntryLabelEsLabel}" labelFor="idInputTypeEntryEs"/>
+				<Input id="idInputTypeEntryEs" value="{localDataModelTypeEntry>/label_es}" maxLength="200"/>
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button id="idBtnTypeEntryCancel" press=".onPressTypeEntryCancel" text="{i18n>txtBtnContactMeCancel}"/>
+				<ToolbarSpacer/>
+				<Button id="idBtnTypeEntrySave" press=".onPressTypeEntrySave" text="{i18n>ListEntrySave}" type="Emphasized"/>
+			</Toolbar>
+		</footer>
+	</Dialog>
+</core:FragmentDefinition>

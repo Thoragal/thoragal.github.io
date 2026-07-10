@@ -42,10 +42,12 @@
             			rows="15" />
 		</content>
 <!--Buttons-->
-		<Toolbar>
-			<Button id="idBtnContactMeCancel" press="onPressContactMeDialogCancel" text="{i18n>txtBtnContactMeCancel}"/>			
-			<ToolbarSpacer/>
-			<Button id="idBtnContactMeOk" press="onPressContactMeDialogOk" text="{i18n>txtBtnContactMeOk}"/>
-		</Toolbar>
+		<footer>
+			<Toolbar>
+				<Button id="idBtnContactMeCancel" press="onPressContactMeDialogCancel" text="{i18n>txtBtnContactMeCancel}"/>
+				<ToolbarSpacer/>
+				<Button id="idBtnContactMeOk" press="onPressContactMeDialogOk" text="{i18n>txtBtnContactMeOk}"/>
+			</Toolbar>
+		</footer>
 	</Dialog>
 </core:FragmentDefinition>

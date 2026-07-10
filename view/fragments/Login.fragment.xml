@@ -12,10 +12,12 @@
 			</f:SimpleForm>
 			<Text id="idTextLoginError" text="{i18n>LoginError}" visible="false" class="sapUiSmallMarginTop"/>
 		</content>
-		<Toolbar>
-			<Button id="idBtnLoginCancel" press=".onPressLoginDialogCancel" text="{i18n>txtBtnContactMeCancel}"/>
-			<ToolbarSpacer/>
-			<Button id="idBtnLoginSubmit" press=".onPressLoginSubmit" text="{i18n>LoginSubmit}" type="Emphasized"/>
-		</Toolbar>
+		<footer>
+			<Toolbar>
+				<Button id="idBtnLoginCancel" press=".onPressLoginDialogCancel" text="{i18n>txtBtnContactMeCancel}"/>
+				<ToolbarSpacer/>
+				<Button id="idBtnLoginSubmit" press=".onPressLoginSubmit" text="{i18n>LoginSubmit}" type="Emphasized"/>
+			</Toolbar>
+		</footer>
 	</Dialog>
 </core:FragmentDefinition>

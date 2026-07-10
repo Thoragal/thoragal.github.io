@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m"
+                          xmlns:core="sap.ui.core"
+                          xmlns:f="sap.ui.layout.form">
+	<Dialog id="idDialogCategoryEntry" title="{i18n>CategoryEntryDialogTitle}">
+		<content>
+			<f:SimpleForm id="idSimpleFormCategoryEntry" editable="true" width="100%">
+				<Label id="idLabelCategoryEntryDe" text="{i18n>CategoryEntryLabelDeLabel}" labelFor="idInputCategoryEntryDe"/>
+				<Input id="idInputCategoryEntryDe" value="{localDataModelCategoryEntry>/label_de}" maxLength="200"/>
+
+				<Label id="idLabelCategoryEntryEn" text="{i18n>CategoryEntryLabelEnLabel}" labelFor="idInputCategoryEntryEn"/>
+				<Input id="idInputCategoryEntryEn" value="{localDataModelCategoryEntry>/label_en}" maxLength="200"/>
+
+				<Label id="idLabelCategoryEntryEs" text="{i18n>CategoryEntryLabelEsLabel}" labelFor="idInputCategoryEntryEs"/>
+				<Input id="idInputCategoryEntryEs" value="{localDataModelCategoryEntry>/label_es}" maxLength="200"/>
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button id="idBtnCategoryEntryCancel" press=".onPressCategoryEntryCancel" text="{i18n>txtBtnContactMeCancel}"/>
+				<ToolbarSpacer/>
+				<Button id="idBtnCategoryEntrySave" press=".onPressCategoryEntrySave" text="{i18n>ListEntrySave}" type="Emphasized"/>
+			</Toolbar>
+		</footer>
+	</Dialog>
+</core:FragmentDefinition>
