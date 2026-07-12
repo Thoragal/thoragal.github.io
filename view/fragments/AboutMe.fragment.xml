@@ -185,6 +185,14 @@
 					<uxap:ObjectPageSubSection titleUppercase="false">
 						<VBox>
 							
+	<!--Form AI-->
+							<f:SimpleForm layout="ResponsiveGridLayout">
+								<Label text="{i18n>SectionAI}"/>
+								<VBox>
+									<Text text="{MeModel>/Knowledge/AI/ClaudeCode}"/>
+								</VBox>
+							</f:SimpleForm>
+
 	<!--Form ProgrammingLanguages-->
 							<f:SimpleForm layout="ResponsiveGridLayout">
 								<Label text="{i18n>SectionProgrammingLanguages}"/>

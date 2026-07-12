@@ -1,51 +1,40 @@
-<core:FragmentDefinition	xmlns="sap.m" 
-							xmlns:mvc="sap.ui.core.mvc"
-							xmlns:core="sap.ui.core"
-							xmlns:f="sap.ui.layout.form"
-							xmlns:uxap="sap.uxap"
-							xmlns:l="sap.ui.layout"
-							xmlns:tnt="sap.tnt"
-							xmlns:html="http://www.w3.org/1999/xhtml">
-	
-		<ObjectHeader	id="idObjectHeader"
-						binding="{WikiModel>/Wiki/0/}"
-						title="{WikiModel>title}">
-			<ObjectAttribute	title="{i18n>WikiId}" 
-								text="{WikiModel>id}" />
-			<ObjectAttribute	title="{i18n>WikiTags}" 
-								text="{WikiModel>tags/0/tag} {WikiModel>tags/1/tag} {WikiModel>tags/2/tag} {WikiModel>tags/3/tag} {WikiModel>tags/4/tag} {WikiModel>tags/5/tag}" 
-								visible="{ path: 'WikiModel>tags/0/tag', formatter: '.formatter.visible' }"/>
-			<ObjectAttribute	title="{i18n>WikiCreationDate}" 
-								text="{WikiModel>date}"/>
-		</ObjectHeader>
+<core:FragmentDefinition	xmlns="sap.m"
+							xmlns:core="sap.ui.core">
 
-<!-- CustomListItem -->
-	<List	id="idListWikiDetail"
-			mode="None"
-			items="{path: 'WikiModel>/Wiki/0/content/'}"
-			class="sapUiResponsiveContentPadding">
-		<CustomListItem>
-			<FlexBox>
-				<FormattedText	visible="{ path: 'WikiModel>text', formatter: '.formatter.visible' }"
-								htmlText="{WikiModel>text}"/>
-				</FlexBox>
-					<Image	visible="{ path: 'WikiModel>image/src', formatter: '.formatter.visible' }"
-							src="{WikiModel>image/src}">
-						<detailBox>
-							<LightBox>
-								<LightBoxItem	imageSrc="{WikiModel>image/src}"
-												title="{WikiModel>image/description}"/>
-								</LightBox>
-						</detailBox>
-						<layoutData>
-							<FlexItemData	growFactor="1" 
-											shrinkFactor="0" />
-						</layoutData>
-					</Image>
-					<FormattedText	visible="{ path: 'WikiModel>image/description', formatter: '.formatter.visible' }"
-									htmlText ="{WikiModel>image/description}"
-									class="sapUiSmallMarginBottom"/>
-		</CustomListItem>
-	</List>
+	<Toolbar id="idToolbarWikiDetailAdmin" visible="{adminModeModel>/isAdmin}">
+		<ToolbarSpacer/>
+		<Button	id="idBtnWikiDetailAdd"
+				icon="sap-icon://add"
+				tooltip="{i18n>WikiNewEntry}"
+				type="Transparent"
+				press=".onWikiEntryAdd"/>
+		<Button id="idBtnWikiDetailEdit" icon="sap-icon://edit" press=".onWikiDetailEntryEdit" type="Transparent"/>
+		<Button id="idBtnWikiDetailDelete" icon="sap-icon://delete" press=".onWikiDetailEntryDelete" type="Transparent"/>
+	</Toolbar>
+
+	<ObjectHeader	id="idObjectHeader"
+					title="{WikiModel>title}">
+		<ObjectAttribute	title="{i18n>WikiId}"
+							text="{WikiModel>id}"/>
+		<ObjectAttribute	title="{i18n>WikiTags}"
+							text="{ path: 'WikiModel>tags', formatter: '.formatter.joinTags' }"
+							visible="{ path: 'WikiModel>tags', formatter: '.formatter.hasItems' }"/>
+		<ObjectAttribute	title="{i18n>WikiCreationDate}"
+							text="{ path: 'WikiModel>date', formatter: '.formatter.date' }"/>
+		<ObjectAttribute	title="{i18n>WikiEntryPrivateLabel}"
+							text="{i18n>WikiPrivateNo}"
+							visible="{= ${adminModeModel>/isAdmin} &amp;&amp; !${WikiModel>is_private} }"/>
+		<ObjectAttribute	title="{i18n>WikiEntryPrivateLabel}"
+							visible="{= ${adminModeModel>/isAdmin} &amp;&amp; !!${WikiModel>is_private} }">
+			<customContent>
+				<Link	text="{i18n>WikiPrivateYes}"
+						endIcon="sap-icon://locked"
+						class="wikiPrivateAttribute"/>
+			</customContent>
+		</ObjectAttribute>
+	</ObjectHeader>
+
+	<VBox	id="idBlocksWikiDetail"
+			class="sapUiResponsiveContentPadding"/>
 
 </core:FragmentDefinition>

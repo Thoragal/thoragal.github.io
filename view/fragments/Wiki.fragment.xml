@@ -1,77 +1,39 @@
-<core:FragmentDefinition	xmlns="sap.m" 
-							xmlns:mvc="sap.ui.core.mvc"
-							xmlns:core="sap.ui.core"
-							xmlns:f="sap.ui.layout.form"
-							xmlns:uxap="sap.uxap"
-							xmlns:l="sap.ui.layout"
-							xmlns:html="http://www.w3.org/1999/xhtml">
+<core:FragmentDefinition	xmlns="sap.m"
+							xmlns:core="sap.ui.core">
 
-<!-- CustomListItem -->
-	<List	mode="None"
-			items="{path: 'WikiModel>/Wiki'}" >
-		<CustomListItem >
-						
-<!-- Content Header Information -->		
-			<HBox>
+	<VBox>
+		<Toolbar visible="{adminModeModel>/isAdmin}">
+			<ToolbarSpacer/>
+			<Button	icon="sap-icon://add"
+					tooltip="{i18n>WikiNewEntry}"
+					type="Transparent"
+					press=".onWikiEntryAdd"/>
+		</Toolbar>
 
-				<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
-					
-					<Link	text="{WikiModel>title}" 
-							press="onPressRow"/>
-	
-<!-- Content 0 -->
-					<FlexBox>
-						<FormattedText	visible="{ path: 'WikiModel>content/0/text', formatter: '.formatter.visible' }"
-										htmlText="{WikiModel>content/0/text}"/>
-					</FlexBox>
-					<Image	visible="{ path: 'WikiModel>content/0/image/src', formatter: '.formatter.visible' }"
-							src="{WikiModel>content/0/image/src}">
-						<detailBox>
-							<LightBox>
-								<LightBoxItem
-									imageSrc="{WikiModel>content/0/image/src}"
-									title="{WikiModel>content/0/image/description}"/>
-								</LightBox>
-							</detailBox>
-						<layoutData>
-							<FlexItemData growFactor="1" shrinkFactor="0" />
-						</layoutData>
-					</Image>
-					<FormattedText	visible="{ path: 'WikiModel>content/0/image/description', formatter: '.formatter.visible' }"
-									htmlText ="{WikiModel>content/0/image/description}"
-									class="sapUiSmallMarginBottom"/>
-					
-<!-- Content 1 -->
-					<FlexBox>
-						<FormattedText	visible="{ path: 'WikiModel>content/1/text', formatter: '.formatter.visible' }"
-										htmlText="{WikiModel>content/1/text}"/>
-					</FlexBox>
-					<Image  visible="{ path: 'WikiModel>content/1/image/src', formatter: '.formatter.visible' }"
-							src="{WikiModel>content/1/image/src}">
-						<detailBox>
-							<LightBox>
-								<LightBoxItem
-									imageSrc="{WikiModel>content/1/image/src}"
-									title="{WikiModel>content/1/image/description}"/>
-								</LightBox>
-							</detailBox>
-						<layoutData>
-							<FlexItemData growFactor="1" shrinkFactor="0" />
-						</layoutData>
-					</Image>
-					<FormattedText	visible="{ path: 'WikiModel>content/1/image/description', formatter: '.formatter.visible' }"
-									htmlText="{WikiModel>content/1/image/description}"
-									class="sapUiSmallMarginBottom"/>
-					
+		<List	mode="None"
+				items="{WikiModel>/Wiki}">
+			<CustomListItem>
+				<VBox class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom">
+					<HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+						<Link	text="{WikiModel>title}"
+								press="onPressRow"
+								class="wikiEntryTitle"/>
+						<HBox visible="{adminModeModel>/isAdmin}" alignItems="Center">
+							<core:Icon	src="sap-icon://locked"
+										class="sapUiTinyMarginEnd wikiPrivateIndicator"
+										visible="{= ${WikiModel>is_private} }"/>
+							<Button icon="sap-icon://edit" press=".onWikiEntryEdit" type="Transparent"/>
+							<Button icon="sap-icon://delete" press=".onWikiEntryDelete" type="Transparent"/>
+						</HBox>
+					</HBox>
+					<VBox items="{ path: 'WikiModel>blocks', factory: '.createWikiBlock', length: 8 }"/>
+					<Link	text="{i18n>ShowMore}"
+							press="onPressRow"
+							visible="{= ${WikiModel>blocks}.length &gt; 8 }"
+							class="sapUiTinyMarginTop"/>
 				</VBox>
-			</HBox>
-
-<!-- Content 2++ -->			
-			<Link	class="sapUiSmallMargin"
-					text="{i18n>ShowMore}"
-					visible="{ path: 'WikiModel>content/2/', formatter: '.formatter.visible' }"
-					press="onPressRow"></Link>
-		</CustomListItem>
-	</List>
+			</CustomListItem>
+		</List>
+	</VBox>
 
 </core:FragmentDefinition>

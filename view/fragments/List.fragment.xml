@@ -47,6 +47,14 @@
 		</items>
 
 	<content>
+		<MessageStrip
+			id="idObjectlistLoadError"
+			text="{i18n>ObjectlistLoadError}"
+			type="Error"
+			showIcon="true"
+			showCloseButton="false"
+			class="sapUiSmallMargin"
+			visible="{AbapListModel>/loadError}"/>
 		<Table	id="IdObjectTableDataList"
 				width="auto"
 				items="{AbapListModel>/ObjectData}"
@@ -75,9 +83,9 @@
 						<Button
 							id="idBtnAdminAdd"
 							icon="sap-icon://add"
-							text="{i18n>AdminBtnAdd}"
+							tooltip="{i18n>AdminBtnAdd}"
 							press=".onPressAdminAdd"
-							type="Emphasized"
+							type="Transparent"
 							visible="{adminModeModel>/isAdmin}"/>
 					</Toolbar>
 				</headerToolbar>

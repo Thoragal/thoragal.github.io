@@ -42,8 +42,11 @@ sap.ui.define([
 			var oTable = this.byId("IdObjectTableDataList");
 			this._oTable = oTable;
 
-			// initialize the model, data is loaded asynchronously from the backend
-			var oModel = new JSONModel();
+			// initialize the model, data is loaded asynchronously from the backend.
+			// loadError starts false explicitly -- otherwise the "visible" binding
+			// reads undefined before the first fetch resolves, which the control
+			// renders as its default (true), flashing the error strip on every load.
+			var oModel = new JSONModel({ loadError: false });
 			oModel.AbapListDataTitle = this.getResourceBundle().getText("AbapListDataTitle");
 
 			// Remove limitation of 100 rows
@@ -107,9 +110,11 @@ sap.ui.define([
 				.then(function (oData) {
 					oData.AbapListDataTitle = oModel.AbapListDataTitle;
 					oModel.setData(oData);
+					oModel.setProperty("/loadError", false);
 				})
 				.catch(function (oError) {
 					console.error("Objectlist could not be loaded", oError);
+					oModel.setProperty("/loadError", true);
 				});
 		},
 
@@ -253,29 +258,25 @@ sap.ui.define([
 			oTable.getBinding("items").filter(aTableSearchState, "Application");
 		},
 
+		// Counts entries per type_key directly from the model data instead of
+		// repeatedly re-filtering the visible table binding. The old approach
+		// mutated the live binding as a side effect and left it reset to "all",
+		// so after onRefresh the table diverged from the still-selected quick-
+		// filter tab. Counting from the data leaves the user's filter untouched.
 		_setFilterCountValues: function(){
-			var oBinding = this._oTable.getBinding("items");
+			var aData = (this.getModel("AbapListModel").getData().ObjectData) || [];
+			var mCountByKey = {};
+			aData.forEach(function (oRow) {
+				mCountByKey[oRow.type_key] = (mCountByKey[oRow.type_key] || 0) + 1;
+			});
 
-			oBinding.filter(this._mFilters.countTable);
-			this.getView().byId("idFilterTable").setCount(oBinding.iLength);
-
-			oBinding.filter(this._mFilters.countTransaction);
-			this.getView().byId("idFilterTransaction").setCount(oBinding.iLength);
-
-			oBinding.filter(this._mFilters.countClass);
-			this.getView().byId("idFilterClass").setCount(oBinding.iLength);
-
-			oBinding.filter(this._mFilters.countFuba);
-			this.getView().byId("idFilterFuba").setCount(oBinding.iLength);
-
-			oBinding.filter(this._mFilters.countProgram);
-			this.getView().byId("idFilterProgram").setCount(oBinding.iLength);
-
-			oBinding.filter(this._mFilters.countShortcut);
-			this.getView().byId("idFilterShortcut").setCount(oBinding.iLength);
-
-			oBinding.filter(this._mFilters.countAll);
-			this.getView().byId("idFilterAll").setCount(oBinding.iLength);
+			this.getView().byId("idFilterAll").setCount(aData.length);
+			this.getView().byId("idFilterTable").setCount(mCountByKey.table || 0);
+			this.getView().byId("idFilterTransaction").setCount(mCountByKey.transaction || 0);
+			this.getView().byId("idFilterClass").setCount(mCountByKey.class || 0);
+			this.getView().byId("idFilterFuba").setCount(mCountByKey.function_module || 0);
+			this.getView().byId("idFilterProgram").setCount(mCountByKey.program || 0);
+			this.getView().byId("idFilterShortcut").setCount(mCountByKey.shortcut || 0);
 		},
 
 		// Loads the type/category dropdown options for the Add/Edit dialog,
@@ -362,34 +363,14 @@ sap.ui.define([
 		},
 
 		_openListEntryDialog: function () {
-			var oComponent = this.getOwnerComponent();
-			if (!oComponent.ListEntryDialog) {
-				oComponent.ListEntryDialog = sap.ui.core.Fragment.load({
-					id: oComponent.createId("idFragListEntryDialog"),
-					name: "Homepage.Homepage.view.fragments.ListEntryDialog",
-					controller: this
-				}).then(function (oDialog) {
-					oComponent.ListEntryDialog = oDialog;
-					this.getView().addDependent(oDialog);
-					oDialog.open();
-					return oDialog;
-				}.bind(this));
-			} else {
-				Promise.resolve(oComponent.ListEntryDialog).then(function (oDialog) {
-					oDialog.open();
-				});
-			}
+			return this._openDialog("ListEntryDialog", "idFragListEntryDialog", "Homepage.Homepage.view.fragments.ListEntryDialog");
 		},
 
 		onPressListEntryCancel: function () {
-			var oComponent = this.getOwnerComponent();
-			Promise.resolve(oComponent.ListEntryDialog).then(function (oDialog) {
-				oDialog.close();
-			});
+			this._closeDialog("ListEntryDialog");
 		},
 
 		onPressListEntrySave: function () {
-			var oComponent = this.getOwnerComponent();
 			var oEntryData = this.getView().getModel("localDataModelListEntry").getData();
 			var bIsUpdate = !!oEntryData.id;
 			var sUrl = config.SERVICE_URL + "/objectlist" + (bIsUpdate ? "/" + oEntryData.id : "");
@@ -414,9 +395,7 @@ sap.ui.define([
 				if (!oResponse.ok) {
 					throw new Error("Request failed with status " + oResponse.status);
 				}
-				Promise.resolve(oComponent.ListEntryDialog).then(function (oDialog) {
-					oDialog.close();
-				});
+				this._closeDialog("ListEntryDialog");
 				this.onRefresh();
 			}.bind(this)).catch(function (oError) {
 				console.error("Object entry could not be saved", oError);
@@ -459,30 +438,11 @@ sap.ui.define([
 		},
 
 		_openCategoriesDialog: function () {
-			var oComponent = this.getOwnerComponent();
-			if (!oComponent.CategoriesDialog) {
-				oComponent.CategoriesDialog = sap.ui.core.Fragment.load({
-					id: oComponent.createId("idFragCategoriesDialog"),
-					name: "Homepage.Homepage.view.fragments.CategoriesDialog",
-					controller: this
-				}).then(function (oDialog) {
-					oComponent.CategoriesDialog = oDialog;
-					this.getView().addDependent(oDialog);
-					oDialog.open();
-					return oDialog;
-				}.bind(this));
-			} else {
-				Promise.resolve(oComponent.CategoriesDialog).then(function (oDialog) {
-					oDialog.open();
-				});
-			}
+			return this._openDialog("CategoriesDialog", "idFragCategoriesDialog", "Homepage.Homepage.view.fragments.CategoriesDialog");
 		},
 
 		onPressCategoriesClose: function () {
-			var oComponent = this.getOwnerComponent();
-			Promise.resolve(oComponent.CategoriesDialog).then(function (oDialog) {
-				oDialog.close();
-			});
+			this._closeDialog("CategoriesDialog");
 		},
 
 		_loadCategoriesForManage: function () {
@@ -519,34 +479,14 @@ sap.ui.define([
 		},
 
 		_openCategoryEntryDialog: function () {
-			var oComponent = this.getOwnerComponent();
-			if (!oComponent.CategoryEntryDialog) {
-				oComponent.CategoryEntryDialog = sap.ui.core.Fragment.load({
-					id: oComponent.createId("idFragCategoryEntryDialog"),
-					name: "Homepage.Homepage.view.fragments.CategoryEntryDialog",
-					controller: this
-				}).then(function (oDialog) {
-					oComponent.CategoryEntryDialog = oDialog;
-					this.getView().addDependent(oDialog);
-					oDialog.open();
-					return oDialog;
-				}.bind(this));
-			} else {
-				Promise.resolve(oComponent.CategoryEntryDialog).then(function (oDialog) {
-					oDialog.open();
-				});
-			}
+			return this._openDialog("CategoryEntryDialog", "idFragCategoryEntryDialog", "Homepage.Homepage.view.fragments.CategoryEntryDialog");
 		},
 
 		onPressCategoryEntryCancel: function () {
-			var oComponent = this.getOwnerComponent();
-			Promise.resolve(oComponent.CategoryEntryDialog).then(function (oDialog) {
-				oDialog.close();
-			});
+			this._closeDialog("CategoryEntryDialog");
 		},
 
 		onPressCategoryEntrySave: function () {
-			var oComponent = this.getOwnerComponent();
 			var oResourceBundle = this.getResourceBundle();
 			var oEntryData = this.getView().getModel("localDataModelCategoryEntry").getData();
 			var bIsUpdate = !!oEntryData.id;
@@ -574,9 +514,7 @@ sap.ui.define([
 				if (!oResponse.ok) {
 					throw new Error("Request failed with status " + oResponse.status);
 				}
-				Promise.resolve(oComponent.CategoryEntryDialog).then(function (oDialog) {
-					oDialog.close();
-				});
+				this._closeDialog("CategoryEntryDialog");
 				this._reloadLookups();
 				this._loadCategoriesForManage();
 				this.onRefresh();
@@ -636,30 +574,11 @@ sap.ui.define([
 		},
 
 		_openTypesDialog: function () {
-			var oComponent = this.getOwnerComponent();
-			if (!oComponent.TypesDialog) {
-				oComponent.TypesDialog = sap.ui.core.Fragment.load({
-					id: oComponent.createId("idFragTypesDialog"),
-					name: "Homepage.Homepage.view.fragments.TypesDialog",
-					controller: this
-				}).then(function (oDialog) {
-					oComponent.TypesDialog = oDialog;
-					this.getView().addDependent(oDialog);
-					oDialog.open();
-					return oDialog;
-				}.bind(this));
-			} else {
-				Promise.resolve(oComponent.TypesDialog).then(function (oDialog) {
-					oDialog.open();
-				});
-			}
+			return this._openDialog("TypesDialog", "idFragTypesDialog", "Homepage.Homepage.view.fragments.TypesDialog");
 		},
 
 		onPressTypesClose: function () {
-			var oComponent = this.getOwnerComponent();
-			Promise.resolve(oComponent.TypesDialog).then(function (oDialog) {
-				oDialog.close();
-			});
+			this._closeDialog("TypesDialog");
 		},
 
 		_loadTypesForManage: function () {
@@ -696,34 +615,14 @@ sap.ui.define([
 		},
 
 		_openTypeEntryDialog: function () {
-			var oComponent = this.getOwnerComponent();
-			if (!oComponent.TypeEntryDialog) {
-				oComponent.TypeEntryDialog = sap.ui.core.Fragment.load({
-					id: oComponent.createId("idFragTypeEntryDialog"),
-					name: "Homepage.Homepage.view.fragments.TypeEntryDialog",
-					controller: this
-				}).then(function (oDialog) {
-					oComponent.TypeEntryDialog = oDialog;
-					this.getView().addDependent(oDialog);
-					oDialog.open();
-					return oDialog;
-				}.bind(this));
-			} else {
-				Promise.resolve(oComponent.TypeEntryDialog).then(function (oDialog) {
-					oDialog.open();
-				});
-			}
+			return this._openDialog("TypeEntryDialog", "idFragTypeEntryDialog", "Homepage.Homepage.view.fragments.TypeEntryDialog");
 		},
 
 		onPressTypeEntryCancel: function () {
-			var oComponent = this.getOwnerComponent();
-			Promise.resolve(oComponent.TypeEntryDialog).then(function (oDialog) {
-				oDialog.close();
-			});
+			this._closeDialog("TypeEntryDialog");
 		},
 
 		onPressTypeEntrySave: function () {
-			var oComponent = this.getOwnerComponent();
 			var oResourceBundle = this.getResourceBundle();
 			var oEntryData = this.getView().getModel("localDataModelTypeEntry").getData();
 			var bIsUpdate = !!oEntryData.id;
@@ -751,9 +650,7 @@ sap.ui.define([
 				if (!oResponse.ok) {
 					throw new Error("Request failed with status " + oResponse.status);
 				}
-				Promise.resolve(oComponent.TypeEntryDialog).then(function (oDialog) {
-					oDialog.close();
-				});
+				this._closeDialog("TypeEntryDialog");
 				this._reloadLookups();
 				this._loadTypesForManage();
 				this.onRefresh();

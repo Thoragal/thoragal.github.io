@@ -7,7 +7,7 @@
 					<Toolbar>
 						<Title id="idTitleCategoriesTable" text="{i18n>CategoriesDialogTitle}"/>
 						<ToolbarSpacer/>
-						<Button id="idBtnCategoryAdd" icon="sap-icon://add" text="{i18n>CategoryBtnAdd}" press=".onPressCategoryAdd" type="Emphasized"/>
+						<Button id="idBtnCategoryAdd" icon="sap-icon://add" tooltip="{i18n>CategoryBtnAdd}" press=".onPressCategoryAdd" type="Transparent"/>
 					</Toolbar>
 				</headerToolbar>
 				<columns>
@@ -33,8 +33,8 @@
 		</content>
 		<footer>
 			<Toolbar>
-				<ToolbarSpacer/>
 				<Button id="idBtnCategoriesClose" press=".onPressCategoriesClose" text="{i18n>txtBtnContactMeCancel}"/>
+				<ToolbarSpacer/>
 			</Toolbar>
 		</footer>
 	</Dialog>

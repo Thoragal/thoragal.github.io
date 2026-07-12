@@ -1,1 +1,73 @@
 /* Enter your custom styles here */
+
+/* Wiki block rendering (Markdown + highlighted code + images) */
+.wikiEntryTitle {
+	font-weight: bold;
+}
+.wikiBlock {
+	margin: 0.25rem 0 0.75rem 0;
+}
+.wikiText p {
+	margin: 0.4rem 0;
+}
+.wikiText ul,
+.wikiText ol {
+	margin: 0.4rem 0;
+	padding-left: 1.5rem;
+}
+.wikiCaption {
+	color: #6a6d70;
+	font-size: 0.875rem;
+	margin-top: 0.25rem;
+}
+.wikiCodePre {
+	margin: 0;
+	padding: 0.75rem 1rem;
+	overflow-x: auto;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	background: #f6f8fa;
+}
+.wikiCodePre code {
+	font-family: "Courier New", Consolas, monospace;
+	font-size: 0.85rem;
+	white-space: pre;
+	background: transparent;
+	padding: 0;
+}
+.wikiBlock img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Same blue as the row-level edit/delete icon buttons (--sapButton_IconColor),
+   so the private-entry indicator matches the admin action icons next to it. */
+.wikiPrivateIndicator {
+	color: var(--sapButton_IconColor);
+}
+
+/* WikiDetail's "Private" attribute uses a disabled sap.m.Link as customContent
+   (ObjectAttribute only allows sap.m.Link/sap.m.Text there) so the lock icon
+   can sit right next to the Ja/Nein text. Undo the disabled-link's own blue
+   styling on the text so it reads like the other plain-text attribute rows;
+   the endIcon still gets the button-icon blue. */
+.wikiPrivateAttribute.sapMLnk,
+.wikiPrivateAttribute .sapMLnkText {
+	color: var(--sapContent_LabelColor) !important;
+	text-decoration: none !important;
+	cursor: default !important;
+}
+.wikiPrivateAttribute .sapMLnkEndIcon {
+	color: var(--sapButton_IconColor) !important;
+	margin-left: 0.25rem !important;
+}
+
+/* Wiki editor */
+.wikiCodeEditor .sapMTextAreaInner {
+	font-family: "Courier New", Consolas, monospace;
+	font-size: 0.85rem;
+}
+.wikiEditorPreview {
+	max-width: 320px;
+	height: auto;
+}

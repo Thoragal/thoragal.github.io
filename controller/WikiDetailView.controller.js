@@ -1,128 +1,106 @@
 sap.ui.define([
 	"./BaseController",
-	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageToast"
-
-], function (BaseController, JSONModel, MessageToast) {
+], function (BaseController, MessageToast) {
 	"use strict";
 
 	return BaseController.extend("Homepage.Homepage.controller.WikiDetailView", {
 
 		onInit: function () {
 			this.getView().byId("idPageWikiDetail").setBusy(true);
-
 			this.getView().byId("idButtonNavToWiki").setType("Emphasized");
 
-			//Set Model
-			var sPath = sap.ui.require.toUrl("Homepage/Homepage/model/WikiData.json");
-			var oModel = new JSONModel(sPath);
-			this.getView().setModel(oModel, "WikiModel");
+			// Load the wiki once; the pattern-matched handler waits for it.
+			this._pWikiLoaded = this._loadWikiModel();
+			this._initWikiEntryDraftModel();
 
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("WikiDetailView").attachPatternMatched(this._onObjectMatched, this);
+			this.getOwnerComponent().getRouter()
+				.getRoute("WikiDetailView").attachPatternMatched(this._onObjectMatched, this);
 
-			this.getView().byId("idPageWikiDetail").setBusy(false);
 			this._setVisibilityContactMeHeaderButton();
+
+			this._pWikiLoaded.then(function () {
+				this.getView().byId("idPageWikiDetail").setBusy(false);
+			}.bind(this));
 		},
 
-		onNavToWikiDetailNext: function(oEvent){
-			var iNewIndexProposal = this._getIndexWithId(this.sWindowId) + 1;
-			var iNewIndexConfirmed = this._getConfirmedIndex(iNewIndexProposal);
-			var sNewId = this._getIdWithIndex(iNewIndexConfirmed);
-
-			var oData = {
-				Id: sNewId
-			};
-
-			this.getRouter().navTo("WikiDetailView", oData);
+		onNavToWikiDetailNext: function () {
+			var iNext = this._getConfirmedIndex(this._getIndexWithId(this.sWindowId) + 1);
+			this.getRouter().navTo("WikiDetailView", { Id: this._getIdWithIndex(iNext) });
 		},
 
-		onNavToWikiDetailPrevious: function(oEvent){
-			var iNewIndexProposal = this._getIndexWithId(this.sWindowId) - 1;
-			var iNewIndexConfirmed = this._getConfirmedIndex(iNewIndexProposal);
-			var sNewId = this._getIdWithIndex(iNewIndexConfirmed);
-
-			var oData = {
-				Id: sNewId
-			};
-
-			this.getRouter().navTo("WikiDetailView", oData);
+		onNavToWikiDetailPrevious: function () {
+			var iPrev = this._getConfirmedIndex(this._getIndexWithId(this.sWindowId) - 1);
+			this.getRouter().navTo("WikiDetailView", { Id: this._getIdWithIndex(iPrev) });
 		},
 
-		_bindWikiDetail: function(iIndex){
-			//Element Binding
-			var oObjectHeader = this.byId("idObjectHeader");
-			oObjectHeader.bindElement("WikiModel>/Wiki/" + iIndex + "/");
-
-			//Aggregation Binding
-			var oListWikiDetail = this.byId("idListWikiDetail");
-			var oTemplate = oListWikiDetail.getBindingInfo("items").template;
-			oListWikiDetail.bindAggregation("items", "WikiModel>/Wiki/" + iIndex + "/content/", oTemplate);
+		_getWikiData: function () {
+			return this.getView().getModel("WikiModel").getProperty("/Wiki") || [];
 		},
 
-		_getIndexWithId: function(sId){
-			var oModel = this.getView().getModel("WikiModel");
-			var sPath = sap.ui.require.toUrl("Homepage/Homepage/model/WikiData.json");
-			oModel.loadData(sPath, "", false);
-
-			var tWikidata = oModel.getProperty("/Wiki");
-			for(var i = 0; i < tWikidata.length; i++) {
-				var sWikidata = tWikidata[i];
-				if (sWikidata.id === sId){
-					break;
+		_getIndexWithId: function (sId) {
+			var aWiki = this._getWikiData();
+			for (var i = 0; i < aWiki.length; i++) {
+				if (String(aWiki[i].id) === String(sId)) {
+					return i;
 				}
 			}
-			return i;
+			return 0;
 		},
 
-		_getIdWithIndex: function(iIndex){
-			var oModel = this.getView().getModel("WikiModel");
-			var sPath = sap.ui.require.toUrl("Homepage/Homepage/model/WikiData.json");
-			oModel.loadData(sPath, "", false);
+		_getIdWithIndex: function (iIndex) {
+			var aWiki = this._getWikiData();
+			return aWiki.length ? aWiki[iIndex].id : null;
+		},
 
-			var tWikidata = oModel.getProperty("/Wiki");
-			var sWikidata = tWikidata[iIndex];
-			return sWikidata.id;
+		// Wraps the index around and toasts when jumping past either end.
+		_getConfirmedIndex: function (iIndex) {
+			var aWiki = this._getWikiData();
+			if (aWiki.length === 0) {
+				return 0;
+			}
+			if (iIndex < 0) {
+				MessageToast.show(this.getResourceBundle().getText("WikiDetailLoadLast"));
+				return aWiki.length - 1;
+			}
+			if (iIndex > aWiki.length - 1) {
+				MessageToast.show(this.getResourceBundle().getText("WikiDetailLoadFirst"));
+				return 0;
+			}
+			return iIndex;
+		},
+
+		_bindWikiDetail: function (iIndex) {
+			this.byId("idObjectHeader").bindElement("WikiModel>/Wiki/" + iIndex + "/");
+			this.byId("idBlocksWikiDetail").bindAggregation("items", {
+				path: "WikiModel>/Wiki/" + iIndex + "/blocks",
+				factory: this.createWikiBlock.bind(this)
+			});
 		},
 
 		_onObjectMatched: function (oEvent) {
 			this.sWindowId = window.decodeURIComponent(oEvent.getParameter("arguments").Id);
-			var iIndex = this._getIndexWithId(this.sWindowId);
-			this.iWikiDetailIndex = iIndex;
-
-			this._bindWikiDetail(iIndex);
+			this._pWikiLoaded.then(function () {
+				this._bindWikiDetail(this._getIndexWithId(this.sWindowId));
+			}.bind(this));
 		},
 
-		_getConfirmedIndex: function(iIndex){
-			var oModel = this.getView().getModel("WikiModel");
-			var sPath = sap.ui.require.toUrl("Homepage/Homepage/model/WikiData.json");
+		// The entry being viewed no longer exists after a delete -- go back
+		// to the wiki list rather than showing a stale/empty detail page.
+		_onWikiEntryDeleted: function () {
+			this.getRouter().navTo("WikiView");
+		},
 
-			oModel.loadData(sPath, "", false);
-
-			var tWikidata = oModel.getProperty("/Wiki");
-
-			var sMessage;
-			var iConfirmedIndex;
-
-			if (iIndex < 0) {
-				iConfirmedIndex = (tWikidata.length - 1);
-
-				sMessage = this.getResourceBundle().getText("WikiDetailLoadLast");
-				MessageToast.show(sMessage);
-
-				}
-			else if (iIndex > (tWikidata.length - 1)) {
-			 	iConfirmedIndex = 0;
-
-				sMessage = this.getResourceBundle().getText("WikiDetailLoadFirst");
-				MessageToast.show(sMessage);
-
+		// A reload (e.g. triggered by logging in/out while already viewing
+		// the wiki) can shift positions in the index-bound WikiModel array
+		// -- most notably, private entries appearing/disappearing changes
+		// how many entries sort before the one being viewed. Re-anchor to
+		// the same entry id. Guarded on sWindowId being set already, since
+		// the initial onInit load happens before the route match runs.
+		_onWikiModelReloaded: function () {
+			if (this.sWindowId) {
+				this._bindWikiDetail(this._getIndexWithId(this.sWindowId));
 			}
-			else {
-				iConfirmedIndex = iIndex;
-			}
-
-			return iConfirmedIndex;
 		}
 
 	});

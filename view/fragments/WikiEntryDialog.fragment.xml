@@ -1,0 +1,83 @@
+<core:FragmentDefinition	xmlns="sap.m"
+							xmlns:core="sap.ui.core"
+							xmlns:u="sap.ui.unified"
+							xmlns:ce="sap.ui.codeeditor"
+							xmlns:f="sap.ui.layout.form">
+	<Dialog id="idDialogWikiEntry" title="{i18n>WikiEntryDialogTitle}" stretch="true">
+		<content>
+			<f:SimpleForm id="idFormWikiEntry" editable="true" layout="ResponsiveGridLayout" class="sapUiSmallMarginTop">
+				<Label text="{i18n>WikiEntryTitleLabel}"/>
+				<Input value="{wikiEntryDraft>/title}" maxLength="500"/>
+
+				<Label text="{i18n>WikiEntryDateLabel}"/>
+				<DatePicker value="{wikiEntryDraft>/entry_date}" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy"/>
+
+				<Label text="{i18n>WikiEntryTagsLabel}"/>
+				<Input value="{wikiEntryDraft>/tagsText}" placeholder="ABAP, UI5"/>
+
+				<Label text="{i18n>WikiEntryPrivateLabel}"/>
+				<HBox alignItems="Center">
+					<CheckBox selected="{wikiEntryDraft>/is_private}"/>
+					<core:Icon	src="sap-icon://locked"
+								class="sapUiTinyMarginBegin wikiPrivateIndicator"
+								visible="{wikiEntryDraft>/is_private}"/>
+				</HBox>
+			</f:SimpleForm>
+
+			<Toolbar class="sapUiSmallMarginBegin">
+				<Title text="{i18n>WikiEntryBlocksTitle}"/>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://add" text="{i18n>WikiBlockAddText}" press=".onWikiAddTextBlock"/>
+				<Button icon="sap-icon://add" text="{i18n>WikiBlockAddHtml}" press=".onWikiAddHtmlBlock"/>
+				<Button icon="sap-icon://add" text="{i18n>WikiBlockAddCode}" press=".onWikiAddCodeBlock"/>
+				<Button icon="sap-icon://add" text="{i18n>WikiBlockAddImage}" press=".onWikiAddImageBlock"/>
+			</Toolbar>
+
+			<VBox id="idWikiBlocksEditor" class="sapUiSmallMarginBeginEnd" items="{wikiEntryDraft>/blocks}">
+				<Panel class="sapUiTinyMarginBottom">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Label text="{i18n>WikiBlockTypeText}" visible="{= ${wikiEntryDraft>type} === 'text' }"/>
+							<Label text="{i18n>WikiBlockTypeCode}" visible="{= ${wikiEntryDraft>type} === 'code' }"/>
+							<Label text="{i18n>WikiBlockTypeImage}" visible="{= ${wikiEntryDraft>type} === 'image' }"/>
+							<Label text="{i18n>WikiBlockTypeHtml}" visible="{= ${wikiEntryDraft>type} === 'html' }"/>
+							<ToolbarSpacer/>
+							<Button icon="sap-icon://navigation-up-arrow" tooltip="{i18n>WikiBlockMoveUp}" press=".onWikiBlockMoveUp" type="Transparent"/>
+							<Button icon="sap-icon://navigation-down-arrow" tooltip="{i18n>WikiBlockMoveDown}" press=".onWikiBlockMoveDown" type="Transparent"/>
+							<Button icon="sap-icon://delete" tooltip="{i18n>WikiBlockDelete}" press=".onWikiBlockDelete" type="Transparent"/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<content>
+						<TextArea value="{wikiEntryDraft>content}" rows="6" width="100%" growing="true"
+								visible="{= ${wikiEntryDraft>type} === 'text' }"/>
+
+						<VBox visible="{= ${wikiEntryDraft>type} === 'code' }">
+							<Input value="{wikiEntryDraft>language}" placeholder="{i18n>WikiBlockLanguagePlaceholder}" class="sapUiTinyMarginBottom"/>
+							<TextArea value="{wikiEntryDraft>content}" rows="8" width="100%" growing="true" class="wikiCodeEditor"/>
+						</VBox>
+
+						<VBox visible="{= ${wikiEntryDraft>type} === 'image' }">
+							<u:FileUploader buttonText="{i18n>WikiImageChoose}" uploadOnChange="false"
+									fileType="png,jpg,jpeg,webp,svg,gif" sameFilenameAllowed="true"
+									change=".onWikiImageSelected"/>
+							<Image src="{ path: 'wikiEntryDraft>image_id', formatter: '.formatter.wikiImageUrl' }"
+									visible="{= ${wikiEntryDraft>image_id} !== null &amp;&amp; ${wikiEntryDraft>image_id} !== undefined }"
+									class="sapUiTinyMarginTop wikiEditorPreview"/>
+							<Input value="{wikiEntryDraft>description}" placeholder="{i18n>WikiBlockDescriptionPlaceholder}" class="sapUiTinyMarginTop"/>
+						</VBox>
+
+						<ce:CodeEditor value="{wikiEntryDraft>content}" type="html" height="200px" width="100%"
+								visible="{= ${wikiEntryDraft>type} === 'html' }"/>
+					</content>
+				</Panel>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button text="{i18n>txtBtnContactMeCancel}" press=".onWikiEntryCancel"/>
+				<ToolbarSpacer/>
+				<Button text="{i18n>ListEntrySave}" type="Emphasized" press=".onWikiEntrySave"/>
+			</Toolbar>
+		</footer>
+	</Dialog>
+</core:FragmentDefinition>

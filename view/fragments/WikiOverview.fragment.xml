@@ -10,6 +10,16 @@
 				width="auto"
 				items="{WikiModel>/Wiki}">
 
+				<headerToolbar>
+					<Toolbar visible="{adminModeModel>/isAdmin}">
+						<ToolbarSpacer/>
+						<Button	icon="sap-icon://add"
+								tooltip="{i18n>WikiNewEntry}"
+								type="Transparent"
+								press=".onWikiEntryAdd"/>
+					</Toolbar>
+				</headerToolbar>
+
 				<columns>
 					<Column id="IdColumnNameType1"
 							width="5em">
@@ -28,6 +38,18 @@
 							id="nameColumnTitle"
 							text="{i18n>WikiOverviewTableTitle}"/>
 					</Column>
+					<Column id="IdColumnWikiOverviewPrivate"
+							width="5em"
+							hAlign="Center"
+							visible="{adminModeModel>/isAdmin}">
+						<Text text="{i18n>WikiOverviewTablePrivate}"/>
+					</Column>
+					<Column id="IdColumnWikiOverviewActions"
+							width="6em"
+							hAlign="End"
+							visible="{adminModeModel>/isAdmin}">
+						<Text text="{i18n>AdminTableColumnActions}"/>
+					</Column>
 				</columns>
 
 				<items>
@@ -37,8 +59,15 @@
 						<cells>
 							<ObjectIdentifier
 								title="{WikiModel>id}"/>
-								<Text text = "{WikiModel>date}"/>	
+								<Text text = "{ path: 'WikiModel>date', formatter: '.formatter.date' }"/>
 								<Text text = "{WikiModel>title}"/>
+								<core:Icon	src="sap-icon://locked"
+											visible="{= ${adminModeModel>/isAdmin} &amp;&amp; ${WikiModel>is_private} }"
+											class="wikiPrivateIndicator"/>
+								<HBox visible="{adminModeModel>/isAdmin}">
+									<Button icon="sap-icon://edit" press=".onWikiEntryEdit" type="Transparent"/>
+									<Button icon="sap-icon://delete" press=".onWikiEntryDelete" type="Transparent"/>
+								</HBox>
 						</cells>
 					</ColumnListItem>
 				</items>

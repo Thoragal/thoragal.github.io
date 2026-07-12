@@ -39,6 +39,8 @@
 	},
 	"Knowledge": 
 		{
+		"AI":{ "ClaudeCode":"Claude Code"
+		},
 		"ProgrammingLanguages":{ "ABAPOO":"ABAP / ABAP OO",
 								 "JavaScript":"JavaScript",
 								 "Java":"Java"

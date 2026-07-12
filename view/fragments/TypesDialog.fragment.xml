@@ -7,7 +7,7 @@
 					<Toolbar>
 						<Title id="idTitleTypesTable" text="{i18n>TypesDialogTitle}"/>
 						<ToolbarSpacer/>
-						<Button id="idBtnTypeAdd" icon="sap-icon://add" text="{i18n>TypeBtnAdd}" press=".onPressTypeAdd" type="Emphasized"/>
+						<Button id="idBtnTypeAdd" icon="sap-icon://add" tooltip="{i18n>TypeBtnAdd}" press=".onPressTypeAdd" type="Transparent"/>
 					</Toolbar>
 				</headerToolbar>
 				<columns>
@@ -33,8 +33,8 @@
 		</content>
 		<footer>
 			<Toolbar>
-				<ToolbarSpacer/>
 				<Button id="idBtnTypesClose" press=".onPressTypesClose" text="{i18n>txtBtnContactMeCancel}"/>
+				<ToolbarSpacer/>
 			</Toolbar>
 		</footer>
 	</Dialog>

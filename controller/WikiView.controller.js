@@ -1,30 +1,26 @@
 sap.ui.define([
-	"./BaseController",
-	"sap/ui/model/json/JSONModel"
-
-], function (BaseController, JSONModel) {
+	"./BaseController"
+], function (BaseController) {
 	"use strict";
 
+	// Shared controller for both the standard Wiki view and the list
+	// (WikiOverview) view -- see manifest.json routing. All wiki entry
+	// create/edit/delete and block-editor logic lives in BaseController so
+	// it's also available to the detail view.
 	return BaseController.extend("Homepage.Homepage.controller.WikiView", {
 
 		onInit: function () {
 			this.getView().byId("idButtonNavToWiki").setType("Emphasized");
 
-			var sPath = sap.ui.require.toUrl("Homepage/Homepage/model/WikiData.json");
-			var oModel = new JSONModel(sPath);
-			this.getView().setModel(oModel, "WikiModel");
+			this._loadWikiModel();
+			this._initWikiEntryDraftModel();
 
 			this._setVisibilityContactMeHeaderButton();
 		},
 
 		onPressRow: function (oEvent) {
 			var oObj = oEvent.getSource().getBindingContext("WikiModel").getObject();
-
-			var oData = {
-				Id: oObj.id
-			};
-
-			this.getRouter().navTo("WikiDetailView", oData);
+			this.getRouter().navTo("WikiDetailView", { Id: oObj.id });
 		}
 
 	});
