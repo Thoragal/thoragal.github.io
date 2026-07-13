@@ -1,13 +1,13 @@
 sap.ui.define([
-	"./BaseController"
-], function (BaseController) {
+	"./WikiController"
+], function (WikiController) {
 	"use strict";
 
 	// Shared controller for both the standard Wiki view and the list
 	// (WikiOverview) view -- see manifest.json routing. All wiki entry
-	// create/edit/delete and block-editor logic lives in BaseController so
+	// create/edit/delete and block-editor logic lives in WikiController so
 	// it's also available to the detail view.
-	return BaseController.extend("Homepage.Homepage.controller.WikiView", {
+	return WikiController.extend("Homepage.Homepage.controller.WikiView", {
 
 		onInit: function () {
 			this.getView().byId("idButtonNavToWiki").setType("Emphasized");

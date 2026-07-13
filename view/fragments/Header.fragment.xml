@@ -20,8 +20,7 @@
 				</Menu>
 			</menu>
 		</MenuButton>
-		
-<!--		<Button id="idButtonNavToWiki" icon="sap-icon://course-book" text="{i18n>HeaderButtonNameWiki}" press="onNavToWiki" /> -->
+
 		<Button id="idButtonNavToList" icon="sap-icon://form" text="{ path:'i18n>HeaderButtonNameList', formatter:'.formatter.device' }" press="onNavToList" />
 		
 		<Button id="idButtonNavToAboutMe" icon="sap-icon://person-placeholder" text="{ path: 'i18n>HeaderButtonNameAbout', formatter:'.formatter.device' }" press="onNavToAboutMe" />

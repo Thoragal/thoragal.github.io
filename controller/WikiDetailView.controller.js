@@ -1,10 +1,10 @@
 sap.ui.define([
-	"./BaseController",
+	"./WikiController",
 	"sap/m/MessageToast"
-], function (BaseController, MessageToast) {
+], function (WikiController, MessageToast) {
 	"use strict";
 
-	return BaseController.extend("Homepage.Homepage.controller.WikiDetailView", {
+	return WikiController.extend("Homepage.Homepage.controller.WikiDetailView", {
 
 		onInit: function () {
 			this.getView().byId("idPageWikiDetail").setBusy(true);

@@ -74,22 +74,34 @@
 								<Image	width="20px"
 										height="20px"
 										src="images/AboutMe/IconGitHub.png"
-										press="onGitHubPressed"
-										tooltip="{MeModel>/General/GitHubTooltip}"/>
-								
+										press=".onSocialLinkPressed"
+										tooltip="{MeModel>/General/GitHubTooltip}">
+									<customData>
+										<core:CustomData key="socialLinkProperty" value="GitHub"/>
+									</customData>
+								</Image>
+
 								<Label text="{i18n>AboutMeLinkedInLabel}" />
 								<Image	width="20px"
 										height="20px"
 										src="images/AboutMe/IconLinkedIn.png"
-										press="onLinkedInPressed"
-										tooltip="{MeModel>/General/LinkedInTooltip}"/>
+										press=".onSocialLinkPressed"
+										tooltip="{MeModel>/General/LinkedInTooltip}">
+									<customData>
+										<core:CustomData key="socialLinkProperty" value="LinkedIn"/>
+									</customData>
+								</Image>
 
 								<Label text="{i18n>AboutMeXingLabel}" />
 								<Image	width="20px"
 										height="20px"
 										src="images/AboutMe/IconXing.png"
-										press="onXingPressed"
-										tooltip ="{MeModel>/General/XingTooltip}"/>
+										press=".onSocialLinkPressed"
+										tooltip ="{MeModel>/General/XingTooltip}">
+									<customData>
+										<core:CustomData key="socialLinkProperty" value="Xing"/>
+									</customData>
+								</Image>
 								
 							</f:SimpleForm>
 

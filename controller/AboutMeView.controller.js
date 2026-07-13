@@ -46,22 +46,13 @@ sap.ui.define([
 			this.getView().byId("idAboutMeContactMeButton").setVisible(fEmailServeralive);
 		},
 		
-		onGitHubPressed: function() {
-			var GitHubUrl = this.getModel("MeModel").getData().General.GitHub;
-			var URLHelper = mobileLibrary.URLHelper;
-			URLHelper.redirect( GitHubUrl, true);
-		},
-		
-		onXingPressed: function() {
-			var XingUrl = this.getModel("MeModel").getData().General.Xing;
-			var URLHelper = mobileLibrary.URLHelper;
-			URLHelper.redirect( XingUrl, true);
-		},
-		
-		onLinkedInPressed: function() {
-			var LinkedInUrl = this.getModel("MeModel").getData().General.LinkedIn;
-			var URLHelper = mobileLibrary.URLHelper;
-			URLHelper.redirect( LinkedInUrl, true);
+		// Shared by the GitHub/LinkedIn/Xing icons in the fragment, which each
+		// carry a "socialLinkProperty" customData naming the MeModel property
+		// (General.GitHub/LinkedIn/Xing) their URL comes from.
+		onSocialLinkPressed: function (oEvent) {
+			var sProperty = oEvent.getSource().data("socialLinkProperty");
+			var sUrl = this.getModel("MeModel").getData().General[sProperty];
+			mobileLibrary.URLHelper.redirect(sUrl, true);
 		},
 		
 		onEmailPressed: function(){
