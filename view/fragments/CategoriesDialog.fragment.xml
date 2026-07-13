@@ -23,8 +23,8 @@
 						<cells>
 							<Text text="{CategoryManagerModel>label_de}"/>
 							<HBox>
-								<Button icon="sap-icon://edit" press=".onPressCategoryEdit" type="Transparent"/>
-								<Button icon="sap-icon://delete" press=".onPressCategoryDelete" type="Transparent"/>
+								<Button icon="sap-icon://edit" tooltip="{i18n>AdminBtnEdit}" press=".onPressCategoryEdit" type="Transparent"/>
+								<Button icon="sap-icon://delete" tooltip="{i18n>AdminBtnDelete}" press=".onPressCategoryDelete" type="Transparent"/>
 							</HBox>
 						</cells>
 					</ColumnListItem>

@@ -8,8 +8,8 @@
 				tooltip="{i18n>WikiNewEntry}"
 				type="Transparent"
 				press=".onWikiEntryAdd"/>
-		<Button id="idBtnWikiDetailEdit" icon="sap-icon://edit" press=".onWikiDetailEntryEdit" type="Transparent"/>
-		<Button id="idBtnWikiDetailDelete" icon="sap-icon://delete" press=".onWikiDetailEntryDelete" type="Transparent"/>
+		<Button id="idBtnWikiDetailEdit" icon="sap-icon://edit" tooltip="{i18n>AdminBtnEdit}" press=".onWikiDetailEntryEdit" type="Transparent"/>
+		<Button id="idBtnWikiDetailDelete" icon="sap-icon://delete" tooltip="{i18n>AdminBtnDelete}" press=".onWikiDetailEntryDelete" type="Transparent"/>
 	</Toolbar>
 
 	<ObjectHeader	id="idObjectHeader"

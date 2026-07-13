@@ -25,6 +25,176 @@ sap.ui.define([
 			this.getView().setModel(new JSONModel({ id: null, label_de: "", label_en: "", label_es: "" }), "localDataModelCategoryEntry");
 			this.getView().setModel(new JSONModel({ Types: [] }), "TypeManagerModel");
 			this.getView().setModel(new JSONModel({ id: null, label_de: "", label_en: "", label_es: "" }), "localDataModelTypeEntry");
+
+			var oCategoryManager = this._makeLookupManager({
+				managerModel: "CategoryManagerModel",
+				entryModel: "localDataModelCategoryEntry",
+				managerDataKey: "Categories",
+				urlSegment: "categories",
+				dialogName: "CategoriesDialog",
+				dialogId: "idFragCategoriesDialog",
+				entryDialogName: "CategoryEntryDialog",
+				entryDialogId: "idFragCategoryEntryDialog",
+				keyExistsCode: "category_key_exists",
+				keyExistsI18n: "CategoryKeyExistsError",
+				saveErrorI18n: "CategorySaveError",
+				inUseCode: "category_in_use",
+				inUseI18n: "CategoryInUseError",
+				deleteErrorI18n: "CategoryDeleteError",
+				deleteConfirmI18n: "CategoryDeleteConfirm"
+			});
+			this.onPressManageCategories = oCategoryManager.onPressManage;
+			this.onPressCategoriesClose = oCategoryManager.onPressClose;
+			this.onPressCategoryAdd = oCategoryManager.onPressAdd;
+			this.onPressCategoryEdit = oCategoryManager.onPressEdit;
+			this.onPressCategoryEntryCancel = oCategoryManager.onPressEntryCancel;
+			this.onPressCategoryEntrySave = oCategoryManager.onPressEntrySave;
+			this.onPressCategoryDelete = oCategoryManager.onPressDelete;
+
+			var oTypeManager = this._makeLookupManager({
+				managerModel: "TypeManagerModel",
+				entryModel: "localDataModelTypeEntry",
+				managerDataKey: "Types",
+				urlSegment: "types",
+				dialogName: "TypesDialog",
+				dialogId: "idFragTypesDialog",
+				entryDialogName: "TypeEntryDialog",
+				entryDialogId: "idFragTypeEntryDialog",
+				keyExistsCode: "type_key_exists",
+				keyExistsI18n: "TypeKeyExistsError",
+				saveErrorI18n: "TypeSaveError",
+				inUseCode: "type_in_use",
+				inUseI18n: "TypeInUseError",
+				deleteErrorI18n: "TypeDeleteError",
+				deleteConfirmI18n: "TypeDeleteConfirm"
+			});
+			this.onPressManageTypes = oTypeManager.onPressManage;
+			this.onPressTypesClose = oTypeManager.onPressClose;
+			this.onPressTypeAdd = oTypeManager.onPressAdd;
+			this.onPressTypeEdit = oTypeManager.onPressEdit;
+			this.onPressTypeEntryCancel = oTypeManager.onPressEntryCancel;
+			this.onPressTypeEntrySave = oTypeManager.onPressEntrySave;
+			this.onPressTypeDelete = oTypeManager.onPressDelete;
+		},
+
+		// Categories and Types are both simple label-lookup entities managed
+		// through an identical add/edit/delete/rename flow (a manager dialog
+		// listing entries, and a small entry dialog for add/edit), differing
+		// only in which model/dialog/i18n keys/backend segment they target.
+		// This factory generates the 7 handler functions for one such entity
+		// so the flow is implemented once instead of duplicated per entity.
+		// @private
+		_makeLookupManager: function (oOpts) {
+			var that = this;
+
+			function loadForManage() {
+				var oModel = that.getView().getModel(oOpts.managerModel);
+				return fetch(config.SERVICE_URL + "/objectlist/" + oOpts.urlSegment + "/manage", {
+					headers: that._authHeaders()
+				}).then(function (oResponse) {
+					return that._checkResponse(oResponse).json();
+				}).then(function (oData) {
+					var oNewData = {};
+					oNewData[oOpts.managerDataKey] = oData[oOpts.managerDataKey];
+					oModel.setData(oNewData);
+				}).catch(function (oError) {
+					console.error(oOpts.managerDataKey + " could not be loaded", oError);
+				});
+			}
+
+			function openEntryDialog() {
+				return that._openDialog(oOpts.entryDialogName, oOpts.entryDialogId, "Homepage.Homepage.view.fragments." + oOpts.entryDialogName);
+			}
+
+			return {
+				onPressManage: function () {
+					loadForManage();
+					that._openDialog(oOpts.dialogName, oOpts.dialogId, "Homepage.Homepage.view.fragments." + oOpts.dialogName);
+				},
+
+				onPressClose: function () {
+					that._closeDialog(oOpts.dialogName);
+				},
+
+				onPressAdd: function () {
+					that.getView().getModel(oOpts.entryModel).setData({ id: null, label_de: "", label_en: "", label_es: "" });
+					openEntryDialog();
+				},
+
+				onPressEdit: function (oEvent) {
+					var oRow = oEvent.getSource().getParent().getParent().getBindingContext(oOpts.managerModel).getObject();
+					that.getView().getModel(oOpts.entryModel).setData({
+						id: oRow.id, label_de: oRow.label_de || "", label_en: oRow.label_en || "", label_es: oRow.label_es || ""
+					});
+					openEntryDialog();
+				},
+
+				onPressEntryCancel: function () {
+					that._closeDialog(oOpts.entryDialogName);
+				},
+
+				onPressEntrySave: function () {
+					var oResourceBundle = that.getResourceBundle();
+					var oEntryData = that.getView().getModel(oOpts.entryModel).getData();
+					var bIsUpdate = !!oEntryData.id;
+					var sUrl = config.SERVICE_URL + "/objectlist/" + oOpts.urlSegment + (bIsUpdate ? "/" + oEntryData.id : "");
+					var sMethod = bIsUpdate ? "PUT" : "POST";
+
+					fetch(sUrl, {
+						method: sMethod,
+						headers: that._authHeaders(),
+						body: JSON.stringify({
+							label_de: oEntryData.label_de,
+							label_en: oEntryData.label_en,
+							label_es: oEntryData.label_es
+						})
+					}).then(function (oResponse) {
+						return that._checkResponse(oResponse, true);
+					}).then(function () {
+						that._closeDialog(oOpts.entryDialogName);
+						that._reloadLookups();
+						loadForManage();
+						that.onRefresh();
+					}).catch(function (oError) {
+						console.error(oOpts.managerDataKey + " entry could not be saved", oError);
+						if (oError && oError.handled && oError.code === oOpts.keyExistsCode) {
+							MessageBox.error(oResourceBundle.getText(oOpts.keyExistsI18n));
+							return;
+						}
+						MessageBox.error(oResourceBundle.getText(oOpts.saveErrorI18n));
+					});
+				},
+
+				onPressDelete: function (oEvent) {
+					var oRow = oEvent.getSource().getParent().getParent().getBindingContext(oOpts.managerModel).getObject();
+					var oResourceBundle = that.getResourceBundle();
+
+					MessageBox.confirm(oResourceBundle.getText(oOpts.deleteConfirmI18n, [oRow.label_de]), {
+						onClose: function (sAction) {
+							if (sAction !== MessageBox.Action.OK) {
+								return;
+							}
+							fetch(config.SERVICE_URL + "/objectlist/" + oOpts.urlSegment + "/" + oRow.id, {
+								method: "DELETE",
+								headers: that._authHeaders()
+							}).then(function (oResponse) {
+								return that._checkResponse(oResponse, true);
+							}).then(function () {
+								that._reloadLookups();
+								loadForManage();
+								that.onRefresh();
+							}).catch(function (oError) {
+								console.error(oOpts.managerDataKey + " entry could not be deleted", oError);
+								if (oError && oError.handled && oError.code === oOpts.inUseCode) {
+									MessageBox.error(oResourceBundle.getText(oOpts.inUseI18n, [oError.count]));
+									return;
+								}
+								MessageBox.error(oResourceBundle.getText(oOpts.deleteErrorI18n));
+							});
+						}
+					});
+				}
+			};
 		},
 
 		onExit: function () {
@@ -102,11 +272,8 @@ sap.ui.define([
 
 			return fetch(config.SERVICE_URL + "/objectlist?lang=" + this._getLang())
 				.then(function (oResponse) {
-					if (!oResponse.ok) {
-						throw new Error("Request failed with status " + oResponse.status);
-					}
-					return oResponse.json();
-				})
+					return this._checkResponse(oResponse).json();
+				}.bind(this))
 				.then(function (oData) {
 					oData.AbapListDataTitle = oModel.AbapListDataTitle;
 					oModel.setData(oData);
@@ -291,17 +458,11 @@ sap.ui.define([
 
 			this._pLookupsLoaded = Promise.all([
 				fetch(config.SERVICE_URL + "/objectlist/types?lang=" + sLang).then(function (oResponse) {
-					if (!oResponse.ok) {
-						throw new Error("Request failed with status " + oResponse.status);
-					}
-					return oResponse.json();
-				}),
+					return this._checkResponse(oResponse).json();
+				}.bind(this)),
 				fetch(config.SERVICE_URL + "/objectlist/categories?lang=" + sLang).then(function (oResponse) {
-					if (!oResponse.ok) {
-						throw new Error("Request failed with status " + oResponse.status);
-					}
-					return oResponse.json();
-				})
+					return this._checkResponse(oResponse).json();
+				}.bind(this))
 			]).then(function (aResults) {
 				oModel.setData({ Types: aResults[0].TypeData, Categories: aResults[1].CategoryData });
 			}).catch(function (oError) {
@@ -346,14 +507,7 @@ sap.ui.define([
 					headers: this._authHeaders()
 				});
 			}.bind(this)).then(function (oResponse) {
-				if (oResponse.status === 401) {
-					this._handleUnauthorized();
-					throw new Error("Unauthorized");
-				}
-				if (!oResponse.ok) {
-					throw new Error("Request failed with status " + oResponse.status);
-				}
-				return oResponse.json();
+				return this._checkResponse(oResponse).json();
 			}.bind(this)).then(function (oData) {
 				this.getView().getModel("localDataModelListEntry").setData(oData);
 				this._openListEntryDialog();
@@ -380,21 +534,19 @@ sap.ui.define([
 				method: sMethod,
 				headers: this._authHeaders(),
 				body: JSON.stringify({
-					type_id: oEntryData.type_id,
-					category_id: oEntryData.category_id,
+					// sap.m.Select's selectedKey is string-typed, so picking an
+					// entry in the Type/Category dropdown overwrites this
+					// two-way-bound model property with a string -- Number()
+					// restores what the backend's Number.isInteger check requires.
+					type_id: Number(oEntryData.type_id),
+					category_id: Number(oEntryData.category_id),
 					value: oEntryData.value,
 					description_de: oEntryData.description_de,
 					description_en: oEntryData.description_en,
 					description_es: oEntryData.description_es
 				})
 			}).then(function (oResponse) {
-				if (oResponse.status === 401) {
-					this._handleUnauthorized();
-					throw new Error("Unauthorized");
-				}
-				if (!oResponse.ok) {
-					throw new Error("Request failed with status " + oResponse.status);
-				}
+				this._checkResponse(oResponse);
 				this._closeDialog("ListEntryDialog");
 				this.onRefresh();
 			}.bind(this)).catch(function (oError) {
@@ -416,289 +568,11 @@ sap.ui.define([
 						method: "DELETE",
 						headers: this._authHeaders()
 					}).then(function (oResponse) {
-						if (oResponse.status === 401) {
-							this._handleUnauthorized();
-							throw new Error("Unauthorized");
-						}
-						if (!oResponse.ok) {
-							throw new Error("Request failed with status " + oResponse.status);
-						}
+						this._checkResponse(oResponse);
 						this.onRefresh();
 					}.bind(this)).catch(function (oError) {
 						console.error("Object entry could not be deleted", oError);
 						MessageBox.error(oResourceBundle.getText("AdminDeleteError"));
-					}.bind(this));
-				}.bind(this)
-			});
-		},
-
-		onPressManageCategories: function () {
-			this._loadCategoriesForManage();
-			this._openCategoriesDialog();
-		},
-
-		_openCategoriesDialog: function () {
-			return this._openDialog("CategoriesDialog", "idFragCategoriesDialog", "Homepage.Homepage.view.fragments.CategoriesDialog");
-		},
-
-		onPressCategoriesClose: function () {
-			this._closeDialog("CategoriesDialog");
-		},
-
-		_loadCategoriesForManage: function () {
-			var oModel = this.getView().getModel("CategoryManagerModel");
-			return fetch(config.SERVICE_URL + "/objectlist/categories/manage", {
-				headers: this._authHeaders()
-			}).then(function (oResponse) {
-				if (oResponse.status === 401) {
-					this._handleUnauthorized();
-					throw new Error("Unauthorized");
-				}
-				if (!oResponse.ok) {
-					throw new Error("Request failed with status " + oResponse.status);
-				}
-				return oResponse.json();
-			}.bind(this)).then(function (oData) {
-				oModel.setData({ Categories: oData.Categories });
-			}).catch(function (oError) {
-				console.error("Categories could not be loaded", oError);
-			});
-		},
-
-		onPressCategoryAdd: function () {
-			this.getView().getModel("localDataModelCategoryEntry").setData({ id: null, label_de: "", label_en: "", label_es: "" });
-			this._openCategoryEntryDialog();
-		},
-
-		onPressCategoryEdit: function (oEvent) {
-			var oRow = oEvent.getSource().getParent().getParent().getBindingContext("CategoryManagerModel").getObject();
-			this.getView().getModel("localDataModelCategoryEntry").setData({
-				id: oRow.id, label_de: oRow.label_de || "", label_en: oRow.label_en || "", label_es: oRow.label_es || ""
-			});
-			this._openCategoryEntryDialog();
-		},
-
-		_openCategoryEntryDialog: function () {
-			return this._openDialog("CategoryEntryDialog", "idFragCategoryEntryDialog", "Homepage.Homepage.view.fragments.CategoryEntryDialog");
-		},
-
-		onPressCategoryEntryCancel: function () {
-			this._closeDialog("CategoryEntryDialog");
-		},
-
-		onPressCategoryEntrySave: function () {
-			var oResourceBundle = this.getResourceBundle();
-			var oEntryData = this.getView().getModel("localDataModelCategoryEntry").getData();
-			var bIsUpdate = !!oEntryData.id;
-			var sUrl = config.SERVICE_URL + "/objectlist/categories" + (bIsUpdate ? "/" + oEntryData.id : "");
-			var sMethod = bIsUpdate ? "PUT" : "POST";
-
-			fetch(sUrl, {
-				method: sMethod,
-				headers: this._authHeaders(),
-				body: JSON.stringify({
-					label_de: oEntryData.label_de,
-					label_en: oEntryData.label_en,
-					label_es: oEntryData.label_es
-				})
-			}).then(function (oResponse) {
-				if (oResponse.status === 401) {
-					this._handleUnauthorized();
-					throw new Error("Unauthorized");
-				}
-				if (oResponse.status === 409) {
-					return oResponse.json().then(function (oData) {
-						throw { handled: true, code: oData.error };
-					});
-				}
-				if (!oResponse.ok) {
-					throw new Error("Request failed with status " + oResponse.status);
-				}
-				this._closeDialog("CategoryEntryDialog");
-				this._reloadLookups();
-				this._loadCategoriesForManage();
-				this.onRefresh();
-			}.bind(this)).catch(function (oError) {
-				console.error("Category could not be saved", oError);
-				if (oError && oError.handled && oError.code === "category_key_exists") {
-					MessageBox.error(oResourceBundle.getText("CategoryKeyExistsError"));
-					return;
-				}
-				MessageBox.error(oResourceBundle.getText("CategorySaveError"));
-			}.bind(this));
-		},
-
-		onPressCategoryDelete: function (oEvent) {
-			var oRow = oEvent.getSource().getParent().getParent().getBindingContext("CategoryManagerModel").getObject();
-			var oResourceBundle = this.getResourceBundle();
-
-			MessageBox.confirm(oResourceBundle.getText("CategoryDeleteConfirm", [oRow.label_de]), {
-				onClose: function (sAction) {
-					if (sAction !== MessageBox.Action.OK) {
-						return;
-					}
-					fetch(config.SERVICE_URL + "/objectlist/categories/" + oRow.id, {
-						method: "DELETE",
-						headers: this._authHeaders()
-					}).then(function (oResponse) {
-						if (oResponse.status === 401) {
-							this._handleUnauthorized();
-							throw new Error("Unauthorized");
-						}
-						if (oResponse.status === 409) {
-							return oResponse.json().then(function (oData) {
-								throw { handled: true, code: oData.error, count: oData.count };
-							});
-						}
-						if (!oResponse.ok) {
-							throw new Error("Request failed with status " + oResponse.status);
-						}
-						this._reloadLookups();
-						this._loadCategoriesForManage();
-						this.onRefresh();
-					}.bind(this)).catch(function (oError) {
-						console.error("Category could not be deleted", oError);
-						if (oError && oError.handled && oError.code === "category_in_use") {
-							MessageBox.error(oResourceBundle.getText("CategoryInUseError", [oError.count]));
-							return;
-						}
-						MessageBox.error(oResourceBundle.getText("CategoryDeleteError"));
-					}.bind(this));
-				}.bind(this)
-			});
-		},
-
-		onPressManageTypes: function () {
-			this._loadTypesForManage();
-			this._openTypesDialog();
-		},
-
-		_openTypesDialog: function () {
-			return this._openDialog("TypesDialog", "idFragTypesDialog", "Homepage.Homepage.view.fragments.TypesDialog");
-		},
-
-		onPressTypesClose: function () {
-			this._closeDialog("TypesDialog");
-		},
-
-		_loadTypesForManage: function () {
-			var oModel = this.getView().getModel("TypeManagerModel");
-			return fetch(config.SERVICE_URL + "/objectlist/types/manage", {
-				headers: this._authHeaders()
-			}).then(function (oResponse) {
-				if (oResponse.status === 401) {
-					this._handleUnauthorized();
-					throw new Error("Unauthorized");
-				}
-				if (!oResponse.ok) {
-					throw new Error("Request failed with status " + oResponse.status);
-				}
-				return oResponse.json();
-			}.bind(this)).then(function (oData) {
-				oModel.setData({ Types: oData.Types });
-			}).catch(function (oError) {
-				console.error("Types could not be loaded", oError);
-			});
-		},
-
-		onPressTypeAdd: function () {
-			this.getView().getModel("localDataModelTypeEntry").setData({ id: null, label_de: "", label_en: "", label_es: "" });
-			this._openTypeEntryDialog();
-		},
-
-		onPressTypeEdit: function (oEvent) {
-			var oRow = oEvent.getSource().getParent().getParent().getBindingContext("TypeManagerModel").getObject();
-			this.getView().getModel("localDataModelTypeEntry").setData({
-				id: oRow.id, label_de: oRow.label_de || "", label_en: oRow.label_en || "", label_es: oRow.label_es || ""
-			});
-			this._openTypeEntryDialog();
-		},
-
-		_openTypeEntryDialog: function () {
-			return this._openDialog("TypeEntryDialog", "idFragTypeEntryDialog", "Homepage.Homepage.view.fragments.TypeEntryDialog");
-		},
-
-		onPressTypeEntryCancel: function () {
-			this._closeDialog("TypeEntryDialog");
-		},
-
-		onPressTypeEntrySave: function () {
-			var oResourceBundle = this.getResourceBundle();
-			var oEntryData = this.getView().getModel("localDataModelTypeEntry").getData();
-			var bIsUpdate = !!oEntryData.id;
-			var sUrl = config.SERVICE_URL + "/objectlist/types" + (bIsUpdate ? "/" + oEntryData.id : "");
-			var sMethod = bIsUpdate ? "PUT" : "POST";
-
-			fetch(sUrl, {
-				method: sMethod,
-				headers: this._authHeaders(),
-				body: JSON.stringify({
-					label_de: oEntryData.label_de,
-					label_en: oEntryData.label_en,
-					label_es: oEntryData.label_es
-				})
-			}).then(function (oResponse) {
-				if (oResponse.status === 401) {
-					this._handleUnauthorized();
-					throw new Error("Unauthorized");
-				}
-				if (oResponse.status === 409) {
-					return oResponse.json().then(function (oData) {
-						throw { handled: true, code: oData.error };
-					});
-				}
-				if (!oResponse.ok) {
-					throw new Error("Request failed with status " + oResponse.status);
-				}
-				this._closeDialog("TypeEntryDialog");
-				this._reloadLookups();
-				this._loadTypesForManage();
-				this.onRefresh();
-			}.bind(this)).catch(function (oError) {
-				console.error("Type could not be saved", oError);
-				if (oError && oError.handled && oError.code === "type_key_exists") {
-					MessageBox.error(oResourceBundle.getText("TypeKeyExistsError"));
-					return;
-				}
-				MessageBox.error(oResourceBundle.getText("TypeSaveError"));
-			}.bind(this));
-		},
-
-		onPressTypeDelete: function (oEvent) {
-			var oRow = oEvent.getSource().getParent().getParent().getBindingContext("TypeManagerModel").getObject();
-			var oResourceBundle = this.getResourceBundle();
-
-			MessageBox.confirm(oResourceBundle.getText("TypeDeleteConfirm", [oRow.label_de]), {
-				onClose: function (sAction) {
-					if (sAction !== MessageBox.Action.OK) {
-						return;
-					}
-					fetch(config.SERVICE_URL + "/objectlist/types/" + oRow.id, {
-						method: "DELETE",
-						headers: this._authHeaders()
-					}).then(function (oResponse) {
-						if (oResponse.status === 401) {
-							this._handleUnauthorized();
-							throw new Error("Unauthorized");
-						}
-						if (oResponse.status === 409) {
-							return oResponse.json().then(function (oData) {
-								throw { handled: true, code: oData.error, count: oData.count };
-							});
-						}
-						if (!oResponse.ok) {
-							throw new Error("Request failed with status " + oResponse.status);
-						}
-						this._reloadLookups();
-						this._loadTypesForManage();
-						this.onRefresh();
-					}.bind(this)).catch(function (oError) {
-						console.error("Type could not be deleted", oError);
-						if (oError && oError.handled && oError.code === "type_in_use") {
-							MessageBox.error(oResourceBundle.getText("TypeInUseError", [oError.count]));
-							return;
-						}
-						MessageBox.error(oResourceBundle.getText("TypeDeleteError"));
 					}.bind(this));
 				}.bind(this)
 			});

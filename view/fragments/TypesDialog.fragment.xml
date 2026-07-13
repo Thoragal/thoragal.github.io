@@ -23,8 +23,8 @@
 						<cells>
 							<Text text="{TypeManagerModel>label_de}"/>
 							<HBox>
-								<Button icon="sap-icon://edit" press=".onPressTypeEdit" type="Transparent"/>
-								<Button icon="sap-icon://delete" press=".onPressTypeDelete" type="Transparent"/>
+								<Button icon="sap-icon://edit" tooltip="{i18n>AdminBtnEdit}" press=".onPressTypeEdit" type="Transparent"/>
+								<Button icon="sap-icon://delete" tooltip="{i18n>AdminBtnDelete}" press=".onPressTypeDelete" type="Transparent"/>
 							</HBox>
 						</cells>
 					</ColumnListItem>

@@ -1,7 +1,7 @@
 <core:FragmentDefinition	xmlns="sap.m"
 							xmlns:core="sap.ui.core"
 							xmlns:u="sap.ui.unified"
-							xmlns:ce="sap.ui.codeeditor"
+							xmlns:rte="sap.ui.richtexteditor"
 							xmlns:f="sap.ui.layout.form">
 	<Dialog id="idDialogWikiEntry" title="{i18n>WikiEntryDialogTitle}" stretch="true">
 		<content>
@@ -66,7 +66,8 @@
 							<Input value="{wikiEntryDraft>description}" placeholder="{i18n>WikiBlockDescriptionPlaceholder}" class="sapUiTinyMarginTop"/>
 						</VBox>
 
-						<ce:CodeEditor value="{wikiEntryDraft>content}" type="html" height="200px" width="100%"
+						<rte:RichTextEditor value="{wikiEntryDraft>content}" height="300px" width="100%"
+								showGroupFont="true" showGroupLink="true"
 								visible="{= ${wikiEntryDraft>type} === 'html' }"/>
 					</content>
 				</Panel>

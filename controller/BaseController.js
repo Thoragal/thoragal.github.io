@@ -86,11 +86,8 @@ sap.ui.define([
 			// admin. A missing/expired token just fails verification quietly
 			// server-side and falls back to the public-only result.
 			return fetch(config.SERVICE_URL + "/wiki", { headers: this._authHeaders() }).then(function (oResponse) {
-				if (!oResponse.ok) {
-					throw new Error("Request failed with status " + oResponse.status);
-				}
-				return oResponse.json();
-			}).then(function (oData) {
+				return this._checkResponse(oResponse).json();
+			}.bind(this)).then(function (oData) {
 				oModel.setData(oData);
 				this._onWikiModelReloaded();
 			}.bind(this)).catch(function (oError) {
@@ -142,9 +139,10 @@ sap.ui.define([
 			}
 
 			if (oBlock.type === "html") {
-				// Admin-authored raw HTML. sanitizeContent strips scripts and
-				// event handlers (defence in depth even though only the admin
-				// can create blocks), keeping tables/formatting/links.
+				// Admin-authored HTML, produced by the RichTextEditor.
+				// sanitizeContent strips scripts and event handlers (defence
+				// in depth even though only the admin can create blocks),
+				// keeping tables/formatting/links.
 				return this._htmlControl(sId, "<div class=\"wikiBlock wikiHtml\">" + (oBlock.content || "") + "</div>", true);
 			}
 
@@ -263,14 +261,7 @@ sap.ui.define([
 					blocks: aBlocks
 				})
 			}).then(function (oResponse) {
-				if (oResponse.status === 401) {
-					this._handleUnauthorized();
-					throw new Error("Unauthorized");
-				}
-				if (!oResponse.ok) {
-					throw new Error("Request failed with status " + oResponse.status);
-				}
-				return oResponse.json();
+				return this._checkResponse(oResponse).json();
 			}.bind(this)).then(function (oData) {
 				this._closeDialog(WIKI_ENTRY_DIALOG);
 				return this._loadWikiModel().then(function () {
@@ -310,13 +301,7 @@ sap.ui.define([
 						method: "DELETE",
 						headers: this._authHeaders()
 					}).then(function (oResponse) {
-						if (oResponse.status === 401) {
-							this._handleUnauthorized();
-							throw new Error("Unauthorized");
-						}
-						if (!oResponse.ok) {
-							throw new Error("Request failed with status " + oResponse.status);
-						}
+						this._checkResponse(oResponse);
 						return this._loadWikiModel();
 					}.bind(this)).then(function () {
 						this._onWikiEntryDeleted();
@@ -416,14 +401,7 @@ sap.ui.define([
 				headers: { "Authorization": "Bearer " + sessionStorage.getItem("adminAuthToken") },
 				body: oFormData
 			}).then(function (oResponse) {
-				if (oResponse.status === 401) {
-					this._handleUnauthorized();
-					throw new Error("Unauthorized");
-				}
-				if (!oResponse.ok) {
-					throw new Error("Upload failed with status " + oResponse.status);
-				}
-				return oResponse.json();
+				return this._checkResponse(oResponse).json();
 			}.bind(this)).then(function (oData) {
 				oModel.setProperty(sPath + "/image_id", oData.id);
 			}).catch(function (oError) {
@@ -482,9 +460,7 @@ sap.ui.define([
 				body: JSON.stringify(sContactMeData),
 				signal: AbortSignal.timeout(EMAIL_SERVICE_TIMEOUT_MS)
 			}).then(function (oResponse) {
-				if (!oResponse.ok) {
-					throw new Error("Request failed with status " + oResponse.status);
-				}
+				this._checkResponse(oResponse);
 				this._displayMessageContactMeSend(true);
 				this._clearContactMeData();
 			}.bind(this)).catch(function (oError) {
@@ -597,6 +573,33 @@ sap.ui.define([
 			this.getOwnerComponent().getModel("adminModeModel").setProperty("/isAdmin", false);
 			this._refreshWikiModelIfPresent();
 			this._openLoginDialog();
+		},
+
+		// Common post-fetch gate, meant to be chained right after fetch():
+		// .then(function (oResponse) { return this._checkResponse(oResponse); }.bind(this))
+		// A 401 logs the admin out and re-prompts (via _handleUnauthorized),
+		// then rejects. A non-ok status rejects with a generic error, UNLESS
+		// bParseConflict is true and the status is 409 -- some admin-CRUD
+		// endpoints (category/type save & delete) return a machine-readable
+		// { error: "<code>_exists"/"<code>_in_use", count? } body on 409, so
+		// that path parses the JSON and rejects with { handled: true, code,
+		// count } instead, letting the caller's catch block show a specific
+		// message instead of the generic one. On success, resolves to the
+		// (unread) Response so the caller can still call .json() if needed.
+		_checkResponse: function (oResponse, bParseConflict) {
+			if (oResponse.status === 401) {
+				this._handleUnauthorized();
+				throw new Error("Unauthorized");
+			}
+			if (bParseConflict && oResponse.status === 409) {
+				return oResponse.json().then(function (oData) {
+					throw { handled: true, code: oData.error, count: oData.count };
+				});
+			}
+			if (!oResponse.ok) {
+				throw new Error("Request failed with status " + oResponse.status);
+			}
+			return oResponse;
 		},
 
 		_clearContactMeData: function(){

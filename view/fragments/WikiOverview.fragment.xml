@@ -65,8 +65,8 @@
 											visible="{= ${adminModeModel>/isAdmin} &amp;&amp; ${WikiModel>is_private} }"
 											class="wikiPrivateIndicator"/>
 								<HBox visible="{adminModeModel>/isAdmin}">
-									<Button icon="sap-icon://edit" press=".onWikiEntryEdit" type="Transparent"/>
-									<Button icon="sap-icon://delete" press=".onWikiEntryDelete" type="Transparent"/>
+									<Button icon="sap-icon://edit" tooltip="{i18n>AdminBtnEdit}" press=".onWikiEntryEdit" type="Transparent"/>
+									<Button icon="sap-icon://delete" tooltip="{i18n>AdminBtnDelete}" press=".onWikiEntryDelete" type="Transparent"/>
 								</HBox>
 						</cells>
 					</ColumnListItem>

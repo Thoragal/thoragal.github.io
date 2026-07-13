@@ -135,10 +135,10 @@
 							<Text text = "{AbapListModel>category}"/>
 							<Text text = "{AbapListModel>value}"/>
 							<Text text = "{AbapListModel>description}"/>
-							<Button icon="sap-icon://copy" press="onCopy"/>
+							<Button icon="sap-icon://copy" tooltip="{i18n>TableColumnNameCopy}" press="onCopy"/>
 							<HBox>
-								<Button icon="sap-icon://edit" press=".onPressAdminEdit" type="Transparent"/>
-								<Button icon="sap-icon://delete" press=".onPressAdminDelete" type="Transparent"/>
+								<Button icon="sap-icon://edit" tooltip="{i18n>AdminBtnEdit}" press=".onPressAdminEdit" type="Transparent"/>
+								<Button icon="sap-icon://delete" tooltip="{i18n>AdminBtnDelete}" press=".onPressAdminDelete" type="Transparent"/>
 							</HBox>
 						</cells>
 					</ColumnListItem>
