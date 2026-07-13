@@ -9,6 +9,7 @@ sap.ui.define([
 	"sap/ui/core/Fragment",
 	"sap/base/i18n/Localization",
 	"sap/ui/core/HTML",
+	"sap/ui/core/Item",
 	"sap/m/Image",
 	"sap/m/VBox",
 	"sap/m/FlexItemData",
@@ -17,7 +18,7 @@ sap.ui.define([
 	"../model/formatter",
 	"../model/config",
 	"../model/wikiRenderer"
-], function (Controller, UIComponent, mobileLibrary, History, JSONModel, MessageBox, MessageToast, Fragment, Localization, HTML, Image, VBox, FlexItemData, LightBox, LightBoxItem, formatter, config, wikiRenderer) {
+], function (Controller, UIComponent, mobileLibrary, History, JSONModel, MessageBox, MessageToast, Fragment, Localization, HTML, Item, Image, VBox, FlexItemData, LightBox, LightBoxItem, formatter, config, wikiRenderer) {
 	"use strict";
 
 	var EMAIL_SERVICE_TIMEOUT_MS = 8000;
@@ -195,7 +196,7 @@ sap.ui.define([
 			var sToday = oNow.getFullYear() + "-"
 				+ String(oNow.getMonth() + 1).padStart(2, "0") + "-"
 				+ String(oNow.getDate()).padStart(2, "0");
-			return { id: null, title: "", entry_date: sToday, tagsText: "", is_private: false, blocks: [] };
+			return { id: null, title: "", entry_date: sToday, tagsText: "", is_private: false, blocks: [], files: [], uploadUrl: "" };
 		},
 
 		onWikiEntryAdd: function () {
@@ -219,7 +220,9 @@ sap.ui.define([
 				tagsText: (oEntry.tags || []).join(", "),
 				is_private: !!oEntry.is_private,
 				// deep copy so edits don't mutate the list model before saving
-				blocks: JSON.parse(JSON.stringify(oEntry.blocks || []))
+				blocks: JSON.parse(JSON.stringify(oEntry.blocks || [])),
+				files: JSON.parse(JSON.stringify(oEntry.files || [])),
+				uploadUrl: config.SERVICE_URL + "/wiki/" + oEntry.id + "/files"
 			});
 			this._openWikiEntryDialog();
 		},
@@ -410,6 +413,147 @@ sap.ui.define([
 			});
 
 			oFileUploader.clear();
+		},
+
+		// -------------------- wiki admin: attachments --------------------
+		// Attachments are a separate, decoupled list per entry (not a content
+		// block), uploaded via their own endpoint through
+		// sap.m.plugins.UploadSetwithTable rather than the plain FileUploader
+		// used for image blocks above.
+
+		// Re-reads the current entry's files from the just-reloaded WikiModel
+		// back into the draft, so the editor's attachment table reflects the
+		// latest upload/delete without a separate local patch (same
+		// single-source-of-truth approach as onWikiEntrySave/_deleteEntry).
+		_syncWikiEntryDraftFilesFromWikiModel: function () {
+			var oComponent = this.getOwnerComponent();
+			var oDraftModel = oComponent.getModel(WIKI_DRAFT_MODEL);
+			var iId = oDraftModel.getProperty("/id");
+			if (!iId) { return; }
+			var aWiki = oComponent.getModel("WikiModel").getProperty("/Wiki") || [];
+			var oEntry = aWiki.filter(function (o) { return o.id === iId; })[0];
+			oDraftModel.setProperty("/files", (oEntry && oEntry.files) || []);
+		},
+
+		// UploadSetwithTable posts directly to uploadUrl itself, so the admin
+		// bearer token has to be attached per-upload via a header field
+		// rather than through _authHeaders() (which is only used for plain
+		// fetch() calls elsewhere in this controller).
+		onWikiFileBeforeUploadStarts: function (oEvent) {
+			var oPlugin = oEvent.getSource();
+			oPlugin.removeAllHeaderFields();
+			oPlugin.addHeaderField(new Item({ key: "Authorization", text: "Bearer " + sessionStorage.getItem(TOKEN_STORAGE_KEY) }));
+		},
+
+		onWikiFileUploadCompleted: function (oEvent) {
+			var oResourceBundle = this.getResourceBundle();
+			// Attached on the custom UploaderTableItem (see the fragment), not
+			// on the plugin itself -- with a custom uploader the plugin
+			// doesn't relay this event, and its parameter shape is
+			// { item, responseXHR, id } rather than a plain "status".
+			var oResponseXHR = oEvent.getParameter("responseXHR");
+			var iStatus = oResponseXHR ? oResponseXHR.status : 0;
+			if (iStatus === 401) {
+				this._handleUnauthorized();
+				return;
+			}
+			if (iStatus < 200 || iStatus >= 300) {
+				MessageBox.error(oResourceBundle.getText("WikiAttachmentsUploadError"));
+				return;
+			}
+			this._loadWikiModel().then(function () {
+				this._syncWikiEntryDraftFilesFromWikiModel();
+			}.bind(this));
+		},
+
+		onWikiFileDelete: function (oEvent) {
+			var oResourceBundle = this.getResourceBundle();
+			var oFile = oEvent.getSource().getBindingContext(WIKI_DRAFT_MODEL).getObject();
+
+			MessageBox.confirm(oResourceBundle.getText("WikiAttachmentsDeleteConfirm", [oFile.filename]), {
+				onClose: function (sAction) {
+					if (sAction !== MessageBox.Action.OK) {
+						return;
+					}
+					fetch(config.SERVICE_URL + "/wiki/files/" + oFile.id, {
+						method: "DELETE",
+						headers: this._authHeaders()
+					}).then(function (oResponse) {
+						this._checkResponse(oResponse);
+						return this._loadWikiModel();
+					}.bind(this)).then(function () {
+						this._syncWikiEntryDraftFilesFromWikiModel();
+					}.bind(this)).catch(function (oError) {
+						console.error("Wiki attachment could not be deleted", oError);
+						MessageBox.error(oResourceBundle.getText("WikiAttachmentsDeleteError"));
+					}.bind(this));
+				}.bind(this)
+			});
+		},
+
+		// The dialog fragment is loaded with an id prefixed by the component
+		// (see _openDialog), not the current view, so plain this.byId can't
+		// find its controls -- Fragment.byId with that same prefix is needed.
+		_byIdInWikiEntryDialog: function (sId) {
+			return Fragment.byId(this.getOwnerComponent().createId("idFragWikiEntryDialog"), sId);
+		},
+
+		onWikiAttachmentsSelectionChange: function (oEvent) {
+			var aSelected = oEvent.getSource().getSelectedContexts();
+			this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDownloadSelected").setEnabled(aSelected.length > 0);
+			this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDeleteSelected").setEnabled(aSelected.length > 0);
+		},
+
+		// Staggered like the detail view's download -- firing all <a> clicks
+		// in the same tick makes Chrome silently drop every download past
+		// the first (its multi-download flood protection).
+		onWikiAttachmentsDownloadSelected: function () {
+			var aSelected = this._byIdInWikiEntryDialog("idTableWikiAttachments").getSelectedContexts();
+			var oFormatter = this.formatter;
+			aSelected.forEach(function (oContext, iIndex) {
+				setTimeout(function () {
+					var oFile = oContext.getObject();
+					var oLink = document.createElement("a");
+					oLink.href = oFormatter.wikiFileUrl(oFile.id);
+					oLink.download = oFile.filename;
+					document.body.appendChild(oLink);
+					oLink.click();
+					document.body.removeChild(oLink);
+				}, iIndex * 400);
+			});
+		},
+
+		onWikiAttachmentsDeleteSelected: function () {
+			var oResourceBundle = this.getResourceBundle();
+			var oTable = this._byIdInWikiEntryDialog("idTableWikiAttachments");
+			var aFiles = oTable.getSelectedContexts().map(function (oContext) { return oContext.getObject(); });
+			if (aFiles.length === 0) {
+				return;
+			}
+
+			MessageBox.confirm(oResourceBundle.getText("WikiAttachmentsDeleteSelectedConfirm", [aFiles.length]), {
+				onClose: function (sAction) {
+					if (sAction !== MessageBox.Action.OK) {
+						return;
+					}
+					Promise.all(aFiles.map(function (oFile) {
+						return fetch(config.SERVICE_URL + "/wiki/files/" + oFile.id, {
+							method: "DELETE",
+							headers: this._authHeaders()
+						}).then(this._checkResponse.bind(this));
+					}.bind(this))).then(function () {
+						return this._loadWikiModel();
+					}.bind(this)).then(function () {
+						oTable.removeSelections();
+						this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDownloadSelected").setEnabled(false);
+						this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDeleteSelected").setEnabled(false);
+						this._syncWikiEntryDraftFilesFromWikiModel();
+					}.bind(this)).catch(function (oError) {
+						console.error("Wiki attachments could not be deleted", oError);
+						MessageBox.error(oResourceBundle.getText("WikiAttachmentsDeleteError"));
+					}.bind(this));
+				}.bind(this)
+			});
 		},
 
 		onNavToHome: function (oEvent) {

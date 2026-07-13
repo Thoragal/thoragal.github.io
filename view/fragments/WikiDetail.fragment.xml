@@ -37,4 +37,39 @@
 	<VBox	id="idBlocksWikiDetail"
 			class="sapUiResponsiveContentPadding"/>
 
+	<Table	id="idTableWikiDetailAttachments"
+			class="sapUiResponsiveContentPadding"
+			visible="{= ${WikiModel>files}.length > 0 }"
+			items="{WikiModel>files}"
+			mode="MultiSelect"
+			selectionChange=".onWikiDetailAttachmentSelectionChange"
+			noDataText="{i18n>WikiAttachmentsNoData}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="{i18n>WikiAttachmentsTitle}"/>
+				<ToolbarSpacer/>
+				<Button	id="idBtnWikiDetailAttachmentsDownload"
+						text="{i18n>WikiAttachmentsDownloadSelected}"
+						enabled="false"
+						press=".onWikiDetailAttachmentsDownload"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="2em"/>
+			<Column><Text text="{i18n>WikiAttachmentsColFilename}"/></Column>
+			<Column><Text text="{i18n>WikiAttachmentsColSize}"/></Column>
+			<Column><Text text="{i18n>WikiAttachmentsColDate}"/></Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<core:Icon src="{ parts: [{path: 'WikiModel>mime_type'}, {path: 'WikiModel>filename'}], formatter: '.formatter.fileTypeIcon' }"/>
+					<Link text="{WikiModel>filename}" href="{ path: 'WikiModel>id', formatter: '.formatter.wikiFileUrl' }" target="_blank"/>
+					<Text text="{ path: 'WikiModel>size_bytes', formatter: '.formatter.fileSize' }"/>
+					<Text text="{ path: 'WikiModel>uploaded_at', formatter: '.formatter.date' }"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
 </core:FragmentDefinition>

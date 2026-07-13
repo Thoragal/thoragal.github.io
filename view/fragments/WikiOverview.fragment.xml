@@ -39,10 +39,9 @@
 							text="{i18n>WikiOverviewTableTitle}"/>
 					</Column>
 					<Column id="IdColumnWikiOverviewPrivate"
-							width="5em"
-							hAlign="Center"
-							visible="{adminModeModel>/isAdmin}">
-						<Text text="{i18n>WikiOverviewTablePrivate}"/>
+							width="7em"
+							hAlign="End">
+						<Text text="{i18n>WikiOverviewTableInfo}"/>
 					</Column>
 					<Column id="IdColumnWikiOverviewActions"
 							width="6em"
@@ -61,9 +60,14 @@
 								title="{WikiModel>id}"/>
 								<Text text = "{ path: 'WikiModel>date', formatter: '.formatter.date' }"/>
 								<Text text = "{WikiModel>title}"/>
-								<core:Icon	src="sap-icon://locked"
-											visible="{= ${adminModeModel>/isAdmin} &amp;&amp; ${WikiModel>is_private} }"
-											class="wikiPrivateIndicator"/>
+								<HBox alignItems="Center" justifyContent="End">
+									<core:Icon	src="sap-icon://attachment"
+												class="wikiAttachmentIndicator"
+												visible="{= ${WikiModel>files}.length > 0 }"/>
+									<core:Icon	src="sap-icon://locked"
+												visible="{= ${adminModeModel>/isAdmin} &amp;&amp; ${WikiModel>is_private} }"
+												class="sapUiTinyMarginBegin wikiPrivateIndicator"/>
+								</HBox>
 								<HBox visible="{adminModeModel>/isAdmin}">
 									<Button icon="sap-icon://edit" tooltip="{i18n>AdminBtnEdit}" press=".onWikiEntryEdit" type="Transparent"/>
 									<Button icon="sap-icon://delete" tooltip="{i18n>AdminBtnDelete}" press=".onWikiEntryDelete" type="Transparent"/>

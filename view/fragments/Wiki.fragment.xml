@@ -18,12 +18,17 @@
 						<Link	text="{WikiModel>title}"
 								press="onPressRow"
 								class="wikiEntryTitle"/>
-						<HBox visible="{adminModeModel>/isAdmin}" alignItems="Center">
+						<HBox alignItems="Center">
+							<core:Icon	src="sap-icon://attachment"
+										class="sapUiTinyMarginEnd wikiAttachmentIndicator"
+										visible="{= ${WikiModel>files}.length > 0 }"/>
 							<core:Icon	src="sap-icon://locked"
 										class="sapUiTinyMarginEnd wikiPrivateIndicator"
-										visible="{= ${WikiModel>is_private} }"/>
-							<Button icon="sap-icon://edit" tooltip="{i18n>AdminBtnEdit}" press=".onWikiEntryEdit" type="Transparent"/>
-							<Button icon="sap-icon://delete" tooltip="{i18n>AdminBtnDelete}" press=".onWikiEntryDelete" type="Transparent"/>
+										visible="{= ${adminModeModel>/isAdmin} &amp;&amp; ${WikiModel>is_private} }"/>
+							<HBox visible="{adminModeModel>/isAdmin}" alignItems="Center">
+								<Button icon="sap-icon://edit" tooltip="{i18n>AdminBtnEdit}" press=".onWikiEntryEdit" type="Transparent"/>
+								<Button icon="sap-icon://delete" tooltip="{i18n>AdminBtnDelete}" press=".onWikiEntryDelete" type="Transparent"/>
+							</HBox>
 						</HBox>
 					</HBox>
 					<VBox items="{ path: 'WikiModel>blocks', factory: '.createWikiBlock', length: 8 }"/>

@@ -1,6 +1,7 @@
 sap.ui.define([
-	"./config"
-], function (config) {
+	"./config",
+	"sap/m/plugins/UploadSetwithTable"
+], function (config, UploadSetwithTable) {
 	"use strict";
 
 	return {
@@ -41,6 +42,24 @@ sap.ui.define([
 			}
 			var aMatch = sValue.match(/^(\d{4})-(\d{2})-(\d{2})/);
 			return aMatch ? aMatch[3] + "." + aMatch[2] + "." + aMatch[1] : sValue;
+		},
+
+		// Builds the backend download URL for a wiki attachment id, same
+		// shape as wikiImageUrl above.
+		wikiFileUrl: function (vFileId) {
+			return (vFileId === null || vFileId === undefined || vFileId === "")
+				? ""
+				: config.SERVICE_URL + "/wiki/files/" + vFileId;
+		},
+
+		// Thin wrappers around UploadSetwithTable's own static helpers, so the
+		// same icon/size formatting is reused in both the editor's live
+		// upload table and the public, read-only detail-view table.
+		fileTypeIcon: function (sMimeType, sFilename) {
+			return UploadSetwithTable.getIconForFileType(sMimeType, sFilename);
+		},
+		fileSize: function (iBytes) {
+			return UploadSetwithTable.getFileSizeWithUnits(iBytes);
 		}
 	};
 });

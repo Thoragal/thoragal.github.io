@@ -2,6 +2,8 @@
 							xmlns:core="sap.ui.core"
 							xmlns:u="sap.ui.unified"
 							xmlns:rte="sap.ui.richtexteditor"
+							xmlns:plugins="sap.m.plugins"
+							xmlns:upload="sap.m.upload"
 							xmlns:f="sap.ui.layout.form">
 	<Dialog id="idDialogWikiEntry" title="{i18n>WikiEntryDialogTitle}" stretch="true">
 		<content>
@@ -66,12 +68,80 @@
 							<Input value="{wikiEntryDraft>description}" placeholder="{i18n>WikiBlockDescriptionPlaceholder}" class="sapUiTinyMarginTop"/>
 						</VBox>
 
-						<rte:RichTextEditor value="{wikiEntryDraft>content}" height="300px" width="100%"
+						<rte:RichTextEditor value="{wikiEntryDraft>content}" height="500px" width="100%"
 								showGroupFont="true" showGroupLink="true"
 								visible="{= ${wikiEntryDraft>type} === 'html' }"/>
 					</content>
 				</Panel>
 			</VBox>
+
+			<Panel id="idPanelWikiAttachments" headerText="{i18n>WikiAttachmentsTitle}"
+					expandable="true" expanded="{= ${wikiEntryDraft>/files}.length > 0 }"
+					width="auto"
+					class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
+				<Text text="{i18n>WikiAttachmentsSaveFirstHint}" visible="{= !${wikiEntryDraft>/id} }" class="sapUiSmallMargin"/>
+
+				<Table id="idTableWikiAttachments" visible="{= !!${wikiEntryDraft>/id} }"
+						items="{wikiEntryDraft>/files}" noDataText="{i18n>WikiAttachmentsNoData}"
+						mode="MultiSelect"
+						selectionChange=".onWikiAttachmentsSelectionChange">
+					<headerToolbar>
+						<OverflowToolbar>
+							<ToolbarSpacer/>
+							<Button	id="idBtnWikiAttachmentsDownloadSelected"
+									text="{i18n>WikiAttachmentsDownloadSelected}"
+									enabled="false"
+									press=".onWikiAttachmentsDownloadSelected"/>
+							<Button	id="idBtnWikiAttachmentsDeleteSelected"
+									text="{i18n>WikiAttachmentsDeleteSelected}"
+									enabled="false"
+									press=".onWikiAttachmentsDeleteSelected"/>
+							<upload:ActionsPlaceholder id="idWikiAttachmentsUploadBtn" placeholderFor="UploadButtonPlaceholder"/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="2em"/>
+						<Column><Text text="{i18n>WikiAttachmentsColFilename}"/></Column>
+						<Column><Text text="{i18n>WikiAttachmentsColSize}"/></Column>
+						<Column width="3em"/>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<core:Icon src="{ parts: [{path: 'wikiEntryDraft>mime_type'}, {path: 'wikiEntryDraft>filename'}], formatter: '.formatter.fileTypeIcon' }"/>
+								<Text text="{wikiEntryDraft>filename}"/>
+								<Text text="{ path: 'wikiEntryDraft>size_bytes', formatter: '.formatter.fileSize' }"/>
+								<Button icon="sap-icon://delete" type="Transparent" tooltip="{i18n>WikiAttachmentsDelete}" press=".onWikiFileDelete"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+					<dependents>
+						<plugins:UploadSetwithTable
+								uploadUrl="{wikiEntryDraft>/uploadUrl}"
+								fileTypes="pdf,doc,docx,xls,xlsx,ppt,pptx,zip,7z,rar,gz,tar,txt,csv,json,xml,rtf,png,jpg,jpeg,gif,svg,webp"
+								maxFileSize="300" multiple="true"
+								beforeUploadStarts=".onWikiFileBeforeUploadStarts"
+								actions="idWikiAttachmentsUploadBtn">
+							<plugins:rowConfiguration>
+								<upload:UploadItemConfiguration fileNamePath="filename" mediaTypePath="mime_type"/>
+							</plugins:rowConfiguration>
+							<plugins:uploader>
+								<!-- Default uploader sends the raw file body (useMultipart false);
+									 the backend expects a standard multipart/form-data upload
+									 (parsed with busboy), so this is switched on explicitly.
+									 uploadUrl does not inherit from the plugin's own property
+									 once a custom uploader is provided, so it is bound here too.
+									 uploadCompleted is attached here (not on the plugin itself):
+									 with a custom uploader, the plugin does not relay this event
+									 up to its own uploadCompleted, and the parameter shape differs
+									 (responseXHR, not a plain status). -->
+								<upload:UploaderTableItem useMultipart="true" uploadUrl="{wikiEntryDraft>/uploadUrl}"
+										uploadCompleted=".onWikiFileUploadCompleted"/>
+							</plugins:uploader>
+						</plugins:UploadSetwithTable>
+					</dependents>
+				</Table>
+			</Panel>
 		</content>
 		<footer>
 			<Toolbar>
