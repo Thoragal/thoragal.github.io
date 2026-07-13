@@ -15,10 +15,11 @@ sap.ui.define([
 	"sap/m/FlexItemData",
 	"sap/m/LightBox",
 	"sap/m/LightBoxItem",
+	"sap/ui/core/library",
 	"../model/formatter",
 	"../model/config",
 	"../model/wikiRenderer"
-], function (Controller, UIComponent, mobileLibrary, History, JSONModel, MessageBox, MessageToast, Fragment, Localization, HTML, Item, Image, VBox, FlexItemData, LightBox, LightBoxItem, formatter, config, wikiRenderer) {
+], function (Controller, UIComponent, mobileLibrary, History, JSONModel, MessageBox, MessageToast, Fragment, Localization, HTML, Item, Image, VBox, FlexItemData, LightBox, LightBoxItem, coreLibrary, formatter, config, wikiRenderer) {
 	"use strict";
 
 	var EMAIL_SERVICE_TIMEOUT_MS = 8000;
@@ -156,7 +157,7 @@ sap.ui.define([
 					densityAware: false,
 					detailBox: new LightBox({ imageContent: [ oLightBoxItem ] })
 				});
-				oImage.setLayoutData(new sap.m.FlexItemData({ growFactor: 0, shrinkFactor: 0 }));
+				oImage.setLayoutData(new FlexItemData({ growFactor: 0, shrinkFactor: 0 }));
 				var aItems = [ oImage ];
 				if (oBlock.description) {
 					aItems.push(this._htmlControl(null, "<div class=\"wikiCaption\">" + wikiRenderer.renderInline(oBlock.description) + "</div>"));
@@ -623,7 +624,7 @@ sap.ui.define([
 		
 		onPressLanguageDialogApply: function (oEvent){
 			var oComponent = this.getOwnerComponent();
-			var oRadioButtonGroup = sap.ui.core.Fragment.byId(oComponent.createId("idFragLanguageDialog"), "rbg1");
+			var oRadioButtonGroup = Fragment.byId(oComponent.createId("idFragLanguageDialog"), "rbg1");
 			var iSelectedIndex = oRadioButtonGroup ? oRadioButtonGroup.getSelectedIndex() : 0;
 
 			var sLanguage;
@@ -696,7 +697,7 @@ sap.ui.define([
 
 		_setLoginErrorVisible: function (bVisible) {
 			var oComponent = this.getOwnerComponent();
-			var oText = sap.ui.core.Fragment.byId(oComponent.createId("idFragLoginDialog"), "idTextLoginError");
+			var oText = Fragment.byId(oComponent.createId("idFragLoginDialog"), "idTextLoginError");
 			if (oText) {
 				oText.setVisible(bVisible);
 			}
@@ -805,41 +806,41 @@ sap.ui.define([
 			//FirstName
 			if (sContactMeData.NameFirst === undefined || sContactMeData.NameFirst === "") {
 				bValid = false;
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeFirstName").setValueState(sap.ui.core.ValueState.Error);
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeFirstName").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeFirstName").setValueState(coreLibrary.ValueState.Error);
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeFirstName").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
 			} else {
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeFirstName").setValueState(sap.ui.core.ValueState.None);
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeFirstName").setValueStateText("");
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeFirstName").setValueState(coreLibrary.ValueState.None);
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeFirstName").setValueStateText("");
 			}
-			
+
 			//LastName
 			if (sContactMeData.NameLast === undefined || sContactMeData.NameLast === "") {
 				bValid = false;
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeLastName").setValueState(sap.ui.core.ValueState.Error);
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeLastName").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeLastName").setValueState(coreLibrary.ValueState.Error);
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeLastName").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
 			} else {
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeLastName").setValueState(sap.ui.core.ValueState.None);
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeLastName").setValueStateText("");
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeLastName").setValueState(coreLibrary.ValueState.None);
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeLastName").setValueStateText("");
 			}
-			
+
 			//Email
 			if (sContactMeData.Email === undefined || sContactMeData.Email === "") {
 				bValid = false;
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeEmail").setValueState(sap.ui.core.ValueState.Error);
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeEmail").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeEmail").setValueState(coreLibrary.ValueState.Error);
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeEmail").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
 			} else {
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeEmail").setValueState(sap.ui.core.ValueState.None);
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeEmail").setValueStateText("");
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeEmail").setValueState(coreLibrary.ValueState.None);
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idInputContactMeEmail").setValueStateText("");
 			}
-			
+
 			//Text
 			if (sContactMeData.Text === undefined || sContactMeData.Text === "") {
 				bValid = false;
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idTextAreaContactMeText").setValueState(sap.ui.core.ValueState.Error);
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idTextAreaContactMeText").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idTextAreaContactMeText").setValueState(coreLibrary.ValueState.Error);
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idTextAreaContactMeText").setValueStateText(this.getResourceBundle().getText("txtContactMeMandatory"));
 			} else {
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idTextAreaContactMeText").setValueState(sap.ui.core.ValueState.None);
-				sap.ui.core.Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idTextAreaContactMeText").setValueStateText("");
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idTextAreaContactMeText").setValueState(coreLibrary.ValueState.None);
+				Fragment.byId(oComponent.createId("idFragContactMeDialog"), "idTextAreaContactMeText").setValueStateText("");
 			}
 			
 			return bValid;
@@ -897,7 +898,7 @@ sap.ui.define([
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
 			} else {
-				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				var oRouter = UIComponent.getRouterFor(this);
 				oRouter.navTo("HomeView", {}, true);
 			}
 		},

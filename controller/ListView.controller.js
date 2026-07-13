@@ -5,8 +5,9 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"sap/base/i18n/Localization",
 	"sap/m/MessageBox",
+	"sap/m/MessageToast",
 	"../model/config"
-], function (BaseController, JSONModel, Filter, FilterOperator, Localization, MessageBox, config) {
+], function (BaseController, JSONModel, Filter, FilterOperator, Localization, MessageBox, MessageToast, config) {
 	"use strict";
 
 	var SUPPORTED_LANGS = ["de", "en", "es"];
@@ -407,7 +408,7 @@ sap.ui.define([
 
 			navigator.clipboard.writeText(oObject.value)
 				.then(() => {
-                    sap.m.MessageToast.show( sTableCopied + ": " + oObject.value);
+                    MessageToast.show( sTableCopied + ": " + oObject.value);
                 })
                 .catch(err => {
                 	var sTableCopiedError = oResourceBundle.getText("TableCopiedError");
