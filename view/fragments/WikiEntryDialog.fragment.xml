@@ -108,10 +108,23 @@
 					<items>
 						<ColumnListItem>
 							<cells>
-								<core:Icon src="{ parts: [{path: 'wikiEntryDraft>mime_type'}, {path: 'wikiEntryDraft>filename'}], formatter: '.formatter.fileTypeIcon' }"/>
-								<Text text="{wikiEntryDraft>filename}"/>
-								<Text text="{ path: 'wikiEntryDraft>size_bytes', formatter: '.formatter.fileSize' }"/>
-								<Button icon="sap-icon://delete" type="Transparent" tooltip="{i18n>WikiAttachmentsDelete}" press=".onWikiFileDelete"/>
+								<core:Icon src="{ parts: [{path: 'wikiEntryDraft>mime_type'}, {path: 'wikiEntryDraft>filename'}], formatter: '.formatter.fileTypeIcon' }"
+										visible="{= !${wikiEntryDraft>pending} }"/>
+								<VBox justifyContent="Center">
+									<Text text="{wikiEntryDraft>filename}" visible="{= !${wikiEntryDraft>pending} }"/>
+									<!-- Pending (still-uploading) rows are appended client-side in
+										 onWikiFileUploadStarted, since they don't exist on the server
+										 yet; there's nothing here but a filename/size and live progress
+										 until onWikiFileUploadCompleted removes this row again. -->
+									<ProgressIndicator visible="{= !!${wikiEntryDraft>pending} }"
+											percentValue="{wikiEntryDraft>progress}"
+											displayValue="{= ${wikiEntryDraft>filename} + ' – ' + ${wikiEntryDraft>progress} + '%' }"
+											width="100%"/>
+								</VBox>
+								<Text text="{ path: 'wikiEntryDraft>size_bytes', formatter: '.formatter.fileSize' }"
+										visible="{= !${wikiEntryDraft>pending} }"/>
+								<Button icon="sap-icon://delete" type="Transparent" tooltip="{i18n>WikiAttachmentsDelete}" press=".onWikiFileDelete"
+										visible="{= !${wikiEntryDraft>pending} }"/>
 							</cells>
 						</ColumnListItem>
 					</items>
@@ -131,11 +144,14 @@
 									 (parsed with busboy), so this is switched on explicitly.
 									 uploadUrl does not inherit from the plugin's own property
 									 once a custom uploader is provided, so it is bound here too.
-									 uploadCompleted is attached here (not on the plugin itself):
-									 with a custom uploader, the plugin does not relay this event
-									 up to its own uploadCompleted, and the parameter shape differs
-									 (responseXHR, not a plain status). -->
+									 uploadStarted/uploadProgressed/uploadCompleted are attached here
+									 (not on the plugin itself): with a custom uploader, the plugin
+									 doesn't relay these events up to its own same-named events, and
+									 uploadCompleted's parameter shape differs (responseXHR, not a
+									 plain status). -->
 								<upload:UploaderTableItem useMultipart="true" uploadUrl="{wikiEntryDraft>/uploadUrl}"
+										uploadStarted=".onWikiFileUploadStarted"
+										uploadProgressed=".onWikiFileUploadProgressed"
 										uploadCompleted=".onWikiFileUploadCompleted"/>
 							</plugins:uploader>
 						</plugins:UploadSetwithTable>
@@ -147,7 +163,7 @@
 			<Toolbar>
 				<Button text="{i18n>txtBtnContactMeCancel}" press=".onWikiEntryCancel"/>
 				<ToolbarSpacer/>
-				<Button text="{i18n>ListEntrySave}" type="Emphasized" press=".onWikiEntrySave"/>
+				<Button id="idBtnWikiEntrySave" text="{i18n>ListEntrySave}" type="Emphasized" press=".onWikiEntrySave"/>
 			</Toolbar>
 		</footer>
 	</Dialog>

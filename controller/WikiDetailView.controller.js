@@ -85,28 +85,22 @@ sap.ui.define([
 			this.byId("idBtnWikiDetailAttachmentsDownload").setEnabled(aSelected.length > 0);
 		},
 
-		// Triggers a browser download per selected attachment. A plain <a>
-		// click (not window.open) avoids leaving blank tabs behind, and works
-		// across origins because the backend already sends
-		// Content-Disposition: attachment on this endpoint. Downloads are
-		// staggered (not fired in the same tick) because Chrome silently
+		onWikiDetailFileDownload: function (oEvent) {
+			var oFile = oEvent.getSource().getBindingContext("WikiModel").getObject();
+			this._downloadWikiFile(oFile).catch(this._showWikiDownloadError.bind(this));
+		},
+
+		// Staggered (not fired in the same tick) because Chrome silently
 		// blocks every download past the first when several are triggered
 		// synchronously in one go -- only a per-file user gesture or a gap
 		// between requests avoids that flood protection.
 		onWikiDetailAttachmentsDownload: function () {
 			var aSelected = this.byId("idTableWikiDetailAttachments").getSelectedContexts();
-			var oFormatter = this.formatter;
 			aSelected.forEach(function (oContext, iIndex) {
 				setTimeout(function () {
-					var oFile = oContext.getObject();
-					var oLink = document.createElement("a");
-					oLink.href = oFormatter.wikiFileUrl(oFile.id);
-					oLink.download = oFile.filename;
-					document.body.appendChild(oLink);
-					oLink.click();
-					document.body.removeChild(oLink);
-				}, iIndex * 400);
-			});
+					this._downloadWikiFile(oContext.getObject()).catch(this._showWikiDownloadError.bind(this));
+				}.bind(this), iIndex * 400);
+			}.bind(this));
 		},
 
 		_onObjectMatched: function (oEvent) {

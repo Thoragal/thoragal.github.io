@@ -64,7 +64,7 @@
 			<ColumnListItem>
 				<cells>
 					<core:Icon src="{ parts: [{path: 'WikiModel>mime_type'}, {path: 'WikiModel>filename'}], formatter: '.formatter.fileTypeIcon' }"/>
-					<Link text="{WikiModel>filename}" href="{ path: 'WikiModel>id', formatter: '.formatter.wikiFileUrl' }" target="_blank"/>
+					<Link text="{WikiModel>filename}" press=".onWikiDetailFileDownload"/>
 					<Text text="{ path: 'WikiModel>size_bytes', formatter: '.formatter.fileSize' }"/>
 					<Text text="{ path: 'WikiModel>uploaded_at', formatter: '.formatter.date' }"/>
 				</cells>

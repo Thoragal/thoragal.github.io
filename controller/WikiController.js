@@ -199,6 +199,19 @@ sap.ui.define([
 		},
 
 		onWikiEntrySave: function () {
+			// Guards against a double-click (or any other double-fire of this
+			// handler) submitting the same new entry twice: a new entry's
+			// draft has no id yet, and nothing sets one until this request's
+			// own success handler runs, so a second call before that happens
+			// would see the same "no id -> POST" state and create a second,
+			// duplicate entry instead of updating the first.
+			if (this._bSavingWikiEntry) {
+				return;
+			}
+			this._bSavingWikiEntry = true;
+			var oSaveButton = this._byIdInWikiEntryDialog("idBtnWikiEntrySave");
+			oSaveButton.setEnabled(false);
+
 			var oResourceBundle = this.getResourceBundle();
 			var oDraft = this.getOwnerComponent().getModel(WIKI_DRAFT_MODEL).getData();
 
@@ -237,6 +250,9 @@ sap.ui.define([
 			}.bind(this)).catch(function (oError) {
 				console.error("Wiki entry could not be saved", oError);
 				MessageBox.error(oResourceBundle.getText("WikiSaveError"));
+			}.bind(this)).finally(function () {
+				this._bSavingWikiEntry = false;
+				oSaveButton.setEnabled(true);
 			}.bind(this));
 		},
 
@@ -388,6 +404,11 @@ sap.ui.define([
 		// back into the draft, so the editor's attachment table reflects the
 		// latest upload/delete without a separate local patch (same
 		// single-source-of-truth approach as onWikiEntrySave/_deleteEntry).
+		// Preserves any still-uploading placeholder rows (see
+		// onWikiFileUploadStarted below) -- this sync can be triggered by a
+		// *different*, already-finished upload while another one in the same
+		// multi-select batch is still in flight, and a plain overwrite would
+		// wipe that still-running row's progress bar off the screen.
 		_syncWikiEntryDraftFilesFromWikiModel: function () {
 			var oComponent = this.getOwnerComponent();
 			var oDraftModel = oComponent.getModel(WIKI_DRAFT_MODEL);
@@ -395,7 +416,9 @@ sap.ui.define([
 			if (!iId) { return; }
 			var aWiki = oComponent.getModel("WikiModel").getProperty("/Wiki") || [];
 			var oEntry = aWiki.filter(function (o) { return o.id === iId; })[0];
-			oDraftModel.setProperty("/files", (oEntry && oEntry.files) || []);
+			var aServerFiles = (oEntry && oEntry.files) || [];
+			var aPending = (oDraftModel.getProperty("/files") || []).filter(function (o) { return o.pending; });
+			oDraftModel.setProperty("/files", aServerFiles.concat(aPending));
 		},
 
 		// UploadSetwithTable posts directly to uploadUrl itself, so the admin
@@ -408,8 +431,50 @@ sap.ui.define([
 			oPlugin.addHeaderField(new Item({ key: "Authorization", text: "Bearer " + sessionStorage.getItem(TOKEN_STORAGE_KEY) }));
 		},
 
+		// Appends a placeholder row for a file that just started uploading --
+		// the real row only appears once the server confirms the upload (see
+		// onWikiFileUploadCompleted), so without this there is no visible
+		// feedback at all while a large file is in transit. Keyed by the
+		// uploader's own item id (stable across started/progressed/completed
+		// for that one file) so concurrent uploads from a multi-select don't
+		// interfere with each other.
+		onWikiFileUploadStarted: function (oEvent) {
+			var oItem = oEvent.getParameter("item");
+			var oDraftModel = this.getOwnerComponent().getModel(WIKI_DRAFT_MODEL);
+			var aFiles = oDraftModel.getProperty("/files") || [];
+			aFiles.push({
+				pendingId: oItem.getId(),
+				pending: true,
+				filename: oItem.getFileName(),
+				size_bytes: oItem.getFileSize(),
+				progress: 0
+			});
+			oDraftModel.setProperty("/files", aFiles);
+		},
+
+		onWikiFileUploadProgressed: function (oEvent) {
+			var oItem = oEvent.getParameter("item");
+			if (!oItem) { return; }
+			var iLoaded = oEvent.getParameter("loaded");
+			var iTotal = oEvent.getParameter("total");
+			var iPercent = iTotal ? Math.round((iLoaded / iTotal) * 100) : 0;
+			var oDraftModel = this.getOwnerComponent().getModel(WIKI_DRAFT_MODEL);
+			var aFiles = oDraftModel.getProperty("/files") || [];
+			var oPending = aFiles.filter(function (o) { return o.pendingId === oItem.getId(); })[0];
+			if (oPending) {
+				oPending.progress = iPercent;
+				oDraftModel.setProperty("/files", aFiles);
+			}
+		},
+
 		onWikiFileUploadCompleted: function (oEvent) {
 			var oResourceBundle = this.getResourceBundle();
+			var oItem = oEvent.getParameter("item");
+			if (oItem) {
+				var oDraftModel = this.getOwnerComponent().getModel(WIKI_DRAFT_MODEL);
+				var aFiles = (oDraftModel.getProperty("/files") || []).filter(function (o) { return o.pendingId !== oItem.getId(); });
+				oDraftModel.setProperty("/files", aFiles);
+			}
 			// Attached on the custom UploaderTableItem (see the fragment), not
 			// on the plugin itself -- with a custom uploader the plugin
 			// doesn't relay this event, and its parameter shape is
@@ -461,29 +526,66 @@ sap.ui.define([
 			return Fragment.byId(this.getOwnerComponent().createId("idFragWikiEntryDialog"), sId);
 		},
 
+		// Downloads one attachment via an authenticated fetch() rather than a
+		// plain <a href> or programmatic anchor click -- browsers don't (and
+		// can't) attach custom headers to those, so a private entry's admin
+		// bearer token would never reach the server and every download would
+		// 404 as if the file didn't exist, even for the admin themselves. The
+		// response is turned into a blob: URL purely to trigger the browser's
+		// normal "save file" behaviour with the right filename; that final
+		// click needs no auth of its own since the bytes are already local.
+		_downloadWikiFile: function (oFile) {
+			return fetch(this.formatter.wikiFileUrl(oFile.id), { headers: this._authHeaders() })
+				.then(function (oResponse) {
+					if (oResponse.status === 401) {
+						this._handleUnauthorized();
+						throw new Error("Unauthorized");
+					}
+					if (!oResponse.ok) {
+						// Unlike _checkResponse (which discards the body so callers
+						// can safely re-read it), downloads have no second reader --
+						// the body is parsed here to recover the server's message
+						// (e.g. a B2 bandwidth cap) so the UI can show it verbatim.
+						return oResponse.json().catch(function () { return {}; }).then(function (oData) {
+							throw new Error(oData.error || ("Request failed with status " + oResponse.status));
+						});
+					}
+					return oResponse;
+				}.bind(this))
+				.then(function (oResponse) { return oResponse.blob(); })
+				.then(function (oBlob) {
+					var sObjectUrl = URL.createObjectURL(oBlob);
+					var oLink = document.createElement("a");
+					oLink.href = sObjectUrl;
+					oLink.download = oFile.filename;
+					document.body.appendChild(oLink);
+					oLink.click();
+					document.body.removeChild(oLink);
+					URL.revokeObjectURL(sObjectUrl);
+				});
+		},
+
+		_showWikiDownloadError: function (oError) {
+			console.error("Wiki attachment could not be downloaded", oError);
+			MessageBox.error(this.getResourceBundle().getText("WikiAttachmentsDownloadError", [oError.message]));
+		},
+
 		onWikiAttachmentsSelectionChange: function (oEvent) {
 			var aSelected = oEvent.getSource().getSelectedContexts();
 			this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDownloadSelected").setEnabled(aSelected.length > 0);
 			this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDeleteSelected").setEnabled(aSelected.length > 0);
 		},
 
-		// Staggered like the detail view's download -- firing all <a> clicks
-		// in the same tick makes Chrome silently drop every download past
-		// the first (its multi-download flood protection).
+		// Staggered -- firing all downloads in the same tick makes Chrome
+		// silently drop every one past the first (its multi-download flood
+		// protection).
 		onWikiAttachmentsDownloadSelected: function () {
 			var aSelected = this._byIdInWikiEntryDialog("idTableWikiAttachments").getSelectedContexts();
-			var oFormatter = this.formatter;
 			aSelected.forEach(function (oContext, iIndex) {
 				setTimeout(function () {
-					var oFile = oContext.getObject();
-					var oLink = document.createElement("a");
-					oLink.href = oFormatter.wikiFileUrl(oFile.id);
-					oLink.download = oFile.filename;
-					document.body.appendChild(oLink);
-					oLink.click();
-					document.body.removeChild(oLink);
-				}, iIndex * 400);
-			});
+					this._downloadWikiFile(oContext.getObject()).catch(this._showWikiDownloadError.bind(this));
+				}.bind(this), iIndex * 400);
+			}.bind(this));
 		},
 
 		onWikiAttachmentsDeleteSelected: function () {
