@@ -43,6 +43,15 @@ sap.ui.define([
 				oModel = new JSONModel();
 				oComponent.setModel(oModel, "WikiModel");
 			}
+			// _loadWikiModel is called from many places (save, delete, upload,
+			// login/logout, onInit...) and responses aren't guaranteed to
+			// arrive in the order their requests were sent. A request counter
+			// makes only the most-recently-*started* call ever win: if a
+			// newer load has been kicked off by the time this one resolves,
+			// its (now-stale) data is discarded instead of overwriting the
+			// model with older state.
+			this._iWikiLoadRequestId = (this._iWikiLoadRequestId || 0) + 1;
+			var iRequestId = this._iWikiLoadRequestId;
 			// GET /wiki is public (never rejects), but sending the admin token
 			// when present -- via the same header used for admin-only calls --
 			// is what makes it also include private entries for a logged-in
@@ -51,6 +60,9 @@ sap.ui.define([
 			return fetch(config.SERVICE_URL + "/wiki", { headers: this._authHeaders() }).then(function (oResponse) {
 				return this._checkResponse(oResponse).json();
 			}.bind(this)).then(function (oData) {
+				if (iRequestId !== this._iWikiLoadRequestId) {
+					return;
+				}
 				oModel.setData(oData);
 				this._onWikiModelReloaded();
 			}.bind(this)).catch(function (oError) {
@@ -570,22 +582,27 @@ sap.ui.define([
 			MessageBox.error(this.getResourceBundle().getText("WikiAttachmentsDownloadError", [oError.message]));
 		},
 
+		// Shared by the editor's and the detail view's multi-select download
+		// buttons. Staggered -- firing all downloads in the same tick makes
+		// Chrome silently drop every one past the first (its multi-download
+		// flood protection).
+		_downloadWikiFilesStaggered: function (aContexts) {
+			aContexts.forEach(function (oContext, iIndex) {
+				setTimeout(function () {
+					this._downloadWikiFile(oContext.getObject()).catch(this._showWikiDownloadError.bind(this));
+				}.bind(this), iIndex * 400);
+			}.bind(this));
+		},
+
 		onWikiAttachmentsSelectionChange: function (oEvent) {
 			var aSelected = oEvent.getSource().getSelectedContexts();
 			this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDownloadSelected").setEnabled(aSelected.length > 0);
 			this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDeleteSelected").setEnabled(aSelected.length > 0);
 		},
 
-		// Staggered -- firing all downloads in the same tick makes Chrome
-		// silently drop every one past the first (its multi-download flood
-		// protection).
 		onWikiAttachmentsDownloadSelected: function () {
 			var aSelected = this._byIdInWikiEntryDialog("idTableWikiAttachments").getSelectedContexts();
-			aSelected.forEach(function (oContext, iIndex) {
-				setTimeout(function () {
-					this._downloadWikiFile(oContext.getObject()).catch(this._showWikiDownloadError.bind(this));
-				}.bind(this), iIndex * 400);
-			}.bind(this));
+			this._downloadWikiFilesStaggered(aSelected);
 		},
 
 		onWikiAttachmentsDeleteSelected: function () {

@@ -133,13 +133,12 @@ sap.ui.define([
 			var oComponent = this.getOwnerComponent();
 			var oRadioButtonGroup = Fragment.byId(oComponent.createId("idFragLanguageDialog"), "rbg1");
 			var iSelectedIndex = oRadioButtonGroup ? oRadioButtonGroup.getSelectedIndex() : 0;
-
-			var sLanguage;
-			switch (iSelectedIndex) {
-				case 1: sLanguage = "en"; break;
-				case 2: sLanguage = "es"; break;
-				default: sLanguage = "de";
-			}
+			// The language is read from the selected button's own customData
+			// (set per-button in the fragment) rather than a hardcoded
+			// index->language mapping here, so the two can't drift apart if
+			// the buttons are ever reordered or added to in the fragment.
+			var oSelectedButton = oRadioButtonGroup && oRadioButtonGroup.getButtons()[iSelectedIndex];
+			var sLanguage = (oSelectedButton && oSelectedButton.data("lang")) || "de";
 
 			/*Change language*/
 			Localization.setLanguage(sLanguage);

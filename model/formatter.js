@@ -1,7 +1,8 @@
 sap.ui.define([
 	"./config",
-	"sap/m/plugins/UploadSetwithTable"
-], function (config, UploadSetwithTable) {
+	"sap/m/plugins/UploadSetwithTable",
+	"sap/ui/Device"
+], function (config, UploadSetwithTable, Device) {
 	"use strict";
 
 	return {
@@ -18,7 +19,7 @@ sap.ui.define([
 		},
 		device: function(value) {
 			var result = value;
-			if( sap.ui.Device.system.phone === true ){
+			if( Device.system.phone === true ){
 				result = "";
 			}
 			return result;

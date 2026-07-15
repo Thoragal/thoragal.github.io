@@ -123,7 +123,7 @@ sap.ui.define([
 				},
 
 				onPressEdit: function (oEvent) {
-					var oRow = oEvent.getSource().getParent().getParent().getBindingContext(oOpts.managerModel).getObject();
+					var oRow = oEvent.getSource().getBindingContext(oOpts.managerModel).getObject();
 					that.getView().getModel(oOpts.entryModel).setData({
 						id: oRow.id, label_de: oRow.label_de || "", label_en: oRow.label_en || "", label_es: oRow.label_es || ""
 					});
@@ -167,7 +167,7 @@ sap.ui.define([
 				},
 
 				onPressDelete: function (oEvent) {
-					var oRow = oEvent.getSource().getParent().getParent().getBindingContext(oOpts.managerModel).getObject();
+					var oRow = oEvent.getSource().getBindingContext(oOpts.managerModel).getObject();
 					var oResourceBundle = that.getResourceBundle();
 
 					MessageBox.confirm(oResourceBundle.getText(oOpts.deleteConfirmI18n, [oRow.label_de]), {

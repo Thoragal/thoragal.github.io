@@ -90,17 +90,9 @@ sap.ui.define([
 			this._downloadWikiFile(oFile).catch(this._showWikiDownloadError.bind(this));
 		},
 
-		// Staggered (not fired in the same tick) because Chrome silently
-		// blocks every download past the first when several are triggered
-		// synchronously in one go -- only a per-file user gesture or a gap
-		// between requests avoids that flood protection.
 		onWikiDetailAttachmentsDownload: function () {
 			var aSelected = this.byId("idTableWikiDetailAttachments").getSelectedContexts();
-			aSelected.forEach(function (oContext, iIndex) {
-				setTimeout(function () {
-					this._downloadWikiFile(oContext.getObject()).catch(this._showWikiDownloadError.bind(this));
-				}.bind(this), iIndex * 400);
-			}.bind(this));
+			this._downloadWikiFilesStaggered(aSelected);
 		},
 
 		_onObjectMatched: function (oEvent) {

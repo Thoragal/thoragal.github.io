@@ -8,9 +8,15 @@
 	<VBox class="sapUiSmallMargin">
 		<Label labelFor="rbg1" text="{i18n>LanguageDefine}" />
 		<RadioButtonGroup id="rbg1">
-			<RadioButton id="RB1-1" text="{i18n>German}" />
-			<RadioButton id="RB1-2" text="{i18n>English}" />
-			<RadioButton id="RB1-3" text="{i18n>Spanish}" />
+			<RadioButton id="RB1-1" text="{i18n>German}">
+				<customData><core:CustomData key="lang" value="de"/></customData>
+			</RadioButton>
+			<RadioButton id="RB1-2" text="{i18n>English}">
+				<customData><core:CustomData key="lang" value="en"/></customData>
+			</RadioButton>
+			<RadioButton id="RB1-3" text="{i18n>Spanish}">
+				<customData><core:CustomData key="lang" value="es"/></customData>
+			</RadioButton>
 		</RadioButtonGroup>
 	</VBox>
 		</content>
