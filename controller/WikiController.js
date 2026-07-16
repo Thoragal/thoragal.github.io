@@ -11,12 +11,12 @@ sap.ui.define([
 	"sap/m/FlexItemData",
 	"sap/m/LightBox",
 	"sap/m/LightBoxItem",
+	"sap/ui/core/library",
 	"../model/config",
 	"../model/wikiRenderer"
-], function (BaseController, JSONModel, MessageBox, MessageToast, Fragment, HTML, Item, Image, VBox, FlexItemData, LightBox, LightBoxItem, config, wikiRenderer) {
+], function (BaseController, JSONModel, MessageBox, MessageToast, Fragment, HTML, Item, Image, VBox, FlexItemData, LightBox, LightBoxItem, coreLibrary, config, wikiRenderer) {
 	"use strict";
 
-	var TOKEN_STORAGE_KEY = "adminAuthToken";
 	var WIKI_DRAFT_MODEL = "wikiEntryDraft";
 	var WIKI_ENTRY_DIALOG = "WikiEntryDialog";
 
@@ -203,7 +203,15 @@ sap.ui.define([
 		},
 
 		_openWikiEntryDialog: function () {
-			return this._openDialog(WIKI_ENTRY_DIALOG, "idFragWikiEntryDialog", "Homepage.Homepage.view.fragments.WikiEntryDialog");
+			// The dialog is cached and reused (see _openDialog), so a red
+			// error state left over from a previous failed save attempt would
+			// otherwise still be showing the next time it's opened, even for
+			// an unrelated entry.
+			return this._openDialog(WIKI_ENTRY_DIALOG, "idFragWikiEntryDialog", "Homepage.Homepage.view.fragments.WikiEntryDialog").then(function () {
+				var oTitleInput = this._byIdInWikiEntryDialog("idInputWikiEntryTitle");
+				oTitleInput.setValueState(coreLibrary.ValueState.None);
+				oTitleInput.setValueStateText("");
+			}.bind(this));
 		},
 
 		onWikiEntryCancel: function () {
@@ -220,12 +228,27 @@ sap.ui.define([
 			if (this._bSavingWikiEntry) {
 				return;
 			}
-			this._bSavingWikiEntry = true;
-			var oSaveButton = this._byIdInWikiEntryDialog("idBtnWikiEntrySave");
-			oSaveButton.setEnabled(false);
 
 			var oResourceBundle = this.getResourceBundle();
 			var oDraft = this.getOwnerComponent().getModel(WIKI_DRAFT_MODEL).getData();
+			var oTitleInput = this._byIdInWikiEntryDialog("idInputWikiEntryTitle");
+
+			if (!oDraft.title || !oDraft.title.trim()) {
+				oTitleInput.setValueState(coreLibrary.ValueState.Error);
+				oTitleInput.setValueStateText(oResourceBundle.getText("WikiEntryTitleMandatory"));
+				// The valueStateText popup only shows while the control has
+				// focus (it's not just a static tooltip) -- Save left focus on
+				// the button, so without this the red border would appear
+				// with no visible explanation of why.
+				oTitleInput.focus();
+				return;
+			}
+			oTitleInput.setValueState(coreLibrary.ValueState.None);
+			oTitleInput.setValueStateText("");
+
+			this._bSavingWikiEntry = true;
+			var oSaveButton = this._byIdInWikiEntryDialog("idBtnWikiEntrySave");
+			oSaveButton.setEnabled(false);
 
 			var aTags = (oDraft.tagsText || "").split(",").map(function (s) { return s.trim(); }).filter(Boolean);
 			var aBlocks = (oDraft.blocks || []).map(function (oBlock) {
@@ -392,7 +415,7 @@ sap.ui.define([
 
 			fetch(config.SERVICE_URL + "/wiki/images", {
 				method: "POST",
-				headers: { "Authorization": "Bearer " + sessionStorage.getItem(TOKEN_STORAGE_KEY) },
+				headers: { "Authorization": "Bearer " + sessionStorage.getItem(config.TOKEN_STORAGE_KEY) },
 				body: oFormData
 			}).then(function (oResponse) {
 				return this._checkResponse(oResponse).json();
@@ -440,7 +463,7 @@ sap.ui.define([
 		onWikiFileBeforeUploadStarts: function (oEvent) {
 			var oPlugin = oEvent.getSource();
 			oPlugin.removeAllHeaderFields();
-			oPlugin.addHeaderField(new Item({ key: "Authorization", text: "Bearer " + sessionStorage.getItem(TOKEN_STORAGE_KEY) }));
+			oPlugin.addHeaderField(new Item({ key: "Authorization", text: "Bearer " + sessionStorage.getItem(config.TOKEN_STORAGE_KEY) }));
 		},
 
 		// Appends a placeholder row for a file that just started uploading --

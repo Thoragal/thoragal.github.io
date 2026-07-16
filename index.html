@@ -5,19 +5,27 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <link href="images/FavIcon48.png" rel="shortcut icon" />
 		<title>TB - SAP Entwicklung und Beratung</title>
+		<!-- frame-ancestors/sandbox/report-uri are ignored via <meta> per the CSP
+			 spec -- data-sap-ui-frameOptions="deny" below covers clickjacking
+			 instead. localhost:443/:35729 are only needed for local testing
+			 (dev backend, and ui5 serve's auto-injected livereload script +
+			 its websocket); harmless to keep listed once deployed, since
+			 nothing on the live site ever calls out to localhost. -->
+		<meta http-equiv="Content-Security-Policy" content="
+			default-src 'self';
+			script-src 'self' https://sapui5.hana.ondemand.com http://localhost:35729;
+			style-src 'self' https://sapui5.hana.ondemand.com 'unsafe-inline';
+			img-src 'self' data: https://sapui5.hana.ondemand.com https://nodejs20prod-production.up.railway.app http://localhost:443;
+			font-src 'self' https://sapui5.hana.ondemand.com data:;
+			connect-src 'self' https://sapui5.hana.ondemand.com https://nodejs20prod-production.up.railway.app http://localhost:443 http://localhost:35729 ws://localhost:35729;
+			object-src 'none';
+			base-uri 'self';
+		">
 		<link rel="stylesheet" href="lib/highlight-github.css">
 		<script src="lib/markdown-it.min.js"></script>
 		<script src="lib/highlight.min.js"></script>
 		<script src="lib/abap.min.js"></script>
-		<script id="sap-ui-bootstrap"
-				src="https://sapui5.hana.ondemand.com/1.141.1/resources/sap-ui-core.js"
-				data-sap-ui-theme="sap_fiori_3"
-				data-sap-ui-resourceroots='{"Homepage.Homepage": "./"}'
-				data-sap-ui-compatVersion="edge"
-				data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
-				data-sap-ui-async="true"
-				data-sap-ui-frameOptions="deny">
-		</script>
+		<script src="bootstrapErrorHandler.js"></script>
 	</head>
 	<body class="sapUiBody">
 		<div	data-sap-ui-component 

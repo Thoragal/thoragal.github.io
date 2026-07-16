@@ -9,7 +9,7 @@
 		<content>
 			<f:SimpleForm id="idFormWikiEntry" editable="true" layout="ResponsiveGridLayout" class="sapUiSmallMarginTop">
 				<Label text="{i18n>WikiEntryTitleLabel}"/>
-				<Input value="{wikiEntryDraft>/title}" maxLength="500"/>
+				<Input id="idInputWikiEntryTitle" value="{wikiEntryDraft>/title}" maxLength="500"/>
 
 				<Label text="{i18n>WikiEntryDateLabel}"/>
 				<DatePicker value="{wikiEntryDraft>/entry_date}" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy"/>

@@ -13,7 +13,6 @@ sap.ui.define([
 	"use strict";
 
 	var EMAIL_SERVICE_TIMEOUT_MS = 8000;
-	var TOKEN_STORAGE_KEY = "adminAuthToken";
 
 	return Controller.extend("Homepage.Homepage.controller.BaseController", {
 
@@ -161,7 +160,7 @@ sap.ui.define([
 		},
 
 		_logout: function () {
-			sessionStorage.removeItem(TOKEN_STORAGE_KEY);
+			sessionStorage.removeItem(config.TOKEN_STORAGE_KEY);
 			this.getOwnerComponent().getModel("adminModeModel").setProperty("/isAdmin", false);
 			this._onAuthStateChanged();
 		},
@@ -190,7 +189,7 @@ sap.ui.define([
 					this._setLoginErrorVisible(true);
 					return;
 				}
-				sessionStorage.setItem(TOKEN_STORAGE_KEY, oResult.data.token);
+				sessionStorage.setItem(config.TOKEN_STORAGE_KEY, oResult.data.token);
 				this._setLoginErrorVisible(false);
 				this.getOwnerComponent().getModel("adminModeModel").setProperty("/isAdmin", true);
 				this._closeDialog("LoginDialog");
@@ -212,7 +211,7 @@ sap.ui.define([
 		_authHeaders: function () {
 			return {
 				"Content-Type": "application/json",
-				"Authorization": "Bearer " + sessionStorage.getItem(TOKEN_STORAGE_KEY)
+				"Authorization": "Bearer " + sessionStorage.getItem(config.TOKEN_STORAGE_KEY)
 			};
 		},
 
@@ -220,7 +219,7 @@ sap.ui.define([
 		// missing/expired/tampered). Drops back to logged-out state and
 		// re-prompts, consistent with onPressAdminToggle's logged-out path.
 		_handleUnauthorized: function () {
-			sessionStorage.removeItem(TOKEN_STORAGE_KEY);
+			sessionStorage.removeItem(config.TOKEN_STORAGE_KEY);
 			this.getOwnerComponent().getModel("adminModeModel").setProperty("/isAdmin", false);
 			this._onAuthStateChanged();
 			this._openLoginDialog();

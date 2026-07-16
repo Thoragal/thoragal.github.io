@@ -8,15 +8,7 @@
             "version": "1.0.0"
         },
         "title": "{{appTitle}}",
-        "description": "{{appDescription}}",
-        "sourceTemplate": {
-            "id": "ui5template.basicSAPUI5ApplicationProject",
-            "version": "1.40.12",
-            "toolsId": "fe2d2471-08a2-43bf-b893-c021f69f6a98"
-        },
-        "crossNavigation": {
-            "inbounds": {}
-        }
+        "description": "{{appDescription}}"
     },
     "sap.ui": {
         "technology": "UI5",
