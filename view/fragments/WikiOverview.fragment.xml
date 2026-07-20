@@ -6,6 +6,15 @@
 							xmlns:l="sap.ui.layout"
 							xmlns:html="http://www.w3.org/1999/xhtml">
 
+		<MessageStrip
+			id="idWikiOverviewLoadError"
+			text="{i18n>WikiLoadError}"
+			type="Error"
+			showIcon="true"
+			showCloseButton="false"
+			class="sapUiSmallMargin"
+			visible="{WikiModel>/loadError}"/>
+
 		<Table	id="IdObjectTableDataWiki"
 				width="auto"
 				items="{WikiModel>/Wiki}">

@@ -32,7 +32,7 @@ sap.ui.define([
 			// button) and by ListView's Actions column/Add button. Optimistically
 			// true if a token already exists in sessionStorage (e.g. after a page
 			// reload) -- an expired/invalid token surfaces as a 401 on first use.
-			this.setModel(new JSONModel({ isAdmin: !!sessionStorage.getItem(config.TOKEN_STORAGE_KEY) }), "adminModeModel");
+			this.setModel(new JSONModel({ isAdmin: !!config.getToken() }), "adminModeModel");
 		}
 	});
 });

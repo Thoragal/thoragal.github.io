@@ -170,29 +170,19 @@ sap.ui.define([
 					var oRow = oEvent.getSource().getBindingContext(oOpts.managerModel).getObject();
 					var oResourceBundle = that.getResourceBundle();
 
-					MessageBox.confirm(oResourceBundle.getText(oOpts.deleteConfirmI18n, [oRow.label_de]), {
-						onClose: function (sAction) {
-							if (sAction !== MessageBox.Action.OK) {
+					that._confirmDelete(oResourceBundle.getText(oOpts.deleteConfirmI18n, [oRow.label_de]), function () {
+						that._deleteResource(config.SERVICE_URL + "/objectlist/" + oOpts.urlSegment + "/" + oRow.id, true).then(function () {
+							that._reloadLookups();
+							loadForManage();
+							that.onRefresh();
+						}).catch(function (oError) {
+							console.error(oOpts.managerDataKey + " entry could not be deleted", oError);
+							if (oError && oError.handled && oError.code === oOpts.inUseCode) {
+								MessageBox.error(oResourceBundle.getText(oOpts.inUseI18n, [oError.count]));
 								return;
 							}
-							fetch(config.SERVICE_URL + "/objectlist/" + oOpts.urlSegment + "/" + oRow.id, {
-								method: "DELETE",
-								headers: that._authHeaders()
-							}).then(function (oResponse) {
-								return that._checkResponse(oResponse, true);
-							}).then(function () {
-								that._reloadLookups();
-								loadForManage();
-								that.onRefresh();
-							}).catch(function (oError) {
-								console.error(oOpts.managerDataKey + " entry could not be deleted", oError);
-								if (oError && oError.handled && oError.code === oOpts.inUseCode) {
-									MessageBox.error(oResourceBundle.getText(oOpts.inUseI18n, [oError.count]));
-									return;
-								}
-								MessageBox.error(oResourceBundle.getText(oOpts.deleteErrorI18n));
-							});
-						}
+							MessageBox.error(oResourceBundle.getText(oOpts.deleteErrorI18n));
+						});
 					});
 				}
 			};
@@ -469,6 +459,8 @@ sap.ui.define([
 			}).catch(function (oError) {
 				console.error("Admin lookups could not be loaded", oError);
 				this._pLookupsLoaded = null;
+				MessageBox.error(this.getResourceBundle().getText("AdminLookupsLoadError"));
+				throw oError;
 			}.bind(this));
 
 			return this._pLookupsLoaded;
@@ -497,7 +489,7 @@ sap.ui.define([
 					description_de: "", description_en: "", description_es: ""
 				});
 				this._openListEntryDialog();
-			}.bind(this));
+			}.bind(this)).catch(function () {});
 		},
 
 		onPressAdminEdit: function (oEvent) {
@@ -560,23 +552,14 @@ sap.ui.define([
 			var oRow = oEvent.getSource().getParent().getParent().getBindingContext("AbapListModel").getObject();
 			var oResourceBundle = this.getResourceBundle();
 
-			MessageBox.confirm(oResourceBundle.getText("AdminDeleteConfirm", [oRow.value]), {
-				onClose: function (sAction) {
-					if (sAction !== MessageBox.Action.OK) {
-						return;
-					}
-					fetch(config.SERVICE_URL + "/objectlist/" + oRow.id, {
-						method: "DELETE",
-						headers: this._authHeaders()
-					}).then(function (oResponse) {
-						this._checkResponse(oResponse);
-						this.onRefresh();
-					}.bind(this)).catch(function (oError) {
-						console.error("Object entry could not be deleted", oError);
-						MessageBox.error(oResourceBundle.getText("AdminDeleteError"));
-					}.bind(this));
-				}.bind(this)
-			});
+			this._confirmDelete(oResourceBundle.getText("AdminDeleteConfirm", [oRow.value]), function () {
+				this._deleteResource(config.SERVICE_URL + "/objectlist/" + oRow.id).then(function () {
+					this.onRefresh();
+				}.bind(this)).catch(function (oError) {
+					console.error("Object entry could not be deleted", oError);
+					MessageBox.error(oResourceBundle.getText("AdminDeleteError"));
+				}.bind(this));
+			}.bind(this));
 		}
 
 	});

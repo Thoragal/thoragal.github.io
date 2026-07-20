@@ -160,7 +160,7 @@ sap.ui.define([
 		},
 
 		_logout: function () {
-			sessionStorage.removeItem(config.TOKEN_STORAGE_KEY);
+			config.clearToken();
 			this.getOwnerComponent().getModel("adminModeModel").setProperty("/isAdmin", false);
 			this._onAuthStateChanged();
 		},
@@ -189,7 +189,7 @@ sap.ui.define([
 					this._setLoginErrorVisible(true);
 					return;
 				}
-				sessionStorage.setItem(config.TOKEN_STORAGE_KEY, oResult.data.token);
+				config.setToken(oResult.data.token);
 				this._setLoginErrorVisible(false);
 				this.getOwnerComponent().getModel("adminModeModel").setProperty("/isAdmin", true);
 				this._closeDialog("LoginDialog");
@@ -211,7 +211,7 @@ sap.ui.define([
 		_authHeaders: function () {
 			return {
 				"Content-Type": "application/json",
-				"Authorization": "Bearer " + sessionStorage.getItem(config.TOKEN_STORAGE_KEY)
+				"Authorization": "Bearer " + config.getToken()
 			};
 		},
 
@@ -219,7 +219,7 @@ sap.ui.define([
 		// missing/expired/tampered). Drops back to logged-out state and
 		// re-prompts, consistent with onPressAdminToggle's logged-out path.
 		_handleUnauthorized: function () {
-			sessionStorage.removeItem(config.TOKEN_STORAGE_KEY);
+			config.clearToken();
 			this.getOwnerComponent().getModel("adminModeModel").setProperty("/isAdmin", false);
 			this._onAuthStateChanged();
 			this._openLoginDialog();
@@ -251,6 +251,35 @@ sap.ui.define([
 			}
 			return oResponse;
 		},
+
+			// Shared by every row-level delete action (wiki entries, wiki
+			// attachments, objectlist entries, category/type lookups): shows a
+			// confirm dialog and only invokes fnOnConfirmed if the user presses
+			// OK, so callers don't each re-implement the same MessageBox.confirm
+			// wiring.
+			_confirmDelete: function (sConfirmText, fnOnConfirmed) {
+				MessageBox.confirm(sConfirmText, {
+					onClose: function (sAction) {
+						if (sAction === MessageBox.Action.OK) {
+							fnOnConfirmed();
+						}
+					}
+				});
+			},
+
+			// Shared DELETE-request helper: attaches the admin auth header and
+			// runs the response through _checkResponse (so 401/409 handling stays
+			// centralized), without dictating what a caller does after success or
+			// on failure -- those differ per entity (reload a list, sync a draft,
+			// show a conflict-specific message, ...).
+			_deleteResource: function (sUrl, bParseConflict) {
+				return fetch(sUrl, {
+					method: "DELETE",
+					headers: this._authHeaders()
+				}).then(function (oResponse) {
+					return this._checkResponse(oResponse, bParseConflict);
+				}.bind(this));
+			},
 
 		_clearContactMeData: function(){
 			var sContactMeData = this.getView().getModel("localDataModelContactMe").getData();
@@ -406,34 +435,7 @@ sap.ui.define([
 				var oRouter = UIComponent.getRouterFor(this);
 				oRouter.navTo("HomeView", {}, true);
 			}
-		},
-
-		/**
-		 * Adds a history entry in the FLP page history
-		 * @public
-		 * @param {object} oEntry An entry object to add to the hierachy array as expected from the ShellUIService.setHierarchy method
-		 * @param {boolean} bReset If true resets the history before the new entry is added
-		 */
-		addHistoryEntry: (function () {
-			var aHistoryEntries = [];
-
-			return function (oEntry, bReset) {
-				if (bReset) {
-					aHistoryEntries = [];
-				}
-
-				var bInHistory = aHistoryEntries.some(function (oHistoryEntry) {
-					return oHistoryEntry.intent === oEntry.intent;
-				});
-
-				if (!bInHistory) {
-					aHistoryEntries.push(oEntry);
-					this.getOwnerComponent().getService("ShellUIService").then(function (oService) {
-						oService.setHierarchy(aHistoryEntries);
-					});
-				}
-			};
-		})()
+		}
 
 	});
 

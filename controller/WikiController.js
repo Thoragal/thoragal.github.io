@@ -40,7 +40,7 @@ sap.ui.define([
 			var oComponent = this.getOwnerComponent();
 			var oModel = oComponent.getModel("WikiModel");
 			if (!oModel) {
-				oModel = new JSONModel();
+				oModel = new JSONModel({ loadError: false });
 				oComponent.setModel(oModel, "WikiModel");
 			}
 			// _loadWikiModel is called from many places (save, delete, upload,
@@ -64,10 +64,18 @@ sap.ui.define([
 					return;
 				}
 				oModel.setData(oData);
+				oModel.setProperty("/loadError", false);
 				this._onWikiModelReloaded();
 			}.bind(this)).catch(function (oError) {
 				console.error("Wiki could not be loaded", oError);
-			});
+				// Only the most-recently-started load may flip the flag, for the
+				// same reason the success path is guarded above -- an older,
+				// already-superseded request failing must not blank out a newer
+				// one's already-successful data.
+				if (iRequestId === this._iWikiLoadRequestId) {
+					oModel.setProperty("/loadError", true);
+				}
+			}.bind(this));
 		},
 
 		// No-op by default; the detail view overrides this to re-anchor its
@@ -309,25 +317,16 @@ sap.ui.define([
 		_deleteEntry: function (oEntry) {
 			var oResourceBundle = this.getResourceBundle();
 
-			MessageBox.confirm(oResourceBundle.getText("WikiDeleteConfirm", [oEntry.title]), {
-				onClose: function (sAction) {
-					if (sAction !== MessageBox.Action.OK) {
-						return;
-					}
-					fetch(config.SERVICE_URL + "/wiki/" + oEntry.id, {
-						method: "DELETE",
-						headers: this._authHeaders()
-					}).then(function (oResponse) {
-						this._checkResponse(oResponse);
-						return this._loadWikiModel();
-					}.bind(this)).then(function () {
-						this._onWikiEntryDeleted();
-					}.bind(this)).catch(function (oError) {
-						console.error("Wiki entry could not be deleted", oError);
-						MessageBox.error(oResourceBundle.getText("WikiDeleteError"));
-					}.bind(this));
-				}.bind(this)
-			});
+			this._confirmDelete(oResourceBundle.getText("WikiDeleteConfirm", [oEntry.title]), function () {
+				this._deleteResource(config.SERVICE_URL + "/wiki/" + oEntry.id).then(function () {
+					return this._loadWikiModel();
+				}.bind(this)).then(function () {
+					this._onWikiEntryDeleted();
+				}.bind(this)).catch(function (oError) {
+					console.error("Wiki entry could not be deleted", oError);
+					MessageBox.error(oResourceBundle.getText("WikiDeleteError"));
+				}.bind(this));
+			}.bind(this));
 		},
 
 		// Hook called after a successful delete (once the wiki model has been
@@ -415,7 +414,7 @@ sap.ui.define([
 
 			fetch(config.SERVICE_URL + "/wiki/images", {
 				method: "POST",
-				headers: { "Authorization": "Bearer " + sessionStorage.getItem(config.TOKEN_STORAGE_KEY) },
+				headers: { "Authorization": "Bearer " + config.getToken() },
 				body: oFormData
 			}).then(function (oResponse) {
 				return this._checkResponse(oResponse).json();
@@ -463,7 +462,7 @@ sap.ui.define([
 		onWikiFileBeforeUploadStarts: function (oEvent) {
 			var oPlugin = oEvent.getSource();
 			oPlugin.removeAllHeaderFields();
-			oPlugin.addHeaderField(new Item({ key: "Authorization", text: "Bearer " + sessionStorage.getItem(config.TOKEN_STORAGE_KEY) }));
+			oPlugin.addHeaderField(new Item({ key: "Authorization", text: "Bearer " + config.getToken() }));
 		},
 
 		// Appends a placeholder row for a file that just started uploading --
@@ -533,25 +532,16 @@ sap.ui.define([
 			var oResourceBundle = this.getResourceBundle();
 			var oFile = oEvent.getSource().getBindingContext(WIKI_DRAFT_MODEL).getObject();
 
-			MessageBox.confirm(oResourceBundle.getText("WikiAttachmentsDeleteConfirm", [oFile.filename]), {
-				onClose: function (sAction) {
-					if (sAction !== MessageBox.Action.OK) {
-						return;
-					}
-					fetch(config.SERVICE_URL + "/wiki/files/" + oFile.id, {
-						method: "DELETE",
-						headers: this._authHeaders()
-					}).then(function (oResponse) {
-						this._checkResponse(oResponse);
-						return this._loadWikiModel();
-					}.bind(this)).then(function () {
-						this._syncWikiEntryDraftFilesFromWikiModel();
-					}.bind(this)).catch(function (oError) {
-						console.error("Wiki attachment could not be deleted", oError);
-						MessageBox.error(oResourceBundle.getText("WikiAttachmentsDeleteError"));
-					}.bind(this));
-				}.bind(this)
-			});
+			this._confirmDelete(oResourceBundle.getText("WikiAttachmentsDeleteConfirm", [oFile.filename]), function () {
+				this._deleteResource(config.SERVICE_URL + "/wiki/files/" + oFile.id).then(function () {
+					return this._loadWikiModel();
+				}.bind(this)).then(function () {
+					this._syncWikiEntryDraftFilesFromWikiModel();
+				}.bind(this)).catch(function (oError) {
+					console.error("Wiki attachment could not be deleted", oError);
+					MessageBox.error(oResourceBundle.getText("WikiAttachmentsDeleteError"));
+				}.bind(this));
+			}.bind(this));
 		},
 
 		// The dialog fragment is loaded with an id prefixed by the component
@@ -636,29 +626,21 @@ sap.ui.define([
 				return;
 			}
 
-			MessageBox.confirm(oResourceBundle.getText("WikiAttachmentsDeleteSelectedConfirm", [aFiles.length]), {
-				onClose: function (sAction) {
-					if (sAction !== MessageBox.Action.OK) {
-						return;
-					}
-					Promise.all(aFiles.map(function (oFile) {
-						return fetch(config.SERVICE_URL + "/wiki/files/" + oFile.id, {
-							method: "DELETE",
-							headers: this._authHeaders()
-						}).then(this._checkResponse.bind(this));
-					}.bind(this))).then(function () {
-						return this._loadWikiModel();
-					}.bind(this)).then(function () {
-						oTable.removeSelections();
-						this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDownloadSelected").setEnabled(false);
-						this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDeleteSelected").setEnabled(false);
-						this._syncWikiEntryDraftFilesFromWikiModel();
-					}.bind(this)).catch(function (oError) {
-						console.error("Wiki attachments could not be deleted", oError);
-						MessageBox.error(oResourceBundle.getText("WikiAttachmentsDeleteError"));
-					}.bind(this));
-				}.bind(this)
-			});
+			this._confirmDelete(oResourceBundle.getText("WikiAttachmentsDeleteSelectedConfirm", [aFiles.length]), function () {
+				Promise.all(aFiles.map(function (oFile) {
+					return this._deleteResource(config.SERVICE_URL + "/wiki/files/" + oFile.id);
+				}.bind(this))).then(function () {
+					return this._loadWikiModel();
+				}.bind(this)).then(function () {
+					oTable.removeSelections();
+					this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDownloadSelected").setEnabled(false);
+					this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDeleteSelected").setEnabled(false);
+					this._syncWikiEntryDraftFilesFromWikiModel();
+				}.bind(this)).catch(function (oError) {
+					console.error("Wiki attachments could not be deleted", oError);
+					MessageBox.error(oResourceBundle.getText("WikiAttachmentsDeleteError"));
+				}.bind(this));
+			}.bind(this));
 		}
 
 	});
