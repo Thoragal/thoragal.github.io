@@ -22,9 +22,9 @@
 		</content>
 <!--Buttons-->
 		<Toolbar>
-			<Button id="idBtnLanguageCancel" press="onPressLanguageDialogCancel" text="{i18n>LanguageCancel}"/>			
+			<Button id="idBtnLanguageCancel" press="onPressLanguageDialogCancel" text="{i18n>LanguageCancel}" type="Transparent"/>
 			<ToolbarSpacer/>
-			<Button id="idBtnLanguageApply" press="onPressLanguageDialogApply" text="{i18n>LanguageApply}"/>
+			<Button id="idBtnLanguageApply" press="onPressLanguageDialogApply" text="{i18n>LanguageApply}" type="Emphasized"/>
 		</Toolbar>
 	</Dialog>
 </core:FragmentDefinition>

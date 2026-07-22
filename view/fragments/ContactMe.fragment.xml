@@ -46,7 +46,7 @@
 			<Toolbar>
 				<Button id="idBtnContactMeCancel" press="onPressContactMeDialogCancel" text="{i18n>txtBtnContactMeCancel}"/>
 				<ToolbarSpacer/>
-				<Button id="idBtnContactMeOk" press="onPressContactMeDialogOk" text="{i18n>txtBtnContactMeOk}"/>
+				<Button id="idBtnContactMeOk" press="onPressContactMeDialogOk" text="{i18n>txtBtnContactMeOk}" type="Emphasized"/>
 			</Toolbar>
 		</footer>
 	</Dialog>
