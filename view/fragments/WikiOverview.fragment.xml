@@ -68,8 +68,7 @@
 						type="Active"
 						press="onPressRow">
 						<cells>
-							<ObjectIdentifier
-								title="{WikiModel>id}"/>
+							<Text text="{WikiModel>id}"/>
 								<Text text = "{ path: 'WikiModel>date', formatter: '.formatter.date' }"/>
 								<Text text = "{WikiModel>title}"/>
 								<HBox alignItems="Center" justifyContent="End">
