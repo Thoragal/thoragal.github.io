@@ -6,11 +6,9 @@
 		<Button id="idButtonNavBack" icon="sap-icon://nav-back" press="onNavBack" type="Transparent"/>
 		<ToolbarSpacer/>
 <!-- Button Home -->
-		<Button id="idButtonNavToHome" icon="sap-icon://home" text="{i18n>HeaderButtonNameHome}" press="onNavToHome" visible="{= !${device>/system/phone} }" />
-		<Button id="idButtonNavToHomePhone" icon="sap-icon://home" press="onNavToHome" visible="{device>/system/phone}" />
-		
-		
-		<MenuButton id="idButtonNavToWiki" icon="sap-icon://course-book" text="{ path: 'i18n>HeaderButtonNameWiki', formatter:'.formatter.device' }" buttonMode="Split" useDefaultActionOnly="true"  defaultAction="onNavToWiki">
+		<Button id="idButtonNavToHome" icon="sap-icon://home" text="{i18n>HeaderButtonNameHome}" press="onNavToHome" />
+
+		<MenuButton id="idButtonNavToWiki" icon="sap-icon://course-book" text="{i18n>HeaderButtonNameWiki}" buttonMode="Split" useDefaultActionOnly="true"  defaultAction="onNavToWiki">
 			<menu>
 				<Menu itemSelected="onMenuAction">
 					<MenuItem text="{i18n>HeaderButtonNameWikiStandard}" icon="sap-icon://detail-more" press="onNavToWikiStandard">
@@ -21,12 +19,12 @@
 			</menu>
 		</MenuButton>
 
-		<Button id="idButtonNavToList" icon="sap-icon://form" text="{ path:'i18n>HeaderButtonNameList', formatter:'.formatter.device' }" press="onNavToList" />
-		
-		<Button id="idButtonNavToAboutMe" icon="sap-icon://person-placeholder" text="{ path: 'i18n>HeaderButtonNameAbout', formatter:'.formatter.device' }" press="onNavToAboutMe" />
-		<Button id="idContactMeButton" icon="sap-icon://email" press="onNavToContactMe" visible="false" />
-		<Button id="idi18nButton" icon="sap-icon://action-settings" press="onNavToLanguage" />
-		<Button id="idButtonAdminToggle" icon="{= ${adminModeModel>/isAdmin} ? 'sap-icon://unlocked' : 'sap-icon://locked' }" press="onPressAdminToggle" type="Transparent" />
+		<Button id="idButtonNavToList" icon="sap-icon://form" text="{i18n>HeaderButtonNameList}" press="onNavToList" />
+
+		<Button id="idButtonNavToAboutMe" icon="sap-icon://person-placeholder" text="{i18n>HeaderButtonNameAbout}" press="onNavToAboutMe" />
+		<Button id="idContactMeButton" icon="sap-icon://email" text="{i18n>StartTileSubheaderContactMe}" press="onNavToContactMe" visible="false" />
+		<Button id="idi18nButton" icon="sap-icon://action-settings" text="{i18n>LanguageTitle}" press="onNavToLanguage" />
+		<Button id="idButtonAdminToggle" icon="{= ${adminModeModel>/isAdmin} ? 'sap-icon://unlocked' : 'sap-icon://locked' }" text="{i18n>LoginDialogTitle}" press="onPressAdminToggle" type="Transparent" />
 	</tnt:ToolHeader>
 
 </core:FragmentDefinition>
