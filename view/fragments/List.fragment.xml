@@ -61,7 +61,7 @@
 				updateFinished=".onUpdateFinished"
     			itemPress=".onItemPress">
 				<headerToolbar>
-					<Toolbar>
+					<OverflowToolbar>
 						<Title id="IdObjectTableHeader" text="{AbapListModel>/AbapListDataTitle}"/>
 						<ToolbarSpacer />
 						<SearchField
@@ -87,7 +87,7 @@
 							press=".onPressAdminAdd"
 							type="Transparent"
 							visible="{adminModeModel>/isAdmin}"/>
-					</Toolbar>
+					</OverflowToolbar>
 				</headerToolbar>
 
 				<columns>
@@ -98,17 +98,20 @@
 					</Column>
 					<Column
 						id="IdNameColumnNameCategorie"
-						demandPopin="false">
+						demandPopin="true"
+						minScreenWidth="Tablet">
 						<Text text="{i18n>TableColumnNameCategory}"/>
 					</Column>
 					<Column
 						id="IdColumnNameValue"
-						demandPopin="false">
+						demandPopin="true"
+						minScreenWidth="Tablet">
 						<Text text="{i18n>TableColumnNameValue}"/>
 					</Column>
 					<Column
 						id="IdColumnNameDescription"
-						demandPopin="false">
+						demandPopin="true"
+						minScreenWidth="Tablet">
 						<Text text="{i18n>TableColumnNameDescription}"/>
 					</Column>
 					<Column
