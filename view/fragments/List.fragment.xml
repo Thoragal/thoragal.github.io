@@ -91,7 +91,7 @@
 				</headerToolbar>
 
 				<columns>
-					<Column id="IdColumnNameType">
+					<Column id="IdColumnNameType" width="12%">
 						<Text
 							id="IdNameColumnTitle"
 							text="{i18n>TableColumnNameType}"/>
@@ -99,13 +99,15 @@
 					<Column
 						id="IdNameColumnNameCategorie"
 						demandPopin="true"
-						minScreenWidth="Tablet">
+						minScreenWidth="Tablet"
+						width="14%">
 						<Text text="{i18n>TableColumnNameCategory}"/>
 					</Column>
 					<Column
 						id="IdColumnNameValue"
 						demandPopin="true"
-						minScreenWidth="Tablet">
+						minScreenWidth="Tablet"
+						width="14%">
 						<Text text="{i18n>TableColumnNameValue}"/>
 					</Column>
 					<Column
