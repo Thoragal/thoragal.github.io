@@ -4,7 +4,11 @@
 
 	<OverflowToolbar>
 		<ToolbarSpacer/>
-		<Title text="{i18n>FooterText}"></Title>
+		<Title text="{i18n>FooterText}" class="footerTextWide"/>
+		<VBox class="footerTextNarrow" alignItems="Center">
+			<Title text="{i18n>FooterTextLine1}"/>
+			<Title text="{i18n>FooterTextLine2}"/>
+		</VBox>
 		<ToolbarSpacer/>
 	</OverflowToolbar>
 

@@ -76,3 +76,19 @@
 	max-width: 320px;
 	height: auto;
 }
+
+/* Footer: the full "Name - description" line doesn't fit on a phone-width
+   screen. Below the same breakpoint UI5 itself treats as "Phone", swap for a
+   two-line version (name / description, no dash) instead of letting the
+   single line truncate or wrap wherever the browser happens to break it. */
+.footerTextNarrow {
+	display: none;
+}
+@media (max-width: 599px) {
+	.footerTextWide {
+		display: none;
+	}
+	.footerTextNarrow {
+		display: flex;
+	}
+}
