@@ -31,14 +31,17 @@
 
 				<columns>
 					<Column id="IdColumnNameType1"
-							width="5em">
+							width="5em"
+							demandPopin="true"
+							minScreenWidth="Tablet">
 						<Text
 							id="nameColumnTitle4"
 							text="{i18n>WikiOverviewTableId}"/>
 					</Column>
 					<Column
 						id="IdColumnNameValue3"
-						demandPopin="false"
+						demandPopin="true"
+						minScreenWidth="Tablet"
 						width="8em">
 						<Text text="{i18n>WikiOverviewTableDate}"/>
 					</Column>
