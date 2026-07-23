@@ -202,9 +202,9 @@ sap.ui.define([
 
 		_setLoginErrorVisible: function (bVisible) {
 			var oComponent = this.getOwnerComponent();
-			var oText = Fragment.byId(oComponent.createId("idFragLoginDialog"), "idTextLoginError");
-			if (oText) {
-				oText.setVisible(bVisible);
+			var oMessageStrip = Fragment.byId(oComponent.createId("idFragLoginDialog"), "idMessageStripLoginError");
+			if (oMessageStrip) {
+				oMessageStrip.setVisible(bVisible);
 			}
 		},
 

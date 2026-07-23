@@ -10,7 +10,14 @@
 				<Label id="idLabelLoginPassword" text="{i18n>LoginPasswordLabel}" labelFor="idInputLoginPassword"/>
 				<Input id="idInputLoginPassword" type="Password" value="{localDataModelLogin>/password}" maxLength="200" submit=".onPressLoginSubmit"/>
 			</f:SimpleForm>
-			<Text id="idTextLoginError" text="{i18n>LoginError}" visible="false" class="sapUiSmallMarginTop"/>
+			<MessageStrip
+				id="idMessageStripLoginError"
+				text="{i18n>LoginError}"
+				type="Error"
+				showIcon="true"
+				showCloseButton="false"
+				class="sapUiSmallMarginTop"
+				visible="false"/>
 		</content>
 		<footer>
 			<Toolbar>
