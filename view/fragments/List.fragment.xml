@@ -125,7 +125,8 @@
 					</Column>
 					<Column
 						id="IdColumnAdminActions"
-						demandPopin="false"
+						demandPopin="true"
+						minScreenWidth="Tablet"
 						width="8em"
 						visible="{adminModeModel>/isAdmin}">
 						<Text text="{i18n>AdminTableColumnActions}"/>
