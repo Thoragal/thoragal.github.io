@@ -7,9 +7,10 @@ sap.ui.define([
 	"sap/ui/core/Fragment",
 	"sap/base/i18n/Localization",
 	"sap/ui/core/library",
+	"sap/ui/model/json/JSONModel",
 	"../model/formatter",
 	"../model/config"
-], function (Controller, UIComponent, mobileLibrary, History, MessageBox, Fragment, Localization, coreLibrary, formatter, config) {
+], function (Controller, UIComponent, mobileLibrary, History, MessageBox, Fragment, Localization, coreLibrary, JSONModel, formatter, config) {
 	"use strict";
 
 	var EMAIL_SERVICE_TIMEOUT_MS = 8000;
@@ -88,6 +89,12 @@ sap.ui.define([
 		onNavToAboutMe: function (oEvent) {
 			this.getRouter().navTo("AboutMeView");
 		},
+		onNavToImpressum: function (oEvent) {
+			this.getRouter().navTo("ImpressumView");
+		},
+		onNavToDatenschutz: function (oEvent) {
+			this.getRouter().navTo("DatenschutzView");
+		},
 
 		onNavToContactMe: function (oEvent) {
 			this._openDialog("ContactMeDialog", "idFragContactMeDialog", "Homepage.Homepage.view.fragments.ContactMe");
@@ -95,6 +102,13 @@ sap.ui.define([
 
 		onPressContactMeDialogCancel: function (oEvent){
 			this._closeDialog("ContactMeDialog");
+		},
+
+		// Closes the dialog first so it isn't left floating over the
+		// Datenschutz page after navigating away from it.
+		onPressContactMeDatenschutzLink: function (oEvent) {
+			this._closeDialog("ContactMeDialog");
+			this.onNavToDatenschutz(oEvent);
 		},
 
 		onPressContactMeDialogOk: function (oEvent){
@@ -418,6 +432,50 @@ sap.ui.define([
 		 */
 		getResourceBundle: function () {
 			return this.getOwnerComponent().getModel("i18n").getResourceBundle();
+		},
+
+		// Reveals the sticky footer only once the given invisible marker control
+		// (placed at the end of the view's scrollable content) scrolls into
+		// view. Sets up "footerModel>/visible" the first time it's called and
+		// (re-)observes the marker's current DOM ref -- call again from
+		// onAfterRendering, since a re-render can replace that DOM ref, and
+		// pair with _disconnectFooterVisibilityObserver in onExit.
+		//
+		// oControlToInvalidate is only needed for sap.uxap.ObjectPageLayout
+		// (AboutMeView): its "showFooter" property has its own incremental
+		// DOM-class toggle that reliably shows the footer but doesn't reliably
+		// hide it again afterwards, leaving an empty (if invisible) leftover
+		// box -- forcing a full re-render on every change works around that.
+		_observeFooterVisibility: function (sMarkerId, oControlToInvalidate) {
+			var oView = this.getView();
+			if (!oView.getModel("footerModel")) {
+				oView.setModel(new JSONModel({ visible: false }), "footerModel");
+			}
+
+			var oMarker = oView.byId(sMarkerId);
+			var oMarkerDomRef = oMarker && oMarker.getDomRef();
+			if (!oMarkerDomRef) {
+				return;
+			}
+
+			if (this._oFooterObserver) {
+				this._oFooterObserver.disconnect();
+			}
+
+			var oFooterModel = oView.getModel("footerModel");
+			this._oFooterObserver = new IntersectionObserver(function (aEntries) {
+				oFooterModel.setProperty("/visible", aEntries[0].isIntersecting);
+				if (oControlToInvalidate) {
+					oControlToInvalidate.invalidate();
+				}
+			});
+			this._oFooterObserver.observe(oMarkerDomRef);
+		},
+
+		_disconnectFooterVisibilityObserver: function () {
+			if (this._oFooterObserver) {
+				this._oFooterObserver.disconnect();
+			}
 		},
 
 		/**

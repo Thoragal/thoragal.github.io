@@ -2,14 +2,14 @@
 							xmlns:core="sap.ui.core"
 							xmlns:tnt="sap.tnt">
 
-	<OverflowToolbar>
+	<Toolbar visible="{footerModel>/visible}" class="stickyFooterToolbar">
+		<Text text="{i18n>FooterCopyright}" class="footerCopyrightText"/>
 		<ToolbarSpacer/>
-		<Title text="{i18n>FooterText}" class="footerTextWide"/>
-		<VBox class="footerTextNarrow" alignItems="Center">
-			<Title text="{i18n>FooterTextLine1}"/>
-			<Title text="{i18n>FooterTextLine2}"/>
-		</VBox>
-		<ToolbarSpacer/>
-	</OverflowToolbar>
+		<HBox class="footerLinksGroup">
+			<Link text="{i18n>FooterPrivacy}" press="onNavToDatenschutz" class="footerImprintText"/>
+			<Text text="|" class="footerImprintText footerSeparator"/>
+			<Link text="{i18n>FooterImprint}" press="onNavToImpressum" class="footerImprintText"/>
+		</HBox>
+	</Toolbar>
 
 </core:FragmentDefinition>

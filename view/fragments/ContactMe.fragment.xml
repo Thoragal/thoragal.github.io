@@ -40,6 +40,17 @@
             			value="{localDataModelContactMe>/Text}"
             			maxLength="20000"
             			rows="15" />
+<!--Privacy notice-->
+			<MessageStrip	text="{i18n>ContactMePrivacyNoticeText}"
+							enableFormattedText="true"
+							type="Information"
+							showIcon="true"
+							showCloseButton="false"
+							class="sapUiTinyMarginTop">
+				<controls>
+					<Link text="{i18n>ContactMePrivacyNoticeLink}" press="onPressContactMeDatenschutzLink"/>
+				</controls>
+			</MessageStrip>
 		</content>
 <!--Buttons-->
 		<footer>

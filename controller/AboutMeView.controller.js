@@ -38,6 +38,12 @@ sap.ui.define([
 					oDomRef.setAttribute("rel", "noopener noreferrer");
 				}
 			}.bind(this));
+
+			this._observeFooterVisibility("idAboutMeScrollEndMarker", this.byId("ObjectPageLayout"));
+		},
+
+		onExit: function () {
+			this._disconnectFooterVisibilityObserver();
 		},
 
 		_setVisibilityAboutMeContactMe: async function () {

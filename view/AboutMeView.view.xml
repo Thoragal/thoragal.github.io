@@ -16,7 +16,7 @@
 		<content>
 			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.AboutMe" type="XML"/>
 		</content>
-		
+
 	</Page>
 
 </mvc:View>

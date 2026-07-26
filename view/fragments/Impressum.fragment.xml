@@ -1,0 +1,35 @@
+<core:FragmentDefinition	xmlns="sap.m"
+							xmlns:core="sap.ui.core"
+							xmlns:f="sap.ui.layout.form">
+
+	<VBox class="sapUiMediumMargin">
+
+		<Title text="{i18n>ImpressumTitle}" level="H1" class="sapUiSmallMarginBottom"/>
+
+		<Title text="{i18n>ImpressumSectionProvider}" level="H2" class="sapUiSmallMarginTop sapUiTinyMarginBottom"/>
+		<f:SimpleForm editable="false" layout="ResponsiveGridLayout">
+
+			<Label text="{i18n>ImpressumNameLabel}"/>
+			<Text text="Thorsten Bender"/>
+
+			<Label text="{i18n>ImpressumAddressLabel}"/>
+			<VBox>
+				<Text text="{i18n>ImpressumAddressStreet}"/>
+				<Text text="{i18n>ImpressumAddressCity}"/>
+				<Text text="{i18n>ImpressumAddressCountry}"/>
+			</VBox>
+
+			<Label text="{i18n>ImpressumEmailLabel}"/>
+			<Link text="thorsten.bender@mail.ch" href="mailto:thorsten.bender@mail.ch"/>
+
+		</f:SimpleForm>
+
+		<Title text="{i18n>ImpressumSectionDisclaimer}" level="H2" class="sapUiSmallMarginTop sapUiTinyMarginBottom"/>
+		<Text text="{i18n>ImpressumDisclaimerText}"/>
+
+		<Title text="{i18n>ImpressumSectionCopyright}" level="H2" class="sapUiSmallMarginTop sapUiTinyMarginBottom"/>
+		<Text text="{i18n>ImpressumCopyrightText}"/>
+
+	</VBox>
+
+</core:FragmentDefinition>

@@ -188,8 +188,13 @@ sap.ui.define([
 			};
 		},
 
+		onAfterRendering: function () {
+			this._observeFooterVisibility("idListScrollEndMarker");
+		},
+
 		onExit: function () {
 			Localization.detachChange(this._fnOnLocalizationChange);
+			this._disconnectFooterVisibilityObserver();
 		},
 
 		/**

@@ -18,6 +18,14 @@ sap.ui.define([
 			this._setVisibilityContactMeHeaderButton();
 		},
 
+		onAfterRendering: function () {
+			this._observeFooterVisibility("idWikiScrollEndMarker");
+		},
+
+		onExit: function () {
+			this._disconnectFooterVisibilityObserver();
+		},
+
 		onPressRow: function (oEvent) {
 			var oObj = oEvent.getSource().getBindingContext("WikiModel").getObject();
 			this.getRouter().navTo("WikiDetailView", { Id: oObj.id });

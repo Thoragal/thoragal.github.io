@@ -5,9 +5,10 @@
 							xmlns:uxap="sap.uxap"
 							xmlns:layout="sap.ui.layout">
 
-	<uxap:ObjectPageLayout	id="ObjectPageLayout" 
-							showTitleInHeaderContent="true" 
-							upperCaseAnchorBar="false">
+	<uxap:ObjectPageLayout	id="ObjectPageLayout"
+							showTitleInHeaderContent="true"
+							upperCaseAnchorBar="false"
+							showFooter="{footerModel>/visible}">
 
 <!--Header eingeklappt-->
 		<uxap:headerTitle>
@@ -44,10 +45,10 @@
 								<Text text="{MeModel>/General/FirstName}"/>
 								
 								<Label text="{i18n>AboutMeCityLabel}" />
-								<Text text="{MeModel>/General/City}"/>
-								
+								<Text text="{i18n>AboutMeCity}"/>
+
 								<Label text="{i18n>AboutMeCountryLabel}" />
-								<Text text="{MeModel>/General/Country}"/>
+								<Text text="{i18n>AboutMeCountry}"/>
 								
 								<Label text="{i18n>AboutMeDegreeLabel}" />
 								<Text text="{MeModel>/General/Degree}"/>	
@@ -259,11 +260,17 @@
 								</VBox>
 							</f:SimpleForm>
 
+							<HBox id="idAboutMeScrollEndMarker" class="scrollEndMarker" height="1px"/>
+
 						</VBox>
 					</uxap:ObjectPageSubSection>
 				</uxap:subSections>
-			</uxap:ObjectPageSection>	
+			</uxap:ObjectPageSection>
 		</uxap:sections>
+
+		<uxap:footer>
+			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Footer" type="XML"/>
+		</uxap:footer>
 	</uxap:ObjectPageLayout>
 
 	

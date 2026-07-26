@@ -77,18 +77,81 @@
 	height: auto;
 }
 
-/* Footer: the full "Name - description" line doesn't fit on a phone-width
-   screen. Below the same breakpoint UI5 itself treats as "Phone", swap for a
-   two-line version (name / description, no dash) instead of letting the
-   single line truncate or wrap wherever the browser happens to break it. */
-.footerTextNarrow {
-	display: none;
+/* Footer: small, unobtrusive copyright line (left) + "Datenschutz | Impressum" (right) */
+.footerCopyrightText,
+.footerImprintText {
+	font-size: 0.75rem;
+	color: var(--sapContent_LabelColor);
 }
-@media (max-width: 599px) {
-	.footerTextWide {
-		display: none;
-	}
-	.footerTextNarrow {
-		display: flex;
-	}
+.footerSeparator {
+	margin: 0 0.25rem;
+}
+
+/* Invisible sentinel observed via BaseController#_observeFooterVisibility to
+   reveal the sticky footer only once the user has scrolled down to the end
+   of a view's content. flex-shrink: 0 keeps its 1px height intact even when
+   .sapMPageEnableScrolling below turns the content area into a flex column
+   -- flex-shrink otherwise defaults to 1 on every flex child, and with
+   content much taller than the container (e.g. a long table) the flex
+   algorithm shrinks items (this one down to 0) trying to make everything
+   fit, instead of just overflowing/scrolling as normal block layout would. */
+.scrollEndMarker {
+	pointer-events: none;
+	flex-shrink: 0;
+}
+
+/* Turns sap.m.Page's own scroll container into a flex column so
+   .scrollFlexSpacer below can push the footer down to the bottom of the
+   screen even when the actual content is shorter than the viewport --
+   position: sticky alone can't do this, since it only pins an element while
+   scrolling past it, and there's nothing to scroll when content is short. */
+.sapMPageEnableScrolling {
+	display: flex;
+	flex-direction: column;
+}
+/* Wraps each view's actual fragment content as the single "auto-sized" flex
+   item above the spacer -- plain display: block (not a UI5 VBox/HBox, which
+   would impose their own flex layout on it) so it keeps behaving exactly
+   like it did before .sapMPageEnableScrolling became a flex column, e.g.
+   the Home tiles wrapping onto multiple rows when there's room. */
+.pageContentBlock {
+	display: block;
+	flex-shrink: 0;
+}
+.scrollFlexSpacer {
+	flex: 1 0 auto;
+}
+
+/* Footer.fragment.xml is placed as a normal last content element (not in
+   sap.m.Page's "footer" aggregation) -- Page adds a permanent bottom padding
+   to the content scroller for any assigned footer control regardless of that
+   control's own visibility, which reserved dead space even while hidden.
+   position: sticky recreates the pinned-to-bottom look without that. */
+.stickyFooterToolbar {
+	position: sticky;
+	bottom: 0;
+	z-index: 2;
+	flex-shrink: 0;
+	background-color: var(--sapBackgroundColor, #fff);
+	padding: 0.5rem 1rem !important;
+	row-gap: 0.25rem;
+	column-gap: 1rem;
+	/* sap.m.Toolbar is a single-row flexbox with a fixed height by default;
+	   override both so the copyright text and the Datenschutz/Impressum
+	   links can wrap onto their own line (instead of being clipped) when
+	   there isn't room for both on narrow screens or with longer
+	   translations (e.g. German "Datenschutz | Impressum"). */
+	flex-wrap: wrap !important;
+	height: auto !important;
+}
+.footerLinksGroup {
+	flex-shrink: 0;
+}
+
+/* AboutMe: ObjectPageLayout automatically adds its own "floating footer"
+   class to whatever sits in its "footer" aggregation, giving it a 1px
+   outline + drop shadow. Overridden here since the other views' plain
+   sticky footer (above) has no such frame. */
+.stickyFooterToolbar.sapUxAPObjectPageFloatingFooter {
+	box-shadow: none !important;
 }

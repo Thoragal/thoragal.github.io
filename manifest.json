@@ -135,9 +135,39 @@
                     "target": [
                         "WikiOverviewView"
                     ]
+                },
+                {
+                    "name": "ImpressumView",
+                    "pattern": "Impressum",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "ImpressumView"
+                    ]
+                },
+                {
+                    "name": "DatenschutzView",
+                    "pattern": "Datenschutz",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "DatenschutzView"
+                    ]
                 }
             ],
             "targets": {
+                "ImpressumView": {
+                    "viewType": "XML",
+                    "viewName": "ImpressumView",
+                    "viewId": "ViewIdImpressum",
+                    "viewLevel": 2
+                },
+                "DatenschutzView": {
+                    "viewType": "XML",
+                    "viewName": "DatenschutzView",
+                    "viewId": "ViewIdDatenschutz",
+                    "viewLevel": 2
+                },
                 "ListView": {
                     "viewType": "XML",
                     "viewName": "ListView",

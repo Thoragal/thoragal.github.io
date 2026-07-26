@@ -1,25 +1,26 @@
-<mvc:View	controllerName="Homepage.Homepage.controller.ListView"
+<mvc:View	controllerName="Homepage.Homepage.controller.DatenschutzView"
 			xmlns:mvc="sap.ui.core.mvc"
 			xmlns="sap.m"
 			xmlns:core="sap.ui.core"
 			xmlns:html="http://www.w3.org/1999/xhtml">
 
-	<Page	id="idPageList"
+	<Page	id="idPageDatenschutz"
 			showHeader="false"
-			title="Objektliste">
-		
+			title="Datenschutz">
+
 		<subHeader>
 			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Header" type="XML"/>
 		</subHeader>
-		
+
 		<content>
 			<html:div class="pageContentBlock">
-				<core:Fragment fragmentName="Homepage.Homepage.view.fragments.List" type="XML"/>
+				<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Datenschutz" type="XML"/>
 			</html:div>
 			<VBox class="scrollFlexSpacer"/>
-			<HBox id="idListScrollEndMarker" class="scrollEndMarker" height="1px"/>
+			<HBox id="idDatenschutzScrollEndMarker" class="scrollEndMarker" height="1px"/>
 			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Footer" type="XML"/>
 		</content>
 
 	</Page>
+
 </mvc:View>

@@ -13,7 +13,12 @@
 		</subHeader>
 		
 		<content>
-			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.WikiOverview" type="XML"/>
+			<html:div class="pageContentBlock">
+				<core:Fragment fragmentName="Homepage.Homepage.view.fragments.WikiOverview" type="XML"/>
+			</html:div>
+			<VBox class="scrollFlexSpacer"/>
+			<HBox id="idWikiScrollEndMarker" class="scrollEndMarker" height="1px"/>
+			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Footer" type="XML"/>
 		</content>
 
 	</Page>
