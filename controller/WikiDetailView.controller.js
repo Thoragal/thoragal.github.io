@@ -24,6 +24,14 @@ sap.ui.define([
 			}.bind(this));
 		},
 
+		onAfterRendering: function () {
+			this._observeFooterVisibility("idWikiDetailScrollEndMarker");
+		},
+
+		onExit: function () {
+			this._disconnectFooterVisibilityObserver();
+		},
+
 		onNavToWikiDetailNext: function () {
 			var iNext = this._getConfirmedIndex(this._getIndexWithId(this.sWindowId) + 1);
 			this.getRouter().navTo("WikiDetailView", { Id: this._getIdWithIndex(iNext) });

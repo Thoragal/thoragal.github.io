@@ -1,7 +1,8 @@
-<mvc:View	controllerName="Homepage.Homepage.controller.WikiDetailView"	
-			xmlns:core="sap.ui.core" 
-			xmlns:mvc="sap.ui.core.mvc" 
-			xmlns="sap.m">
+<mvc:View	controllerName="Homepage.Homepage.controller.WikiDetailView"
+			xmlns:core="sap.ui.core"
+			xmlns:mvc="sap.ui.core.mvc"
+			xmlns="sap.m"
+			xmlns:html="http://www.w3.org/1999/xhtml">
 	
 	<Shell>
 		<App>
@@ -15,7 +16,12 @@
 					</subHeader>
 					
 					<content>
-						<core:Fragment fragmentName="Homepage.Homepage.view.fragments.WikiDetail" type="XML"/>
+						<html:div class="pageContentBlock">
+							<core:Fragment fragmentName="Homepage.Homepage.view.fragments.WikiDetail" type="XML"/>
+						</html:div>
+						<VBox class="scrollFlexSpacer"/>
+						<HBox id="idWikiDetailScrollEndMarker" class="scrollEndMarker" height="1px"/>
+						<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Footer" type="XML"/>
 					</content>
 					
 					<footer>
