@@ -28,6 +28,6 @@ function handleUi5BootstrapError() {
 	// Set last -- assigning src is what triggers the fetch, so every other
 	// attribute UI5's own bootstrap code reads off this tag must already be
 	// in place beforehand.
-	oScript.src = "https://sapui5.hana.ondemand.com/1.141.1/resources/sap-ui-core.js";
+	oScript.src = "https://sapui5.hana.ondemand.com/1.150.0/resources/sap-ui-core.js";
 	document.head.appendChild(oScript);
 })();
