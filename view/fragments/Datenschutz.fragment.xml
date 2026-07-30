@@ -3,7 +3,7 @@
 
 	<VBox class="sapUiMediumMargin">
 
-		<Title text="{i18n>DatenschutzTitle}" level="H1" class="sapUiSmallMarginBottom"/>
+		<Title text="{i18n>DatenschutzTitle}" level="H1" titleStyle="H1" class="sapUiSmallMarginBottom"/>
 
 		<core:HTML id="idDatenschutzContent"/>
 
