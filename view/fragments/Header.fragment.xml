@@ -33,7 +33,7 @@
 		<Button id="idButtonNavToList" icon="sap-icon://form" text="{i18n>HeaderButtonNameList}" press="onNavToList" />
 
 		<Button id="idButtonNavToAboutMe" icon="sap-icon://person-placeholder" text="{i18n>HeaderButtonNameAbout}" press="onNavToAboutMe" />
-		<Button id="idContactMeButton" icon="sap-icon://email" text="{i18n>StartTileSubheaderContactMe}" press="onNavToContactMe" visible="false" />
+		<Button id="idContactMeButton" icon="sap-icon://email" text="{i18n>HeaderButtonNameContactMe}" press="onNavToContactMe" visible="false" />
 		<Button id="idi18nButton" icon="sap-icon://action-settings" text="{i18n>LanguageTitle}" press="onNavToLanguage" />
 		<Button id="idButtonAdminToggle" icon="{= ${adminModeModel>/isAdmin} ? 'sap-icon://unlocked' : 'sap-icon://locked' }" text="{i18n>LoginDialogTitle}" press="onPressAdminToggle" type="Transparent" />
 	</tnt:ToolHeader>
