@@ -137,6 +137,33 @@
                     ]
                 },
                 {
+                    "name": "NotizblockView",
+                    "pattern": "Notizblock",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "NotizblockView"
+                    ]
+                },
+                {
+                    "name": "NotizblockDetailView",
+                    "pattern": "Notizblock/{Id}",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "NotizblockDetailView"
+                    ]
+                },
+                {
+                    "name": "NotizblockOverviewView",
+                    "pattern": "NotizblockOverview",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "NotizblockOverviewView"
+                    ]
+                },
+                {
                     "name": "ImpressumView",
                     "pattern": "Impressum",
                     "titleTarget": "",
@@ -214,6 +241,26 @@
                     "clearControlAggregation": false,
                     "viewName": "WikiOverviewView",
                     "viewId": "ViewIdWikiOverview",
+                    "viewLevel": 2
+                },
+                "NotizblockView": {
+                    "viewType": "XML",
+                    "viewName": "NotizblockView",
+                    "viewId": "ViewIdNotizblock",
+                    "viewLevel": 2
+                },
+                "NotizblockDetailView": {
+                    "viewType": "XML",
+                    "viewName": "NotizblockDetailView",
+                    "viewId": "ViewIdNotizblockDetail",
+                    "viewLevel": 3
+                },
+                "NotizblockOverviewView": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewName": "NotizblockOverviewView",
+                    "viewId": "ViewIdNotizblockOverview",
                     "viewLevel": 2
                 }
             }

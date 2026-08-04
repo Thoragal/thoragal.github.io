@@ -83,6 +83,22 @@ sap.ui.define([
 			this.getOwnerComponent()._sWikiView = "Overview";
 			this.getRouter().navTo("WikiOverviewView");
 		},
+		onNavToNotizblock: function (oEvent) {
+			if (this.getOwnerComponent()._sNotizblockView === "Overview") {
+				this.onNavToNotizblockOverview(oEvent);
+			}
+			else {
+				this.onNavToNotizblockStandard(oEvent);
+			}
+		},
+		onNavToNotizblockStandard: function (oEvent) {
+			this.getOwnerComponent()._sNotizblockView = "Standard";
+			this.getRouter().navTo("NotizblockView");
+		},
+		onNavToNotizblockOverview: function (oEvent) {
+			this.getOwnerComponent()._sNotizblockView = "Overview";
+			this.getRouter().navTo("NotizblockOverviewView");
+		},
 		onNavToList: function (oEvent) {
 			this.getRouter().navTo("ListView");
 		},
@@ -183,8 +199,33 @@ sap.ui.define([
 			return this._openDialog("LoginDialog", "idFragLoginDialog", "Homepage.Homepage.view.fragments.Login");
 		},
 
+		// Opens the login dialog because the current URL requires an admin
+		// (a direct link to a private Wiki entry, or any Notizblock route --
+		// see WikiDetailView.controller.js's _showEntryOrPromptLogin and
+		// NotizblockController.js's _guardAdminRoute). Remembers the URL that
+		// was actually requested (component-level, not on `this` -- the
+		// LoginDialog fragment is cached and permanently bound to whichever
+		// controller first created it, so a later submit/cancel may run
+		// against a *different* controller instance than the one that
+		// called this) so onPressLoginSubmit can send the browser back there
+		// on success, and sFallbackRoute so onPressLoginDialogCancel has
+		// somewhere sane to go if the admin declines to log in.
+		_promptLoginForRoute: function (sFallbackRoute) {
+			var oComponent = this.getOwnerComponent();
+			oComponent._sPendingAuthRedirectHash = window.location.hash;
+			oComponent._sLoginCancelFallbackRoute = sFallbackRoute;
+			this._openLoginDialog();
+		},
+
 		onPressLoginDialogCancel: function () {
 			this._closeDialog("LoginDialog");
+			var oComponent = this.getOwnerComponent();
+			var sFallbackRoute = oComponent._sLoginCancelFallbackRoute;
+			oComponent._sPendingAuthRedirectHash = null;
+			oComponent._sLoginCancelFallbackRoute = null;
+			if (sFallbackRoute) {
+				this.getRouter().navTo(sFallbackRoute, {}, true);
+			}
 		},
 
 		onPressLoginSubmit: function () {
@@ -208,6 +249,28 @@ sap.ui.define([
 				this.getOwnerComponent().getModel("adminModeModel").setProperty("/isAdmin", true);
 				this._closeDialog("LoginDialog");
 				this._onAuthStateChanged();
+
+				// If the dialog was opened by _promptLoginForRoute, send the
+				// browser back to the URL that was actually requested. Done via
+				// a hash round-trip (through "", i.e. Home) rather than setting
+				// the target hash directly: the common case is that it's
+				// already the current hash (blocked while trying to view it),
+				// and re-assigning an unchanged hash doesn't fire a new route
+				// match, so the page would stay stuck showing whatever it
+				// rendered (or didn't) while logged out. This forces the
+				// target route to genuinely re-match with the now-current
+				// admin state, independent of which controller instance
+				// happens to own this callback (see _promptLoginForRoute).
+				var oComponent = this.getOwnerComponent();
+				var sPendingHash = oComponent._sPendingAuthRedirectHash;
+				oComponent._sPendingAuthRedirectHash = null;
+				oComponent._sLoginCancelFallbackRoute = null;
+				if (sPendingHash) {
+					window.location.hash = "";
+					setTimeout(function () {
+						window.location.hash = sPendingHash;
+					}, 0);
+				}
 			}.bind(this)).catch(function (oError) {
 				console.error("Login failed", oError);
 				this._setLoginErrorVisible(true);

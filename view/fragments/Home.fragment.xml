@@ -58,7 +58,7 @@
 					visible="false">
 			<GenericTile
 				backgroundImage="images/Home/ContactMe.jpg"
-				frameType="TwoByOne" 
+				frameType="TwoByOne"
 				press="onNavToContactMe">
 				<TileContent>
 					<NewsContent
@@ -66,5 +66,18 @@
 				</TileContent>
 			</GenericTile>
 		</SlideTile>
-		
+
+<!-- Tile Notizblock (admin only) -->
+		<SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" visible="{adminModeModel>/isAdmin}">
+			<GenericTile
+				backgroundImage="images/Home/Notizblock.jpg"
+				frameType="TwoByOne"
+				press="onNavToNotizblock">
+				<TileContent>
+					<NewsContent
+						subheader="{i18n>StartTileSubheaderNotizblock}" />
+				</TileContent>
+			</GenericTile>
+		</SlideTile>
+
 </core:FragmentDefinition>

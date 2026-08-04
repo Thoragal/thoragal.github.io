@@ -1,0 +1,47 @@
+<core:FragmentDefinition	xmlns="sap.m"
+							xmlns:core="sap.ui.core">
+
+	<VBox>
+		<MessageStrip
+			id="idNotizblockLoadError"
+			text="{i18n>NotizblockLoadError}"
+			type="Error"
+			showIcon="true"
+			showCloseButton="false"
+			class="sapUiSmallMargin"
+			visible="{NotizblockModel>/loadError}"/>
+		<Toolbar>
+			<ToolbarSpacer/>
+			<Button	icon="sap-icon://add"
+					tooltip="{i18n>NotizblockNewEntry}"
+					type="Transparent"
+					press=".onNotizblockEntryAdd"/>
+		</Toolbar>
+
+		<List	mode="None"
+				items="{NotizblockModel>/Notizblock}">
+			<CustomListItem>
+				<VBox class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom">
+					<HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+						<Link	text="{NotizblockModel>title}"
+								press="onPressRow"
+								class="wikiEntryTitle"/>
+						<HBox alignItems="Center">
+							<core:Icon	src="sap-icon://attachment"
+										class="sapUiTinyMarginEnd wikiAttachmentIndicator"
+										visible="{= ${NotizblockModel>files}.length > 0 }"/>
+							<Button icon="sap-icon://edit" tooltip="{i18n>AdminBtnEdit}" press=".onNotizblockEntryEdit" type="Transparent"/>
+							<Button icon="sap-icon://delete" tooltip="{i18n>AdminBtnDelete}" press=".onNotizblockEntryDelete" type="Transparent"/>
+						</HBox>
+					</HBox>
+					<VBox items="{ path: 'NotizblockModel>blocks', factory: '.createNotizblockBlock', length: 8 }"/>
+					<Link	text="{i18n>ShowMore}"
+							press="onPressRow"
+							visible="{= ${NotizblockModel>blocks}.length &gt; 8 }"
+							class="sapUiTinyMarginTop"/>
+				</VBox>
+			</CustomListItem>
+		</List>
+	</VBox>
+
+</core:FragmentDefinition>

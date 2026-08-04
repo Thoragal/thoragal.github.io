@@ -1,0 +1,148 @@
+<core:FragmentDefinition	xmlns="sap.m"
+							xmlns:core="sap.ui.core"
+							xmlns:u="sap.ui.unified"
+							xmlns:rte="sap.ui.richtexteditor"
+							xmlns:plugins="sap.m.plugins"
+							xmlns:upload="sap.m.upload"
+							xmlns:f="sap.ui.layout.form">
+	<Dialog id="idDialogNotizblockEntry" title="{i18n>NotizblockEntryDialogTitle}" stretch="true">
+		<content>
+			<f:SimpleForm id="idFormNotizblockEntry" editable="true" layout="ResponsiveGridLayout" class="sapUiSmallMarginTop">
+				<Label text="{i18n>NotizblockEntryTitleLabel}"/>
+				<Input id="idInputNotizblockEntryTitle" value="{notizblockEntryDraft>/title}" maxLength="500"/>
+
+				<Label text="{i18n>NotizblockEntryDateLabel}"/>
+				<DatePicker value="{notizblockEntryDraft>/entry_date}" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy"/>
+
+				<Label text="{i18n>NotizblockEntryTagsLabel}"/>
+				<Input value="{notizblockEntryDraft>/tagsText}" placeholder="ABAP, UI5"/>
+			</f:SimpleForm>
+
+			<Toolbar class="sapUiSmallMarginBegin">
+				<Title text="{i18n>NotizblockEntryBlocksTitle}"/>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://add" text="{i18n>NotizblockBlockAddText}" press=".onNotizblockAddTextBlock"/>
+				<Button icon="sap-icon://add" text="{i18n>NotizblockBlockAddHtml}" press=".onNotizblockAddHtmlBlock"/>
+				<Button icon="sap-icon://add" text="{i18n>NotizblockBlockAddCode}" press=".onNotizblockAddCodeBlock"/>
+				<Button icon="sap-icon://add" text="{i18n>NotizblockBlockAddImage}" press=".onNotizblockAddImageBlock"/>
+			</Toolbar>
+
+			<VBox id="idNotizblockBlocksEditor" class="sapUiSmallMarginBeginEnd" items="{notizblockEntryDraft>/blocks}">
+				<Panel class="sapUiTinyMarginBottom">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Label text="{i18n>NotizblockBlockTypeText}" visible="{= ${notizblockEntryDraft>type} === 'text' }"/>
+							<Label text="{i18n>NotizblockBlockTypeCode}" visible="{= ${notizblockEntryDraft>type} === 'code' }"/>
+							<Label text="{i18n>NotizblockBlockTypeImage}" visible="{= ${notizblockEntryDraft>type} === 'image' }"/>
+							<Label text="{i18n>NotizblockBlockTypeHtml}" visible="{= ${notizblockEntryDraft>type} === 'html' }"/>
+							<ToolbarSpacer/>
+							<Button icon="sap-icon://navigation-up-arrow" tooltip="{i18n>NotizblockBlockMoveUp}" press=".onNotizblockBlockMoveUp" type="Transparent"/>
+							<Button icon="sap-icon://navigation-down-arrow" tooltip="{i18n>NotizblockBlockMoveDown}" press=".onNotizblockBlockMoveDown" type="Transparent"/>
+							<Button icon="sap-icon://delete" tooltip="{i18n>NotizblockBlockDelete}" press=".onNotizblockBlockDelete" type="Transparent"/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<content>
+						<TextArea value="{notizblockEntryDraft>content}" rows="6" width="100%" growing="true"
+								visible="{= ${notizblockEntryDraft>type} === 'text' }"/>
+
+						<VBox visible="{= ${notizblockEntryDraft>type} === 'code' }">
+							<Input value="{notizblockEntryDraft>language}" placeholder="{i18n>NotizblockBlockLanguagePlaceholder}" class="sapUiTinyMarginBottom"/>
+							<TextArea value="{notizblockEntryDraft>content}" rows="8" width="100%" growing="true" class="wikiCodeEditor"/>
+						</VBox>
+
+						<VBox visible="{= ${notizblockEntryDraft>type} === 'image' }">
+							<u:FileUploader buttonText="{i18n>NotizblockImageChoose}" uploadOnChange="false"
+									fileType="png,jpg,jpeg,webp,svg,gif" sameFilenameAllowed="true"
+									change=".onNotizblockImageSelected"/>
+							<Image src="{ path: 'notizblockEntryDraft>image_id', formatter: '.formatter.notizblockImageUrl' }"
+									visible="{= ${notizblockEntryDraft>image_id} !== null &amp;&amp; ${notizblockEntryDraft>image_id} !== undefined }"
+									class="sapUiTinyMarginTop wikiEditorPreview"/>
+							<Input value="{notizblockEntryDraft>description}" placeholder="{i18n>NotizblockBlockDescriptionPlaceholder}" class="sapUiTinyMarginTop"/>
+						</VBox>
+
+						<rte:RichTextEditor value="{notizblockEntryDraft>content}" height="500px" width="100%"
+								showGroupFont="true" showGroupLink="true"
+								visible="{= ${notizblockEntryDraft>type} === 'html' }"/>
+					</content>
+				</Panel>
+			</VBox>
+
+			<Panel id="idPanelNotizblockAttachments" headerText="{i18n>NotizblockAttachmentsTitle}"
+					expandable="true" expanded="{= ${notizblockEntryDraft>/files}.length > 0 }"
+					width="auto"
+					class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
+				<Text text="{i18n>NotizblockAttachmentsSaveFirstHint}" visible="{= !${notizblockEntryDraft>/id} }" class="sapUiSmallMargin"/>
+
+				<Table id="idTableNotizblockAttachments" visible="{= !!${notizblockEntryDraft>/id} }"
+						items="{notizblockEntryDraft>/files}" noDataText="{i18n>NotizblockAttachmentsNoData}"
+						mode="MultiSelect"
+						selectionChange=".onNotizblockAttachmentsSelectionChange">
+					<headerToolbar>
+						<OverflowToolbar>
+							<ToolbarSpacer/>
+							<Button	id="idBtnNotizblockAttachmentsDownloadSelected"
+									text="{i18n>NotizblockAttachmentsDownloadSelected}"
+									enabled="false"
+									press=".onNotizblockAttachmentsDownloadSelected"/>
+							<Button	id="idBtnNotizblockAttachmentsDeleteSelected"
+									text="{i18n>NotizblockAttachmentsDeleteSelected}"
+									enabled="false"
+									press=".onNotizblockAttachmentsDeleteSelected"/>
+							<upload:ActionsPlaceholder id="idNotizblockAttachmentsUploadBtn" placeholderFor="UploadButtonPlaceholder"/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="2em"/>
+						<Column><Text text="{i18n>NotizblockAttachmentsColFilename}"/></Column>
+						<Column><Text text="{i18n>NotizblockAttachmentsColSize}"/></Column>
+						<Column width="3em"/>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<core:Icon src="{ parts: [{path: 'notizblockEntryDraft>mime_type'}, {path: 'notizblockEntryDraft>filename'}], formatter: '.formatter.fileTypeIcon' }"
+										visible="{= !${notizblockEntryDraft>pending} }"/>
+								<VBox justifyContent="Center">
+									<Text text="{notizblockEntryDraft>filename}" visible="{= !${notizblockEntryDraft>pending} }"/>
+									<ProgressIndicator visible="{= !!${notizblockEntryDraft>pending} }"
+											percentValue="{notizblockEntryDraft>progress}"
+											displayValue="{= ${notizblockEntryDraft>filename} + ' – ' + ${notizblockEntryDraft>progress} + '%' }"
+											width="100%"/>
+								</VBox>
+								<Text text="{ path: 'notizblockEntryDraft>size_bytes', formatter: '.formatter.fileSize' }"
+										visible="{= !${notizblockEntryDraft>pending} }"/>
+								<Button icon="sap-icon://delete" type="Transparent" tooltip="{i18n>NotizblockAttachmentsDelete}" press=".onNotizblockFileDelete"
+										visible="{= !${notizblockEntryDraft>pending} }"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+					<dependents>
+						<plugins:UploadSetwithTable
+								uploadUrl="{notizblockEntryDraft>/uploadUrl}"
+								fileTypes="pdf,doc,docx,xls,xlsx,ppt,pptx,zip,7z,rar,gz,tar,txt,csv,json,xml,rtf,png,jpg,jpeg,gif,svg,webp"
+								maxFileSize="300" multiple="true"
+								beforeUploadStarts=".onNotizblockFileBeforeUploadStarts"
+								actions="idNotizblockAttachmentsUploadBtn">
+							<plugins:rowConfiguration>
+								<upload:UploadItemConfiguration fileNamePath="filename" mediaTypePath="mime_type"/>
+							</plugins:rowConfiguration>
+							<plugins:uploader>
+								<upload:UploaderTableItem useMultipart="true" uploadUrl="{notizblockEntryDraft>/uploadUrl}"
+										uploadStarted=".onNotizblockFileUploadStarted"
+										uploadProgressed=".onNotizblockFileUploadProgressed"
+										uploadCompleted=".onNotizblockFileUploadCompleted"/>
+							</plugins:uploader>
+						</plugins:UploadSetwithTable>
+					</dependents>
+				</Table>
+			</Panel>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button text="{i18n>txtBtnContactMeCancel}" press=".onNotizblockEntryCancel"/>
+				<ToolbarSpacer/>
+				<Button id="idBtnNotizblockEntrySave" text="{i18n>ListEntrySave}" type="Emphasized" press=".onNotizblockEntrySave"/>
+			</Toolbar>
+		</footer>
+	</Dialog>
+</core:FragmentDefinition>

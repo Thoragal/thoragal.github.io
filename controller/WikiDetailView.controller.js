@@ -61,6 +61,14 @@ sap.ui.define([
 			return aWiki.length ? aWiki[iIndex].id : null;
 		},
 
+		// GET /wiki silently omits private entries for a non-admin -- there's
+		// no 403/404 to react to, the id just isn't in WikiModel. This can't
+		// distinguish "private" from "never existed", so it errs toward
+		// "private": prompt a login rather than claim the entry is missing.
+		_hasEntryWithId: function (sId) {
+			return this._getWikiData().some(function (o) { return String(o.id) === String(sId); });
+		},
+
 		// Wraps the index around and toasts when jumping past either end.
 		_getConfirmedIndex: function (iIndex) {
 			var aWiki = this._getWikiData();
@@ -106,8 +114,22 @@ sap.ui.define([
 		_onObjectMatched: function (oEvent) {
 			this.sWindowId = window.decodeURIComponent(oEvent.getParameter("arguments").Id);
 			this._pWikiLoaded.then(function () {
-				this._bindWikiDetail(this._getIndexWithId(this.sWindowId));
+				this._showEntryOrPromptLogin();
 			}.bind(this));
+		},
+
+		// A requested id that isn't in the (possibly private-entry-filtered)
+		// WikiModel prompts a login instead of silently falling back to
+		// index 0 (see _getIndexWithId) and showing the wrong entry. Once
+		// logged in, _onWikiModelReloaded re-runs this against the
+		// now-admin-inclusive model and binds the real entry.
+		_showEntryOrPromptLogin: function () {
+			var bIsAdmin = this.getOwnerComponent().getModel("adminModeModel").getProperty("/isAdmin");
+			if (!this._hasEntryWithId(this.sWindowId) && !bIsAdmin) {
+				this._promptLoginForRoute("WikiView");
+				return;
+			}
+			this._bindWikiDetail(this._getIndexWithId(this.sWindowId));
 		},
 
 		// The entry being viewed no longer exists after a delete -- go back
@@ -124,7 +146,7 @@ sap.ui.define([
 		// the initial onInit load happens before the route match runs.
 		_onWikiModelReloaded: function () {
 			if (this.sWindowId) {
-				this._bindWikiDetail(this._getIndexWithId(this.sWindowId));
+				this._showEntryOrPromptLogin();
 			}
 		}
 

@@ -19,6 +19,17 @@
 			</menu>
 		</MenuButton>
 
+		<MenuButton id="idButtonNavToNotizblock" icon="sap-icon://notes" text="{i18n>HeaderButtonNameNotizblock}" visible="{adminModeModel>/isAdmin}" buttonMode="Split" useDefaultActionOnly="true" defaultAction="onNavToNotizblock">
+			<menu>
+				<Menu>
+					<MenuItem text="{i18n>HeaderButtonNameNotizblockStandard}" icon="sap-icon://detail-more" press="onNavToNotizblockStandard">
+					</MenuItem>
+					<MenuItem text="{i18n>HeaderButtonNameNotizblockOverview}" icon="sap-icon://detail-less" press="onNavToNotizblockOverview">
+					</MenuItem>
+				</Menu>
+			</menu>
+		</MenuButton>
+
 		<Button id="idButtonNavToList" icon="sap-icon://form" text="{i18n>HeaderButtonNameList}" press="onNavToList" />
 
 		<Button id="idButtonNavToAboutMe" icon="sap-icon://person-placeholder" text="{i18n>HeaderButtonNameAbout}" press="onNavToAboutMe" />

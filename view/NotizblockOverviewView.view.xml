@@ -1,0 +1,26 @@
+<mvc:View	controllerName="Homepage.Homepage.controller.NotizblockView"
+			xmlns:core="sap.ui.core"
+			xmlns:mvc="sap.ui.core.mvc"
+			xmlns="sap.m"
+			xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<Page	id="idPageNotizblockOverview"
+			title="Title"
+			showHeader="false">
+
+		<subHeader>
+			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Header" type="XML"/>
+		</subHeader>
+
+		<content>
+			<html:div class="pageContentBlock">
+				<core:Fragment fragmentName="Homepage.Homepage.view.fragments.NotizblockOverview" type="XML"/>
+			</html:div>
+			<VBox class="scrollFlexSpacer"/>
+			<HBox id="idNotizblockScrollEndMarker" class="scrollEndMarker" height="1px"/>
+			<core:Fragment fragmentName="Homepage.Homepage.view.fragments.Footer" type="XML"/>
+		</content>
+
+	</Page>
+
+</mvc:View>

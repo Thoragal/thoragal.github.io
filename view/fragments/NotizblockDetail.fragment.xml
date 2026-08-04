@@ -1,0 +1,73 @@
+<core:FragmentDefinition	xmlns="sap.m"
+							xmlns:core="sap.ui.core">
+
+	<MessageStrip
+		id="idNotizblockDetailLoadError"
+		text="{i18n>NotizblockLoadError}"
+		type="Error"
+		showIcon="true"
+		showCloseButton="false"
+		class="sapUiSmallMargin"
+		visible="{NotizblockModel>/loadError}"/>
+
+	<Toolbar id="idToolbarNotizblockDetailAdmin">
+		<ToolbarSpacer/>
+		<Button	id="idBtnNotizblockDetailAdd"
+				icon="sap-icon://add"
+				tooltip="{i18n>NotizblockNewEntry}"
+				type="Transparent"
+				press=".onNotizblockEntryAdd"/>
+		<Button id="idBtnNotizblockDetailEdit" icon="sap-icon://edit" tooltip="{i18n>AdminBtnEdit}" press=".onNotizblockDetailEntryEdit" type="Transparent"/>
+		<Button id="idBtnNotizblockDetailDelete" icon="sap-icon://delete" tooltip="{i18n>AdminBtnDelete}" press=".onNotizblockDetailEntryDelete" type="Transparent"/>
+	</Toolbar>
+
+	<ObjectHeader	id="idObjectHeaderNotizblock"
+					title="{NotizblockModel>title}">
+		<ObjectAttribute	title="{i18n>NotizblockId}"
+							text="{NotizblockModel>id}"/>
+		<ObjectAttribute	title="{i18n>NotizblockTags}"
+							text="{ path: 'NotizblockModel>tags', formatter: '.formatter.joinTags' }"
+							visible="{ path: 'NotizblockModel>tags', formatter: '.formatter.hasItems' }"/>
+		<ObjectAttribute	title="{i18n>NotizblockCreationDate}"
+							text="{ path: 'NotizblockModel>date', formatter: '.formatter.date' }"/>
+	</ObjectHeader>
+
+	<VBox	id="idBlocksNotizblockDetail"
+			class="sapUiResponsiveContentPadding"/>
+
+	<Table	id="idTableNotizblockDetailAttachments"
+			class="sapUiResponsiveContentPadding"
+			visible="{= ${NotizblockModel>files}.length > 0 }"
+			items="{NotizblockModel>files}"
+			mode="MultiSelect"
+			selectionChange=".onNotizblockDetailAttachmentSelectionChange"
+			noDataText="{i18n>NotizblockAttachmentsNoData}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="{i18n>NotizblockAttachmentsTitle}"/>
+				<ToolbarSpacer/>
+				<Button	id="idBtnNotizblockDetailAttachmentsDownload"
+						text="{i18n>NotizblockAttachmentsDownloadSelected}"
+						enabled="false"
+						press=".onNotizblockDetailAttachmentsDownload"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="2em"/>
+			<Column><Text text="{i18n>NotizblockAttachmentsColFilename}"/></Column>
+			<Column><Text text="{i18n>NotizblockAttachmentsColSize}"/></Column>
+			<Column><Text text="{i18n>NotizblockAttachmentsColDate}"/></Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<core:Icon src="{ parts: [{path: 'NotizblockModel>mime_type'}, {path: 'NotizblockModel>filename'}], formatter: '.formatter.fileTypeIcon' }"/>
+					<Link text="{NotizblockModel>filename}" press=".onNotizblockDetailFileDownload"/>
+					<Text text="{ path: 'NotizblockModel>size_bytes', formatter: '.formatter.fileSize' }"/>
+					<Text text="{ path: 'NotizblockModel>uploaded_at', formatter: '.formatter.date' }"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+</core:FragmentDefinition>

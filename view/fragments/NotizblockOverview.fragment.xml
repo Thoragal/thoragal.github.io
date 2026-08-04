@@ -1,0 +1,87 @@
+<core:FragmentDefinition	xmlns="sap.m"
+							xmlns:mvc="sap.ui.core.mvc"
+							xmlns:core="sap.ui.core"
+							xmlns:f="sap.ui.layout.form"
+							xmlns:uxap="sap.uxap"
+							xmlns:l="sap.ui.layout"
+							xmlns:html="http://www.w3.org/1999/xhtml">
+
+		<MessageStrip
+			id="idNotizblockOverviewLoadError"
+			text="{i18n>NotizblockLoadError}"
+			type="Error"
+			showIcon="true"
+			showCloseButton="false"
+			class="sapUiSmallMargin"
+			visible="{NotizblockModel>/loadError}"/>
+
+		<Table	id="IdObjectTableDataNotizblock"
+				width="auto"
+				items="{NotizblockModel>/Notizblock}">
+
+				<headerToolbar>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button	icon="sap-icon://add"
+								tooltip="{i18n>NotizblockNewEntry}"
+								type="Transparent"
+								press=".onNotizblockEntryAdd"/>
+					</Toolbar>
+				</headerToolbar>
+
+				<columns>
+					<Column id="IdColumnNameType1"
+							width="5em"
+							demandPopin="true"
+							minScreenWidth="Tablet">
+						<Text
+							id="nameColumnTitle4"
+							text="{i18n>NotizblockOverviewTableId}"/>
+					</Column>
+					<Column
+						id="IdColumnNameValue3"
+						demandPopin="true"
+						minScreenWidth="Tablet"
+						width="8em">
+						<Text text="{i18n>NotizblockOverviewTableDate}"/>
+					</Column>
+					<Column id="IdColumnNameType2">
+						<Text
+							id="nameColumnTitle"
+							text="{i18n>NotizblockOverviewTableTitle}"/>
+					</Column>
+					<Column id="IdColumnNotizblockOverviewInfo"
+							width="4em"
+							hAlign="End">
+						<Text text="{i18n>NotizblockOverviewTableInfo}"/>
+					</Column>
+					<Column id="IdColumnNotizblockOverviewActions"
+							width="6em"
+							hAlign="End">
+						<Text text="{i18n>AdminTableColumnActions}"/>
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem
+						type="Active"
+						press="onPressRow">
+						<cells>
+							<Text text="{NotizblockModel>id}"/>
+								<Text text = "{ path: 'NotizblockModel>date', formatter: '.formatter.date' }"/>
+								<Text text = "{NotizblockModel>title}"/>
+								<HBox alignItems="Center" justifyContent="End">
+									<core:Icon	src="sap-icon://attachment"
+												class="wikiAttachmentIndicator"
+												visible="{= ${NotizblockModel>files}.length > 0 }"/>
+								</HBox>
+								<HBox>
+									<Button icon="sap-icon://edit" tooltip="{i18n>AdminBtnEdit}" press=".onNotizblockEntryEdit" type="Transparent"/>
+									<Button icon="sap-icon://delete" tooltip="{i18n>AdminBtnDelete}" press=".onNotizblockEntryDelete" type="Transparent"/>
+								</HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+</core:FragmentDefinition>

@@ -53,6 +53,19 @@ sap.ui.define([
 				: config.SERVICE_URL + "/wiki/files/" + vFileId;
 		},
 
+		// Same shape as wikiImageUrl/wikiFileUrl, for the admin-only
+		// Notizblock feature.
+		notizblockImageUrl: function (vImageId) {
+			return (vImageId === null || vImageId === undefined || vImageId === "")
+				? ""
+				: config.SERVICE_URL + "/notizblock/images/" + vImageId;
+		},
+		notizblockFileUrl: function (vFileId) {
+			return (vFileId === null || vFileId === undefined || vFileId === "")
+				? ""
+				: config.SERVICE_URL + "/notizblock/files/" + vFileId;
+		},
+
 		// Thin wrappers around UploadSetwithTable's own static helpers, so the
 		// same icon/size formatting is reused in both the editor's live
 		// upload table and the public, read-only detail-view table.
