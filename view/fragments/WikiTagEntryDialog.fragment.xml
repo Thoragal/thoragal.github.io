@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m"
+                          xmlns:core="sap.ui.core"
+                          xmlns:f="sap.ui.layout.form">
+	<Dialog id="idDialogWikiTagEntry" title="{i18n>WikiTagEntryDialogTitle}">
+		<content>
+			<f:SimpleForm id="idSimpleFormWikiTagEntry" editable="true" width="100%">
+				<Label id="idLabelWikiTagEntryLabel" text="{i18n>WikiTagEntryLabelLabel}" labelFor="idInputWikiTagEntryLabel"/>
+				<Input id="idInputWikiTagEntryLabel" value="{localDataModelWikiTagEntry>/label}" maxLength="50"/>
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button id="idBtnWikiTagEntryCancel" press=".onPressWikiTagEntryCancel" text="{i18n>txtBtnContactMeCancel}"/>
+				<ToolbarSpacer/>
+				<Button id="idBtnWikiTagEntrySave" press=".onPressWikiTagEntrySave" text="{i18n>ListEntrySave}" type="Emphasized"/>
+			</Toolbar>
+		</footer>
+	</Dialog>
+</core:FragmentDefinition>

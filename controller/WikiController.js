@@ -19,6 +19,20 @@ sap.ui.define([
 
 	var WIKI_DRAFT_MODEL = "wikiEntryDraft";
 	var WIKI_ENTRY_DIALOG = "WikiEntryDialog";
+	// Tags, normalized into their own table (see backend/schema.sql): a
+	// component-level lookup model (all known tags, feeds both the entry
+	// dialog's "+" picker and the manage dialog's table), the picker's own
+	// transient filtered-list model, and the manage dialog's table + entry-
+	// form models -- same split as ListView's AdminLookupModel/
+	// CategoryManagerModel/localDataModelCategoryEntry trio, kept separate
+	// here (see _makeLookupManager) since that factory is hard-wired to
+	// 3-language labels and the /objectlist/ URL prefix.
+	var WIKI_TAGS_MODEL = "wikiTagsModel";
+	var WIKI_TAG_PICKER_MODEL = "wikiTagPickerModel";
+	var WIKI_TAG_MANAGER_MODEL = "WikiTagManagerModel";
+	var WIKI_TAG_ENTRY_MODEL = "localDataModelWikiTagEntry";
+	var WIKI_TAGS_DIALOG = "WikiTagsDialog";
+	var WIKI_TAG_ENTRY_DIALOG = "WikiTagEntryDialog";
 
 	// Shared by WikiView (standard + list views) and WikiDetailView -- all
 	// wiki entry create/edit/delete, block-editor, and attachment logic
@@ -169,6 +183,18 @@ sap.ui.define([
 			if (!oComponent.getModel(WIKI_DRAFT_MODEL)) {
 				oComponent.setModel(new JSONModel(this._emptyDraft()), WIKI_DRAFT_MODEL);
 			}
+			if (!oComponent.getModel(WIKI_TAGS_MODEL)) {
+				oComponent.setModel(new JSONModel({ Tags: [] }), WIKI_TAGS_MODEL);
+			}
+			if (!oComponent.getModel(WIKI_TAG_PICKER_MODEL)) {
+				oComponent.setModel(new JSONModel({ items: [] }), WIKI_TAG_PICKER_MODEL);
+			}
+			if (!oComponent.getModel(WIKI_TAG_MANAGER_MODEL)) {
+				oComponent.setModel(new JSONModel({ Tags: [] }), WIKI_TAG_MANAGER_MODEL);
+			}
+			if (!oComponent.getModel(WIKI_TAG_ENTRY_MODEL)) {
+				oComponent.setModel(new JSONModel({ id: null, label: "" }), WIKI_TAG_ENTRY_MODEL);
+			}
 		},
 
 		_emptyDraft: function () {
@@ -179,7 +205,7 @@ sap.ui.define([
 			var sToday = oNow.getFullYear() + "-"
 				+ String(oNow.getMonth() + 1).padStart(2, "0") + "-"
 				+ String(oNow.getDate()).padStart(2, "0");
-			return { id: null, title: "", entry_date: sToday, tagsText: "", is_private: false, blocks: [], files: [], uploadUrl: "" };
+			return { id: null, title: "", entry_date: sToday, tags: [], is_private: false, blocks: [], files: [], uploadUrl: "" };
 		},
 
 		onWikiEntryAdd: function () {
@@ -200,7 +226,10 @@ sap.ui.define([
 				id: oEntry.id,
 				title: oEntry.title || "",
 				entry_date: oEntry.date || null,
-				tagsText: (oEntry.tags || []).join(", "),
+				// deep copy, same reasoning as blocks/files below: edits (add/
+				// remove via the picker) must not mutate the list model before
+				// saving
+				tags: JSON.parse(JSON.stringify(oEntry.tags || [])),
 				is_private: !!oEntry.is_private,
 				// deep copy so edits don't mutate the list model before saving
 				blocks: JSON.parse(JSON.stringify(oEntry.blocks || [])),
@@ -258,7 +287,6 @@ sap.ui.define([
 			var oSaveButton = this._byIdInWikiEntryDialog("idBtnWikiEntrySave");
 			oSaveButton.setEnabled(false);
 
-			var aTags = (oDraft.tagsText || "").split(",").map(function (s) { return s.trim(); }).filter(Boolean);
 			var aBlocks = (oDraft.blocks || []).map(function (oBlock) {
 				return {
 					type: oBlock.type,
@@ -278,7 +306,7 @@ sap.ui.define([
 				body: JSON.stringify({
 					title: oDraft.title,
 					entry_date: oDraft.entry_date || null,
-					tags: aTags,
+					tag_ids: (oDraft.tags || []).map(function (t) { return t.id; }),
 					is_private: !!oDraft.is_private,
 					blocks: aBlocks
 				})
@@ -334,6 +362,251 @@ sap.ui.define([
 		// the updated list); the detail view overrides this to navigate away,
 		// since the entry it was showing no longer exists.
 		_onWikiEntryDeleted: function () {},
+
+		// -------------------- wiki admin: tags --------------------
+		// Tags are normalized into wiki_tags/wiki_entry_tags (see
+		// backend/schema.sql), edited via a "+"-icon picker (pick an
+		// existing tag or create one on the fly) plus a separate gear-icon
+		// manage dialog for renaming/deleting tags globally. Both are fed
+		// by the same component-level WIKI_TAGS_MODEL lookup list.
+
+		// Fetches the full tag list from the backend into WIKI_TAGS_MODEL.
+		// Called directly by the manage dialog's add/edit/delete flows
+		// (which always want the latest data); the picker instead goes
+		// through the memoized _ensureWikiTagsLoaded/_reloadWikiTags pair
+		// below, since it's opened far more often and shouldn't re-fetch
+		// on every "+" press.
+		_fetchWikiTags: function () {
+			var oModel = this.getOwnerComponent().getModel(WIKI_TAGS_MODEL);
+			return fetch(config.SERVICE_URL + "/wiki/tags", { headers: this._authHeaders() }).then(function (oResponse) {
+				return this._checkResponse(oResponse).json();
+			}.bind(this)).then(function (oData) {
+				oModel.setData({ Tags: oData.Tags });
+			}).catch(function (oError) {
+				console.error("Wiki tags could not be loaded", oError);
+			});
+		},
+
+		_ensureWikiTagsLoaded: function () {
+			var oComponent = this.getOwnerComponent();
+			if (!oComponent._pWikiTagsLoaded) {
+				oComponent._pWikiTagsLoaded = this._fetchWikiTags();
+			}
+			return oComponent._pWikiTagsLoaded;
+		},
+
+		// Bypasses the memoization above so the picker and manage dialog
+		// pick up a create/rename/delete immediately, same reasoning as
+		// ListView's _reloadLookups.
+		_reloadWikiTags: function () {
+			this.getOwnerComponent()._pWikiTagsLoaded = null;
+			return this._ensureWikiTagsLoaded();
+		},
+
+		// Recomputes the picker popover's filtered list: known tags not
+		// already on the draft, matching the current search text, plus a
+		// trailing synthetic "create '<text>'" row when nothing existing
+		// matches it exactly (case-insensitive, so typing an existing
+		// tag's label in a different case still resolves to it rather
+		// than offering to create a near-duplicate).
+		_updateWikiTagPickerList: function (sQuery) {
+			var oComponent = this.getOwnerComponent();
+			var sText = (sQuery || "").trim();
+			var sLowerText = sText.toLowerCase();
+			var aAllTags = oComponent.getModel(WIKI_TAGS_MODEL).getProperty("/Tags") || [];
+			var aDraftIds = (oComponent.getModel(WIKI_DRAFT_MODEL).getProperty("/tags") || []).map(function (t) { return t.id; });
+
+			var aItems = aAllTags.filter(function (oTag) {
+				return aDraftIds.indexOf(oTag.id) === -1
+					&& (!sLowerText || oTag.label.toLowerCase().indexOf(sLowerText) !== -1);
+			}).map(function (oTag) {
+				return { id: oTag.id, label: oTag.label, icon: "sap-icon://tag", isCreate: false, createLabel: null };
+			});
+
+			var bExactMatch = aAllTags.some(function (oTag) { return oTag.label.toLowerCase() === sLowerText; });
+			if (sText && !bExactMatch) {
+				aItems.push({
+					id: null,
+					label: this.getResourceBundle().getText("WikiTagCreateNew", [sText]),
+					icon: "sap-icon://add",
+					isCreate: true,
+					createLabel: sText
+				});
+			}
+
+			oComponent.getModel(WIKI_TAG_PICKER_MODEL).setProperty("/items", aItems);
+		},
+
+		onWikiTagAddPress: function (oEvent) {
+			var oButton = oEvent.getSource();
+			this._ensureWikiTagsLoaded().then(function () {
+				this._byIdInWikiEntryDialog("idSearchWikiTagPicker").setValue("");
+				this._updateWikiTagPickerList("");
+				this._byIdInWikiEntryDialog("idPopoverWikiTagPicker").openBy(oButton);
+			}.bind(this)).catch(function () {});
+		},
+
+		onWikiTagSearchLiveChange: function (oEvent) {
+			this._updateWikiTagPickerList(oEvent.getParameter("newValue"));
+		},
+
+		onWikiTagPickerItemPress: function (oEvent) {
+			var oItem = oEvent.getSource().getBindingContext(WIKI_TAG_PICKER_MODEL).getObject();
+			if (oItem.isCreate) {
+				this._createAndAttachWikiTag(oItem.createLabel);
+			} else {
+				this._attachWikiTagToDraft({ id: oItem.id, label: oItem.label });
+				this._byIdInWikiEntryDialog("idPopoverWikiTagPicker").close();
+			}
+		},
+
+		_attachWikiTagToDraft: function (oTag) {
+			var oDraftModel = this.getOwnerComponent().getModel(WIKI_DRAFT_MODEL);
+			var aTags = oDraftModel.getProperty("/tags") || [];
+			aTags.push({ id: oTag.id, label: oTag.label });
+			oDraftModel.setProperty("/tags", aTags);
+		},
+
+		// Upsert-on-label-conflict server-side (see POST /wiki/tags), so
+		// typing an already-existing label here just resolves to and
+		// attaches that tag rather than erroring.
+		_createAndAttachWikiTag: function (sLabel) {
+			var oResourceBundle = this.getResourceBundle();
+			return fetch(config.SERVICE_URL + "/wiki/tags", {
+				method: "POST",
+				headers: this._authHeaders(),
+				body: JSON.stringify({ label: sLabel })
+			}).then(function (oResponse) {
+				return this._checkResponse(oResponse).json();
+			}.bind(this)).then(function (oData) {
+				this._attachWikiTagToDraft(oData);
+				return this._reloadWikiTags();
+			}.bind(this)).then(function () {
+				this._byIdInWikiEntryDialog("idPopoverWikiTagPicker").close();
+			}.bind(this)).catch(function (oError) {
+				console.error("Wiki tag could not be created", oError);
+				MessageBox.error(oResourceBundle.getText("WikiTagSaveError"));
+			});
+		},
+
+		onWikiTagRemove: function (oEvent) {
+			var oContext = oEvent.getSource().getBindingContext(WIKI_DRAFT_MODEL);
+			var iIndex = parseInt(oContext.getPath().split("/").pop(), 10);
+			var oDraftModel = this.getOwnerComponent().getModel(WIKI_DRAFT_MODEL);
+			var aTags = oDraftModel.getProperty("/tags") || [];
+			aTags.splice(iIndex, 1);
+			oDraftModel.setProperty("/tags", aTags);
+		},
+
+		// -------------------- wiki admin: tag management dialog --------------------
+		// Reachable via the gear icon next to the "+" picker. Deliberately
+		// not built on ListView's _makeLookupManager factory (see the
+		// plan): that factory is hard-wired to 3-language label_de/en/es
+		// shapes and the /objectlist/ URL prefix, so a single-label,
+		// /wiki/tags-backed entity is simpler as its own small set of
+		// handlers following the same 7-step shape.
+
+		_loadWikiTagManagerModel: function () {
+			var oModel = this.getOwnerComponent().getModel(WIKI_TAG_MANAGER_MODEL);
+			return fetch(config.SERVICE_URL + "/wiki/tags", { headers: this._authHeaders() }).then(function (oResponse) {
+				return this._checkResponse(oResponse).json();
+			}.bind(this)).then(function (oData) {
+				oModel.setData({ Tags: oData.Tags });
+			}).catch(function (oError) {
+				console.error("Wiki tags could not be loaded", oError);
+			});
+		},
+
+		onPressManageWikiTags: function () {
+			this._loadWikiTagManagerModel();
+			this._openDialog(WIKI_TAGS_DIALOG, "idFragWikiTagsDialog", "Homepage.Homepage.view.fragments.WikiTagsDialog");
+		},
+
+		onPressWikiTagsClose: function () {
+			this._closeDialog(WIKI_TAGS_DIALOG);
+		},
+
+		onPressWikiTagAdd: function () {
+			this.getOwnerComponent().getModel(WIKI_TAG_ENTRY_MODEL).setData({ id: null, label: "" });
+			this._openDialog(WIKI_TAG_ENTRY_DIALOG, "idFragWikiTagEntryDialog", "Homepage.Homepage.view.fragments.WikiTagEntryDialog");
+		},
+
+		onPressWikiTagEdit: function (oEvent) {
+			var oRow = oEvent.getSource().getBindingContext(WIKI_TAG_MANAGER_MODEL).getObject();
+			this.getOwnerComponent().getModel(WIKI_TAG_ENTRY_MODEL).setData({ id: oRow.id, label: oRow.label });
+			this._openDialog(WIKI_TAG_ENTRY_DIALOG, "idFragWikiTagEntryDialog", "Homepage.Homepage.view.fragments.WikiTagEntryDialog");
+		},
+
+		onPressWikiTagEntryCancel: function () {
+			this._closeDialog(WIKI_TAG_ENTRY_DIALOG);
+		},
+
+		onPressWikiTagEntrySave: function () {
+			var oResourceBundle = this.getResourceBundle();
+			var oEntryData = this.getOwnerComponent().getModel(WIKI_TAG_ENTRY_MODEL).getData();
+			var bIsUpdate = !!oEntryData.id;
+			var sUrl = config.SERVICE_URL + "/wiki/tags" + (bIsUpdate ? "/" + oEntryData.id : "");
+
+			fetch(sUrl, {
+				method: bIsUpdate ? "PUT" : "POST",
+				headers: this._authHeaders(),
+				body: JSON.stringify({ label: oEntryData.label })
+			}).then(function (oResponse) {
+				return this._checkResponse(oResponse, true);
+			}.bind(this)).then(function () {
+				this._closeDialog(WIKI_TAG_ENTRY_DIALOG);
+				return this._reloadWikiTags();
+			}.bind(this)).then(function () {
+				this._loadWikiTagManagerModel();
+				// Renaming changes labels already showing in the (cached)
+				// WikiModel entry list -- reload so they update immediately.
+				return this._loadWikiModel();
+			}.bind(this)).catch(function (oError) {
+				console.error("Wiki tag could not be saved", oError);
+				if (oError && oError.handled && oError.code === "tag_label_exists") {
+					MessageBox.error(oResourceBundle.getText("WikiTagLabelExistsError"));
+					return;
+				}
+				MessageBox.error(oResourceBundle.getText("WikiTagSaveError"));
+			});
+		},
+
+		// Removes a just-deleted tag from the currently open (unsaved)
+		// entry draft, if present. The backend's in-use check only sees
+		// tags already persisted in wiki_entry_tags, so a tag can still be
+		// sitting attached to an open-but-not-yet-saved draft when it's
+		// deleted here -- without this, Save would send a now-dangling
+		// tag_id and fail with a 400 FK-violation error.
+		_pruneWikiTagFromDraft: function (iTagId) {
+			var oDraftModel = this.getOwnerComponent().getModel(WIKI_DRAFT_MODEL);
+			var aTags = oDraftModel.getProperty("/tags") || [];
+			var aFiltered = aTags.filter(function (t) { return t.id !== iTagId; });
+			if (aFiltered.length !== aTags.length) {
+				oDraftModel.setProperty("/tags", aFiltered);
+			}
+		},
+
+		onPressWikiTagDelete: function (oEvent) {
+			var oRow = oEvent.getSource().getBindingContext(WIKI_TAG_MANAGER_MODEL).getObject();
+			var oResourceBundle = this.getResourceBundle();
+
+			this._confirmDelete(oResourceBundle.getText("WikiTagDeleteConfirm", [oRow.label]), function () {
+				this._deleteResource(config.SERVICE_URL + "/wiki/tags/" + oRow.id, true).then(function () {
+					this._pruneWikiTagFromDraft(oRow.id);
+					return this._reloadWikiTags();
+				}.bind(this)).then(function () {
+					this._loadWikiTagManagerModel();
+					return this._loadWikiModel();
+				}.bind(this)).catch(function (oError) {
+					console.error("Wiki tag could not be deleted", oError);
+					if (oError && oError.handled && oError.code === "tag_in_use") {
+						MessageBox.error(oResourceBundle.getText("WikiTagInUseError", [oError.count]));
+						return;
+					}
+					MessageBox.error(oResourceBundle.getText("WikiTagDeleteError"));
+				});
+			}.bind(this));
+		},
 
 		// -------------------- wiki admin: block manipulation --------------------
 

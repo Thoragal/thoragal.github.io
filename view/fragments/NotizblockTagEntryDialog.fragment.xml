@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m"
+                          xmlns:core="sap.ui.core"
+                          xmlns:f="sap.ui.layout.form">
+	<Dialog id="idDialogNotizblockTagEntry" title="{i18n>NotizblockTagEntryDialogTitle}">
+		<content>
+			<f:SimpleForm id="idSimpleFormNotizblockTagEntry" editable="true" width="100%">
+				<Label id="idLabelNotizblockTagEntryLabel" text="{i18n>NotizblockTagEntryLabelLabel}" labelFor="idInputNotizblockTagEntryLabel"/>
+				<Input id="idInputNotizblockTagEntryLabel" value="{localDataModelNotizblockTagEntry>/label}" maxLength="50"/>
+			</f:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button id="idBtnNotizblockTagEntryCancel" press=".onPressNotizblockTagEntryCancel" text="{i18n>txtBtnContactMeCancel}"/>
+				<ToolbarSpacer/>
+				<Button id="idBtnNotizblockTagEntrySave" press=".onPressNotizblockTagEntrySave" text="{i18n>ListEntrySave}" type="Emphasized"/>
+			</Toolbar>
+		</footer>
+	</Dialog>
+</core:FragmentDefinition>

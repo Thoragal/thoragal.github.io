@@ -15,7 +15,18 @@
 				<DatePicker value="{notizblockEntryDraft>/entry_date}" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy"/>
 
 				<Label text="{i18n>NotizblockEntryTagsLabel}"/>
-				<Input value="{notizblockEntryDraft>/tagsText}" placeholder="ABAP, UI5"/>
+				<HBox id="idNotizblockEntryTagsRow" alignItems="Center" justifyContent="SpaceBetween" width="100%">
+					<HBox alignItems="Center" wrap="Wrap">
+						<HBox items="{notizblockEntryDraft>/tags}" wrap="Wrap">
+							<Button text="{notizblockEntryDraft>label}" icon="sap-icon://decline" iconFirst="false"
+									press=".onNotizblockTagRemove" class="sapUiTinyMarginEnd sapUiTinyMarginBottom"/>
+						</HBox>
+						<Button id="idBtnNotizblockTagAdd" icon="sap-icon://add" tooltip="{i18n>NotizblockTagAddTooltip}"
+								press=".onNotizblockTagAddPress" type="Transparent"/>
+					</HBox>
+					<Button id="idBtnNotizblockTagManage" icon="sap-icon://action-settings" tooltip="{i18n>NotizblockTagsDialogTitle}"
+							press=".onPressManageNotizblockTags" type="Transparent"/>
+				</HBox>
 			</f:SimpleForm>
 
 			<Toolbar class="sapUiSmallMarginBegin">
@@ -144,5 +155,29 @@
 				<Button id="idBtnNotizblockEntrySave" text="{i18n>ListEntrySave}" type="Emphasized" press=".onNotizblockEntrySave"/>
 			</Toolbar>
 		</footer>
+		<dependents>
+			<!-- Opened via idBtnNotizblockTagAdd.press: same shape as
+				 WikiEntryDialog.fragment.xml's tag picker, a search field over
+				 a single list that mixes existing tags (tap = attach to the
+				 entry) with, when the typed text has no exact match, one
+				 synthetic "create" row (tap = POST /notizblock/tags, then
+				 attach). Placed in `dependents` (as the attachments Table's
+				 UploadSetwithTable already is above) rather than as a second
+				 fragment root, since Fragment.load returns an array for
+				 multi-root fragments and _openDialog only handles a single
+				 control. -->
+			<ResponsivePopover id="idPopoverNotizblockTagPicker" placement="Bottom" contentWidth="20rem" title="{i18n>NotizblockTagPickerTitle}">
+				<content>
+					<VBox class="sapUiTinyMargin">
+						<SearchField id="idSearchNotizblockTagPicker" placeholder="{i18n>NotizblockTagSearchPlaceholder}"
+								liveChange=".onNotizblockTagSearchLiveChange" width="100%"/>
+						<List id="idListNotizblockTagPicker" items="{notizblockTagPickerModel>/items}" mode="None" noDataText="{i18n>NotizblockTagsNoData}">
+							<StandardListItem title="{notizblockTagPickerModel>label}" icon="{notizblockTagPickerModel>icon}"
+									type="Active" press=".onNotizblockTagPickerItemPress"/>
+						</List>
+					</VBox>
+				</content>
+			</ResponsivePopover>
+		</dependents>
 	</Dialog>
 </core:FragmentDefinition>

@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m"
+                          xmlns:core="sap.ui.core">
+	<Dialog id="idDialogNotizblockTags" title="{i18n>NotizblockTagsDialogTitle}" contentWidth="30rem" contentHeight="25rem">
+		<content>
+			<Table id="idTableNotizblockTags" items="{NotizblockTagManagerModel>/Tags}" noDataText="{i18n>NotizblockTagsNoData}">
+				<headerToolbar>
+					<Toolbar>
+						<Title id="idTitleNotizblockTagsTable" text="{i18n>NotizblockTagsDialogTitle}"/>
+						<ToolbarSpacer/>
+						<Button id="idBtnNotizblockTagAddManaged" icon="sap-icon://add" tooltip="{i18n>NotizblockTagBtnAdd}" press=".onPressNotizblockTagAdd" type="Transparent"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="idColumnNotizblockTagLabel"><Text text="{i18n>NotizblockTagColumnLabel}"/></Column>
+					<Column id="idColumnNotizblockTagActions" width="6em" hAlign="End"><Text text="{i18n>AdminTableColumnActions}"/></Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{NotizblockTagManagerModel>label}"/>
+							<HBox>
+								<Button icon="sap-icon://edit" tooltip="{i18n>AdminBtnEdit}" press=".onPressNotizblockTagEdit" type="Transparent"/>
+								<Button icon="sap-icon://delete" tooltip="{i18n>AdminBtnDelete}" press=".onPressNotizblockTagDelete" type="Transparent"/>
+							</HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button id="idBtnNotizblockTagsClose" press=".onPressNotizblockTagsClose" text="{i18n>txtBtnContactMeCancel}"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</footer>
+	</Dialog>
+</core:FragmentDefinition>

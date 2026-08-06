@@ -25,9 +25,10 @@ sap.ui.define([
 			return result;
 		},
 
-		// Joins a wiki entry's tag array (["ABAP","UI5"]) into "ABAP, UI5".
+		// Joins a wiki entry's tag array ([{id,label}, ...], since tags were
+		// normalized into their own table) into "ABAP, UI5".
 		joinTags: function(aTags) {
-			return Array.isArray(aTags) ? aTags.join(", ") : "";
+			return Array.isArray(aTags) ? aTags.map(function (t) { return t.label; }).join(", ") : "";
 		},
 
 		// True if the array has at least one entry (for tag visibility).

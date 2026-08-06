@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m"
+                          xmlns:core="sap.ui.core">
+	<Dialog id="idDialogWikiTags" title="{i18n>WikiTagsDialogTitle}" contentWidth="30rem" contentHeight="25rem">
+		<content>
+			<Table id="idTableWikiTags" items="{WikiTagManagerModel>/Tags}" noDataText="{i18n>WikiTagsNoData}">
+				<headerToolbar>
+					<Toolbar>
+						<Title id="idTitleWikiTagsTable" text="{i18n>WikiTagsDialogTitle}"/>
+						<ToolbarSpacer/>
+						<Button id="idBtnWikiTagAddManaged" icon="sap-icon://add" tooltip="{i18n>WikiTagBtnAdd}" press=".onPressWikiTagAdd" type="Transparent"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="idColumnWikiTagLabel"><Text text="{i18n>WikiTagColumnLabel}"/></Column>
+					<Column id="idColumnWikiTagActions" width="6em" hAlign="End"><Text text="{i18n>AdminTableColumnActions}"/></Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{WikiTagManagerModel>label}"/>
+							<HBox>
+								<Button icon="sap-icon://edit" tooltip="{i18n>AdminBtnEdit}" press=".onPressWikiTagEdit" type="Transparent"/>
+								<Button icon="sap-icon://delete" tooltip="{i18n>AdminBtnDelete}" press=".onPressWikiTagDelete" type="Transparent"/>
+							</HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button id="idBtnWikiTagsClose" press=".onPressWikiTagsClose" text="{i18n>txtBtnContactMeCancel}"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</footer>
+	</Dialog>
+</core:FragmentDefinition>

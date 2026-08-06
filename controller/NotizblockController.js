@@ -19,6 +19,16 @@ sap.ui.define([
 
 	var NOTIZBLOCK_DRAFT_MODEL = "notizblockEntryDraft";
 	var NOTIZBLOCK_ENTRY_DIALOG = "NotizblockEntryDialog";
+	// Tags, normalized into their own table (see backend/schema.sql), mirroring
+	// WikiController's own tag model split -- a separate notizblock_tags table
+	// from wiki_tags, not a shared pool (Notizblock is kept parallel-but-
+	// independent from Wiki throughout this codebase).
+	var NOTIZBLOCK_TAGS_MODEL = "notizblockTagsModel";
+	var NOTIZBLOCK_TAG_PICKER_MODEL = "notizblockTagPickerModel";
+	var NOTIZBLOCK_TAG_MANAGER_MODEL = "NotizblockTagManagerModel";
+	var NOTIZBLOCK_TAG_ENTRY_MODEL = "localDataModelNotizblockTagEntry";
+	var NOTIZBLOCK_TAGS_DIALOG = "NotizblockTagsDialog";
+	var NOTIZBLOCK_TAG_ENTRY_DIALOG = "NotizblockTagEntryDialog";
 
 	// Shared by NotizblockView (standard + list views) and NotizblockDetailView --
 	// structurally a mirror of WikiController, minus is_private (the whole
@@ -144,6 +154,18 @@ sap.ui.define([
 			if (!oComponent.getModel(NOTIZBLOCK_DRAFT_MODEL)) {
 				oComponent.setModel(new JSONModel(this._emptyDraft()), NOTIZBLOCK_DRAFT_MODEL);
 			}
+			if (!oComponent.getModel(NOTIZBLOCK_TAGS_MODEL)) {
+				oComponent.setModel(new JSONModel({ Tags: [] }), NOTIZBLOCK_TAGS_MODEL);
+			}
+			if (!oComponent.getModel(NOTIZBLOCK_TAG_PICKER_MODEL)) {
+				oComponent.setModel(new JSONModel({ items: [] }), NOTIZBLOCK_TAG_PICKER_MODEL);
+			}
+			if (!oComponent.getModel(NOTIZBLOCK_TAG_MANAGER_MODEL)) {
+				oComponent.setModel(new JSONModel({ Tags: [] }), NOTIZBLOCK_TAG_MANAGER_MODEL);
+			}
+			if (!oComponent.getModel(NOTIZBLOCK_TAG_ENTRY_MODEL)) {
+				oComponent.setModel(new JSONModel({ id: null, label: "" }), NOTIZBLOCK_TAG_ENTRY_MODEL);
+			}
 		},
 
 		_emptyDraft: function () {
@@ -151,7 +173,7 @@ sap.ui.define([
 			var sToday = oNow.getFullYear() + "-"
 				+ String(oNow.getMonth() + 1).padStart(2, "0") + "-"
 				+ String(oNow.getDate()).padStart(2, "0");
-			return { id: null, title: "", entry_date: sToday, tagsText: "", blocks: [], files: [], uploadUrl: "" };
+			return { id: null, title: "", entry_date: sToday, tags: [], blocks: [], files: [], uploadUrl: "" };
 		},
 
 		onNotizblockEntryAdd: function () {
@@ -172,7 +194,10 @@ sap.ui.define([
 				id: oEntry.id,
 				title: oEntry.title || "",
 				entry_date: oEntry.date || null,
-				tagsText: (oEntry.tags || []).join(", "),
+				// deep copy, same reasoning as blocks/files below: edits (add/
+				// remove via the picker) must not mutate the list model before
+				// saving
+				tags: JSON.parse(JSON.stringify(oEntry.tags || [])),
 				blocks: JSON.parse(JSON.stringify(oEntry.blocks || [])),
 				files: JSON.parse(JSON.stringify(oEntry.files || [])),
 				uploadUrl: config.SERVICE_URL + "/notizblock/" + oEntry.id + "/files"
@@ -214,7 +239,6 @@ sap.ui.define([
 			var oSaveButton = this._byIdInNotizblockEntryDialog("idBtnNotizblockEntrySave");
 			oSaveButton.setEnabled(false);
 
-			var aTags = (oDraft.tagsText || "").split(",").map(function (s) { return s.trim(); }).filter(Boolean);
 			var aBlocks = (oDraft.blocks || []).map(function (oBlock) {
 				return {
 					type: oBlock.type,
@@ -234,7 +258,7 @@ sap.ui.define([
 				body: JSON.stringify({
 					title: oDraft.title,
 					entry_date: oDraft.entry_date || null,
-					tags: aTags,
+					tag_ids: (oDraft.tags || []).map(function (t) { return t.id; }),
 					blocks: aBlocks
 				})
 			}).then(function (oResponse) {
@@ -285,6 +309,252 @@ sap.ui.define([
 		// Hook called after a successful delete. No-op by default; the detail
 		// view overrides this to navigate away.
 		_onNotizblockEntryDeleted: function () {},
+
+		// -------------------- notizblock admin: tags --------------------
+		// Tags are normalized into notizblock_tags/notizblock_entry_tags (see
+		// backend/schema.sql), edited via a "+"-icon picker (pick an existing
+		// tag or create one on the fly) plus a separate gear-icon manage
+		// dialog for renaming/deleting tags globally. Both are fed by the
+		// same component-level NOTIZBLOCK_TAGS_MODEL lookup list. Structurally
+		// a mirror of WikiController's own tag sections, just against
+		// /notizblock/tags and its own, separate notizblock_tags table.
+
+		// Fetches the full tag list from the backend into NOTIZBLOCK_TAGS_MODEL.
+		// Called directly by the manage dialog's add/edit/delete flows (which
+		// always want the latest data); the picker instead goes through the
+		// memoized _ensureNotizblockTagsLoaded/_reloadNotizblockTags pair
+		// below, since it's opened far more often and shouldn't re-fetch on
+		// every "+" press.
+		_fetchNotizblockTags: function () {
+			var oModel = this.getOwnerComponent().getModel(NOTIZBLOCK_TAGS_MODEL);
+			return fetch(config.SERVICE_URL + "/notizblock/tags", { headers: this._authHeaders() }).then(function (oResponse) {
+				return this._checkResponse(oResponse).json();
+			}.bind(this)).then(function (oData) {
+				oModel.setData({ Tags: oData.Tags });
+			}).catch(function (oError) {
+				console.error("Notizblock tags could not be loaded", oError);
+			});
+		},
+
+		_ensureNotizblockTagsLoaded: function () {
+			var oComponent = this.getOwnerComponent();
+			if (!oComponent._pNotizblockTagsLoaded) {
+				oComponent._pNotizblockTagsLoaded = this._fetchNotizblockTags();
+			}
+			return oComponent._pNotizblockTagsLoaded;
+		},
+
+		// Bypasses the memoization above so the picker and manage dialog pick
+		// up a create/rename/delete immediately, same reasoning as
+		// ListView's _reloadLookups.
+		_reloadNotizblockTags: function () {
+			this.getOwnerComponent()._pNotizblockTagsLoaded = null;
+			return this._ensureNotizblockTagsLoaded();
+		},
+
+		// Recomputes the picker popover's filtered list: known tags not
+		// already on the draft, matching the current search text, plus a
+		// trailing synthetic "create '<text>'" row when nothing existing
+		// matches it exactly (case-insensitive, so typing an existing tag's
+		// label in a different case still resolves to it rather than
+		// offering to create a near-duplicate).
+		_updateNotizblockTagPickerList: function (sQuery) {
+			var oComponent = this.getOwnerComponent();
+			var sText = (sQuery || "").trim();
+			var sLowerText = sText.toLowerCase();
+			var aAllTags = oComponent.getModel(NOTIZBLOCK_TAGS_MODEL).getProperty("/Tags") || [];
+			var aDraftIds = (oComponent.getModel(NOTIZBLOCK_DRAFT_MODEL).getProperty("/tags") || []).map(function (t) { return t.id; });
+
+			var aItems = aAllTags.filter(function (oTag) {
+				return aDraftIds.indexOf(oTag.id) === -1
+					&& (!sLowerText || oTag.label.toLowerCase().indexOf(sLowerText) !== -1);
+			}).map(function (oTag) {
+				return { id: oTag.id, label: oTag.label, icon: "sap-icon://tag", isCreate: false, createLabel: null };
+			});
+
+			var bExactMatch = aAllTags.some(function (oTag) { return oTag.label.toLowerCase() === sLowerText; });
+			if (sText && !bExactMatch) {
+				aItems.push({
+					id: null,
+					label: this.getResourceBundle().getText("NotizblockTagCreateNew", [sText]),
+					icon: "sap-icon://add",
+					isCreate: true,
+					createLabel: sText
+				});
+			}
+
+			oComponent.getModel(NOTIZBLOCK_TAG_PICKER_MODEL).setProperty("/items", aItems);
+		},
+
+		onNotizblockTagAddPress: function (oEvent) {
+			var oButton = oEvent.getSource();
+			this._ensureNotizblockTagsLoaded().then(function () {
+				this._byIdInNotizblockEntryDialog("idSearchNotizblockTagPicker").setValue("");
+				this._updateNotizblockTagPickerList("");
+				this._byIdInNotizblockEntryDialog("idPopoverNotizblockTagPicker").openBy(oButton);
+			}.bind(this)).catch(function () {});
+		},
+
+		onNotizblockTagSearchLiveChange: function (oEvent) {
+			this._updateNotizblockTagPickerList(oEvent.getParameter("newValue"));
+		},
+
+		onNotizblockTagPickerItemPress: function (oEvent) {
+			var oItem = oEvent.getSource().getBindingContext(NOTIZBLOCK_TAG_PICKER_MODEL).getObject();
+			if (oItem.isCreate) {
+				this._createAndAttachNotizblockTag(oItem.createLabel);
+			} else {
+				this._attachNotizblockTagToDraft({ id: oItem.id, label: oItem.label });
+				this._byIdInNotizblockEntryDialog("idPopoverNotizblockTagPicker").close();
+			}
+		},
+
+		_attachNotizblockTagToDraft: function (oTag) {
+			var oDraftModel = this.getOwnerComponent().getModel(NOTIZBLOCK_DRAFT_MODEL);
+			var aTags = oDraftModel.getProperty("/tags") || [];
+			aTags.push({ id: oTag.id, label: oTag.label });
+			oDraftModel.setProperty("/tags", aTags);
+		},
+
+		// Upsert-on-label-conflict server-side (see POST /notizblock/tags), so
+		// typing an already-existing label here just resolves to and attaches
+		// that tag rather than erroring.
+		_createAndAttachNotizblockTag: function (sLabel) {
+			var oResourceBundle = this.getResourceBundle();
+			return fetch(config.SERVICE_URL + "/notizblock/tags", {
+				method: "POST",
+				headers: this._authHeaders(),
+				body: JSON.stringify({ label: sLabel })
+			}).then(function (oResponse) {
+				return this._checkResponse(oResponse).json();
+			}.bind(this)).then(function (oData) {
+				this._attachNotizblockTagToDraft(oData);
+				return this._reloadNotizblockTags();
+			}.bind(this)).then(function () {
+				this._byIdInNotizblockEntryDialog("idPopoverNotizblockTagPicker").close();
+			}.bind(this)).catch(function (oError) {
+				console.error("Notizblock tag could not be created", oError);
+				MessageBox.error(oResourceBundle.getText("NotizblockTagSaveError"));
+			});
+		},
+
+		onNotizblockTagRemove: function (oEvent) {
+			var oContext = oEvent.getSource().getBindingContext(NOTIZBLOCK_DRAFT_MODEL);
+			var iIndex = parseInt(oContext.getPath().split("/").pop(), 10);
+			var oDraftModel = this.getOwnerComponent().getModel(NOTIZBLOCK_DRAFT_MODEL);
+			var aTags = oDraftModel.getProperty("/tags") || [];
+			aTags.splice(iIndex, 1);
+			oDraftModel.setProperty("/tags", aTags);
+		},
+
+		// -------------------- notizblock admin: tag management dialog --------------------
+		// Reachable via the gear icon next to the "+" picker. Same shape as
+		// WikiController's tag manager, written directly against
+		// /notizblock/tags and the single label field rather than
+		// generalizing a shared helper (see the plan for the full reasoning).
+
+		_loadNotizblockTagManagerModel: function () {
+			var oModel = this.getOwnerComponent().getModel(NOTIZBLOCK_TAG_MANAGER_MODEL);
+			return fetch(config.SERVICE_URL + "/notizblock/tags", { headers: this._authHeaders() }).then(function (oResponse) {
+				return this._checkResponse(oResponse).json();
+			}.bind(this)).then(function (oData) {
+				oModel.setData({ Tags: oData.Tags });
+			}).catch(function (oError) {
+				console.error("Notizblock tags could not be loaded", oError);
+			});
+		},
+
+		onPressManageNotizblockTags: function () {
+			this._loadNotizblockTagManagerModel();
+			this._openDialog(NOTIZBLOCK_TAGS_DIALOG, "idFragNotizblockTagsDialog", "Homepage.Homepage.view.fragments.NotizblockTagsDialog");
+		},
+
+		onPressNotizblockTagsClose: function () {
+			this._closeDialog(NOTIZBLOCK_TAGS_DIALOG);
+		},
+
+		onPressNotizblockTagAdd: function () {
+			this.getOwnerComponent().getModel(NOTIZBLOCK_TAG_ENTRY_MODEL).setData({ id: null, label: "" });
+			this._openDialog(NOTIZBLOCK_TAG_ENTRY_DIALOG, "idFragNotizblockTagEntryDialog", "Homepage.Homepage.view.fragments.NotizblockTagEntryDialog");
+		},
+
+		onPressNotizblockTagEdit: function (oEvent) {
+			var oRow = oEvent.getSource().getBindingContext(NOTIZBLOCK_TAG_MANAGER_MODEL).getObject();
+			this.getOwnerComponent().getModel(NOTIZBLOCK_TAG_ENTRY_MODEL).setData({ id: oRow.id, label: oRow.label });
+			this._openDialog(NOTIZBLOCK_TAG_ENTRY_DIALOG, "idFragNotizblockTagEntryDialog", "Homepage.Homepage.view.fragments.NotizblockTagEntryDialog");
+		},
+
+		onPressNotizblockTagEntryCancel: function () {
+			this._closeDialog(NOTIZBLOCK_TAG_ENTRY_DIALOG);
+		},
+
+		onPressNotizblockTagEntrySave: function () {
+			var oResourceBundle = this.getResourceBundle();
+			var oEntryData = this.getOwnerComponent().getModel(NOTIZBLOCK_TAG_ENTRY_MODEL).getData();
+			var bIsUpdate = !!oEntryData.id;
+			var sUrl = config.SERVICE_URL + "/notizblock/tags" + (bIsUpdate ? "/" + oEntryData.id : "");
+
+			fetch(sUrl, {
+				method: bIsUpdate ? "PUT" : "POST",
+				headers: this._authHeaders(),
+				body: JSON.stringify({ label: oEntryData.label })
+			}).then(function (oResponse) {
+				return this._checkResponse(oResponse, true);
+			}.bind(this)).then(function () {
+				this._closeDialog(NOTIZBLOCK_TAG_ENTRY_DIALOG);
+				return this._reloadNotizblockTags();
+			}.bind(this)).then(function () {
+				this._loadNotizblockTagManagerModel();
+				// Renaming changes labels already showing in the (cached)
+				// NotizblockModel entry list -- reload so they update
+				// immediately.
+				return this._loadNotizblockModel();
+			}.bind(this)).catch(function (oError) {
+				console.error("Notizblock tag could not be saved", oError);
+				if (oError && oError.handled && oError.code === "tag_label_exists") {
+					MessageBox.error(oResourceBundle.getText("NotizblockTagLabelExistsError"));
+					return;
+				}
+				MessageBox.error(oResourceBundle.getText("NotizblockTagSaveError"));
+			});
+		},
+
+		// Removes a just-deleted tag from the currently open (unsaved) entry
+		// draft, if present. The backend's in-use check only sees tags
+		// already persisted in notizblock_entry_tags, so a tag can still be
+		// sitting attached to an open-but-not-yet-saved draft when it's
+		// deleted here -- without this, Save would send a now-dangling
+		// tag_id and fail with a 400 FK-violation error.
+		_pruneNotizblockTagFromDraft: function (iTagId) {
+			var oDraftModel = this.getOwnerComponent().getModel(NOTIZBLOCK_DRAFT_MODEL);
+			var aTags = oDraftModel.getProperty("/tags") || [];
+			var aFiltered = aTags.filter(function (t) { return t.id !== iTagId; });
+			if (aFiltered.length !== aTags.length) {
+				oDraftModel.setProperty("/tags", aFiltered);
+			}
+		},
+
+		onPressNotizblockTagDelete: function (oEvent) {
+			var oRow = oEvent.getSource().getBindingContext(NOTIZBLOCK_TAG_MANAGER_MODEL).getObject();
+			var oResourceBundle = this.getResourceBundle();
+
+			this._confirmDelete(oResourceBundle.getText("NotizblockTagDeleteConfirm", [oRow.label]), function () {
+				this._deleteResource(config.SERVICE_URL + "/notizblock/tags/" + oRow.id, true).then(function () {
+					this._pruneNotizblockTagFromDraft(oRow.id);
+					return this._reloadNotizblockTags();
+				}.bind(this)).then(function () {
+					this._loadNotizblockTagManagerModel();
+					return this._loadNotizblockModel();
+				}.bind(this)).catch(function (oError) {
+					console.error("Notizblock tag could not be deleted", oError);
+					if (oError && oError.handled && oError.code === "tag_in_use") {
+						MessageBox.error(oResourceBundle.getText("NotizblockTagInUseError", [oError.count]));
+						return;
+					}
+					MessageBox.error(oResourceBundle.getText("NotizblockTagDeleteError"));
+				});
+			}.bind(this));
+		},
 
 		// -------------------- notizblock admin: block manipulation --------------------
 
