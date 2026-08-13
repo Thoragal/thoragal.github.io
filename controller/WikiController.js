@@ -6,6 +6,7 @@ sap.ui.define([
 	"sap/ui/core/Fragment",
 	"sap/ui/core/HTML",
 	"sap/ui/core/Item",
+	"sap/m/Button",
 	"sap/m/Image",
 	"sap/m/VBox",
 	"sap/m/FlexItemData",
@@ -14,7 +15,7 @@ sap.ui.define([
 	"sap/ui/core/library",
 	"../model/config",
 	"../model/wikiRenderer"
-], function (BaseController, JSONModel, MessageBox, MessageToast, Fragment, HTML, Item, Image, VBox, FlexItemData, LightBox, LightBoxItem, coreLibrary, config, wikiRenderer) {
+], function (BaseController, JSONModel, MessageBox, MessageToast, Fragment, HTML, Item, Button, Image, VBox, FlexItemData, LightBox, LightBoxItem, coreLibrary, config, wikiRenderer) {
 	"use strict";
 
 	var WIKI_DRAFT_MODEL = "wikiEntryDraft";
@@ -133,7 +134,19 @@ sap.ui.define([
 			var oBlock = oContext.getObject();
 
 			if (oBlock.type === "code") {
-				return this._htmlControl(sId, "<div class=\"wikiBlock\">" + wikiRenderer.renderCode(oBlock.content, oBlock.language) + "</div>");
+				// Code blocks get a small "copy" icon (top-right, shown on hover
+				// via CSS) that copies the raw code (not the syntax-highlighted
+				// HTML) to the clipboard. Text/image/html blocks don't get this,
+				// by design -- code is what's actually meant to be pasted
+				// elsewhere as-is.
+				var oCodeHtml = this._htmlControl(null, "<div class=\"wikiBlock\">" + wikiRenderer.renderCode(oBlock.content, oBlock.language) + "</div>");
+				var oCodeCopyButton = new Button({
+					icon: "sap-icon://copy",
+					tooltip: this.getResourceBundle().getText("WikiBlockCopyTooltip"),
+					type: "Transparent",
+					press: this._onWikiCodeCopy.bind(this, oBlock)
+				}).addStyleClass("wikiBlockCopyBtn");
+				return new VBox(sId, { items: [oCodeHtml, oCodeCopyButton] }).addStyleClass("wikiCodeBlockWrapper");
 			}
 
 			if (oBlock.type === "html") {
@@ -163,6 +176,18 @@ sap.ui.define([
 
 			// text (default)
 			return this._htmlControl(sId, "<div class=\"wikiBlock wikiText\">" + wikiRenderer.renderMarkdown(oBlock.content) + "</div>");
+		},
+
+		// Copies a code block's raw source (not the syntax-highlighted HTML) to
+		// the clipboard.
+		_onWikiCodeCopy: function (oBlock) {
+			var oResourceBundle = this.getResourceBundle();
+			navigator.clipboard.writeText(oBlock.content || "").then(function () {
+				MessageToast.show(oResourceBundle.getText("WikiBlockCopySuccess"));
+			}).catch(function (oError) {
+				console.error("Wiki code could not be copied", oError);
+				MessageToast.show(oResourceBundle.getText("WikiBlockCopyError"));
+			});
 		},
 
 		// -------------------- wiki admin: entry create/edit/delete --------------------

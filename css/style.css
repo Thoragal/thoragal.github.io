@@ -40,6 +40,35 @@
 	height: auto;
 }
 
+/* Code blocks (read views only, e.g. WikiDetail/NotizblockDetail): a
+   small "copy raw code" icon overlaid top-right, dimmed until hovered
+   so it doesn't compete with the rendered content at rest. */
+.wikiCodeBlockWrapper {
+	position: relative;
+}
+/* sap.m.VBox wraps every direct child in its own auto-generated
+   ".sapMFlexItem" div, which UI5's own core CSS makes "position: relative"
+   -- that div sits between the wrapper above and the copy button below and
+   wins the browser's offsetParent search before it ever reaches the
+   wrapper, so "top: 0; right: 0" below resolved against that tightly-sized
+   per-item box (just tall enough for its own child) instead of the whole
+   block. Neutralizing position on both of the wrapper's own flex-item
+   children (content + button) lets the search continue up to the wrapper
+   itself, scoped narrowly so it doesn't affect flex items anywhere else. */
+.wikiCodeBlockWrapper > .sapMFlexItem {
+	position: static;
+}
+.wikiBlockCopyBtn.sapMBtn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0.35;
+}
+.wikiCodeBlockWrapper:hover .wikiBlockCopyBtn.sapMBtn,
+.wikiBlockCopyBtn.sapMBtn:focus {
+	opacity: 1;
+}
+
 /* Same blue as the row-level edit/delete icon buttons (--sapButton_IconColor),
    so the private-entry indicator matches the admin action icons next to it. */
 .wikiPrivateIndicator {
