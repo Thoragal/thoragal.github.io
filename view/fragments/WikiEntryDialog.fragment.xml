@@ -99,10 +99,16 @@
 					<headerToolbar>
 						<OverflowToolbar>
 							<ToolbarSpacer/>
-							<Button	id="idBtnWikiAttachmentsDownloadSelected"
+							<MenuButton	id="idBtnWikiAttachmentsDownloadSelected"
 									text="{i18n>WikiAttachmentsDownloadSelected}"
-									enabled="false"
-									press=".onWikiAttachmentsDownloadSelected"/>
+									enabled="false">
+								<menu>
+									<Menu>
+										<MenuItem text="{i18n>WikiAttachmentsDownloadIndividually}" press=".onWikiAttachmentsDownloadSelectedIndividually"/>
+										<MenuItem text="{i18n>WikiAttachmentsDownloadZipped}" press=".onWikiAttachmentsDownloadSelectedZipped"/>
+									</Menu>
+								</menu>
+							</MenuButton>
 							<Button	id="idBtnWikiAttachmentsDeleteSelected"
 									text="{i18n>WikiAttachmentsDeleteSelected}"
 									enabled="false"

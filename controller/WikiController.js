@@ -905,15 +905,71 @@ sap.ui.define([
 			}.bind(this));
 		},
 
+		// Same auth/blob-download shape as _downloadWikiFile, but against the
+		// server-streamed zip endpoint (GET /wiki/:entryId/files/zip) instead
+		// of a single file -- one browser download for the whole selection
+		// instead of N staggered ones. oButton (the MenuButton the user
+		// pressed) gets a busy state while the zip is being built server-side,
+		// since that can take a moment for several/large files.
+		_downloadWikiFilesZipped: function (iEntryId, aFileIds, sTitle, oButton) {
+			if (oButton) {
+				oButton.setBusy(true);
+			}
+			return fetch(config.SERVICE_URL + "/wiki/" + iEntryId + "/files/zip?ids=" + aFileIds.join(","), { headers: this._authHeaders() })
+				.then(function (oResponse) {
+					if (oResponse.status === 401) {
+						this._handleUnauthorized();
+						throw new Error("Unauthorized");
+					}
+					if (!oResponse.ok) {
+						return oResponse.json().catch(function () { return {}; }).then(function (oData) {
+							throw new Error(oData.error || ("Request failed with status " + oResponse.status));
+						});
+					}
+					return oResponse.blob();
+				}.bind(this))
+				.then(function (oBlob) {
+					// The zip's saved filename is a client-side blob-URL
+					// download, so it's built from the entry title here
+					// rather than from the response's Content-Disposition
+					// header (which the browser ignores for blob: URLs).
+					var sObjectUrl = URL.createObjectURL(oBlob);
+					var oLink = document.createElement("a");
+					oLink.href = sObjectUrl;
+					oLink.download = this.formatter.zipFilename(sTitle, "wiki-" + iEntryId + "-anhaenge");
+					document.body.appendChild(oLink);
+					oLink.click();
+					document.body.removeChild(oLink);
+					URL.revokeObjectURL(sObjectUrl);
+				}.bind(this))
+				.catch(this._showWikiDownloadError.bind(this))
+				.finally(function () {
+					if (oButton) {
+						oButton.setBusy(false);
+					}
+				});
+		},
+
 		onWikiAttachmentsSelectionChange: function (oEvent) {
 			var aSelected = oEvent.getSource().getSelectedContexts();
 			this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDownloadSelected").setEnabled(aSelected.length > 0);
 			this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDeleteSelected").setEnabled(aSelected.length > 0);
 		},
 
-		onWikiAttachmentsDownloadSelected: function () {
+		onWikiAttachmentsDownloadSelectedIndividually: function () {
 			var aSelected = this._byIdInWikiEntryDialog("idTableWikiAttachments").getSelectedContexts();
 			this._downloadWikiFilesStaggered(aSelected);
+		},
+
+		onWikiAttachmentsDownloadSelectedZipped: function () {
+			var aSelected = this._byIdInWikiEntryDialog("idTableWikiAttachments").getSelectedContexts();
+			var aFileIds = aSelected.map(function (oContext) { return oContext.getObject().id; });
+			var oDraft = this.getOwnerComponent().getModel(WIKI_DRAFT_MODEL).getData();
+			// Looked up by its own static id rather than walked up from the
+			// pressed MenuItem: a MenuItem's rendered ancestor chain goes
+			// through an internal MenuWrapper/Popover, not straight back to
+			// the MenuButton, so getParent() chains from here don't reach it.
+			this._downloadWikiFilesZipped(oDraft.id, aFileIds, oDraft.title, this._byIdInWikiEntryDialog("idBtnWikiAttachmentsDownloadSelected"));
 		},
 
 		onWikiAttachmentsDeleteSelected: function () {

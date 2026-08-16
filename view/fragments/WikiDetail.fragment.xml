@@ -57,10 +57,16 @@
 			<OverflowToolbar>
 				<Title text="{i18n>WikiAttachmentsTitle}"/>
 				<ToolbarSpacer/>
-				<Button	id="idBtnWikiDetailAttachmentsDownload"
+				<MenuButton	id="idBtnWikiDetailAttachmentsDownload"
 						text="{i18n>WikiAttachmentsDownloadSelected}"
-						enabled="false"
-						press=".onWikiDetailAttachmentsDownload"/>
+						enabled="false">
+					<menu>
+						<Menu>
+							<MenuItem text="{i18n>WikiAttachmentsDownloadIndividually}" press=".onWikiDetailAttachmentsDownloadIndividually"/>
+							<MenuItem text="{i18n>WikiAttachmentsDownloadZipped}" press=".onWikiDetailAttachmentsDownloadZipped"/>
+						</Menu>
+					</menu>
+				</MenuButton>
 			</OverflowToolbar>
 		</headerToolbar>
 		<columns>

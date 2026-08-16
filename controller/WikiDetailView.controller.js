@@ -106,9 +106,19 @@ sap.ui.define([
 			this._downloadWikiFile(oFile).catch(this._showWikiDownloadError.bind(this));
 		},
 
-		onWikiDetailAttachmentsDownload: function () {
+		onWikiDetailAttachmentsDownloadIndividually: function () {
 			var aSelected = this.byId("idTableWikiDetailAttachments").getSelectedContexts();
 			this._downloadWikiFilesStaggered(aSelected);
+		},
+
+		onWikiDetailAttachmentsDownloadZipped: function () {
+			var oTable = this.byId("idTableWikiDetailAttachments");
+			var aFileIds = oTable.getSelectedContexts().map(function (oContext) { return oContext.getObject().id; });
+			var oEntry = oTable.getBindingContext("WikiModel").getObject();
+			// See WikiController#onWikiAttachmentsDownloadSelectedZipped for
+			// why this is looked up by id instead of via the MenuItem's own
+			// ancestor chain.
+			this._downloadWikiFilesZipped(oEntry.id, aFileIds, oEntry.title, this.byId("idBtnWikiDetailAttachmentsDownload"));
 		},
 
 		_onObjectMatched: function (oEvent) {

@@ -91,10 +91,16 @@
 					<headerToolbar>
 						<OverflowToolbar>
 							<ToolbarSpacer/>
-							<Button	id="idBtnNotizblockAttachmentsDownloadSelected"
+							<MenuButton	id="idBtnNotizblockAttachmentsDownloadSelected"
 									text="{i18n>NotizblockAttachmentsDownloadSelected}"
-									enabled="false"
-									press=".onNotizblockAttachmentsDownloadSelected"/>
+									enabled="false">
+								<menu>
+									<Menu>
+										<MenuItem text="{i18n>NotizblockAttachmentsDownloadIndividually}" press=".onNotizblockAttachmentsDownloadSelectedIndividually"/>
+										<MenuItem text="{i18n>NotizblockAttachmentsDownloadZipped}" press=".onNotizblockAttachmentsDownloadSelectedZipped"/>
+									</Menu>
+								</menu>
+							</MenuButton>
 							<Button	id="idBtnNotizblockAttachmentsDeleteSelected"
 									text="{i18n>NotizblockAttachmentsDeleteSelected}"
 									enabled="false"

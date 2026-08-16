@@ -75,6 +75,18 @@ sap.ui.define([
 		},
 		fileSize: function (iBytes) {
 			return UploadSetwithTable.getFileSizeWithUnits(iBytes);
+		},
+
+		// Builds a zip download filename from an entry title: swaps
+		// filesystem-illegal characters for "-", strips all whitespace
+		// (not just collapses it), caps the length, and falls back to
+		// sFallback if nothing usable remains after that.
+		zipFilename: function (sTitle, sFallback) {
+			var sSafe = (sTitle || "")
+				.replace(/[\\/:*?"<>|]/g, "-")
+				.replace(/\s+/g, "")
+				.slice(0, 150);
+			return (sSafe || sFallback) + ".zip";
 		}
 	};
 });

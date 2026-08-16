@@ -113,9 +113,19 @@ sap.ui.define([
 			this._downloadNotizblockFile(oFile).catch(this._showNotizblockDownloadError.bind(this));
 		},
 
-		onNotizblockDetailAttachmentsDownload: function () {
+		onNotizblockDetailAttachmentsDownloadIndividually: function () {
 			var aSelected = this.byId("idTableNotizblockDetailAttachments").getSelectedContexts();
 			this._downloadNotizblockFilesStaggered(aSelected);
+		},
+
+		onNotizblockDetailAttachmentsDownloadZipped: function () {
+			var oTable = this.byId("idTableNotizblockDetailAttachments");
+			var aFileIds = oTable.getSelectedContexts().map(function (oContext) { return oContext.getObject().id; });
+			var oEntry = oTable.getBindingContext("NotizblockModel").getObject();
+			// See WikiController#onWikiAttachmentsDownloadSelectedZipped for
+			// why this is looked up by id instead of via the MenuItem's own
+			// ancestor chain.
+			this._downloadNotizblockFilesZipped(oEntry.id, aFileIds, oEntry.title, this.byId("idBtnNotizblockDetailAttachmentsDownload"));
 		},
 
 		_onObjectMatched: function (oEvent) {

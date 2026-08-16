@@ -806,15 +806,72 @@ sap.ui.define([
 			}.bind(this));
 		},
 
+		// Same auth/blob-download shape as _downloadNotizblockFile, but
+		// against the server-streamed zip endpoint (GET
+		// /notizblock/:entryId/files/zip) instead of a single file -- one
+		// browser download for the whole selection instead of N staggered
+		// ones. oButton (the MenuButton the user pressed) gets a busy state
+		// while the zip is being built server-side, since that can take a
+		// moment for several/large files.
+		_downloadNotizblockFilesZipped: function (iEntryId, aFileIds, sTitle, oButton) {
+			if (oButton) {
+				oButton.setBusy(true);
+			}
+			return fetch(config.SERVICE_URL + "/notizblock/" + iEntryId + "/files/zip?ids=" + aFileIds.join(","), { headers: this._authHeaders() })
+				.then(function (oResponse) {
+					if (oResponse.status === 401) {
+						this._handleUnauthorized();
+						throw new Error("Unauthorized");
+					}
+					if (!oResponse.ok) {
+						return oResponse.json().catch(function () { return {}; }).then(function (oData) {
+							throw new Error(oData.error || ("Request failed with status " + oResponse.status));
+						});
+					}
+					return oResponse.blob();
+				}.bind(this))
+				.then(function (oBlob) {
+					// The zip's saved filename is a client-side blob-URL
+					// download, so it's built from the entry title here
+					// rather than from the response's Content-Disposition
+					// header (which the browser ignores for blob: URLs).
+					var sObjectUrl = URL.createObjectURL(oBlob);
+					var oLink = document.createElement("a");
+					oLink.href = sObjectUrl;
+					oLink.download = this.formatter.zipFilename(sTitle, "notizblock-" + iEntryId + "-anhaenge");
+					document.body.appendChild(oLink);
+					oLink.click();
+					document.body.removeChild(oLink);
+					URL.revokeObjectURL(sObjectUrl);
+				}.bind(this))
+				.catch(this._showNotizblockDownloadError.bind(this))
+				.finally(function () {
+					if (oButton) {
+						oButton.setBusy(false);
+					}
+				});
+		},
+
 		onNotizblockAttachmentsSelectionChange: function (oEvent) {
 			var aSelected = oEvent.getSource().getSelectedContexts();
 			this._byIdInNotizblockEntryDialog("idBtnNotizblockAttachmentsDownloadSelected").setEnabled(aSelected.length > 0);
 			this._byIdInNotizblockEntryDialog("idBtnNotizblockAttachmentsDeleteSelected").setEnabled(aSelected.length > 0);
 		},
 
-		onNotizblockAttachmentsDownloadSelected: function () {
+		onNotizblockAttachmentsDownloadSelectedIndividually: function () {
 			var aSelected = this._byIdInNotizblockEntryDialog("idTableNotizblockAttachments").getSelectedContexts();
 			this._downloadNotizblockFilesStaggered(aSelected);
+		},
+
+		onNotizblockAttachmentsDownloadSelectedZipped: function () {
+			var aSelected = this._byIdInNotizblockEntryDialog("idTableNotizblockAttachments").getSelectedContexts();
+			var aFileIds = aSelected.map(function (oContext) { return oContext.getObject().id; });
+			var oDraft = this.getOwnerComponent().getModel(NOTIZBLOCK_DRAFT_MODEL).getData();
+			// Looked up by its own static id rather than walked up from the
+			// pressed MenuItem: a MenuItem's rendered ancestor chain goes
+			// through an internal MenuWrapper/Popover, not straight back to
+			// the MenuButton, so getParent() chains from here don't reach it.
+			this._downloadNotizblockFilesZipped(oDraft.id, aFileIds, oDraft.title, this._byIdInNotizblockEntryDialog("idBtnNotizblockAttachmentsDownloadSelected"));
 		},
 
 		onNotizblockAttachmentsDeleteSelected: function () {

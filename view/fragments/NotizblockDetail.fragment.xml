@@ -46,10 +46,16 @@
 			<OverflowToolbar>
 				<Title text="{i18n>NotizblockAttachmentsTitle}"/>
 				<ToolbarSpacer/>
-				<Button	id="idBtnNotizblockDetailAttachmentsDownload"
+				<MenuButton	id="idBtnNotizblockDetailAttachmentsDownload"
 						text="{i18n>NotizblockAttachmentsDownloadSelected}"
-						enabled="false"
-						press=".onNotizblockDetailAttachmentsDownload"/>
+						enabled="false">
+					<menu>
+						<Menu>
+							<MenuItem text="{i18n>NotizblockAttachmentsDownloadIndividually}" press=".onNotizblockDetailAttachmentsDownloadIndividually"/>
+							<MenuItem text="{i18n>NotizblockAttachmentsDownloadZipped}" press=".onNotizblockDetailAttachmentsDownloadZipped"/>
+						</Menu>
+					</menu>
+				</MenuButton>
 			</OverflowToolbar>
 		</headerToolbar>
 		<columns>
