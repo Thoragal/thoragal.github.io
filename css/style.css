@@ -64,7 +64,7 @@
 	right: 0;
 	opacity: 0.35;
 }
-.wikiCodeBlockWrapper:hover .wikiBlockCopyBtn.sapMBtn,
+.wikiBlockCopyBtn.sapMBtn:hover,
 .wikiBlockCopyBtn.sapMBtn:focus {
 	opacity: 1;
 }
