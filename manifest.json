@@ -138,7 +138,7 @@
                 },
                 {
                     "name": "NotizblockView",
-                    "pattern": "Notizblock",
+                    "pattern": "Notizen",
                     "titleTarget": "",
                     "greedy": false,
                     "target": [
@@ -147,7 +147,7 @@
                 },
                 {
                     "name": "NotizblockDetailView",
-                    "pattern": "Notizblock/{Id}",
+                    "pattern": "Notizen/{Id}",
                     "titleTarget": "",
                     "greedy": false,
                     "target": [
@@ -156,7 +156,7 @@
                 },
                 {
                     "name": "NotizblockOverviewView",
-                    "pattern": "NotizblockOverview",
+                    "pattern": "NotizenOverview",
                     "titleTarget": "",
                     "greedy": false,
                     "target": [
