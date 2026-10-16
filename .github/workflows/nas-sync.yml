@@ -14,3 +14,5 @@ jobs:
 
       - name: In NAS-Ordner kopieren
         run: rsync -a --delete --exclude .git ./ /deploy/
+
+        
