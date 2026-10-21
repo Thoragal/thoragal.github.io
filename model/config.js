@@ -12,7 +12,7 @@ sap.ui.define([], function () {
 		nas: "https://thoragal.synology.me"
 	};
 	// What every visitor gets unless they opted into another backend below.
-	var DEFAULT_BACKEND = "railway";
+	var DEFAULT_BACKEND = "nas";
 	var LOCAL_BACKEND_URL = "http://localhost:443";
 
 	// Auto-detects the local dev server (ui5 serve on localhost/127.0.0.1)
