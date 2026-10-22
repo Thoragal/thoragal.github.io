@@ -25,7 +25,7 @@ This website uses no cookies, no analytics tools, and no tracking or advertising
 The following service providers are used to operate this website:
 
 - **GitHub Pages** (website delivery) – USA
-- **Railway** (backend) – EU (Amsterdam, Netherlands)
+- **Server operated by the controller (NAS)** (backend) – Switzerland
 - **Neon** (database) – EU (Frankfurt, Germany)
 - **Backblaze B2** (storage of wiki file attachments) – USA
 - **Google (Gmail API)** (sending contact form messages) – USA

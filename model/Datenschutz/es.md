@@ -25,7 +25,7 @@ Este sitio web no utiliza cookies, ninguna herramienta de análisis ni tecnolog�
 Para el funcionamiento de este sitio web se utilizan los siguientes proveedores de servicios:
 
 - **GitHub Pages** (entrega del sitio web) – EE. UU.
-- **Railway** (backend) – UE (Ámsterdam, Países Bajos)
+- **Servidor propio del responsable (NAS)** (backend) – Suiza
 - **Neon** (base de datos) – UE (Fráncfort, Alemania)
 - **Backblaze B2** (almacenamiento de archivos adjuntos del wiki) – EE. UU.
 - **Google (API de Gmail)** (envío de mensajes del formulario de contacto) – EE. UU.

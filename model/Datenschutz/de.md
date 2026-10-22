@@ -25,7 +25,7 @@ Diese Website setzt keine Cookies, kein Analytics-Tool und keine Tracking- oder 
 Für den Betrieb dieser Website werden folgende Dienstleister eingesetzt:
 
 - **GitHub Pages** (Auslieferung der Website) – USA
-- **Railway** (Backend) – EU (Amsterdam, Niederlande)
+- **Eigener Server des Verantwortlichen (NAS)** (Backend) – Schweiz
 - **Neon** (Datenbank) – EU (Frankfurt, Deutschland)
 - **Backblaze B2** (Speicherung von Wiki-Dateianhängen) – USA
 - **Google (Gmail API)** (Versand von Kontaktformular-Nachrichten) – USA
