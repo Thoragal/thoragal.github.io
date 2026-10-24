@@ -25,15 +25,14 @@ Este sitio web no utiliza cookies, ninguna herramienta de análisis ni tecnolog�
 Para el funcionamiento de este sitio web se utilizan los siguientes proveedores de servicios:
 
 - **GitHub Pages** (entrega del sitio web) – EE. UU.
-- **Servidor propio del responsable (NAS)** (backend) – Suiza
+- **Servidor propio del responsable (NAS)** (backend y almacenamiento de archivos adjuntos del wiki) – Suiza
 - **Neon** (base de datos) – UE (Fráncfort, Alemania)
-- **Backblaze B2** (almacenamiento de archivos adjuntos del wiki) – EE. UU.
 - **Google (API de Gmail)** (envío de mensajes del formulario de contacto) – EE. UU.
 - **SAP (CDN de SAPUI5)** (carga del framework del frontend) – Alemania/UE
 
 ## 7. Transferencia de datos a EE. UU.
 
-GitHub Pages, Backblaze B2 y Google son proveedores con sede o servidores en EE. UU. La transferencia se realiza en el marco de la certificación correspondiente bajo el Marco de Privacidad de Datos UE-EE. UU. o Suiza-EE. UU., o bien basándose en cláusulas contractuales estándar.
+GitHub Pages y Google son proveedores con sede o servidores en EE. UU. La transferencia se realiza en el marco de la certificación correspondiente bajo el Marco de Privacidad de Datos UE-EE. UU. o Suiza-EE. UU., o bien basándose en cláusulas contractuales estándar.
 
 ## 8. Duración del almacenamiento
 

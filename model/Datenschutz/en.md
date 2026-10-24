@@ -25,15 +25,14 @@ This website uses no cookies, no analytics tools, and no tracking or advertising
 The following service providers are used to operate this website:
 
 - **GitHub Pages** (website delivery) – USA
-- **Server operated by the controller (NAS)** (backend) – Switzerland
+- **Server operated by the controller (NAS)** (backend and storage of wiki file attachments) – Switzerland
 - **Neon** (database) – EU (Frankfurt, Germany)
-- **Backblaze B2** (storage of wiki file attachments) – USA
 - **Google (Gmail API)** (sending contact form messages) – USA
 - **SAP (SAPUI5 CDN)** (loading the frontend framework) – Germany/EU
 
 ## 7. Data Transfer to the USA
 
-GitHub Pages, Backblaze B2, and Google are providers based in, or with servers located in, the USA. The transfer takes place under the respective certification pursuant to the EU-US or Swiss-US Data Privacy Framework, or based on standard contractual clauses.
+GitHub Pages and Google are providers based in, or with servers located in, the USA. The transfer takes place under the respective certification pursuant to the EU-US or Swiss-US Data Privacy Framework, or based on standard contractual clauses.
 
 ## 8. Retention Period
 

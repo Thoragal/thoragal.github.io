@@ -25,15 +25,14 @@ Diese Website setzt keine Cookies, kein Analytics-Tool und keine Tracking- oder 
 Für den Betrieb dieser Website werden folgende Dienstleister eingesetzt:
 
 - **GitHub Pages** (Auslieferung der Website) – USA
-- **Eigener Server des Verantwortlichen (NAS)** (Backend) – Schweiz
+- **Eigener Server des Verantwortlichen (NAS)** (Backend und Speicherung von Wiki-Dateianhängen) – Schweiz
 - **Neon** (Datenbank) – EU (Frankfurt, Deutschland)
-- **Backblaze B2** (Speicherung von Wiki-Dateianhängen) – USA
 - **Google (Gmail API)** (Versand von Kontaktformular-Nachrichten) – USA
 - **SAP (SAPUI5-CDN)** (Laden des Frontend-Frameworks) – Deutschland/EU
 
 ## 7. Datenübermittlung in die USA
 
-Bei GitHub Pages, Backblaze B2 und Google handelt es sich um Anbieter mit Sitz bzw. Serverstandort in den USA. Die Übermittlung erfolgt im Rahmen der jeweiligen Zertifizierung unter dem EU-US bzw. Swiss-US Data Privacy Framework bzw. gestützt auf Standardvertragsklauseln.
+Bei GitHub Pages und Google handelt es sich um Anbieter mit Sitz bzw. Serverstandort in den USA. Die Übermittlung erfolgt im Rahmen der jeweiligen Zertifizierung unter dem EU-US bzw. Swiss-US Data Privacy Framework bzw. gestützt auf Standardvertragsklauseln.
 
 ## 8. Speicherdauer
 
