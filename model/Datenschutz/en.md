@@ -29,6 +29,7 @@ The following service providers are used to operate this website:
 - **Neon** (database) – EU (Frankfurt, Germany)
 - **Google (Gmail API)** (sending contact form messages) – USA
 - **SAP (SAPUI5 CDN)** (loading the frontend framework) – Germany/EU
+- **Hostinger** (registration and name resolution of the domain) – EU (Lithuania)
 
 ## 7. Data Transfer to the USA
 

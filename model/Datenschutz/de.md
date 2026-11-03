@@ -29,6 +29,7 @@ Für den Betrieb dieser Website werden folgende Dienstleister eingesetzt:
 - **Neon** (Datenbank) – EU (Frankfurt, Deutschland)
 - **Google (Gmail API)** (Versand von Kontaktformular-Nachrichten) – USA
 - **SAP (SAPUI5-CDN)** (Laden des Frontend-Frameworks) – Deutschland/EU
+- **Hostinger** (Registrierung und Namensauflösung der Domain) – EU (Litauen)
 
 ## 7. Datenübermittlung in die USA
 

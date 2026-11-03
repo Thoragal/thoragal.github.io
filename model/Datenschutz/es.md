@@ -29,6 +29,7 @@ Para el funcionamiento de este sitio web se utilizan los siguientes proveedores 
 - **Neon** (base de datos) – UE (Fráncfort, Alemania)
 - **Google (API de Gmail)** (envío de mensajes del formulario de contacto) – EE. UU.
 - **SAP (CDN de SAPUI5)** (carga del framework del frontend) – Alemania/UE
+- **Hostinger** (registro y resolución de nombres del dominio) – UE (Lituania)
 
 ## 7. Transferencia de datos a EE. UU.
 
