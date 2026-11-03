@@ -9,7 +9,8 @@ sap.ui.define([], function () {
 	// static <meta> tag and cannot follow this list automatically.
 	var BACKENDS = {
 		railway: "https://nodejs20prod-production.up.railway.app",
-		nas: "https://thoragal.synology.me"
+		nas: "https://thoragal.synology.me",
+		api: "https://api.thorsten-bender.ch"
 	};
 	// What every visitor gets unless they opted into another backend below.
 	var DEFAULT_BACKEND = "nas";
