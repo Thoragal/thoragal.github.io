@@ -13,7 +13,7 @@ sap.ui.define([], function () {
 		api: "https://api.thorsten-bender.ch"
 	};
 	// What every visitor gets unless they opted into another backend below.
-	var DEFAULT_BACKEND = "nas";
+	var DEFAULT_BACKEND = "api";
 	var LOCAL_BACKEND_URL = "http://localhost:443";
 
 	// Auto-detects the local dev server (ui5 serve on localhost/127.0.0.1)
